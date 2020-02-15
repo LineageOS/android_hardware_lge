@@ -28,8 +28,126 @@
 typedef struct lge_amplifier_device {
     amplifier_device_t amp_dev;
     struct audio_device *adev;
+    struct audio_usecase* usecase_tx;
+    struct pcm* pcm_out;
     bool hifi_dac_enabled;
 } lge_amplifier_device_t;
+
+static int lge_amplifier_is_speaker(uint32_t snd_device) {
+    int speaker = 0;
+    switch (snd_device) {
+        case SND_DEVICE_OUT_SPEAKER:
+        case SND_DEVICE_OUT_SPEAKER_REVERSE:
+        case SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES:
+        case SND_DEVICE_OUT_VOICE_SPEAKER:
+        case SND_DEVICE_OUT_VOICE_SPEAKER_2:
+        case SND_DEVICE_OUT_SPEAKER_AND_HDMI:
+        case SND_DEVICE_OUT_SPEAKER_AND_USB_HEADSET:
+        case SND_DEVICE_OUT_SPEAKER_AND_ANC_HEADSET:
+            speaker = 1;
+            break;
+    }
+
+    return speaker;
+}
+
+int lge_amplifier_start_feedback(amplifier_device_t* device, uint32_t snd_device) {
+    lge_amplifier_device_t *lge_amplifier = (lge_amplifier_device_t*) device;
+    int pcm_dev_tx_id = 0, rc = 0;
+    struct pcm_config pcm_config_lge_amplifier = {
+            .channels = 2,
+            .rate = 48000,
+            .period_size = 256,
+            .period_count = 4,
+            .format = PCM_FORMAT_S16_LE,
+            .start_threshold = 0,
+            .stop_threshold = INT_MAX,
+            .silence_threshold = 0,
+    };
+
+    if (!lge_amplifier) {
+        ALOGE("%d: Invalid params", __LINE__);
+        return -EINVAL;
+    }
+
+    if (lge_amplifier->pcm_out || !lge_amplifier_is_speaker(snd_device)) return 0;
+
+    lge_amplifier->usecase_tx = (struct audio_usecase*)calloc(1, sizeof(struct audio_usecase));
+    if (!lge_amplifier->usecase_tx) {
+        ALOGE("%d: failed to allocate usecase", __LINE__);
+        return -ENOMEM;
+    }
+    lge_amplifier->usecase_tx->id = USECASE_AUDIO_SPKR_CALIB_TX;
+    lge_amplifier->usecase_tx->type = PCM_CAPTURE;
+    lge_amplifier->usecase_tx->in_snd_device = SND_DEVICE_IN_CAPTURE_VI_FEEDBACK;
+
+    list_add_tail(&lge_amplifier->adev->usecase_list, &lge_amplifier->usecase_tx->list);
+    enable_snd_device(lge_amplifier->adev, lge_amplifier->usecase_tx->in_snd_device);
+    enable_audio_route(lge_amplifier->adev, lge_amplifier->usecase_tx);
+
+    pcm_dev_tx_id = platform_get_pcm_device_id(lge_amplifier->usecase_tx->id, lge_amplifier->usecase_tx->type);
+    ALOGD("pcm_dev_tx_id = %d", pcm_dev_tx_id);
+    if (pcm_dev_tx_id < 0) {
+        ALOGE("%d: Invalid pcm device for usecase (%d)", __LINE__, lge_amplifier->usecase_tx->id);
+        rc = -ENODEV;
+        goto error;
+    }
+
+    lge_amplifier->pcm_out =
+            pcm_open(lge_amplifier->adev->snd_card, pcm_dev_tx_id, PCM_IN, &pcm_config_lge_amplifier);
+    if (!(lge_amplifier->pcm_out || pcm_is_ready(lge_amplifier->pcm_out))) {
+        ALOGE("%d: %s", __LINE__, pcm_get_error(lge_amplifier->pcm_out));
+        rc = -EIO;
+        goto error;
+    }
+
+    rc = pcm_start(lge_amplifier->pcm_out);
+    if (rc < 0) {
+        ALOGE("%d: pcm start for TX failed", __LINE__);
+        rc = -EINVAL;
+        goto error;
+    }
+    return 0;
+
+error:
+    ALOGE("%s: error case", __func__);
+    if (lge_amplifier->pcm_out != 0) {
+        pcm_close(lge_amplifier->pcm_out);
+        lge_amplifier->pcm_out = NULL;
+    }
+    list_remove(&lge_amplifier->usecase_tx->list);
+    disable_snd_device(lge_amplifier->adev, lge_amplifier->usecase_tx->in_snd_device);
+    disable_audio_route(lge_amplifier->adev, lge_amplifier->usecase_tx);
+    free(lge_amplifier->usecase_tx);
+
+    return rc;
+}
+
+void lge_amplifier_stop_feedback(amplifier_device_t* device, uint32_t snd_device) {
+    lge_amplifier_device_t *lge_amplifier = (lge_amplifier_device_t*) device;
+
+    if (!lge_amplifier) {
+        ALOGE("%s: Invalid params", __func__);
+        return;
+    }
+
+    if (!lge_amplifier_is_speaker(snd_device)) return;
+
+    if (lge_amplifier->pcm_out) {
+        pcm_close(lge_amplifier->pcm_out);
+        lge_amplifier->pcm_out = NULL;
+    }
+
+    disable_snd_device(lge_amplifier->adev, SND_DEVICE_IN_CAPTURE_VI_FEEDBACK);
+
+    lge_amplifier->usecase_tx = get_usecase_from_list(lge_amplifier->adev, USECASE_AUDIO_SPKR_CALIB_TX);
+    if (lge_amplifier->usecase_tx) {
+        list_remove(&lge_amplifier->usecase_tx->list);
+        disable_audio_route(lge_amplifier->adev, lge_amplifier->usecase_tx);
+        free(lge_amplifier->usecase_tx);
+    }
+    return;
+}
 
 static int lge_amplifier_set_output_devices(struct amplifier_device* device, uint32_t devices) {
     lge_amplifier_device_t *lge_amplifier = (lge_amplifier_device_t*) device;
@@ -162,6 +280,19 @@ done:
     return ret;
 }
 
+static int lge_amplifier_set_feedback(amplifier_device_t* device, void* adev, uint32_t devices,
+                            bool enable) {
+    lge_amplifier_device_t *lge_amplifier = (lge_amplifier_device_t*) device;
+    lge_amplifier->adev = (struct audio_device*)adev;
+
+    if (enable) {
+        lge_amplifier_start_feedback(device, devices);
+    } else {
+        lge_amplifier_stop_feedback(device, devices);
+    }
+    return 0;
+}
+
 // We're not really calibrating anything. We just need to save the audio_device.
 static int lge_amplifier_calibrate(struct amplifier_device *device, void *adev) {
     lge_amplifier_device_t *lge_amplifier = (lge_amplifier_device_t*) device;
@@ -204,6 +335,7 @@ static int lge_amplifier_module_open(const hw_module_t* module, const char* name
 
     lge_amplifier->amp_dev.set_output_devices = lge_amplifier_set_output_devices;
     lge_amplifier->amp_dev.set_parameters = lge_amplifier_set_parameters;
+    lge_amplifier->amp_dev.set_feedback = lge_amplifier_set_feedback;
     lge_amplifier->amp_dev.calibrate = lge_amplifier_calibrate;
 
     lge_amplifier->hifi_dac_enabled = false;
