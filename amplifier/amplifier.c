@@ -80,6 +80,7 @@ int lge_amplifier_start_feedback(amplifier_device_t* device, uint32_t snd_device
     lge_amplifier->usecase_tx->id = USECASE_AUDIO_SPKR_CALIB_TX;
     lge_amplifier->usecase_tx->type = PCM_CAPTURE;
     lge_amplifier->usecase_tx->in_snd_device = SND_DEVICE_IN_CAPTURE_VI_FEEDBACK;
+    list_init(&lge_amplifier->usecase_tx->device_list);
 
     list_add_tail(&lge_amplifier->adev->usecase_list, &lge_amplifier->usecase_tx->list);
     enable_snd_device(lge_amplifier->adev, lge_amplifier->usecase_tx->in_snd_device);
