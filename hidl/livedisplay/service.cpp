@@ -67,6 +67,11 @@ int main() {
         goto shutdown;
     }
 
+    se = new SunlightEnhancement();
+    if (se == nullptr) {
+        LOG(ERROR) << "Can not create an instance of LiveDisplay HAL SunlightEnhancement Iface, exiting.";
+    }
+
     for (auto&& lib : SDM_DISP_LIBS) {
         libHandle = dlopen(lib, RTLD_NOW);
         libName = lib;
@@ -123,6 +128,11 @@ int main() {
     if (dm->registerAsService() != android::OK) {
         LOG(ERROR) << "Cannot register DisplayModes HAL service.";
         goto shutdown;
+    }
+
+    if (se->registerAsService() != OK) {
+        LOG(ERROR) << "Could not register service for LiveDisplay HAL SunlightEnhancement Iface ("
+                   << status << ")";
     }
 
     if (pa->registerAsService() != android::OK) {
