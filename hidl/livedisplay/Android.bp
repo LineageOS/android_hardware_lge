@@ -12,6 +12,7 @@ cc_defaults {
         "ColorEnhancement.cpp",
         "DisplayModes.cpp",
         "PictureAdjustment.cpp",
+        "SunlightEnhancement.cpp",
         "service.cpp",
     ],
     shared_libs: [
