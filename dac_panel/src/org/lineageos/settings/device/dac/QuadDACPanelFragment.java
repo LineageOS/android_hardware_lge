@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Bundle;
-import androidx.preference.PreferenceFragment;
+import android.provider.Settings;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceFragment;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
@@ -50,7 +52,6 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         headsetPluggedFragmentReceiver = new HeadsetPluggedFragmentReceiver();
         try {
             dac = IDacAdvancedControl.getService(true);
@@ -215,17 +216,6 @@ public class QuadDACPanelFragment extends PreferenceFragment
         } catch (Exception e) {
             Log.d(TAG, "addPreferencesFromResource2: " + e.toString());
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                getActivity().finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void enableExtraSettings()

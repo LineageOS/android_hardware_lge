@@ -15,29 +15,18 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/quad_dac_app_name"
-        android:theme="@style/Theme.Main"
+        android:theme="@style/Theme.SubSettingsBase"
         android:defaultToDeviceProtectedStorage="true"
         android:directBootAware="true">
 
-        <provider
-            android:name=".QuadDACPanelSearchIndexablesProvider"
-            android:authorities="org.lineageos.settings.device.dac"
-            android:multiprocess="false"
-            android:grantUriPermissions="true"
-            android:permission="android.permission.READ_SEARCH_INDEXABLES"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
-            </intent-filter>
-        </provider>
 
         <activity
             android:name=".QuadDACPanelActivity"
             android:label="@string/quad_dac"
-			android:exported="true">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
-		<action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES"/>
+		        <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES"/>
             </intent-filter>
             <meta-data
                 android:name="com.android.settings.icon"
@@ -62,6 +51,16 @@
             </intent-filter>
         </service>
 
+        <provider
+            android:name=".QuadDACPanelSearchIndexablesProvider"
+            android:authorities="org.lineageos.settings.device.dac"
+            android:multiprocess="false"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.READ_SEARCH_INDEXABLES"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
+            </intent-filter>
+        </provider>
     </application>
-
 </manifest>
