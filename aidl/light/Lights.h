@@ -12,7 +12,7 @@
 #include <mutex>
 #include <fstream>
 
-#include "lge_lights.h"
+#include <lge_lights.h>
 
 using ::aidl::android::hardware::light::FlashMode;
 using ::aidl::android::hardware::light::HwLightState;
