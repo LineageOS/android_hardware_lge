@@ -8,6 +8,9 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.ir@1\.2-service\.lge                                  u:object_r:hal_ir_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.lge                    u:object_r:hal_lineage_livedisplay_qti_exec:s0
 
+# IR
+/dev/ttyMSM1                                                        u:object_r:cir_device:s0
+
 # Sysfs
 /sys/bus/i2c/drivers/es9218-codec(/.*)?                                     u:object_r:sysfs_dac:s0
 /sys/bus/i2c/drivers/es9218-codec/[0-9]-0048(/.*)?                          u:object_r:sysfs_dac:s0
