@@ -9,9 +9,6 @@
     <uses-permission android:name="lineageos.permission.HARDWARE_ABSTRACTION_ACCESS" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
-    <uses-sdk
-        android:minSdkVersion="24" />
-
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/quad_dac_app_name"
