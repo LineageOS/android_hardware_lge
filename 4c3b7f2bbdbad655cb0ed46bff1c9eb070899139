@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "954349b8_fb64a916",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2023-02-25T17:44:26Z",
+      "side": 1,
+      "message": "I cherry-picked the entire device/lge/common history here.\n\nIn an attempt to have linear history across branches, I can merge this into lineage-20, and THEN spawn an 18.1 branch so existing LGE users can make use of it. It should still build if you clone the lineage-20 branch, include hardware/lge soong namespace and remove device/lge/common from all imports.",
+      "revId": "4c3b7f2bbdbad655cb0ed46bff1c9eb070899139",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
