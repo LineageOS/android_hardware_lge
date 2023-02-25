@@ -29,8 +29,7 @@ LOCAL_SHARED_LIBRARIES := \
     libhidltransport \
     libhardware \
     libutils \
-    android.hardware.ir@1.0 \
-    libcir_driver
+    android.hardware.ir@1.0
 
 LOCAL_SRC_FILES := \
     service.cpp \

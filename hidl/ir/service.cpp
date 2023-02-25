@@ -17,9 +17,9 @@
 #define LOG_TAG "android.hardware.ir@1.0-service.lge"
 
 #include <hidl/HidlTransportSupport.h>
+#include <dlfcn.h>
 
 #include "ConsumerIr.h"
-
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
 
@@ -29,10 +29,26 @@ using android::hardware::ir::V1_0::implementation::ConsumerIr;
 using android::OK;
 using android::status_t;
 
+#define LGE_CONSUMERIR_LIB "libcir_driver.so"
+
+void *libcir_handle;
+void *transmitIr;
+
 int main() {
     android::sp<IConsumerIr> service = new ConsumerIr();
 
     configureRpcThreadpool(1, true /*callerWillJoin*/);
+
+    libcir_handle = dlopen(LGE_CONSUMERIR_LIB, RTLD_NOW);
+    if (!libcir_handle) {
+        ALOGE("%s: Failed to open %s: %s", __func__, LGE_CONSUMERIR_LIB, dlerror());
+        return 1;
+    }
+	transmitIr = (int*)dlsym(libcir_handle, "qmi_client_init");
+    if (!transmitIr) {
+        ALOGE("%s: Failed to resolve function: %s: %s", __func__, "transmitIr", dlerror());
+        return 1;
+    }
 
     status_t status = service->registerAsService();
     if (status != OK) {
