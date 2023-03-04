@@ -19,6 +19,7 @@
 #include <android-base/logging.h>
 #include <thread>
 
+#include <cinttypes>
 #include <cmath>
 #include <cstring>
 #include <cutils/properties.h>
@@ -35,6 +36,8 @@ static constexpr double BUFFER_ENTRIES_PER_MS = 8.21;
 
 // Sine amplitude for buffer values
 static constexpr uint8_t DEFAULT_AMPLITUDE = 127;
+
+#define MAX_AMPLITUDE 255
 
 // Output buffer size (immvibed uses 40 and not size of VIBE_OUTPUT_SAMPLE_SIZE)
 static constexpr int32_t OUTPUT_BUFFER_SIZE = 40;
@@ -104,8 +107,15 @@ ndk::ScopedAStatus Vibrator::on(int32_t timeoutMs,
 
     for(int32_t i = 0; i < bufferSize; i++)
     {
+        int ret = 0;
+        if(mCurrentAmplitude > 0) {
+            ret = mCurrentAmplitude * sin(i/BUFFER_ENTRIES_PER_MS);
+            if (ret < 0) {
+                ret = (MAX_AMPLITUDE - (DEFAULT_AMPLITUDE * 2)) + (2 * mCurrentAmplitude) + ret;
+            }
+        }
         // The vibration is a sine curve, the negative parts are 255 + negative value
-        fullBuffer[i] = (u_int8_t) (mCurrentAmplitude * sin(i/BUFFER_ENTRIES_PER_MS));
+        fullBuffer[i] = (u_int8_t) (ret);
     }
 
     // Amount of buffer arrays with size of OUTPUT_BUFFER_SIZE
@@ -212,9 +222,9 @@ ndk::ScopedAStatus Vibrator::getSupportedEffects(std::vector<Effect>* _aidl_retu
 
 ndk::ScopedAStatus Vibrator::setAmplitude(float amplitude) {
     LOG(VERBOSE) << "Vibrator set amplitude: " << amplitude;
-    if (amplitude == 0) {
+    if (amplitude < 0 || amplitude > UINT8_MAX)
         return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_ILLEGAL_ARGUMENT));
-    }
+
     mCurrentAmplitude = amplitude;
     return ndk::ScopedAStatus::ok();
 }
