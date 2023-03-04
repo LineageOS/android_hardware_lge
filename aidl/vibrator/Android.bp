@@ -1,0 +1,28 @@
+//
+// Copyright (C) 2021-2023 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    name: "android.hardware.vibrator-service.lge",
+    relative_install_path: "hw",
+    header_libs: ["generated_kernel_headers"],
+    init_rc: ["android.hardware.vibrator-service.lge.rc"],
+    vintf_fragments: ["android.hardware.vibrator-service.lge.xml"],
+    cppflags: [
+        "-Wno-reserved-user-defined-literal",
+        "-Wno-unused-parameter",
+    ],
+    srcs: [
+        "Vibrator.cpp",
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "libcutils",
+        "android.hardware.vibrator-V2-ndk",
+    ],
+    vendor: true,
+}

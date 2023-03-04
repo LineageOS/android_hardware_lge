@@ -4,7 +4,7 @@
 # HALs
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.lge                               u:object_r:hal_light_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.audio\.dac\.control@1\.0-service                  u:object_r:hal_dac_control_default_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.vibrator@1\.3-service\.lge                            u:object_r:hal_vibrator_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.vibrator(@1\.[1-3])?-service\.lge                     u:object_r:hal_vibrator_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.ir@1\.2-service\.lge                                  u:object_r:hal_ir_default_exec:s0
 
 # Sysfs
