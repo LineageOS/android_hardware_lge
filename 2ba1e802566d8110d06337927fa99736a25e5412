@@ -33,6 +33,24 @@
       "message": "Seems to correctly ignore building the service on joan.\n\nAs msm8996 devices are the last of the LGE lineup to include IR hardware, it makes sense to me that this should be opt-in instead of opt-out (As sdm845/sm8150/sm8250 devices do not have IR either.)\nmsm8996 stack must add this flag to build the HIDL and really switch to hw/lge this time, before this merges.",
       "revId": "2ba1e802566d8110d06337927fa99736a25e5412",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c65e10_1109b10e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2023-03-09T21:25:51Z",
+      "side": 1,
+      "message": "Yup, I\u0027ll test it now.",
+      "parentUuid": "4ec442e5_64286bf5",
+      "revId": "2ba1e802566d8110d06337927fa99736a25e5412",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
