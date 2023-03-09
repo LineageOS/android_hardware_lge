@@ -17,6 +17,8 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+ifeq ($(TARGET_USE_LGE_IR),true)
+
 LOCAL_MODULE := android.hardware.ir@1.0-service.lge
 LOCAL_INIT_RC := android.hardware.ir@1.0-service.lge.rc
 LOCAL_MODULE_RELATIVE_PATH := hw
@@ -29,7 +31,8 @@ LOCAL_SHARED_LIBRARIES := \
     libhidltransport \
     libhardware \
     libutils \
-    android.hardware.ir@1.0
+    android.hardware.ir@1.0 \
+    libcir_driver
 
 LOCAL_SRC_FILES := \
     service.cpp \
@@ -41,3 +44,4 @@ LOCAL_PRIVATE_PLATFORM_APIS := true
 
 include $(BUILD_EXECUTABLE)
 
+endif
