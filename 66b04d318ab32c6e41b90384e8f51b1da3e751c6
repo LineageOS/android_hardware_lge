@@ -16,6 +16,23 @@
       "message": "So, this is the new name of the node on 4.4 with the new BCM setup - I am leaving 18.1 on 3.18 where this will be HSL, but on 19.1 I\u0027d like to set it to MSM1, as anyone running 19.1 or newer must be on 4.4+ anyway.",
       "revId": "66b04d318ab32c6e41b90384e8f51b1da3e751c6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fc58f4b_bf18668e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2023-03-18T03:44:03Z",
+      "side": 1,
+      "message": "Sounds sane.\nFeel free to merge at your discretion (which I assume is when msm8996 is ready to ship)\n\n*it doesn\u0027t affect my devices one way or another lol*",
+      "revId": "66b04d318ab32c6e41b90384e8f51b1da3e751c6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
