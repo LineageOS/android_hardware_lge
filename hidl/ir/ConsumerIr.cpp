@@ -30,7 +30,7 @@ namespace V1_0 {
 namespace implementation {
 
 // LG specific defines
-#define IR_DEVICE "/dev/ttyHSL1"
+#define IR_DEVICE "/dev/ttyMSM1"
 #define LG_IR_BAUD_RATE 115200
 
 extern "C" {
