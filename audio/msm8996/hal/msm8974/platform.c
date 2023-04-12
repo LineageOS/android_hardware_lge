@@ -165,7 +165,6 @@ extern void log_utils_deinit(void);
 /* Internal hal ESS dac props */
 /* Default to unsupported for non dac devices */
 static bool ESS_HIFI_SUPPORT = false;
-static bool ESS_HIFI_ENABLE = false;
 
 char cal_name_info[WCD9XXX_MAX_CAL][MAX_CAL_NAME] = {
         [WCD9XXX_ANC_CAL] = "anc_cal",
@@ -2148,15 +2147,10 @@ void *platform_init(struct audio_device *adev)
     const char *id_string = NULL;
     int cfg_value = -1;
     
-    /*Check ess settings */
-    property_get("persist.vendor.audio.ess.supported",value,"");
-    if (!strncmp("true", value, sizeof("true"))){
+    /*Check ess support */
+    if (property_get_bool("persist.vendor.audio.ess.supported",false) == true){
     	ESS_HIFI_SUPPORT = true;
-    	property_get("persist.vendor.audio.hifi.enabled",value,"");
-    	if (!strncmp("true", value, sizeof("true"))){
-    	ESS_HIFI_ENABLE = true;
     	}
-    }
 
     adev->snd_card = audio_extn_utils_open_snd_mixer(&adev->mixer);
     if (adev->snd_card < 0) {
@@ -4349,7 +4343,7 @@ snd_device_t platform_get_output_snd_device(void *platform, struct stream_out *o
                 snd_device = SND_DEVICE_OUT_HEADPHONES_44_1;
         } else if (out->format == AUDIO_FORMAT_DSD) {
                 snd_device = SND_DEVICE_OUT_HEADPHONES_DSD;
-        } else if((ESS_HIFI_ENABLE == true) && (ESS_HIFI_SUPPORT == true)){
+        } else if(((property_get_bool("persist.vendor.audio.hifi.enabled",false) == true)) && (ESS_HIFI_SUPPORT == true)){
         	snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC;
         } else
                 snd_device = SND_DEVICE_OUT_HEADPHONES;
