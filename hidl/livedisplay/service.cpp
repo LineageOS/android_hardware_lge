@@ -118,7 +118,6 @@ int main() {
 
     if (ce->registerAsService() != android::OK) {
         LOG(ERROR) << "Cannot register ColorEnhancement HAL service.";
-        goto shutdown;
     }
 
     if (dm->registerAsService() != android::OK) {
