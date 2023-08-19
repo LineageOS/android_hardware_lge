@@ -28,20 +28,24 @@ public class QuadDAC {
         dac_service_available = true;
     }
 
-    public static void enable()
+    public static void enable() throws RemoteException
+    {
+        dac.setHifiDacState(true);
+    }
+
+    public static void enabledSetup()
     {
         try {
-            int digital_filter = getDigitalFilter();
+            int mode = getDACMode();
             int left_balance = getLeftBalance();
             int right_balance = getRightBalance();
-            int mode = getDACMode();
             int avc_vol = getAVCVolume();
-            dac.setHifiDacState(true);
+            int digital_filter = getDigitalFilter();
             setDACMode(mode);
             setLeftBalance(left_balance);
             setRightBalance(right_balance);
-            setDigitalFilter(digital_filter);
             setAVCVolume(avc_vol);
+            setDigitalFilter(digital_filter);
 
             // Sound presets are disabled on the open-source audio HAL.
             if(dac_features.contains(Feature.SoundPreset)) {

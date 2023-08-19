@@ -190,6 +190,8 @@ public class QuadDACPanelFragment extends PreferenceFragment
                 if (QuadDAC.isEnabled()) {
                     quaddac_switch.setChecked(true);
                     enableExtraSettings();
+                    /* Apply the dac's saved settings right when the panel loads up */
+                    QuadDAC.enabledSetup();
                 } else {
                     quaddac_switch.setChecked(false);
                     disableExtraSettings();
