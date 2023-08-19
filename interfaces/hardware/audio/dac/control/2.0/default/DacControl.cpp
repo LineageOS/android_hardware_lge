@@ -48,7 +48,7 @@ static std::vector<KeyValue> digital_filters = {{"Short", "0"},
 
 static std::vector<KeyValue> hifi_modes = {{"Normal", "0"},
                                            {"High Impedance", "1"},
-                                           {"AUX", "2"}};
+                                           {"AUX High Impedance", "2"}};
 
 /*
  * Write value to path and close file.

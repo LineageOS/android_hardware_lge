@@ -42,7 +42,7 @@
 
     <string name="hifi_mode_normal">Normal</string>
     <string name="hifi_mode_him">High Impedance</string>
-    <string name="hifi_mode_aux">AUX</string>
+    <string name="hifi_mode_aux-him">AUX High Impedance</string>
 
     <string name="avc_volume">AVC Volume</string>
     <string name="avc_volume_summary">Amplifies volume</string>
