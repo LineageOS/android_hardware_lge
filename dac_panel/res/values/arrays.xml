@@ -27,7 +27,7 @@
     <string-array name="hifi_mode_entry_values" translatable="false">
         <item>@string/hifi_mode_normal</item>
         <item>@string/hifi_mode_him</item>
-        <item>@string/hifi_mode_aux</item>
+        <item>@string/hifi_mode_aux-him</item>
     </string-array>
 
 </resources>
