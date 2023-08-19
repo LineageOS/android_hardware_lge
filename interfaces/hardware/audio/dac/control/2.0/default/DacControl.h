@@ -89,7 +89,6 @@ class DacControl : public IDacControl {
 
     AudioVersion usedVersion;
   
-    std::string mDacBasePath;
     std::string avcPath;
     std::string hifiPath;
 };
