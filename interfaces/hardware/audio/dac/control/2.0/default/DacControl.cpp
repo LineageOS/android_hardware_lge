@@ -60,24 +60,14 @@ static void set(const std::string& path, const T& value) {
 }
 
 DacControl::DacControl() {
-    DIR* dir;
-    for(int i = 0; i < 10; i++) {
-        std::string tmp = COMMON_ES9218_PATH + std::to_string(i) + "-0048/";
-        if( (dir = opendir(tmp.c_str())) != NULL) {
-            mDacBasePath.append(tmp);
-            closedir(dir);
-            break;
-        }
-        closedir(dir);
-    }
-    if(mDacBasePath.empty()) {
+    if(access(COMMON_ES9218_PATH, F_OK) != 0) {
         LOG(ERROR) << "DacControl: No ES9218 path found, exiting...";
         return;
     }
 
-    avcPath = std::string(mDacBasePath);
+    avcPath = std::string(COMMON_ES9218_PATH);
     avcPath.append(AVC_VOLUME);
-    hifiPath = std::string(mDacBasePath);
+    hifiPath = std::string(COMMON_ES9218_PATH);
     hifiPath.append(HIFI_MODE);
 
 #ifdef PROPRIETARY_AUDIO_MODULE
