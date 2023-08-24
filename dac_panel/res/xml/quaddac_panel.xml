@@ -50,6 +50,134 @@
 
     </PreferenceCategory>
 
+    <!-- Customizable filter category -->
+    <PreferenceCategory
+        app:title="@string/customizable_filter_settings">
+
+        <ListPreference
+            app:key="custom_filter_shape"
+            app:title="@string/cf_shape"
+            app:summary="%s"
+            app:entries="@array/custom_filter_shapes"
+            app:entryValues="@array/custom_filter_shapes" />
+
+        <ListPreference
+            app:key="custom_filter_symmetry"
+            app:title="@string/cf_symmetry"
+            app:summary="%s"
+            app:entries="@array/custom_filter_symmetries"
+            app:entryValues="@array/custom_filter_symmetries" />
+
+    </PreferenceCategory>
+
+    <!-- These ones really need their own category to keep things more organized -->
+    <PreferenceCategory
+        app:title="@string/customizable_filter_coeffs">
+
+        <!-- Tons of coefficient seekbars BEGIN -->
+        <SeekBarPreference
+            app:key="custom_filter_coeff0"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff1"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff2"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff3"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff4"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff5"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff6"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff7"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff8"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff9"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff10"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff11"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff12"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+        <SeekBarPreference
+            app:key="custom_filter_coeff13"
+            app:title=""
+            app:summary="%s"
+            app:min="-9999999"
+            android:max="9999999"
+            app:defaultValue="0" />
+
+        <!-- Tons of coefficient seekbars END -->
+
+    </PreferenceCategory>
+
     <PreferenceCategory
         app:title="@string/quad_dac_balance" >
 

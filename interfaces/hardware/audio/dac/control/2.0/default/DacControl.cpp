@@ -24,6 +24,14 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+std::vector<std::string> PROPERTY_CUSTOM_FILTER_COEFFS = {
+    "persist.vendor.audio.ess.customFilterCoeff0", "persist.vendor.audio.ess.customFilterCoeff1",
+    "persist.vendor.audio.ess.customFilterCoeff2", "persist.vendor.audio.ess.customFilterCoeff3", "persist.vendor.audio.ess.customFilterCoeff4",
+    "persist.vendor.audio.ess.customFilterCoeff5", "persist.vendor.audio.ess.customFilterCoeff6", "persist.vendor.audio.ess.customFilterCoeff7",
+    "persist.vendor.audio.ess.customFilterCoeff8", "persist.vendor.audio.ess.customFilterCoeff9", "persist.vendor.audio.ess.customFilterCoeff10",
+    "persist.vendor.audio.ess.customFilterCoeff11", "persist.vendor.audio.ess.customFilterCoeff12", "persist.vendor.audio.ess.customFilterCoeff13" 
+};
+
 namespace vendor {
 namespace lge {
 namespace hardware {
@@ -65,10 +73,16 @@ DacControl::DacControl() {
         return;
     }
 
+    struct stat buffer;
+
     avcPath = std::string(COMMON_ES9218_PATH);
     avcPath.append(AVC_VOLUME);
     hifiPath = std::string(COMMON_ES9218_PATH);
     hifiPath.append(HIFI_MODE);
+    essFilterPath = std::string(COMMON_ES9218_PATH);
+    essFilterPath.append(ESS_FILTER);
+    customFilterPath = std::string(COMMON_ES9218_PATH);
+    customFilterPath.append(ESS_CUSTOM_FILTER);
 
 #ifdef PROPRIETARY_AUDIO_MODULE
     mAudioDevicesFactory_V6_0 = ::android::hardware::audio::V6_0::IDevicesFactory::getService();
@@ -186,11 +200,13 @@ DacControl::DacControl() {
     setHifiDacState(getHifiDacState());
 
     /* Digital Filter */
-    mSupportedFeatures.push_back(Feature::DigitalFilter);
-    FeatureStates digfilter_fstates;
-    digfilter_fstates.states = hidl_vec<KeyValue> {digital_filters};
-    mSupportedStates.emplace(Feature::DigitalFilter, digfilter_fstates);
-    setFeatureValue(Feature::DigitalFilter, getFeatureValue(Feature::DigitalFilter));
+    if(stat(essFilterPath.c_str(), &buffer) == 0) {
+        mSupportedFeatures.push_back(Feature::DigitalFilter);
+        FeatureStates digfilter_fstates;
+        digfilter_fstates.states = hidl_vec<KeyValue> {digital_filters};
+        mSupportedStates.emplace(Feature::DigitalFilter, digfilter_fstates);
+        setFeatureValue(Feature::DigitalFilter, getFeatureValue(Feature::DigitalFilter));
+    }
 
 #ifdef PROPRIETARY_AUDIO_MODULE
     /* Sound Presets */
@@ -220,7 +236,6 @@ DacControl::DacControl() {
     setFeatureValue(Feature::BalanceRight, getFeatureValue(Feature::BalanceRight));
 
     /* AVC Volume */
-    struct stat buffer;
     if(stat(avcPath.c_str(), &buffer) == 0) {
         mSupportedFeatures.push_back(Feature::AVCVolume);
         writeAvcVolumeState(getFeatureValue(Feature::AVCVolume));
@@ -230,6 +245,15 @@ DacControl::DacControl() {
     if(stat(hifiPath.c_str(), &buffer) == 0) {
         mSupportedFeatures.push_back(Feature::HifiMode);
         writeHifiModeState(getFeatureValue(Feature::HifiMode));
+    }
+
+    /* Custom ESS filter setting */
+    if(stat(customFilterPath.c_str(), &buffer) == 0) {
+        mSupportedFeatures.push_back(Feature::CustomFilter);
+        setCustomFilterShape(getCustomFilterShape());
+        setCustomFilterSymmetry(getCustomFilterSymmetry());
+        for(int i=0; i < 14; i++)
+            setCustomFilterCoeff(i, getCustomFilterCoeff(i));
     }
 }
 
@@ -361,6 +385,28 @@ Return<bool> DacControl::setHifiDacState(bool enable) {
 #endif
 }
 
+bool DacControl::setDigitalFilterState(int32_t value) {
+    switch(value) {
+        case 0: // Short
+            set(essFilterPath, 9);
+            break;
+        case 1: // Sharp
+            set(essFilterPath, 4);
+            break;
+        case 2: // Slow
+            set(essFilterPath, 5);
+            break;
+        case 3: // Custom
+            set(essFilterPath, 3);
+            break;
+        default:
+            LOG(ERROR) << "DacControl::setDigitalFilterState: Invalid filter " << value;
+            return false;
+    }
+    property_set(PROPERTY_DIGITAL_FILTER, std::to_string(value).c_str());
+    return true;
+}
+
 Return<bool> DacControl::setFeatureValue(Feature feature, int32_t value) {
 
     bool rc;
@@ -374,9 +420,7 @@ Return<bool> DacControl::setFeatureValue(Feature feature, int32_t value) {
     std::string property;
     switch(feature) {
         case Feature::DigitalFilter: {
-            kv.name = SET_DIGITAL_FILTER_COMMAND;
-            property = PROPERTY_DIGITAL_FILTER;
-            break;
+            return setDigitalFilterState(value);
         }
         case Feature::SoundPreset: {
             kv.name = SET_SOUND_PRESET_COMMAND;
@@ -466,6 +510,87 @@ Return<int32_t> DacControl::getFeatureValue(Feature feature) {
     }
     property_get(property.c_str(), value, std::to_string(property_default_value).c_str());
     return std::stoi(value);
+}
+
+// Custom filter implementation
+
+Return<int32_t> DacControl::getCustomFilterShape(void) {
+    return property_get_int32(PROPERTY_CUSTOM_FILTER_SHAPE, 0);
+}
+
+Return<int32_t> DacControl::getCustomFilterSymmetry(void) {
+    return property_get_int32(PROPERTY_CUSTOM_FILTER_SYMMETRY, 0);
+}
+
+Return<int32_t> DacControl::getCustomFilterCoeff(int32_t coeffIndex) {
+    return property_get_int32(PROPERTY_CUSTOM_FILTER_COEFFS.at(coeffIndex).c_str(), 0);
+}
+
+std::string DacControl::parseUpdatedCustomFilterData() {
+    std::string filter_data;
+
+    /*
+    * Let's build the actual string with the custom filter's shape, symmetry and 14 Stage 2 coefficients
+    *
+    */
+    filter_data.append(std::to_string(getCustomFilterShape())).append(",");
+    filter_data.append(std::to_string(getCustomFilterSymmetry())).append(",");
+    for (int i = 0; i < 14; i++) {
+        filter_data.append(std::to_string(getCustomFilterCoeff(i)));
+        if(i < 13) /* Last element doesn't need to have a comma appended after it */
+            filter_data.append(",");
+    }
+
+    return filter_data;
+}
+
+Return<bool> DacControl::setCustomFilterShape(int32_t shape) {
+    if(std::find(mSupportedFeatures.begin(), mSupportedFeatures.end(), Feature::CustomFilter) == mSupportedFeatures.end()) {
+        LOG(ERROR) << "DacControl::setCustomFilterShape: tried to set custom filter control on unsupported device";
+        return false;
+    }
+
+    int rc;
+    if(shape <= 4)
+        rc = property_set(PROPERTY_CUSTOM_FILTER_SHAPE, std::to_string(shape).c_str());
+    else /* Filter 5 (counting from 0) is enumerated 6 on es9218.h, so anything after receives +1 as well */
+        rc = property_set(PROPERTY_CUSTOM_FILTER_SHAPE, std::to_string(shape + 1).c_str());
+    if (rc) {
+        LOG(ERROR) << "DacControl::setCustomFilterShape: failed to set property " << PROPERTY_CUSTOM_FILTER_SHAPE << " with error " << rc;
+        return false;
+    }
+    set(customFilterPath, parseUpdatedCustomFilterData());
+    return true;
+}
+
+Return<bool> DacControl::setCustomFilterSymmetry(int symmetry) {
+    if(std::find(mSupportedFeatures.begin(), mSupportedFeatures.end(), Feature::CustomFilter) == mSupportedFeatures.end()) {
+        LOG(ERROR) << "DacControl::setCustomFilterSymmetry: tried to set custom filter control on unsupported device";
+        return false;
+    }
+
+    int rc = property_set(PROPERTY_CUSTOM_FILTER_SYMMETRY, std::to_string(symmetry).c_str());
+    if (rc) {
+        LOG(ERROR) << "DacControl::setCustomFilterSymmetry: failed to set property " << PROPERTY_CUSTOM_FILTER_SYMMETRY << " with error " << rc;
+        return false;
+    }
+    set(customFilterPath, parseUpdatedCustomFilterData());
+    return true;
+}
+
+Return<bool> DacControl::setCustomFilterCoeff(int coeffIndex, int value) {
+    if(std::find(mSupportedFeatures.begin(), mSupportedFeatures.end(), Feature::CustomFilter) == mSupportedFeatures.end()) {
+        LOG(ERROR) << "DacControl::setCustomFilterCoeff: tried to set custom filter control on unsupported device";
+        return false;
+    }
+
+    int rc = property_set(PROPERTY_CUSTOM_FILTER_COEFFS.at(coeffIndex).c_str(), std::to_string(value).c_str());
+    if (rc) {
+        LOG(ERROR) << "DacControl::setCustomFilterCoeff: failed to set property " << PROPERTY_CUSTOM_FILTER_COEFFS.at(coeffIndex) << " with error " << rc;
+        return false;
+    }
+    set(customFilterPath, parseUpdatedCustomFilterData());
+    return true;
 }
 
 }  // namespace implementation

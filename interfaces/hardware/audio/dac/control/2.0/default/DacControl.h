@@ -68,6 +68,18 @@ class DacControl : public IDacControl {
 
     Return<int32_t> getFeatureValue(Feature feature) override;
 
+    Return<int32_t> getCustomFilterShape(void) override;
+
+    Return<bool> setCustomFilterShape(int32_t shape) override;
+
+    Return<int32_t> getCustomFilterSymmetry(void) override;
+
+    Return<bool> setCustomFilterSymmetry(int32_t symmetry) override;
+
+    Return<int32_t> getCustomFilterCoeff(int32_t coeffIndex) override;
+
+    Return<bool> setCustomFilterCoeff(int32_t coeffIndex, int32_t value) override;
+
     std::map<Feature, FeatureStates> mSupportedStates;
     std::vector<Feature> mSupportedFeatures;
 
@@ -77,6 +89,8 @@ class DacControl : public IDacControl {
     bool writeAvcVolumeState(int32_t value);
     bool writeHifiModeState(int32_t value);
     bool setAudioHALParameters(KeyValue kv);
+    bool setDigitalFilterState(int32_t value);
+    std::string parseUpdatedCustomFilterData();
 
     android::sp<::android::hardware::audio::V2_0::IDevice> mAudioDevice_V2_0;
     android::sp<::android::hardware::audio::V2_0::IDevicesFactory> mAudioDevicesFactory_V2_0;
@@ -91,6 +105,8 @@ class DacControl : public IDacControl {
   
     std::string avcPath;
     std::string hifiPath;
+    std::string essFilterPath;
+    std::string customFilterPath;
 };
 
 }  // namespace implementation

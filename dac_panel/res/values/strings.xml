@@ -26,8 +26,28 @@
     <string name="digital_filter_0">Short</string>
     <string name="digital_filter_1">Sharp</string>
     <string name="digital_filter_2">Slow</string>
+    <string name="digital_filter_3">Customizable Filter</string>
 
     <string name="empty_string"></string>
+
+    <string name="customizable_filter_settings">Customizable Filter Settings</string>
+
+    <string name="cf_shape">Custom Filter Shape</string>
+
+    <string name="cf_shape_0">Fast roll-off</string>
+    <string name="cf_shape_1">Slow roll-off</string>
+    <string name="cf_shape_2">Minimum phase fast roll-off</string>
+    <string name="cf_shape_3">Minimum phase slow roll-off</string>
+    <string name="cf_shape_4">Apodizing fast roll-off</string>
+    <string name="cf_shape_5">Hybrid fast roll-off</string>
+    <string name="cf_shape_6">Brick wall</string>
+
+    <string name="cf_symmetry">Custom Filter Symmetry</string>
+
+    <string name="cf_symmetry_0">Sine Symmetry</string>
+    <string name="cf_symmetry_1">Cosine Symmetry</string>
+
+    <string name="customizable_filter_coeffs">Customizable Filter Coefficients</string>
 
     <string name="hifi_mode">HiFi mode</string>
 
