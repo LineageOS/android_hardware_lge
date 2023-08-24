@@ -16,10 +16,15 @@
 
 #pragma once
 
+#include <string>
+#include <vector>
+
 /* Paths */
 #define COMMON_ES9218_PATH                 "/sys/kernel/es9218_dac/"
 #define AVC_VOLUME                         "avc_volume"
 #define HIFI_MODE                          "headset_type"
+#define ESS_FILTER                         "ess_filter"
+#define ESS_CUSTOM_FILTER                  "ess_custom_filter"
 
 /* Properties */
 #ifndef PROPRIETARY_AUDIO_MODULE
@@ -34,6 +39,10 @@
 #define PROPERTY_RIGHT_BALANCE             "persist.vendor.lge.audio.hifi_dac.right_balance"
 #define PROPERTY_HIFI_DAC_MODE             "persist.vendor.audio.ess.mode"
 #define PROPERTY_HIFI_DAC_AVC_VOLUME       "persist.vendor.lge.audio.hifi_dac.avc_volume"
+
+#define PROPERTY_CUSTOM_FILTER_SHAPE       "persist.vendor.audio.ess.customFilterShape"
+#define PROPERTY_CUSTOM_FILTER_SYMMETRY    "persist.vendor.audio.ess.customFilterSymmetry"
+extern std::vector<std::string> PROPERTY_CUSTOM_FILTER_COEFFS;
 
 #ifndef PROPRIETARY_AUDIO_MODULE
 #define PROPERTY_VALUE_HIFI_DAC_ENABLED    "true"
@@ -52,7 +61,6 @@
 #define SET_DAC_ON_COMMAND                  "on"
 #define SET_DAC_OFF_COMMAND                 "off"
 
-#define SET_DIGITAL_FILTER_COMMAND          "ESS_FILTER"
 #define SET_SOUND_PRESET_COMMAND            "SOUND_PRESET"
 
 #define SET_LEFT_BALANCE_COMMAND            "hifi_dac_l_volume"

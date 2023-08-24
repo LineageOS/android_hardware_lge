@@ -14,4 +14,12 @@ public class Constants {
     public static final String HIFI_MODE_KEY = "hifi_mode_dropdown";
     public static final String AVC_VOLUME_KEY = "avc_volume_seekbar";
 
+    public static final String   CUSTOM_FILTER_SHAPE_KEY = "custom_filter_shape";
+    public static final String   CUSTOM_FILTER_SYMMETRY_KEY = "custom_filter_symmetry";
+    public static final String[] CUSTOM_FILTER_COEFF_KEYS = {
+        "custom_filter_coeff0", "custom_filter_coeff1", "custom_filter_coeff2", "custom_filter_coeff3",
+        "custom_filter_coeff4", "custom_filter_coeff5", "custom_filter_coeff6", "custom_filter_coeff7",
+        "custom_filter_coeff8", "custom_filter_coeff9", "custom_filter_coeff10", "custom_filter_coeff11",
+        "custom_filter_coeff12", "custom_filter_coeff13"
+    };
 }
