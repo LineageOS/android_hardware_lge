@@ -52,6 +52,22 @@ public class QuadDAC {
                 int sound_preset = getSoundPreset();
                 setSoundPreset(sound_preset);
             }
+
+            // Kernel-side implementation needed for custom filters
+            if(dac_features.contains(Feature.CustomFilter)) {
+                int custom_filter_shape = getCustomFilterShape();
+                int custom_filter_symmetry = getCustomFilterSymmetry();
+                int[] custom_filter_coefficients = new int[14];
+                int i;
+                for(i = 0; i < 14; i++) {
+                    custom_filter_coefficients[i] = getCustomFilterCoeff(i);
+                }
+                setCustomFilterShape(custom_filter_shape);
+                setCustomFilterSymmetry(custom_filter_symmetry);
+                for(i = 0; i < 14; i++) {
+                    setCustomFilterCoeff(i, custom_filter_coefficients[i]);
+                }
+            }
         } catch(Exception e) {}
     }
 
@@ -92,6 +108,14 @@ public class QuadDAC {
     public static void setDigitalFilter(int filter) throws RemoteException
     {
         dac.setFeatureValue(Feature.DigitalFilter, filter);
+        if(dac_features.contains(Feature.CustomFilter) && filter == 3) {/* Custom filter */
+            /*
+             * If it's a custom filter, we need to apply its settings. Any of the functions
+             * below should suffice since it'll load all settings from memory by parsing its
+             * data.
+             */
+            setCustomFilterShape(getCustomFilterShape());
+        }
     }
 
     public static int getDigitalFilter() throws RemoteException
@@ -137,4 +161,33 @@ public class QuadDAC {
         return dac.getHifiDacState();
     }
 
+    public static boolean setCustomFilterShape(int shape) throws RemoteException
+    {
+        return dac.setCustomFilterShape(shape);
+    }
+
+    public static int getCustomFilterShape() throws RemoteException
+    {
+        return dac.getCustomFilterShape();
+    }
+
+    public static boolean setCustomFilterSymmetry(int symmetry) throws RemoteException
+    {
+        return dac.setCustomFilterSymmetry(symmetry);
+    }
+
+    public static int getCustomFilterSymmetry() throws RemoteException
+    {
+        return dac.getCustomFilterSymmetry();
+    }
+
+    public static boolean setCustomFilterCoeff(int coeffIndex, int coeff_val) throws RemoteException
+    {
+        return dac.setCustomFilterCoeff(coeffIndex, coeff_val);
+    }
+
+    public static int getCustomFilterCoeff(int coeffIndex) throws RemoteException
+    {
+        return dac.getCustomFilterCoeff(coeffIndex);
+    }
 }

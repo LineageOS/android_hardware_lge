@@ -39,6 +39,14 @@ public class QuadDACPanelFragment extends PreferenceFragment
     private BalancePreference balance_preference;
     private SeekBarPreference avc_volume;
 
+    /*** Custom filter UI props ***/
+
+    /* Shape and symmetry selectors */
+    private ListPreference custom_filter_shape, custom_filter_symmetry;
+
+    /* Filter stage 2 coefficients (refer to the kernel's es9218.c for more info) */
+    private static SeekBarPreference[] custom_filter_coeffs = new SeekBarPreference[14];
+
     private HeadsetPluggedFragmentReceiver headsetPluggedFragmentReceiver;
 
     private IDacControl dac;
@@ -63,12 +71,12 @@ public class QuadDACPanelFragment extends PreferenceFragment
                 boolean set_dac_on = (boolean) newValue;
 
                 if (set_dac_on) {
-                    enableExtraSettings();
                     QuadDAC.enable();
+                    enableExtraSettings();
                     return true;
                 } else {
-                    disableExtraSettings();
                     QuadDAC.disable();
+                    disableExtraSettings();
                     return true;
                 }
             }
@@ -85,6 +93,13 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
                     int digital_filter = lp.findIndexOfValue((String) newValue);
                     QuadDAC.setDigitalFilter(digital_filter);
+
+                    /* Custom filter panel should only show up with Filter [3] (fourth one) selected */
+                    if(QuadDAC.getSupportedFeatures().contains(Feature.CustomFilter) && digital_filter == 3)
+                        enableCustomFilter();
+                    else
+                        disableCustomFilter();
+
                     return true;
 
                 } else if (preference.getKey().equals(Constants.SOUND_PRESET_KEY)) {
@@ -93,6 +108,22 @@ public class QuadDACPanelFragment extends PreferenceFragment
                     int sound_preset = lp.findIndexOfValue((String) newValue);
                     QuadDAC.setSoundPreset(sound_preset);
                     return true;
+                } else if(preference.getKey().equals(Constants.CUSTOM_FILTER_SHAPE_KEY))
+                {
+                    ListPreference lp = (ListPreference) preference;
+
+                    int filter_shape = lp.findIndexOfValue((String) newValue);
+                    QuadDAC.setCustomFilterShape(filter_shape);
+                    return true;
+
+                } else if(preference.getKey().equals(Constants.CUSTOM_FILTER_SYMMETRY_KEY))
+                {
+                    ListPreference lp = (ListPreference) preference;
+
+                    int filter_symmetry = lp.findIndexOfValue((String) newValue);
+                    QuadDAC.setCustomFilterSymmetry(filter_symmetry);
+                    return true;
+
                 }
                 return false;
             }
@@ -108,6 +139,22 @@ public class QuadDACPanelFragment extends PreferenceFragment
                         return true;
                     } else {
                         return false;
+                    }
+                }
+                else { /* This assumes the only other seekbars are for the custom filter. Extend as needed. */
+                    for(int i = 0; i < 14; i++) {
+                        if(preference.getKey().equals(Constants.CUSTOM_FILTER_COEFF_KEYS[i]))
+                        {
+                            if (newValue instanceof Integer) {
+                                Integer coeffVal = (Integer) newValue;
+
+                                custom_filter_coeffs[i].setSummary("Coefficient " + i + " : 0." + coeffVal);
+
+                                QuadDAC.setCustomFilterCoeff(i, coeffVal);
+                                return true;
+                            } else
+                                return false;
+                        }
                     }
                 }
             }
@@ -145,6 +192,18 @@ public class QuadDACPanelFragment extends PreferenceFragment
         digital_filter_list = (ListPreference) findPreference(Constants.DIGITAL_FILTER_KEY);
         digital_filter_list.setOnPreferenceChangeListener(this);
 
+        custom_filter_shape = (ListPreference) findPreference(Constants.CUSTOM_FILTER_SHAPE_KEY);
+        custom_filter_shape.setOnPreferenceChangeListener(this);
+
+        custom_filter_symmetry = (ListPreference) findPreference(Constants.CUSTOM_FILTER_SYMMETRY_KEY);
+        custom_filter_symmetry.setOnPreferenceChangeListener(this);
+
+        for(int i = 0; i < 14; i++)
+        {
+            custom_filter_coeffs[i] = (SeekBarPreference) findPreference(Constants.CUSTOM_FILTER_COEFF_KEYS[i]);
+            custom_filter_coeffs[i].setOnPreferenceChangeListener(this);
+        }
+
         mode_list = (ListPreference) findPreference(Constants.HIFI_MODE_KEY);
         mode_list.setOnPreferenceChangeListener(this);
 
@@ -180,6 +239,18 @@ public class QuadDACPanelFragment extends PreferenceFragment
                 mode_list.setVisible(true);
                 mode_list.setValueIndex(QuadDAC.getDACMode());
             }
+            if (QuadDAC.getSupportedFeatures().contains(Feature.CustomFilter)) {
+                custom_filter_shape.setVisible(true);
+                custom_filter_shape.setValueIndex(QuadDAC.getCustomFilterShape());
+                custom_filter_symmetry.setVisible(true);
+                custom_filter_symmetry.setValueIndex(QuadDAC.getCustomFilterSymmetry());
+                for(int i = 0; i < 14; i++)
+                {
+                    custom_filter_coeffs[i].setVisible(true);
+                    custom_filter_coeffs[i].setValue(QuadDAC.getCustomFilterCoeff(i));
+                    custom_filter_coeffs[i].setSummary("Coefficient " + i + " : 0." + QuadDAC.getCustomFilterCoeff(i));
+                }
+            }
         } catch(Exception e) {
             Log.d(TAG, "addPreferencesFromResource: " + e.toString());
         }
@@ -210,20 +281,47 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
     private void enableExtraSettings()
     {
-        sound_preset_list.setEnabled(true);
+        ArrayList<Integer> supportedFeatures = QuadDAC.getSupportedFeatures();
         digital_filter_list.setEnabled(true);
         mode_list.setEnabled(true);
         avc_volume.setEnabled(true);
         balance_preference.setEnabled(true);
+        if(supportedFeatures.contains(Feature.SoundPreset))
+            sound_preset_list.setEnabled(true);
+        if(supportedFeatures.contains(Feature.CustomFilter))
+            enableCustomFilter();
     }
 
     private void disableExtraSettings()
     {
-        sound_preset_list.setEnabled(false);
         digital_filter_list.setEnabled(false);
         mode_list.setEnabled(false);
         avc_volume.setEnabled(false);
         balance_preference.setEnabled(false);
+        sound_preset_list.setEnabled(false);
+        disableCustomFilter();
+    }
+
+    private void enableCustomFilter() {
+        custom_filter_shape.setEnabled(true);
+        custom_filter_symmetry.setEnabled(true);
+        for(int i = 0; i < 14; i++){
+            custom_filter_coeffs[i].setEnabled(true);
+        }
+        try {
+            /* To apply the custom filter's settings */
+            QuadDAC.setCustomFilterShape(QuadDAC.getCustomFilterShape());
+        } catch (Exception e) {}
+    }
+
+    private void disableCustomFilter() {
+        custom_filter_shape.setEnabled(false);
+        custom_filter_symmetry.setEnabled(false);
+        try {
+            for(int i = 0; i < 14; i++){
+                custom_filter_coeffs[i].setEnabled(false);
+            }
+        } catch (Exception e) {}
     }
 
     private class HeadsetPluggedFragmentReceiver extends BroadcastReceiver {

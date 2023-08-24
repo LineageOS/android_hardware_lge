@@ -13,12 +13,28 @@
         <item>@string/digital_filter_0</item>
         <item>@string/digital_filter_1</item>
         <item>@string/digital_filter_2</item>
+        <item>@string/digital_filter_3</item>
     </string-array>
 
     <string-array name="hifi_mode_entry_values" translatable="false">
         <item>@string/hifi_mode_normal</item>
         <item>@string/hifi_mode_him</item>
         <item>@string/hifi_mode_aux-him</item>
+    </string-array>
+
+    <string-array name="custom_filter_shapes" translatable="false">
+        <item>@string/cf_shape_0</item>
+        <item>@string/cf_shape_1</item>
+        <item>@string/cf_shape_2</item>
+        <item>@string/cf_shape_3</item>
+        <item>@string/cf_shape_4</item>
+        <item>@string/cf_shape_5</item> <!-- This one is treated as "6" by es9218 -->
+        <item>@string/cf_shape_6</item> <!-- And this one becomes "7" due to that -->
+    </string-array>
+
+    <string-array name="custom_filter_symmetries" translatable="false">
+        <item>@string/cf_symmetry_0</item>
+        <item>@string/cf_symmetry_1</item>
     </string-array>
 
 </resources>

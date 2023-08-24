@@ -81,5 +81,6 @@ interface IDacControl {
     /**
     * Sets and saves the coefficient for the custom ESS filter for the given coefficient index
     */
-    setCustomFilterCoeff(int32_t coeffIndex, int32_t coeffValue) generates (bool rc);
+    setCustomFilterCoeff(int32_t coeffIndex, int32_t value) generates (bool rc);
+
 };
