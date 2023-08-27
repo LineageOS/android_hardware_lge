@@ -1038,6 +1038,7 @@ static void check_and_enable_ess_hifi(struct audio_device *adev, struct audio_us
 		        audio_route_apply_and_update_path(adev->audio_route, "headphones");
 		        ALOGE("%s: INVALID ESS MODE... Using standard headphone route.\n", __func__);
 		    }
+		    property_set("persist.audio.ess.status","true");
 		} else if (property_get_bool("persist.audio.hifi.enabled",false) == false) {
 		    ALOGD("%s: ESS hifi not requested\n", __func__);
 		    /*#############TEMP########### | Needed to restore routing to WCD
@@ -1050,6 +1051,7 @@ static void check_and_enable_ess_hifi(struct audio_device *adev, struct audio_us
 		    disable_snd_device(adev, usecase->out_snd_device);
 		    usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES;
 		    audio_route_apply_and_update_path(adev->audio_route, "headphones");
+		    property_set("persist.audio.ess.status","false");
 		}
 		enable_snd_device(adev, usecase->out_snd_device);
 		set_ess_backend(usecase->out_snd_device);
