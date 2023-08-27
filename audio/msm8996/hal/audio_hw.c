@@ -1034,9 +1034,9 @@ static void check_and_enable_ess_hifi(struct audio_device *adev, struct audio_us
 		        ALOGD("%s: Setting aux ESS hifi mode \n", __func__);
 		        break;
 		    default:
-		        usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES;
-		        audio_route_apply_and_update_path(adev->audio_route, "headphones");
-		        ALOGE("%s: INVALID ESS MODE... Using standard headphone route.\n", __func__);
+		        usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC;
+		        audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi");
+		        ALOGE("%s: INVALID ESS MODE... Using normal ess route.\n", __func__);
 		    }
 		    property_set("persist.audio.ess.status","true");
 		} else if (property_get_bool("persist.audio.hifi.enabled",false) == false) {
