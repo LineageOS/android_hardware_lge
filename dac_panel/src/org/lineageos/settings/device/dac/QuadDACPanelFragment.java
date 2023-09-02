@@ -327,7 +327,6 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
         try {
             /* To apply the custom filter's settings */
-            QuadDAC.setDigitalFilter(QuadDAC.getDigitalFilter());
             QuadDAC.setCustomFilterShape(QuadDAC.getCustomFilterShape());
         } catch (Exception e) {}
     }
