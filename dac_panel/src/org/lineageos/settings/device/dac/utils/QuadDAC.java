@@ -110,10 +110,10 @@ public class QuadDAC {
         dac.setFeatureValue(Feature.DigitalFilter, filter);
         if(dac_features.contains(Feature.CustomFilter) && filter == 3) {/* Custom filter */
             /*
-             * If it's a custom filter, we need to apply its settings. Any of the functions
-             * below should suffice since it'll load all settings from memory by parsing its
-             * data.
-             */
+            * If it's a custom filter, we need to apply its settings. Any of the functions
+            * below should suffice since it'll load all settings from memory by parsing its
+            * data.
+            */
             setCustomFilterShape(getCustomFilterShape());
         }
     }
