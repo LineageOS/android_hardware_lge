@@ -176,6 +176,11 @@
 
         <!-- Tons of coefficient seekbars END -->
 
+        <org.lineageos.settings.device.dac.ui.ButtonPreference
+            android:key="reset_coefficients"
+            android:summary=""
+            android:title="" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import org.lineageos.settings.device.dac.ui.BalancePreference;
+import org.lineageos.settings.device.dac.ui.ButtonPreference;
 import org.lineageos.settings.device.dac.utils.Constants;
 import org.lineageos.settings.device.dac.utils.QuadDAC;
 
@@ -47,6 +48,9 @@ public class QuadDACPanelFragment extends PreferenceFragment
     /* Filter stage 2 coefficients (refer to the kernel's es9218.c for more info) */
     private static SeekBarPreference[] custom_filter_coeffs = new SeekBarPreference[14];
 
+    /* Button to reset custom filter's coefficients, if needed. */
+    private ButtonPreference custom_filter_reset_coeffs_button;
+
     private HeadsetPluggedFragmentReceiver headsetPluggedFragmentReceiver;
 
     private IDacControl dac;
@@ -60,6 +64,11 @@ public class QuadDACPanelFragment extends PreferenceFragment
             Log.d(TAG, "onCreatePreferences: " + e.toString());
         }
         addPreferencesFromResource(R.xml.quaddac_panel);
+    }
+
+    public static void setCoeffSummary(int index, int value) {
+        custom_filter_coeffs[index].setValue(value);
+        custom_filter_coeffs[index].setSummary("Coefficient " + index + " : 0." + value);
     }
 
     @Override
@@ -148,7 +157,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
                             if (newValue instanceof Integer) {
                                 Integer coeffVal = (Integer) newValue;
 
-                                custom_filter_coeffs[i].setSummary("Coefficient " + i + " : 0." + coeffVal);
+                                setCoeffSummary(i, coeffVal);
 
                                 QuadDAC.setCustomFilterCoeff(i, coeffVal);
                                 return true;
@@ -197,6 +206,9 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
         custom_filter_symmetry = (ListPreference) findPreference(Constants.CUSTOM_FILTER_SYMMETRY_KEY);
         custom_filter_symmetry.setOnPreferenceChangeListener(this);
+
+        custom_filter_reset_coeffs_button = (ButtonPreference) findPreference(Constants.RESET_COEFFICIENTS_KEY);
+        custom_filter_reset_coeffs_button.setOnPreferenceChangeListener(this);
 
         for(int i = 0; i < 14; i++)
         {
@@ -248,7 +260,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
                 {
                     custom_filter_coeffs[i].setVisible(true);
                     custom_filter_coeffs[i].setValue(QuadDAC.getCustomFilterCoeff(i));
-                    custom_filter_coeffs[i].setSummary("Coefficient " + i + " : 0." + QuadDAC.getCustomFilterCoeff(i));
+                    setCoeffSummary(i, QuadDAC.getCustomFilterCoeff(i));
                 }
             }
         } catch(Exception e) {
@@ -308,6 +320,9 @@ public class QuadDACPanelFragment extends PreferenceFragment
         for(int i = 0; i < 14; i++){
             custom_filter_coeffs[i].setEnabled(true);
         }
+
+        custom_filter_reset_coeffs_button.setEnabled(true);
+
         try {
             /* To apply the custom filter's settings */
             QuadDAC.setCustomFilterShape(QuadDAC.getCustomFilterShape());
@@ -322,6 +337,8 @@ public class QuadDACPanelFragment extends PreferenceFragment
                 custom_filter_coeffs[i].setEnabled(false);
             }
         } catch (Exception e) {}
+
+        custom_filter_reset_coeffs_button.setEnabled(false);
     }
 
     private class HeadsetPluggedFragmentReceiver extends BroadcastReceiver {
