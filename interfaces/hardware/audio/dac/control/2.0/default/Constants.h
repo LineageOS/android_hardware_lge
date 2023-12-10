@@ -33,12 +33,12 @@
 #define PROPERTY_HIFI_DAC_ENABLED          "persist.vendor.lge.audio.hifi_dac"
 #endif
 
-#define PROPERTY_DIGITAL_FILTER            "persist.vendor.lge.audio.hifi_dac.digitalFilter"
-#define PROPERTY_SOUND_PRESET              "persist.vendor.lge.audio.hifi_dac.soundPreset"
-#define PROPERTY_LEFT_BALANCE              "persist.vendor.lge.audio.hifi_dac.left_balance"
-#define PROPERTY_RIGHT_BALANCE             "persist.vendor.lge.audio.hifi_dac.right_balance"
+#define PROPERTY_DIGITAL_FILTER            "persist.vendor.audio.ess.digitalFilter"
+#define PROPERTY_SOUND_PRESET              "persist.vendor.audio.ess.soundPreset"
+#define PROPERTY_LEFT_BALANCE              "persist.vendor.audio.ess.left_balance"
+#define PROPERTY_RIGHT_BALANCE             "persist.vendor.audio.ess.right_balance"
 #define PROPERTY_HIFI_DAC_MODE             "persist.vendor.audio.ess.mode"
-#define PROPERTY_HIFI_DAC_AVC_VOLUME       "persist.vendor.lge.audio.hifi_dac.avc_volume"
+#define PROPERTY_HIFI_DAC_AVC_VOLUME       "persist.vendor.audio.ess.avc_volume"
 
 #define PROPERTY_CUSTOM_FILTER_SHAPE       "persist.vendor.audio.ess.customFilterShape"
 #define PROPERTY_CUSTOM_FILTER_SYMMETRY    "persist.vendor.audio.ess.customFilterSymmetry"
