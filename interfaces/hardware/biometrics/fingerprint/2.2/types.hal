@@ -1,0 +1,14 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.lge.hardware.biometrics.fingerprint@2.2;
+
+enum FingerCmdLge : int32_t {
+    SCAN_START,
+    SCAN_STOP,
+    NAVIGATION_START,
+    NAVIGATION_STOP,
+};

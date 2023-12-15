@@ -1,0 +1,16 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.lge.hardware.biometrics.fingerprint@2.2;
+
+import @2.1::ILgeBiometricsFingerprint;
+
+interface ILgeBiometricsFingerprint extends @2.1::ILgeBiometricsFingerprint {
+
+    extraCmd(FingerCmdLge cmd, vec<int8_t> cmdParam)
+        generates (vec<int8_t> result);
+
+};
