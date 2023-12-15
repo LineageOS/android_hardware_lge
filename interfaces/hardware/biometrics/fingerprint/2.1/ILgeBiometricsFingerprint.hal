@@ -1,0 +1,22 @@
+/*
+ * Copyright (C) 2023 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.lge.hardware.biometrics.fingerprint@2.1;
+
+import android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprint;
+import android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprintClientCallback;
+import android.hardware.biometrics.fingerprint@2.1::RequestStatus;
+
+interface ILgeBiometricsFingerprint extends @2.1::IBiometricsFingerprint {
+
+    authenticateEx(uint64_t operationId, uint32_t gid)
+        generates (RequestStatus debugErrno);
+
+    cancelEx() generates (RequestStatus debugErrno);
+
+    setNotifyEx(IBiometricsFingerprintClientCallback clientCallback)
+        generates (uint64_t deviceId);
+};
