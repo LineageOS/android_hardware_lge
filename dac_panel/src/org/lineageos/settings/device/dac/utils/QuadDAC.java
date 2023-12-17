@@ -3,7 +3,6 @@ package org.lineageos.settings.device.dac.utils;
 import android.media.AudioSystem;
 import android.os.RemoteException;
 import android.os.SystemProperties;
-import android.util.Log;
 
 import vendor.lge.hardware.audio.dac.control.V1_0.AdvancedFeature;
 import vendor.lge.hardware.audio.dac.control.V1_0.HalFeature;
