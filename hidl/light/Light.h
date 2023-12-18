@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 The LineageOS Project
+ * Copyright (C) 2017-2023 The LineageOS Project
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -14,19 +14,7 @@
 #include <mutex>
 #include <fstream>
 
-#define BL              "/sys/class/backlight/panel0-backlight/"
-
-#define BL_EX           "/sys/class/backlight/panel0-backlight-ex/"
-
-#define LP_MODE         "/sys/devices/virtual/panel/factory/low_power_mode"
-
-#define BRIGHTNESS      "brightness"
-#define MAX_BRIGHTNESS  "max_brightness"
-
-#define LED             "/sys/class/lg_rgb_led/use_patterns/"
-
-#define BLINK_PATTERN   "blink_patterns"
-#define ONOFF_PATTERN   "onoff_patterns"
+#include "lge_lights.h"
 
 namespace android {
 namespace hardware {
