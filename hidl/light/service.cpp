@@ -23,8 +23,8 @@ using android::status_t;
 
 int main() {
     bool hasBacklight = true;
-    bool hasBlinkPattern = true;
-    bool hasOnOffPattern = true;
+    bool hasBlinkPattern = false;
+    bool hasOnOffPattern = false;
 
     std::ofstream backlight(BL BRIGHTNESS);
     if (!backlight) {
@@ -33,12 +33,15 @@ int main() {
         return -error;
     }
 
+#ifdef LED
     std::ofstream emotionalBlinkPattern(LED BLINK_PATTERN);
     if (!emotionalBlinkPattern) {
         int error = errno;
         ALOGE("Failed to open %s (%d): %s", LED BLINK_PATTERN, error, strerror(error));
         ALOGE("Disable blink pattern");
         hasBlinkPattern = false;
+    } else {
+        hasBlinkPattern = true;
     }
 
     std::ofstream emotionalOnOffPattern(LED ONOFF_PATTERN);
@@ -47,7 +50,10 @@ int main() {
         ALOGE("Failed to open %s (%d): %s", LED ONOFF_PATTERN, error, strerror(error));
         ALOGE("Disable onoff pattern");
         hasOnOffPattern = false;
+    } else {
+        hasOnOffPattern = true;
     }
+#endif // LED
 
     android::sp<ILight> service = new Light(hasBacklight, hasBlinkPattern, hasOnOffPattern);
 
