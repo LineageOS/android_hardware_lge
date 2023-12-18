@@ -32,24 +32,28 @@ using ::android::hardware::light::V2_0::Type;
 
 class Light : public ILight {
    public:
-    Light(bool hasBacklight, bool hasBlinkPattern, bool hasOnOffPattern);
+    Light();
 
     Return<Status> setLight(Type type, const LightState& state) override;
     Return<void> getSupportedTypes(getSupportedTypes_cb _hidl_cb) override;
 
    private:
+#ifdef LED
     void setLightLocked(const LightState& state);
     void checkLightStateLocked();
     void handleAttention(const LightState& state);
-    void handleBacklight(const LightState& state);
     void handleBattery(const LightState& state);
     void handleNotifications(const LightState& state);
+#endif // LED
+    void handleBacklight(const LightState& state);
 
     std::mutex globalLock;
 
+#ifdef LED
     LightState mAttentionState;
     LightState mBatteryState;
     LightState mNotificationState;
+#endif // LED
 
     std::map<Type, std::function<void(const LightState&)>> mLights;
 
