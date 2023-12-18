@@ -41,6 +41,7 @@ static int rgbToBrightness(const LightState& state) {
             + (29 * (color & 0x00ff))) >> 8;
 }
 
+#ifdef LED
 static bool isLit(const LightState& state) {
     return (state.color & 0x00ffffff);
 }
@@ -98,6 +99,17 @@ void Light::handleAttention(const LightState& state) {
     checkLightStateLocked();
 }
 
+void Light::handleBattery(const LightState& state) {
+    mBatteryState = state;
+    checkLightStateLocked();
+}
+
+void Light::handleNotifications(const LightState& state) {
+    mNotificationState = state;
+    checkLightStateLocked();
+}
+#endif // LED
+
 void Light::handleBacklight(const LightState& state) {
     int brightness, brightnessEx;
     int sentBrightness = rgbToBrightness(state);
@@ -112,30 +124,18 @@ void Light::handleBacklight(const LightState& state) {
     set(BL_EX BRIGHTNESS, brightnessEx);
 }
 
-void Light::handleBattery(const LightState& state) {
-    mBatteryState = state;
-    checkLightStateLocked();
-}
-
-void Light::handleNotifications(const LightState& state) {
-    mNotificationState = state;
-    checkLightStateLocked();
-}
-
-Light::Light(bool hasBacklight, bool hasBlinkPattern, bool hasOnOffPattern) {
-    auto attnFn(std::bind(&Light::handleAttention, this, std::placeholders::_1));
+Light::Light() {
     auto backlightFn(std::bind(&Light::handleBacklight, this, std::placeholders::_1));
+    mLights.emplace(Type::BACKLIGHT, backlightFn);
+
+#ifdef LED
+    auto attnFn(std::bind(&Light::handleAttention, this, std::placeholders::_1));
     auto batteryFn(std::bind(&Light::handleBattery, this, std::placeholders::_1));
     auto notifFn(std::bind(&Light::handleNotifications, this, std::placeholders::_1));
-    
-    if(hasBacklight)
-        mLights.emplace(Type::BACKLIGHT, backlightFn);
-    
-    if(hasBlinkPattern && hasOnOffPattern) {
-        mLights.emplace(Type::ATTENTION, attnFn);
-        mLights.emplace(Type::BATTERY, batteryFn);
-        mLights.emplace(Type::NOTIFICATIONS, notifFn);
-    }
+    mLights.emplace(Type::ATTENTION, attnFn);
+    mLights.emplace(Type::BATTERY, batteryFn);
+    mLights.emplace(Type::NOTIFICATIONS, notifFn);
+#endif
 
     mMaxBrightness = get(BL MAX_BRIGHTNESS, -1);
     mMaxBrightnessEx = get(BL_EX MAX_BRIGHTNESS, -1);
