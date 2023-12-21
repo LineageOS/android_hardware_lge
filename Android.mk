@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifeq ($(BOARD_VENDOR),xiaomi)
+ifeq ($(BOARD_VENDOR),lge)
 
 include $(call all-subdir-makefiles)
 
