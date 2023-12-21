@@ -1,2 +1,5 @@
+# Power
+type proc_sched_energy_aware, proc_type, fs_type;
+
 # Sysfs
 type sysfs_dac, sysfs_type, fs_type;
