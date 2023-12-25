@@ -1,0 +1,2 @@
+# Allow hal_lineage_livedisplay_qti to write to DisplayMode nodes
+r_dir_file(hal_lineage_livedisplay_qti, vendor_sysfs_graphics);
