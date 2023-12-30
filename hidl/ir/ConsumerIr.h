@@ -21,6 +21,8 @@
 #include <hardware/consumerir.h>
 #include <hidl/Status.h>
 
+#include <mutex>
+
 namespace android {
 namespace hardware {
 namespace ir {
@@ -39,6 +41,8 @@ class ConsumerIr : public IConsumerIr {
 
     Return<bool> transmit(int32_t carrierFreq, const hidl_vec<int32_t>& pattern) override;
     Return<void> getCarrierFreqs(getCarrierFreqs_cb _hidl_cb) override;
+
+    std::mutex mTransmitMutex;
 };
 
 }  // namespace implementation
