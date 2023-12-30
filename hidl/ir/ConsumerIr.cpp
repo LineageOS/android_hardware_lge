@@ -18,6 +18,7 @@
 
 #include <fcntl.h>
 #include <linux/lirc.h>
+#include <thread>
 
 #include <log/log.h>
 
@@ -59,6 +60,8 @@ ConsumerIr::ConsumerIr() {}
 Return<bool> ConsumerIr::transmit(int32_t carrierFreq, const hidl_vec<int32_t>& pattern) {
     size_t entries = pattern.size();
     int rc;
+
+    std::lock_guard<std::mutex> lock(mTransmitMutex);
 
     // call into libcir_driver
     ALOGD("transmitting pattern at %d Hz", carrierFreq);
