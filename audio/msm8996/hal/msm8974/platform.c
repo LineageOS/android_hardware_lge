@@ -1573,9 +1573,9 @@ static void set_platform_defaults(struct platform_data * my_data)
     backend_tag_table[SND_DEVICE_OUT_HEADPHONES_DSD] = strdup("headphones-dsd");
     backend_tag_table[SND_DEVICE_OUT_HEADPHONES_44_1] = strdup("headphones-44.1");
     /* ESS */
-    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("ess-headphones-hifi");
-    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("ess-headphones-hifi-advanced");
-    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("ess-headphones-hifi-aux");
+    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("headphones tert-mi2s-headphones");
+    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED] = strdup("headphones tert-mi2s-headphones");
+    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX] = strdup("headphones tert-mi2s-headphones");
     
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_VBAT] = strdup("voice-speaker-vbat");
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_2_VBAT] = strdup("voice-speaker-2-vbat");
@@ -1593,7 +1593,12 @@ static void set_platform_defaults(struct platform_data * my_data)
     hw_interface_table[SND_DEVICE_OUT_SPEAKER_EXTERNAL_2] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_SPEAKER_REVERSE] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_SPEAKER_VBAT] = strdup("SLIMBUS_0_RX");
-    hw_interface_table[SND_DEVICE_OUT_LINE] = strdup("SLIMBUS_6_RX");
+    hw_interface_table[SND_DEVICE_OUT_LINE] = strdup("SLIMBUS_6_RX"); 
+    /* ESS */
+    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("SEC_MI2S_RX");
+    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED] = strdup("SEC_MI2S_RX");
+    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX] = strdup("SEC_MI2S_RX");
+    
     hw_interface_table[SND_DEVICE_OUT_HEADPHONES] = strdup("SLIMBUS_6_RX");
     hw_interface_table[SND_DEVICE_OUT_HEADPHONES_DSD] = strdup("SLIMBUS_2_RX");
     hw_interface_table[SND_DEVICE_OUT_HEADPHONES_44_1] = strdup("SLIMBUS_5_RX");
@@ -1731,13 +1736,7 @@ static void set_platform_defaults(struct platform_data * my_data)
     hw_interface_table[SND_DEVICE_IN_UNPROCESSED_HEADSET_MIC] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_HANDSET_GENERIC_QMIC] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_INCALL_REC_RX] = strdup("INCALL_RECORD_RX");
-    hw_interface_table[SND_DEVICE_IN_INCALL_REC_TX] = strdup("INCALL_RECORD_TX");
-    
-    /* ESS interface table defaults */
-    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("SEC_MI2S_RX");
-    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED] = strdup("SEC_MI2S_RX");
-    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX] = strdup("SEC_MI2S_RX");
-    
+    hw_interface_table[SND_DEVICE_IN_INCALL_REC_TX] = strdup("INCALL_RECORD_TX");   
 
     my_data->max_mic_count = PLATFORM_DEFAULT_MIC_COUNT;
 
@@ -2580,8 +2579,6 @@ acdb_init_fail:
         my_data->current_backend_cfg[idx].sample_rate = CODEC_BACKEND_DEFAULT_SAMPLE_RATE;
         if (idx == HEADPHONE_44_1_BACKEND)
             my_data->current_backend_cfg[idx].sample_rate = OUTPUT_SAMPLING_RATE_44100;
-        if (idx == ESS_HEADPHONE_BACKEND)
-            my_data->current_backend_cfg[idx].sample_rate = OUTPUT_ESS_SAMPLING_RATE_192KHZ;
         my_data->current_backend_cfg[idx].bit_width = CODEC_BACKEND_DEFAULT_BIT_WIDTH;
         my_data->current_backend_cfg[idx].channels = CODEC_BACKEND_DEFAULT_CHANNELS;
         if (idx > MAX_RX_CODEC_BACKENDS)
@@ -3526,15 +3523,15 @@ int platform_get_backend_index(snd_device_t snd_device)
                 else if (strncmp(backend_tag_table[snd_device], "headphones",
                             sizeof("headphones")) == 0)
                         port = HEADPHONE_BACKEND;
-                else if (strncmp(backend_tag_table[snd_device], "ess-headphones-hifi",
+                else if (strncmp(backend_tag_table[snd_device], "headphones tert-mi2s-headphones",
                             sizeof("ess-headphones-hifi")) == 0)
-                        port = HEADPHONE_BACKEND;
-                else if (strncmp(backend_tag_table[snd_device], "ess-headphones-hifi-advanced",
+                        port = ESS_HEADPHONE_BACKEND;
+                else if (strncmp(backend_tag_table[snd_device], "headphones tert-mi2s-headphones",
                             sizeof("ess-headphones-hifi-advanced")) == 0)
-                        port = HEADPHONE_BACKEND;
-                else if (strncmp(backend_tag_table[snd_device], "ess-headphones-hifi-aux",
+                        port = ESS_HEADPHONE_BACKEND;
+                else if (strncmp(backend_tag_table[snd_device], "headphones tert-mi2s-headphones",
                             sizeof("ess-headphones-hifi-aux")) == 0)
-                        port = HEADPHONE_BACKEND;
+                        port = ESS_HEADPHONE_BACKEND;
                 else if (strcmp(backend_tag_table[snd_device], "hdmi") == 0)
                         port = HDMI_RX_BACKEND;
                 else if (strcmp(backend_tag_table[snd_device], "display-port") == 0)
