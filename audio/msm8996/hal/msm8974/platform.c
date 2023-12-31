@@ -162,6 +162,11 @@ extern void log_utils_init(void);
 extern void log_utils_deinit(void);
 #endif
 
+/* Internal hal ESS dac props */
+/* Default to unsupported for non dac devices */
+static bool ESS_HIFI_SUPPORT = false;
+static bool ESS_HIFI_ENABLE = false;
+
 char cal_name_info[WCD9XXX_MAX_CAL][MAX_CAL_NAME] = {
         [WCD9XXX_ANC_CAL] = "anc_cal",
         [WCD9XXX_MBHC_CAL] = "mbhc_cal",
@@ -477,6 +482,8 @@ static const char * device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_OUT_SPEAKER_AND_BT_SCO] = "speaker-and-bt-sco",
     [SND_DEVICE_OUT_SPEAKER_AND_BT_SCO_WB] = "speaker-and-bt-sco-wb",
     [SND_DEVICE_OUT_ULTRASOUND_HANDSET] = "ultrasound-handset",
+    /* ESS Audio Devices */
+    [SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = "ess-headphones-hifi",
 
     /* Capture sound devices */
     [SND_DEVICE_IN_HANDSET_MIC] = "handset-mic",
@@ -574,6 +581,7 @@ static const char * device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_IN_INCALL_REC_RX_TX] = "incall-rec-rx-tx",
     [SND_DEVICE_IN_EC_REF_LOOPBACK_QUAD] = "ec-ref-loopback-quad",
     [SND_DEVICE_IN_ULTRASOUND_MIC] = "ultrasound-mic",
+    
 };
 
 // Platform specific backend bit width table
@@ -614,6 +622,10 @@ static int acdb_device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_OUT_HEADPHONES_DSD] = 10,
     [SND_DEVICE_OUT_HEADPHONES_44_1] = 10,
     [SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES] = 10,
+    
+    /* ESS ACDB IDS */
+    [SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = 10,
+    
     [SND_DEVICE_OUT_SPEAKER_AND_LINE] = 10,
     [SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES_EXTERNAL_1] = 130,
     [SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES_EXTERNAL_2] = 130,
@@ -779,6 +791,10 @@ static struct name_to_index snd_device_name_index[SND_DEVICE_MAX] = {
     {TO_NAME_INDEX(SND_DEVICE_OUT_HEADPHONES)},
     {TO_NAME_INDEX(SND_DEVICE_OUT_HEADPHONES_DSD)},
     {TO_NAME_INDEX(SND_DEVICE_OUT_HEADPHONES_44_1)},
+
+    /* ESS */
+    {TO_NAME_INDEX(SND_DEVICE_OUT_HEADPHONES_HIFI_DAC)},
+    
     {TO_NAME_INDEX(SND_DEVICE_OUT_LINE)},
     {TO_NAME_INDEX(SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES)},
     {TO_NAME_INDEX(SND_DEVICE_OUT_SPEAKER_AND_LINE)},
@@ -1293,6 +1309,9 @@ void platform_set_echo_reference(struct audio_device *adev, bool enable,
         if (adev->snd_dev_ref_cnt[SND_DEVICE_OUT_HEADPHONES_44_1] > 0)
             strlcat(ec_ref_mixer_path, " headphones-44.1",
                     MIXER_PATH_MAX_LENGTH);
+        else if (adev->snd_dev_ref_cnt[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] > 0)
+            strlcat(ec_ref_mixer_path, " ess-headphones-hifi",
+                    MIXER_PATH_MAX_LENGTH);
         else if (adev->snd_dev_ref_cnt[SND_DEVICE_OUT_SPEAKER_VBAT] > 0)
             strlcat(ec_ref_mixer_path, " speaker-vbat",
                     MIXER_PATH_MAX_LENGTH);
@@ -1530,8 +1549,7 @@ static void set_platform_defaults(struct platform_data * my_data)
     backend_tag_table[SND_DEVICE_OUT_VOICE_TTY_FULL_USB] = strdup("usb-headset");
     backend_tag_table[SND_DEVICE_OUT_VOICE_TTY_VCO_USB] = strdup("usb-headphones");
     backend_tag_table[SND_DEVICE_OUT_VOICE_USB_HEADPHONES] = strdup("usb-headphones");
-    backend_tag_table[SND_DEVICE_OUT_SPEAKER_AND_USB_HEADSET] =
-        strdup("speaker-and-usb-headphones");
+    backend_tag_table[SND_DEVICE_OUT_SPEAKER_AND_USB_HEADSET] = strdup("speaker-and-usb-headphones");
     backend_tag_table[SND_DEVICE_IN_VOICE_TTY_FULL_USB_MIC] = strdup("usb-headset-mic");
     backend_tag_table[SND_DEVICE_IN_VOICE_TTY_HCO_USB_MIC] = strdup("usb-headset-mic");
     backend_tag_table[SND_DEVICE_IN_USB_HEADSET_MIC] = strdup("usb-headset-mic");
@@ -1547,6 +1565,9 @@ static void set_platform_defaults(struct platform_data * my_data)
     backend_tag_table[SND_DEVICE_OUT_TRANSMISSION_FM] = strdup("transmission-fm");
     backend_tag_table[SND_DEVICE_OUT_HEADPHONES_DSD] = strdup("headphones-dsd");
     backend_tag_table[SND_DEVICE_OUT_HEADPHONES_44_1] = strdup("headphones-44.1");
+    /* ESS */
+    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("ess-headphones-hifi");
+    
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_VBAT] = strdup("voice-speaker-vbat");
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_2_VBAT] = strdup("voice-speaker-2-vbat");
     backend_tag_table[SND_DEVICE_OUT_BT_A2DP] = strdup("bt-a2dp");
@@ -1557,7 +1578,6 @@ static void set_platform_defaults(struct platform_data * my_data)
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_STEREO_AND_VOICE_HEADPHONES] = strdup("speaker-and-headphones");
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_STEREO_AND_VOICE_ANC_HEADSET] = strdup("speaker-and-headphones");
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_STEREO_AND_VOICE_ANC_FB_HEADSET] = strdup("speaker-and-headphones");
-
     hw_interface_table[SND_DEVICE_OUT_HANDSET] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_SPEAKER] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_SPEAKER_EXTERNAL_1] = strdup("SLIMBUS_0_RX");
@@ -1703,6 +1723,10 @@ static void set_platform_defaults(struct platform_data * my_data)
     hw_interface_table[SND_DEVICE_IN_HANDSET_GENERIC_QMIC] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_INCALL_REC_RX] = strdup("INCALL_RECORD_RX");
     hw_interface_table[SND_DEVICE_IN_INCALL_REC_TX] = strdup("INCALL_RECORD_TX");
+    
+    /* ESS interface table defaults */
+    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("SEC_MI2S_RX");
+    
 
     my_data->max_mic_count = PLATFORM_DEFAULT_MIC_COUNT;
 
@@ -2123,6 +2147,16 @@ void *platform_init(struct audio_device *adev)
     struct mixer_ctl *ctl = NULL;
     const char *id_string = NULL;
     int cfg_value = -1;
+    
+    /*Check ess settings */
+    property_get("persist.vendor.audio.ess.supported",value,"");
+    if (!strncmp("true", value, sizeof("true"))){
+    	ESS_HIFI_SUPPORT = true;
+    	property_get("persist.vendor.audio.hifi.enabled",value,"");
+    	if (!strncmp("true", value, sizeof("true"))){
+    	ESS_HIFI_ENABLE = true;
+    	}
+    }
 
     adev->snd_card = audio_extn_utils_open_snd_mixer(&adev->mixer);
     if (adev->snd_card < 0) {
@@ -2161,7 +2195,7 @@ void *platform_init(struct audio_device *adev)
             free(snd_card_name);
         return NULL;
     }
-
+    
     if (platform_is_i2s_ext_modem(snd_card_name, my_data)) {
         ALOGD("%s: Call MIXER_XML_PATH_I2S", __func__);
 
@@ -4315,8 +4349,11 @@ snd_device_t platform_get_output_snd_device(void *platform, struct stream_out *o
                 snd_device = SND_DEVICE_OUT_HEADPHONES_44_1;
         } else if (out->format == AUDIO_FORMAT_DSD) {
                 snd_device = SND_DEVICE_OUT_HEADPHONES_DSD;
+        } else if((ESS_HIFI_ENABLE == true) && (ESS_HIFI_SUPPORT == true)){
+        	snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC;
         } else
                 snd_device = SND_DEVICE_OUT_HEADPHONES;
+                    
     } else if (devices & AUDIO_DEVICE_OUT_LINE) {
         snd_device = SND_DEVICE_OUT_LINE;
     } else if (devices & AUDIO_DEVICE_OUT_SPEAKER) {
@@ -6665,8 +6702,8 @@ static bool platform_check_codec_backend_cfg(struct audio_device* adev,
         backend_change = true;
     }
 
-    if (snd_device == SND_DEVICE_OUT_HEADPHONES || snd_device ==
-        SND_DEVICE_OUT_HEADPHONES_44_1) {
+    if (snd_device == SND_DEVICE_OUT_HEADPHONES ||
+        snd_device == SND_DEVICE_OUT_HEADPHONES_44_1) {
         if (sample_rate > 48000 ||
             (bit_width >= 24 && (sample_rate == 48000  || sample_rate == 44100))) {
             ALOGI("%s: apply HPH HQ mode\n", __func__);
@@ -6676,7 +6713,16 @@ static bool platform_check_codec_backend_cfg(struct audio_device* adev,
             audio_route_apply_and_update_path(adev->audio_route, "hph-lowpower-mode");
         }
     }
-
+    
+    /*If the sound device is
+    SND_DEVICE_OUT_HEADPHONES_HIFI_DAC,
+    re-route to the dac */
+    
+    if (snd_device == SND_DEVICE_OUT_HEADPHONES_HIFI_DAC) {
+           audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi");
+           ALOGI("%s: ESS HIFI SUPPORTED, USING HIFI MODE...\n", __func__);
+    }
+        
     return backend_change;
 }
 
