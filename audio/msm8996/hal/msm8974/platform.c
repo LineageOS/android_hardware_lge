@@ -162,10 +162,6 @@ extern void log_utils_init(void);
 extern void log_utils_deinit(void);
 #endif
 
-/* Internal hal ESS dac props */
-/* Default to unsupported for non dac devices */
-static bool ESS_HIFI_SUPPORT = false;
-
 char cal_name_info[WCD9XXX_MAX_CAL][MAX_CAL_NAME] = {
         [WCD9XXX_ANC_CAL] = "anc_cal",
         [WCD9XXX_MBHC_CAL] = "mbhc_cal",
@@ -2162,11 +2158,6 @@ void *platform_init(struct audio_device *adev)
     struct mixer_ctl *ctl = NULL;
     const char *id_string = NULL;
     int cfg_value = -1;
-    
-    /*Check ess support */
-    if (property_get_bool("persist.vendor.audio.ess.supported",false) == true){
-    	ESS_HIFI_SUPPORT = true;
-    	}
 
     adev->snd_card = audio_extn_utils_open_snd_mixer(&adev->mixer);
     if (adev->snd_card < 0) {
@@ -4374,14 +4365,6 @@ snd_device_t platform_get_output_snd_device(void *platform, struct stream_out *o
                 snd_device = SND_DEVICE_OUT_HEADPHONES_44_1;
         } else if (out->format == AUDIO_FORMAT_DSD) {
                 snd_device = SND_DEVICE_OUT_HEADPHONES_DSD;
-        } else if(((property_get_bool("persist.vendor.audio.hifi.enabled",false) == true)) && (ESS_HIFI_SUPPORT == true)){
-        	if(property_get_bool("persist.vendor.audio.hifi.advanced",false) == true){
-        	snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED;
-        	} else if(property_get_bool("persist.audio.hifi.aux",false) == true) {
-        	snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED;
-        	} else {
-        	snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC;
-        	}
         } else
                 snd_device = SND_DEVICE_OUT_HEADPHONES;
                     
@@ -6743,18 +6726,6 @@ static bool platform_check_codec_backend_cfg(struct audio_device* adev,
             ALOGI("%s: apply HPH LP mode\n", __func__);
             audio_route_apply_and_update_path(adev->audio_route, "hph-lowpower-mode");
         }
-    }
-    
-    //ESS
-    if (snd_device == SND_DEVICE_OUT_HEADPHONES_HIFI_DAC) {
-           audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi");
-           ALOGI("%s: Applying ess hifi route... \n", __func__);
-    } else if (snd_device == SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED) {
-           audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi-advanced");
-           ALOGI("%s: Applying advanced ess hifi route\n", __func__);
-    } else if (snd_device == SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED) {
-           audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi-advanced");
-           ALOGI("%s: Applying aux ess hifi route\n", __func__);
     } return backend_change;
 }
 
