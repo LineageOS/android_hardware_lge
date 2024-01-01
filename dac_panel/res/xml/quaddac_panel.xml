@@ -72,7 +72,8 @@
 
     <!-- These ones really need their own category to keep things more organized -->
     <PreferenceCategory
-        app:title="@string/customizable_filter_coeffs">
+        app:title="@string/customizable_filter_coeffs"
+        app:summary="@string/customizable_filter_coeffs_summary">
 
         <!-- Tons of coefficient seekbars BEGIN -->
         <SeekBarPreference
