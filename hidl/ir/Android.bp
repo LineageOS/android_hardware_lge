@@ -1,0 +1,26 @@
+//
+// Copyright (C) 2016 The Android Open Source Project
+// Copyright (C) 2018-2023 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    relative_install_path: "hw",
+    defaults: ["hidl_defaults"],
+    name: "android.hardware.ir@1.0-service.lge",
+    platform_apis: true,
+    vendor: true,
+    init_rc: ["android.hardware.ir@1.0-service.lge.rc"],
+    srcs: ["service.cpp", "ConsumerIr.cpp"],
+
+    shared_libs: [
+        "liblog",
+        "libdl",
+        "libhardware",
+        "libhidlbase",
+        "libutils",
+        "android.hardware.ir@1.0",
+    ],
+
+}
