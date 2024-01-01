@@ -33,6 +33,24 @@
       "message": "LG is weird and dlopen dies",
       "revId": "3a81b759b60aa23de095bab7bd1571b1ac638a29",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e32e16d_c2ca75f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-01-01T04:15:59Z",
+      "side": 1,
+      "message": "SEGV_ACCERR upon calling transmitIr()",
+      "parentUuid": "6830d98c_c0bda344",
+      "revId": "3a81b759b60aa23de095bab7bd1571b1ac638a29",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
