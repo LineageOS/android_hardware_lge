@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Панель Quad DAC</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC включено</string>
+    <string name="quad_dac_off">Quad DAC выключено</string>
+    <string name="quad_dac_unavail">Quad DAC недоступно</string>
+    <string name="quad_dac_settings">Настройки Quad DAC</string>
+    <string name="quad_dac_balance">Баланс</string>
+    <string name="quad_dac_balance_summary">Изменить баланс левый/правый</string>
+    <string name="sound_preset">Предустановка звука</string>
+    <string name="sound_preset_normal">Обычный</string>
+    <string name="sound_preset_enhanced">Расширенный</string>
+    <string name="sound_preset_detailed">Детальный</string>
+    <string name="sound_preset_live">Живой</string>
+    <string name="sound_preset_bass">Bass</string>
+    <string name="digital_filter">Цифровой фильтр</string>
+    <string name="digital_filter_short">Короткий</string>
+    <string name="digital_filter_sharp">Острый</string>
+    <string name="digital_filter_slow">Медленный</string>
+    <string name="digital_filter_slow2">Медленный 2</string>
+    <string name="digital_filter_4">Линейный быстрый спад фазы</string>
+    <string name="digital_filter_5">Линейный медленный спад фазы</string>
+    <string name="digital_filter_6">Минимальный быстрый спад фазы</string>
+    <string name="digital_filter_7">Минимальный медленный спад фазы</string>
+    <string name="digital_filter_8">Аподизация с быстрым отклонением 1</string>
+    <string name="digital_filter_9">Аподизация с быстрым отклонением 2</string>
+    <string name="digital_filter_10">Гибридный быстрый спад</string>
+    <string name="digital_filter_11">Кирпичная стена</string>
+    <string name="hifi_mode">Режим HiFi</string>
+    <string name="hifi_mode_normal">Обычный</string>
+    <string name="hifi_mode_him">Высокий импеданс</string>
+    <string name="hifi_mode_aux">AUX</string>
+    <string name="avc_volume">Громкость AVC</string>
+    <string name="avc_volume_summary">Усиленная громкость</string>
+</resources>

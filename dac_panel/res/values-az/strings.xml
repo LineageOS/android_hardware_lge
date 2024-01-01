@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Quad DAC Paneli</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC açıqdır</string>
+    <string name="quad_dac_off">Quad DAC bağlıdır</string>
+    <string name="quad_dac_unavail">Quad DAC əlçatmazdır</string>
+    <string name="quad_dac_settings">Quad DAC ayarları</string>
+    <string name="quad_dac_balance">Balans</string>
+    <string name="quad_dac_balance_summary">Sol/Sağ balansı dəyişdir</string>
+    <string name="sound_preset">Səs ön ayarı</string>
+    <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Təkmil</string>
+    <string name="sound_preset_detailed">Detallı</string>
+    <string name="sound_preset_live">Canlı</string>
+    <string name="sound_preset_bass">Bass</string>
+    <string name="digital_filter">Rəqəmsal filtr</string>
+    <string name="digital_filter_short">Qısa</string>
+    <string name="digital_filter_sharp">Kəskin</string>
+    <string name="digital_filter_slow">Yavaş</string>
+    <string name="digital_filter_slow2">Yavaş 2</string>
+    <string name="digital_filter_4">Düz faza sürətli sönmə</string>
+    <string name="digital_filter_5">Düz faza yavaş sönmə</string>
+    <string name="digital_filter_6">Minimum faza sürətli sönmə</string>
+    <string name="digital_filter_7">Minimum faza yavaş sönmə</string>
+    <string name="digital_filter_8">Apodizasiya sürətli sönmə 1</string>
+    <string name="digital_filter_9">Apodizasiya sürətli sönmə 2</string>
+    <string name="digital_filter_10">Hibrid sürətli sönmə</string>
+    <string name="digital_filter_11">Brick wall</string>
+    <string name="hifi_mode">HiFi rejimi</string>
+    <string name="hifi_mode_normal">Normal</string>
+    <string name="hifi_mode_him">Yüksək impedans</string>
+    <string name="hifi_mode_aux">AUX</string>
+    <string name="avc_volume">AVC Səs səviyyəsi</string>
+    <string name="avc_volume_summary">Səsi gücləndirir</string>
+</resources>
