@@ -51,6 +51,23 @@
       "parentUuid": "6830d98c_c0bda344",
       "revId": "3a81b759b60aa23de095bab7bd1571b1ac638a29",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39f8ec1d_6d8dc15c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 29891
+      },
+      "writtenOn": "2024-01-01T04:16:42Z",
+      "side": 1,
+      "message": "Updating review with V-1 for the time being. Either one of my builds didn\u0027t go through entirely, or this mutex implementation isn\u0027t very reliable just yet. As it stands, after a few other unrelated changes to hardware/lge (dac panel), ir is broken on H910 and not even a revert of those newer changes makes it work again.",
+      "revId": "3a81b759b60aa23de095bab7bd1571b1ac638a29",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
