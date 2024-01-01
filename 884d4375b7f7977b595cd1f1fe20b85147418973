@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4a88424_65cc7697",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 29891
+      },
+      "writtenOn": "2024-01-01T00:50:21Z",
+      "side": 1,
+      "message": "Works on H910, no regressions in sight.",
+      "revId": "884d4375b7f7977b595cd1f1fe20b85147418973",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
