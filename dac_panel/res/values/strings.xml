@@ -28,8 +28,6 @@
     <string name="digital_filter_2">Slow</string>
     <string name="digital_filter_3">Customizable Filter</string>
 
-    <string name="empty_string"></string>
-
     <string name="customizable_filter_settings">Customizable Filter Settings</string>
 
     <string name="cf_shape">Custom Filter Shape</string>
@@ -48,6 +46,7 @@
     <string name="cf_symmetry_1">Cosine Symmetry</string>
 
     <string name="customizable_filter_coeffs">Customizable Filter Coefficients</string>
+    <string name="customizable_filter_coeffs_summary">NOTE: If all coefficients are 0, audio will be muted</string>
 
     <string name="hifi_mode">HiFi mode</string>
 
