@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c942682_4aa8a2d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 29891
+      },
+      "writtenOn": "2024-01-01T03:20:41Z",
+      "side": 1,
+      "message": "Works on H910 over here, ConsumerIr is loaded and is able to transmit patterns no problem.",
+      "revId": "3a81b759b60aa23de095bab7bd1571b1ac638a29",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
