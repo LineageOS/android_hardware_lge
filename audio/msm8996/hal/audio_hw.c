@@ -984,30 +984,6 @@ int pcm_ioctl(struct pcm *pcm, int request, ...)
     return ioctl(pcm_fd, request, arg);
 }
 
-static void set_ess_backend(snd_device_t snd_device){
-    if (property_get_bool("persist.vendor.audio.ess.supported",false) == true) {
-        if (snd_device == SND_DEVICE_OUT_HEADPHONES) {
-        ALOGD("%s: Restoring WCD backend \n", __func__);
-        platform_set_snd_device_backend(snd_device, "headphones", "SLIMBUS_6_RX");  //Needed as a workaround, refer to main func.
-        }
-        else if (snd_device == SND_DEVICE_OUT_HEADPHONES_HIFI_DAC) {
-        ALOGD("%s: Setting ESS hifi backend \n", __func__); 
-        platform_set_snd_device_backend(snd_device, "headphones tert-mi2s-headphones", "SEC_MI2S_RX");
-        }
-        else if (snd_device == SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED) {
-        ALOGD("%s: Setting ESS hifi advanced backend \n", __func__); 
-        platform_set_snd_device_backend(snd_device, "headphones tert-mi2s-headphones", "SEC_MI2S_RX");
-        }
-        else if (snd_device == SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX) {
-        ALOGD("%s: Setting ESS hifi aux backend \n", __func__); 
-        platform_set_snd_device_backend(snd_device, "headphones tert-mi2s-headphones", "SEC_MI2S_RX");
-        }
-        else { ALOGD("%s: Not an ess hifi scenario \n", __func__); }
-        }
-}
-        
-        
-
 static void check_and_enable_ess_hifi(struct audio_device *adev, struct audio_usecase *usecase, snd_device_t snd_device)
 {
     if (property_get_bool("persist.vendor.audio.ess.supported",false) == true) {
@@ -1038,25 +1014,15 @@ static void check_and_enable_ess_hifi(struct audio_device *adev, struct audio_us
 		        audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi");
 		        ALOGE("%s: INVALID ESS MODE... Using normal ess route.\n", __func__);
 		    }
-		    property_set("persist.audio.ess.status","true");
-		} else if (property_get_bool("persist.audio.hifi.enabled",false) == false) {
-		    ALOGD("%s: ESS hifi not requested\n", __func__);
-		    /*#############TEMP########### | Needed to restore routing to WCD
-		    (unless i fail to find a bettter solution)
-		
-		    Description: RIght now it seems that audio gets stuck routing to dac after the initial route switch. 
-		    So, reset the route and sound device to restore the WCD routing. 
-		    */
-		    disable_audio_route(adev, usecase);
-		    disable_snd_device(adev, usecase->out_snd_device);
-		    usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES;
-		    audio_route_apply_and_update_path(adev->audio_route, "headphones");
-		    property_set("persist.audio.ess.status","false");
+		    property_set("persist.vendor.audio.ess.status","true");
+		    platform_set_snd_device_backend(usecase->out_snd_device, "headphones tert-mi2s-headphones", "SEC_MI2S_RX");
 		}
-		enable_snd_device(adev, usecase->out_snd_device);
-		set_ess_backend(usecase->out_snd_device);
+        	enable_snd_device(adev, usecase->out_snd_device);
 	}
-	else { ALOGD("%s: Not an ESS hifi scenario \n", __func__); }
+	else {
+	ALOGD("%s: Not an ESS hifi scenario \n", __func__);
+	property_set("persist.vendor.audio.ess.status","false");
+	}
     }
     else { ALOGE("%s: ESS hifi not supported on this device! \n", __func__); }
 }
