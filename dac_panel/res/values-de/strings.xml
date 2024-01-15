@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Quad DAC Panel</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC an</string>
+    <string name="quad_dac_off">Quad DAC aus</string>
+    <string name="quad_dac_unavail">Quad DAC nicht verfügbar</string>
+    <string name="quad_dac_settings">Quad DAC Einstellungen</string>
+    <string name="quad_dac_balance">Balance</string>
+    <string name="quad_dac_balance_summary">Lautstärke des linken bzw. rechten Kanals ändern</string>
+    <string name="sound_preset">Tonvoreinstellung</string>
+    <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Verbessert</string>
+    <string name="sound_preset_detailed">Detailliert</string>
+    <string name="sound_preset_live">Live</string>
+    <string name="sound_preset_bass">Bass</string>
+    <string name="digital_filter">Digitaler Filter</string>
+    <string name="digital_filter_short">Kurz</string>
+    <string name="digital_filter_sharp">Scharf</string>
+    <string name="digital_filter_slow">Langsam</string>
+    <string name="digital_filter_slow2">Langsam 2</string>
+    <string name="digital_filter_4">Linear Phase Fast Roll-Off</string>
+    <string name="digital_filter_5">Linear Phase Slow Roll-Off</string>
+    <string name="digital_filter_6">Minimum Phase Fast Roll-Off</string>
+    <string name="digital_filter_7">Minimum Phase Slow Roll-Off</string>
+    <string name="digital_filter_8">Apodizing Fast Roll-Off 1</string>
+    <string name="digital_filter_9">Apodizing Fast Roll-Off 2</string>
+    <string name="digital_filter_10">Hybrid Fast Roll-Off</string>
+    <string name="digital_filter_11">Brick wall</string>
+    <string name="hifi_mode">HiFi-Modus</string>
+    <string name="hifi_mode_normal">Normal</string>
+    <string name="hifi_mode_him">Hohe Impedanz</string>
+    <string name="hifi_mode_aux">AUX</string>
+    <string name="avc_volume">AVC-Lautstärke</string>
+    <string name="avc_volume_summary">Erhöht die Lautstärke</string>
+</resources>
