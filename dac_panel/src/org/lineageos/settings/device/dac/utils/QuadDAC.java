@@ -32,7 +32,6 @@ public class QuadDAC {
     {
         try {
             int digital_filter = getDigitalFilter();
-            int sound_preset = getSoundPreset();
             int left_balance = getLeftBalance();
             int right_balance = getRightBalance();
             int mode = getDACMode();
@@ -42,8 +41,13 @@ public class QuadDAC {
             setLeftBalance(left_balance);
             setRightBalance(right_balance);
             setDigitalFilter(digital_filter);
-            setSoundPreset(sound_preset);
             setAVCVolume(avc_vol);
+
+            // Sound presets are disabled on the open-source audio HAL.
+            if(dac_features.contains(Feature.SoundPreset)) {
+                int sound_preset = getSoundPreset();
+                setSoundPreset(sound_preset);
+            }
         } catch(Exception e) {}
     }
 
@@ -93,11 +97,14 @@ public class QuadDAC {
 
     public static void setSoundPreset(int preset) throws RemoteException
     {
-        dac.setFeatureValue(Feature.SoundPreset, preset);
+        if(dac_features.contains(Feature.SoundPreset))
+            dac.setFeatureValue(Feature.SoundPreset, preset);
     }
 
     public static int getSoundPreset() throws RemoteException
     {
+        if(!dac_features.contains(Feature.SoundPreset))
+            return 0;
         return dac.getFeatureValue(Feature.SoundPreset);
     }
 
