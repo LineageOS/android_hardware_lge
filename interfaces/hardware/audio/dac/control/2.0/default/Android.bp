@@ -1,13 +1,12 @@
 cc_binary {
-    name: "vendor.lge.hardware.audio.dac.control@1.0-service",
-    init_rc: ["vendor.lge.hardware.audio.dac.control@1.0-service.rc"],
-    vintf_fragments: ["vendor.lge.hardware.audio.dac.control@1.0-service.xml"],
+    name: "vendor.lge.hardware.audio.dac.control@2.0-service",
+    init_rc: ["vendor.lge.hardware.audio.dac.control@2.0-service.rc"],
+    vintf_fragments: ["vendor.lge.hardware.audio.dac.control@2.0-service.xml"],
     defaults: ["hidl_defaults"],
     relative_install_path: "hw",
 
     srcs: [
-        "DacAdvancedControl.cpp",
-        "DacHalControl.cpp",
+        "DacControl.cpp",
         "service.cpp",
     ],
 
@@ -21,7 +20,7 @@ cc_binary {
         "android.hardware.audio@4.0",
         "android.hardware.audio@5.0",
         "android.hardware.audio@6.0",
-        "vendor.lge.hardware.audio.dac.control@1.0",
+        "vendor.lge.hardware.audio.dac.control@2.0",
     ],
     vendor: true,
 }
