@@ -52,4 +52,34 @@ interface IDacControl {
     * Gets the current FeatureState for the given feature
     */
     getFeatureValue(Feature feature) generates (int32_t value);
+
+    /**
+    * Returns the current shape for the custom ESS filter
+    */
+    getCustomFilterShape() generates (int32_t shape);
+
+    /**
+    * Sets and saves the shape for the custom ESS filter
+    */
+    setCustomFilterShape(int32_t shape) generates (bool rc);
+
+    /**
+    * Returns the current symmetry value for the custom ESS filter
+    */
+    getCustomFilterSymmetry() generates (int32_t symmetry);
+
+    /**
+    * Sets and saves the symmetry value for the custom ESS filter
+    */
+    setCustomFilterSymmetry(int32_t symmetry) generates (bool rc);
+
+    /**
+    * Returns the current coefficient for the custom ESS filter for the given coefficient index
+    */
+    getCustomFilterCoeff(int32_t coeffIndex) generates (int32_t coeff);
+
+    /**
+    * Sets and saves the coefficient for the custom ESS filter for the given coefficient index
+    */
+    setCustomFilterCoeff(int32_t coeffIndex, int32_t coeffValue) generates (bool rc);
 };
