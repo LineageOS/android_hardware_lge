@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "vendor.lge.hardware.audio.dac.control@1.0-service"
+#define LOG_TAG "vendor.lge.hardware.audio.dac.control@2.0-service"
 
 #include <android-base/logging.h>
 #include <binder/ProcessState.h>
 #include <hidl/HidlTransportSupport.h>
 
-#include "DacAdvancedControl.h"
-#include "DacHalControl.h"
+#include "DacControl.h"
 
 using android::OK;
 using android::sp;
@@ -29,44 +28,28 @@ using android::status_t;
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
 
-using ::vendor::lge::hardware::audio::dac::control::V1_0::IDacAdvancedControl;
-using ::vendor::lge::hardware::audio::dac::control::V1_0::IDacHalControl;
-using ::vendor::lge::hardware::audio::dac::control::V1_0::implementation::DacAdvancedControl;
-using ::vendor::lge::hardware::audio::dac::control::V1_0::implementation::DacHalControl;
+using ::vendor::lge::hardware::audio::dac::control::V2_0::IDacControl;
+using ::vendor::lge::hardware::audio::dac::control::V2_0::implementation::DacControl;
 
 int main() {
-    sp<DacAdvancedControl> dac;
-    sp<DacHalControl> dhc;
+    sp<DacControl> interface;
 
     status_t status = OK;
 
     LOG(INFO) << "DAC Control HAL service is starting.";
 
-    dac = new DacAdvancedControl();
-    if (dac == nullptr) {
-        LOG(ERROR) << "Can not create an instance of DAC Control HAL DacAdvancedControl Iface, "
-                      "exiting.";
-        goto shutdown;
-    }
-
-    dhc = new DacHalControl();
-    if (dhc == nullptr) {
-        LOG(ERROR) << "Can not create an instance of DAC Control HAL DacHalControl Iface, exiting.";
+    interface = new DacControl();
+    if (interface == nullptr) {
+        LOG(ERROR) << "Can not create an instance of DAC Control HAL DacControl Iface, exiting.";
         goto shutdown;
     }
 
     configureRpcThreadpool(1, true /*callerWillJoin*/);
 
-    status = dac->registerAsService();
-    if (status != OK) {
-        LOG(ERROR) << "Could not register service for DAC Control HAL DacAdvancedControl Iface ("
-                   << status << ")";
-        goto shutdown;
-    }
 
-    status = dhc->registerAsService();
+    status = interface->registerAsService();
     if (status != OK) {
-        LOG(ERROR) << "Could not register service for DAC Control HAL DacHalControl Iface ("
+        LOG(ERROR) << "Could not register service for DAC Control HAL DacControl Iface ("
                    << status << ")";
         goto shutdown;
     }
