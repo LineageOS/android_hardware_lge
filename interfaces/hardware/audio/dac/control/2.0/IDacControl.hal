@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 The LineageOS Project
+ * Copyright (C) 2020-2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,28 +14,28 @@
  * limitations under the License.
  */
 
-package vendor.lge.hardware.audio.dac.control@1.0;
+package vendor.lge.hardware.audio.dac.control@2.0;
 
-interface IDacHalControl {
+interface IDacControl {
 
     /**
-    * Returns all supported features by the Audio HAL
+    * Returns all supported features
     */
-    getSupportedHalFeatures() generates (vec<HalFeature> features);
+    getSupportedFeatures() generates (vec<Feature> features);
 
     /**
     * Returns the possible states (e.g. for SoundPreset: ("Normal", 0)) OR range for
-    * the requested HALFeature
+    * the requested feature
     */
-    getSupportedHalFeatureValues(HalFeature feature) generates (FeatureStates states);
+    getSupportedFeatureValues(Feature feature) generates (FeatureStates states);
 
     /**
-    * Saves the FeatureState for the given HALFeatre
+    * Saves the FeatureState for the given feature
     */
-    setFeatureValue(HalFeature feature, int32_t value) generates (bool rc);
+    setFeatureValue(Feature feature, int32_t value) generates (bool rc);
 
     /**
-    * Gets the current FeatureState for the given HALFeatre
+    * Gets the current FeatureState for the given feature
     */
-    getFeatureValue(HalFeature feature) generates (int32_t value);
+    getFeatureValue(Feature feature) generates (int32_t value);
 };

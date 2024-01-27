@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-#ifndef VENDOR_LGE_HARDWARE_AUDIO_DAC_CONTROL_V1_0_CONSTANTS_H
-#define VENDOR_LGE_HARDWARE_AUDIO_DAC_CONTROL_V1_0_CONSTANTS_H
+#pragma once
 
 /* Paths */
 #define COMMON_ES9218_PATH                 "/sys/bus/i2c/drivers/es9218-codec/"
@@ -50,5 +49,3 @@
 
 #define SET_LEFT_BALANCE_COMMAND            "hifi_dac_l_volume"
 #define SET_RIGHT_BALANCE_COMMAND           "hifi_dac_r_volume"
-
-#endif  // VENDOR_LGE_HARDWARE_AUDIO_DAC_CONTROL_V1_0_CONSTANTS_H
