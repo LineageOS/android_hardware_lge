@@ -1,0 +1,65 @@
+/*
+ * Copyright (C) 2020-2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.lge.hardware.audio.dac.control@2.0;
+
+enum Status : int32_t {
+    OK,
+    NOT_SUPPORTED,
+    INVALID_ARGUMENTS,
+    INVALID_STATE,
+};
+
+/**
+* Features supported by the system
+* Use AudioSystem.setParameters to set
+*/
+enum Feature : int32_t {
+    /**
+    * If DAC supported by the device.
+    * If this isn't present, the rest isn't supported either.
+    */
+    QuadDAC,
+    SoundPreset,
+    DigitalFilter,
+    BalanceLeft,
+    BalanceRight,
+    HifiMode,
+    AVCVolume,
+    CustomFilter
+};
+
+struct KeyValue {
+    string name;
+    string value;
+};
+
+struct Range {
+    float max;
+    float min;
+    float step;
+};
+
+/**
+* Struct for all supported states
+* if states is empty, use range
+*/
+struct FeatureStates {
+    vec<KeyValue> states;
+    Range range;
+};
+
+/**
+* Contains either a KeyValue pair or a value
+* If KeyValue is empty, value will be used
+* kv has to be in FeatureStates.states
+* value has to be in [min, max] of FeatureStates.range
+* of respective Feature
+*/
+struct FeatureState {
+    KeyValue kv;
+    float value;
+};
