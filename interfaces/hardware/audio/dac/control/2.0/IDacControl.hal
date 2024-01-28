@@ -30,6 +30,20 @@ interface IDacControl {
     getSupportedFeatureValues(Feature feature) generates (FeatureStates states);
 
     /**
+    * Get the current state of the Hi-Fi Quad DAC.
+    *
+    * Return values:
+    *   false: disabled
+    *   true:  enabled
+    */
+    getHifiDacState() generates (bool status);
+
+    /**
+    * Enable/disable the Hi-Fi Quad DAC.
+    */
+    setHifiDacState(bool enable) generates (bool rc);
+
+    /**
     * Saves the FeatureState for the given feature
     */
     setFeatureValue(Feature feature, int32_t value) generates (bool rc);
