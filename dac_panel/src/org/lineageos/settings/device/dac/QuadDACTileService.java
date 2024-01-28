@@ -11,8 +11,7 @@ import android.util.Log;
 
 import org.lineageos.settings.device.dac.utils.QuadDAC;
 
-import vendor.lge.hardware.audio.dac.control.V1_0.IDacAdvancedControl;
-import vendor.lge.hardware.audio.dac.control.V1_0.IDacHalControl;
+import vendor.lge.hardware.audio.dac.control.V2_0.IDacControl;
 
 public class QuadDACTileService extends TileService {
 
@@ -20,8 +19,7 @@ public class QuadDACTileService extends TileService {
 
     private HeadsetPluggedTileReceiver headsetPluggedTileReceiver = new HeadsetPluggedTileReceiver();
 
-    private IDacAdvancedControl dac;
-    private IDacHalControl dhc;
+    private IDacControl dac;
 
     private boolean dac_service_available = false;
 
@@ -29,11 +27,11 @@ public class QuadDACTileService extends TileService {
     public void onClick() {
         super.onClick();
         try {
-            if (QuadDAC.isEnabled(dhc)) {
-                QuadDAC.disable(dhc);
+            if (QuadDAC.isEnabled(dac)) {
+                QuadDAC.disable(dac);
                 setTileInactive();
             } else {
-                QuadDAC.enable(dhc, dac);
+                QuadDAC.enable(dac);
                 setTileActive();
             }
         } catch(Exception e) {}
@@ -49,8 +47,7 @@ public class QuadDACTileService extends TileService {
         AudioManager am = getSystemService(AudioManager.class);
 
         try {
-            dac = IDacAdvancedControl.getService(true);
-            dhc = IDacHalControl.getService(true);
+            dac = IDacControl.getService(true);
             dac_service_available = true;
         } catch(Exception e)
         { }
@@ -62,7 +59,7 @@ public class QuadDACTileService extends TileService {
         }
 
         try {
-            if (QuadDAC.isEnabled(dhc)) {
+            if (QuadDAC.isEnabled(dac)) {
                 setTileActive();
             } else {
                 setTileInactive();
@@ -115,7 +112,7 @@ public class QuadDACTileService extends TileService {
                 {
                     case 1: // Headset plugged in
                         try {
-                            if (QuadDAC.isEnabled(dhc)) {
+                            if (QuadDAC.isEnabled(dac)) {
                                 setTileActive();
                             } else {
                                 setTileInactive();
