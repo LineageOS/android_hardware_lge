@@ -77,8 +77,6 @@ class DacControl : public IDacControl {
     bool writeAvcVolumeState(int32_t value);
     bool writeHifiModeState(int32_t value);
     bool setAudioHALParameters(KeyValue kv);
-    int32_t getAvcVolumeState();
-    int32_t getHifiModeState();
 
     android::sp<::android::hardware::audio::V2_0::IDevice> mAudioDevice_V2_0;
     android::sp<::android::hardware::audio::V2_0::IDevicesFactory> mAudioDevicesFactory_V2_0;
