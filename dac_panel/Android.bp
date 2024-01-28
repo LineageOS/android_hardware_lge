@@ -28,7 +28,7 @@ android_app {
     system_ext_specific: true,
 
     static_libs: [
-        "vendor.lge.hardware.audio.dac.control-V1.0-java",
+        "vendor.lge.hardware.audio.dac.control-V2.0-java",
         "androidx.core_core",
         "androidx.preference_preference",
     ],
