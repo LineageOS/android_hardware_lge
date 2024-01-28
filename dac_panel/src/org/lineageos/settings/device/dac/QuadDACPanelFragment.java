@@ -43,15 +43,11 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
     private IDacControl dac;
 
-    private ArrayList<Integer> dac_features;
-
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         headsetPluggedFragmentReceiver = new HeadsetPluggedFragmentReceiver();
         try {
-            dac = IDacControl.getService(true);
-
-            dac_features = dac.getSupportedFeatures();
+            QuadDAC.initialize();
         } catch(Exception e) {
             Log.d(TAG, "onCreatePreferences: " + e.toString());
         }
@@ -68,11 +64,11 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
                 if (set_dac_on) {
                     enableExtraSettings();
-                    QuadDAC.enable(dac);
+                    QuadDAC.enable();
                     return true;
                 } else {
                     disableExtraSettings();
-                    QuadDAC.disable(dac);
+                    QuadDAC.disable();
                     return true;
                 }
             }
@@ -81,21 +77,21 @@ public class QuadDACPanelFragment extends PreferenceFragment
                     ListPreference lp = (ListPreference) preference;
 
                     int mode = lp.findIndexOfValue((String) newValue);
-                    QuadDAC.setDACMode(dac, mode);
+                    QuadDAC.setDACMode(mode);
                     return true;
 
                 } else if (preference.getKey().equals(Constants.DIGITAL_FILTER_KEY)) {
                     ListPreference lp = (ListPreference) preference;
 
                     int digital_filter = lp.findIndexOfValue((String) newValue);
-                    QuadDAC.setDigitalFilter(dac, digital_filter);
+                    QuadDAC.setDigitalFilter(digital_filter);
                     return true;
 
                 } else if (preference.getKey().equals(Constants.SOUND_PRESET_KEY)) {
                     ListPreference lp = (ListPreference) preference;
 
                     int sound_preset = lp.findIndexOfValue((String) newValue);
-                    QuadDAC.setSoundPreset(dac, sound_preset);
+                    QuadDAC.setSoundPreset(sound_preset);
                     return true;
                 }
                 return false;
@@ -108,7 +104,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
                         //avc_volume.setSummary( ((double)avc_vol) + " db");
 
-                        QuadDAC.setAVCVolume(dac, avc_vol);
+                        QuadDAC.setAVCVolume(avc_vol);
                         return true;
                     } else {
                         return false;
@@ -158,32 +154,31 @@ public class QuadDACPanelFragment extends PreferenceFragment
         balance_preference = (BalancePreference) findPreference(Constants.BALANCE_KEY);
 
         try {
-            if (dac_features.contains(Feature.QuadDAC)) {
+            if (QuadDAC.getSupportedFeatures().contains(Feature.QuadDAC)) {
                 quaddac_switch.setVisible(true);
             }
-            if (dac_features.contains(Feature.SoundPreset)) {
+            if (QuadDAC.getSupportedFeatures().contains(Feature.SoundPreset)) {
                 sound_preset_list.setVisible(true);
-                sound_preset_list.setValueIndex(dac.getFeatureValue(Feature.SoundPreset));
+                sound_preset_list.setValueIndex(QuadDAC.getSoundPreset());
             }
-            if (dac_features.contains(Feature.DigitalFilter)) {
+            if (QuadDAC.getSupportedFeatures().contains(Feature.DigitalFilter)) {
                 digital_filter_list.setVisible(true);
-                digital_filter_list.setValueIndex(dac.getFeatureValue(Feature.DigitalFilter));
+                digital_filter_list.setValueIndex(QuadDAC.getDigitalFilter());
             }
-            if (dac_features.contains(Feature.BalanceLeft)
-                    && dac_features.contains(Feature.BalanceRight)) {
+            if (QuadDAC.getSupportedFeatures().contains(Feature.BalanceLeft)
+                    && QuadDAC.getSupportedFeatures().contains(Feature.BalanceRight)) {
                 balance_preference.setVisible(true);
-                balance_preference.setDhc(dac);
             }
-            if (dac_features.contains(Feature.AVCVolume)) {
+            if (QuadDAC.getSupportedFeatures().contains(Feature.AVCVolume)) {
                 avc_volume.setVisible(true);
-                Range range = dac.getSupportedFeatureValues(Feature.AVCVolume).range;
+                Range range = QuadDAC.getSupportedFeatureValues(Feature.AVCVolume).range;
                 avc_volume.setMin((int)range.min);
                 avc_volume.setMax((int)range.max);
-                avc_volume.setValue(dac.getFeatureValue(Feature.AVCVolume));
+                avc_volume.setValue(QuadDAC.getAVCVolume());
             }
-            if (dac_features.contains(Feature.HifiMode)) {
+            if (QuadDAC.getSupportedFeatures().contains(Feature.HifiMode)) {
                 mode_list.setVisible(true);
-                mode_list.setValueIndex(dac.getFeatureValue(Feature.HifiMode));
+                mode_list.setValueIndex(QuadDAC.getDACMode());
             }
         } catch(Exception e) {
             Log.d(TAG, "addPreferencesFromResource: " + e.toString());
@@ -192,7 +187,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
         try {
             if (am.isWiredHeadsetOn()) {
                 quaddac_switch.setEnabled(true);
-                if (QuadDAC.isEnabled(dac)) {
+                if (QuadDAC.isEnabled()) {
                     quaddac_switch.setChecked(true);
                     enableExtraSettings();
                 } else {
@@ -202,7 +197,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
             } else {
                 quaddac_switch.setEnabled(false);
                 disableExtraSettings();
-                if (QuadDAC.isEnabled(dac)) {
+                if (QuadDAC.isEnabled()) {
                     quaddac_switch.setChecked(true);
                 }
             }
