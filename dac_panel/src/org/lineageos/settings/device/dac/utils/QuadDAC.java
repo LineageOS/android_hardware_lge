@@ -22,7 +22,7 @@ public class QuadDAC {
             int right_balance = getRightBalance(dac);
             int mode = getDACMode(dac);
             int avc_vol = getAVCVolume(dac);
-            dac.setFeatureValue(Feature.QuadDAC, 1);
+            dac.setHifiDacState(true);
             setDACMode(dac, mode);
             setLeftBalance(dac, left_balance);
             setRightBalance(dac, right_balance);
@@ -34,7 +34,7 @@ public class QuadDAC {
 
     public static void disable(IDacControl dac) throws RemoteException
     {
-        dac.setFeatureValue(Feature.QuadDAC, 0);
+        dac.setHifiDacState(false);
     }
 
     public static void setDACMode(IDacControl dac, int mode) throws RemoteException
@@ -99,7 +99,7 @@ public class QuadDAC {
 
     public static boolean isEnabled(IDacControl dac) throws RemoteException
     {
-        return dac.getFeatureValue(Feature.QuadDAC) == 1;
+        return dac.getHifiDacState();
     }
 
 }
