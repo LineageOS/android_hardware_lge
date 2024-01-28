@@ -80,6 +80,7 @@ DacControl::DacControl() {
     hifiPath = std::string(mDacBasePath);
     hifiPath.append(HIFI_MODE);
 
+#ifdef PROPRIETARY_AUDIO_MODULE
     mAudioDevicesFactory_V6_0 = ::android::hardware::audio::V6_0::IDevicesFactory::getService();
     if(mAudioDevicesFactory_V6_0 == nullptr) {
         LOG(INFO) << "mAudioDevicesFactory_V6_0 null, trying V5_0";
@@ -188,6 +189,7 @@ DacControl::DacControl() {
             break;
         default: return; // Should never reach this state
     }
+#endif // PROPRIETARY_AUDIO_MODULE
 
     /* Quad DAC */
     mSupportedFeatures.push_back(Feature::QuadDAC);
@@ -200,12 +202,14 @@ DacControl::DacControl() {
     mSupportedStates.emplace(Feature::DigitalFilter, digfilter_fstates);
     setFeatureValue(Feature::DigitalFilter, getFeatureValue(Feature::DigitalFilter));
 
+#ifdef PROPRIETARY_AUDIO_MODULE
     /* Sound Presets */
     mSupportedFeatures.push_back(Feature::SoundPreset);
     FeatureStates soundpresets_fstates;
     soundpresets_fstates.states = hidl_vec<KeyValue> {sound_presets};
     mSupportedStates.emplace(Feature::SoundPreset, soundpresets_fstates);
     setFeatureValue(Feature::SoundPreset, getFeatureValue(Feature::SoundPreset));
+#endif
 
     /* Balance Left */
     mSupportedFeatures.push_back(Feature::BalanceLeft);
@@ -357,13 +361,19 @@ bool DacControl::setAudioHALParameters(KeyValue kv) {
 }
 
 Return<bool> DacControl::setHifiDacState(bool enable) {
+#ifdef PROPRIETARY_AUDIO_MODULE
     KeyValue kv;
     kv.name = DAC_COMMAND;
     kv.value = enable ? SET_DAC_ON_COMMAND : SET_DAC_OFF_COMMAND;
     return setAudioHALParameters(kv);
+#else
+    return (bool)property_set(PROPERTY_HIFI_DAC_ENABLED, enable ? PROPERTY_VALUE_HIFI_DAC_ENABLED : PROPERTY_VALUE_HIFI_DAC_DISABLED);
+#endif
 }
 
 Return<bool> DacControl::setFeatureValue(Feature feature, int32_t value) {
+
+    bool rc;
 
     if(std::find(mSupportedFeatures.begin(), mSupportedFeatures.end(), feature) == mSupportedFeatures.end()) {
         LOG(ERROR) << "DacControl::setFeatureValue: tried to set value for unsupported Feature...";
@@ -404,7 +414,13 @@ Return<bool> DacControl::setFeatureValue(Feature feature, int32_t value) {
     }
     kv.value = std::to_string(value);
 
-    if(setAudioHALParameters(kv)) {
+#ifdef PROPRIETARY_AUDIO_MODULE
+    rc = setAudioHALParameters(kv);
+#else
+    rc = true;
+#endif
+
+    if(rc) {
         property_set(property.c_str(), kv.value.c_str());
         return true;
     } else {
