@@ -36,8 +36,6 @@ namespace implementation {
 static constexpr int32_t MAX_BALANCE_VALUE = 0;
 static constexpr int32_t MIN_BALANCE_VALUE = -12;
 
-static std::vector<KeyValue> quaddac_states = {{"Off", "0"}, {"On", "1"}};
-
 static std::vector<KeyValue> sound_presets = {{"Normal", "0"},
                                               {"Enhanced", "1"},
                                               {"Detailed", "2"},
@@ -193,24 +191,21 @@ DacControl::DacControl() {
 
     /* Quad DAC */
     mSupportedFeatures.push_back(Feature::QuadDAC);
-    FeatureStates quaddac_fstates;
-    quaddac_fstates.states = hidl_vec<KeyValue> {quaddac_states};
-    for(auto e : quaddac_fstates.states) {
-        LOG(INFO) << "quaddac_fstates: " << e.name << ":" << e.value;
-    }
-    mSupportedStates.emplace(Feature::QuadDAC, quaddac_fstates);
+    setHifiDacState(getHifiDacState());
 
     /* Digital Filter */
     mSupportedFeatures.push_back(Feature::DigitalFilter);
     FeatureStates digfilter_fstates;
     digfilter_fstates.states = hidl_vec<KeyValue> {digital_filters};
     mSupportedStates.emplace(Feature::DigitalFilter, digfilter_fstates);
+    setFeatureValue(Feature::DigitalFilter, getFeatureValue(Feature::DigitalFilter));
 
     /* Sound Presets */
     mSupportedFeatures.push_back(Feature::SoundPreset);
     FeatureStates soundpresets_fstates;
     soundpresets_fstates.states = hidl_vec<KeyValue> {sound_presets};
     mSupportedStates.emplace(Feature::SoundPreset, soundpresets_fstates);
+    setFeatureValue(Feature::SoundPreset, getFeatureValue(Feature::SoundPreset));
 
     /* Balance Left */
     mSupportedFeatures.push_back(Feature::BalanceLeft);
@@ -219,6 +214,7 @@ DacControl::DacControl() {
     balanceleft_fstates.range.min = MIN_BALANCE_VALUE;
     balanceleft_fstates.range.step = 1;
     mSupportedStates.emplace(Feature::BalanceLeft, balanceleft_fstates);
+    setFeatureValue(Feature::BalanceLeft, getFeatureValue(Feature::BalanceLeft));
 
     /* Balance Right */
     mSupportedFeatures.push_back(Feature::BalanceRight);
@@ -227,6 +223,7 @@ DacControl::DacControl() {
     balanceright_fstates.range.min = MIN_BALANCE_VALUE;
     balanceright_fstates.range.step = 1;
     mSupportedStates.emplace(Feature::BalanceRight, balanceright_fstates);
+    setFeatureValue(Feature::BalanceRight, getFeatureValue(Feature::BalanceRight));
 
     /* AVC Volume */
     struct stat buffer;
@@ -240,12 +237,6 @@ DacControl::DacControl() {
         mSupportedFeatures.push_back(Feature::HifiMode);
         writeHifiModeState(getHifiModeState());
     }
-
-    setFeatureValue(Feature::QuadDAC, getFeatureValue(Feature::QuadDAC));
-    setFeatureValue(Feature::DigitalFilter, getFeatureValue(Feature::DigitalFilter));
-    setFeatureValue(Feature::SoundPreset, getFeatureValue(Feature::SoundPreset));
-    setFeatureValue(Feature::BalanceLeft, getFeatureValue(Feature::BalanceLeft));
-    setFeatureValue(Feature::BalanceRight, getFeatureValue(Feature::BalanceRight));
 }
 
 Return<void> DacControl::getSupportedFeatures(getSupportedFeatures_cb _hidl_cb) {
@@ -282,14 +273,12 @@ Return<void> DacControl::getSupportedFeatureValues(Feature feature, getSupported
 
     // Check for sysfs-based features; these do different things
     switch(feature) {
-        case Feature::AVCVolume: {
-                _hidl_cb(getAvcVolumeStates());
-                goto end;
-            }
-        case Feature::HifiMode: {
-                _hidl_cb(getHifiModeStates());
-                goto end;
-            }
+        case Feature::AVCVolume:
+            _hidl_cb(getAvcVolumeStates());
+            goto end;
+        case Feature::HifiMode:
+            _hidl_cb(getHifiModeStates());
+            goto end;
         default:
             break;
     }
@@ -314,6 +303,66 @@ bool DacControl::writeHifiModeState(int32_t value) {
     return (bool)property_set(PROPERTY_HIFI_DAC_MODE, std::to_string(value).c_str());
 }
 
+bool DacControl::setAudioHALParameters(KeyValue kv) {
+    ::android::hardware::audio::V2_0::Result result_V2_0 = ::android::hardware::audio::V2_0::Result::NOT_SUPPORTED;
+    ::android::hardware::audio::V4_0::Result result_V4_0 = ::android::hardware::audio::V4_0::Result::NOT_SUPPORTED;
+    ::android::hardware::audio::V5_0::Result result_V5_0 = ::android::hardware::audio::V5_0::Result::NOT_SUPPORTED;
+    ::android::hardware::audio::V6_0::Result result_V6_0 = ::android::hardware::audio::V6_0::Result::NOT_SUPPORTED;
+
+    switch(usedVersion) {
+        case AudioVersion::V6_0:
+            {
+                std::vector<::android::hardware::audio::V6_0::ParameterValue> pv_vec = {{kv.name, kv.value}};
+                hidl_vec<::android::hardware::audio::V6_0::ParameterValue> parameters_V6_0 =
+                        hidl_vec<::android::hardware::audio::V6_0::ParameterValue> {pv_vec};
+                result_V6_0 = mAudioDevice_V6_0->setParameters({}, parameters_V6_0);
+            }
+            break;
+        case AudioVersion::V5_0:
+            {
+                std::vector<::android::hardware::audio::V5_0::ParameterValue> pv_vec = {{kv.name, kv.value}};
+                hidl_vec<::android::hardware::audio::V5_0::ParameterValue> parameters_V5_0 =
+                        hidl_vec<::android::hardware::audio::V5_0::ParameterValue> {pv_vec};
+                result_V5_0 = mAudioDevice_V5_0->setParameters({}, parameters_V5_0);
+            }
+            break;
+        case AudioVersion::V4_0:
+            {
+                std::vector<::android::hardware::audio::V4_0::ParameterValue> pv_vec = {{kv.name, kv.value}};
+                hidl_vec<::android::hardware::audio::V4_0::ParameterValue> parameters_V4_0 =
+                        hidl_vec<::android::hardware::audio::V4_0::ParameterValue> {pv_vec};
+                result_V4_0 = mAudioDevice_V4_0->setParameters({}, parameters_V4_0);
+            }
+            break;
+        case AudioVersion::V2_0:
+            {
+                std::vector<::android::hardware::audio::V2_0::ParameterValue> pv_vec = {{kv.name, kv.value}};
+                hidl_vec<::android::hardware::audio::V2_0::ParameterValue> parameters_V2_0 =
+                        hidl_vec<::android::hardware::audio::V2_0::ParameterValue> {pv_vec};
+                result_V2_0 = mAudioDevice_V2_0->setParameters(parameters_V2_0);
+            }
+            break;
+        default:
+            return false;
+    }
+
+    if(result_V2_0 == ::android::hardware::audio::V2_0::Result::OK ||
+       result_V4_0 == ::android::hardware::audio::V4_0::Result::OK ||
+       result_V5_0 == ::android::hardware::audio::V5_0::Result::OK ||
+       result_V6_0 == ::android::hardware::audio::V6_0::Result::OK)
+        return true;
+
+    // Should not reach this point
+    return false;
+}
+
+Return<bool> DacControl::setHifiDacState(bool enable) {
+    KeyValue kv;
+    kv.name = DAC_COMMAND;
+    kv.value = enable ? SET_DAC_ON_COMMAND : SET_DAC_OFF_COMMAND;
+    return setAudioHALParameters(kv);
+}
+
 Return<bool> DacControl::setFeatureValue(Feature feature, int32_t value) {
 
     if(std::find(mSupportedFeatures.begin(), mSupportedFeatures.end(), feature) == mSupportedFeatures.end()) {
@@ -324,16 +373,6 @@ Return<bool> DacControl::setFeatureValue(Feature feature, int32_t value) {
     KeyValue kv;
     std::string property;
     switch(feature) {
-        case Feature::QuadDAC: {
-            kv.name = DAC_COMMAND;
-            property = PROPERTY_HIFI_DAC_ENABLED;
-            if(value == 0) {
-                kv.value = SET_DAC_OFF_COMMAND;
-            } else if(value == 1) {
-                kv.value = SET_DAC_ON_COMMAND;
-            }
-            goto set_parameters;
-        }
         case Feature::DigitalFilter: {
             kv.name = SET_DIGITAL_FILTER_COMMAND;
             property = PROPERTY_DIGITAL_FILTER;
@@ -365,52 +404,8 @@ Return<bool> DacControl::setFeatureValue(Feature feature, int32_t value) {
     }
     kv.value = std::to_string(value);
 
-set_parameters:
-    ::android::hardware::audio::V2_0::Result result_V2_0 = ::android::hardware::audio::V2_0::Result::NOT_SUPPORTED;
-    ::android::hardware::audio::V4_0::Result result_V4_0 = ::android::hardware::audio::V4_0::Result::NOT_SUPPORTED;
-    ::android::hardware::audio::V5_0::Result result_V5_0 = ::android::hardware::audio::V5_0::Result::NOT_SUPPORTED;
-    ::android::hardware::audio::V6_0::Result result_V6_0 = ::android::hardware::audio::V6_0::Result::NOT_SUPPORTED;
-
-    switch(usedVersion) {
-        case AudioVersion::V6_0: {
-                std::vector<::android::hardware::audio::V6_0::ParameterValue> pv_vec = {{kv.name, kv.value}};
-                hidl_vec<::android::hardware::audio::V6_0::ParameterValue> parameters_V6_0 =
-                        hidl_vec<::android::hardware::audio::V6_0::ParameterValue> {pv_vec};
-                result_V6_0 = mAudioDevice_V6_0->setParameters({}, parameters_V6_0);
-            }
-            break;
-        case AudioVersion::V5_0: {
-                std::vector<::android::hardware::audio::V5_0::ParameterValue> pv_vec = {{kv.name, kv.value}};
-                hidl_vec<::android::hardware::audio::V5_0::ParameterValue> parameters_V5_0 =
-                        hidl_vec<::android::hardware::audio::V5_0::ParameterValue> {pv_vec};
-                result_V5_0 = mAudioDevice_V5_0->setParameters({}, parameters_V5_0);
-            }
-            break;
-        case AudioVersion::V4_0: {
-                std::vector<::android::hardware::audio::V4_0::ParameterValue> pv_vec = {{kv.name, kv.value}};
-                hidl_vec<::android::hardware::audio::V4_0::ParameterValue> parameters_V4_0 =
-                        hidl_vec<::android::hardware::audio::V4_0::ParameterValue> {pv_vec};
-                result_V4_0 = mAudioDevice_V4_0->setParameters({}, parameters_V4_0);
-            }
-            break;
-        case AudioVersion::V2_0: {
-                std::vector<::android::hardware::audio::V2_0::ParameterValue> pv_vec = {{kv.name, kv.value}};
-                hidl_vec<::android::hardware::audio::V2_0::ParameterValue> parameters_V2_0 =
-                        hidl_vec<::android::hardware::audio::V2_0::ParameterValue> {pv_vec};
-                result_V2_0 = mAudioDevice_V2_0->setParameters(parameters_V2_0);
-            }
-            break;
-        default: return false;
-    }
-
-    if(result_V2_0 == ::android::hardware::audio::V2_0::Result::OK ||
-       result_V4_0 == ::android::hardware::audio::V4_0::Result::OK ||
-       result_V5_0 == ::android::hardware::audio::V5_0::Result::OK ||
-       result_V6_0 == ::android::hardware::audio::V6_0::Result::OK) {
-        // set by the audio HAL
-        if(feature != Feature::QuadDAC) {
-            property_set(property.c_str(), kv.value.c_str());
-        }
+    if(setAudioHALParameters(kv)) {
+        property_set(property.c_str(), kv.value.c_str());
         return true;
     } else {
         return false;
@@ -425,6 +420,12 @@ int32_t DacControl::getHifiModeState() {
     return property_get_int32(PROPERTY_HIFI_DAC_MODE, HIFI_MODE_DEFAULT);
 }
 
+Return<bool> DacControl::getHifiDacState() {
+    char value[PROPERTY_VALUE_MAX];
+    property_get(PROPERTY_HIFI_DAC_ENABLED, value, PROPERTY_VALUE_HIFI_DAC_DISABLED);
+    return (strcmp(value, PROPERTY_VALUE_HIFI_DAC_ENABLED) == 0);
+}
+
 Return<int32_t> DacControl::getFeatureValue(Feature feature) {
     if(std::find(mSupportedFeatures.begin(), mSupportedFeatures.end(), feature) == mSupportedFeatures.end()) {
         LOG(ERROR) << "DacControl::getFeatureValue: tried to set value for unsupported Feature...";
@@ -436,16 +437,6 @@ Return<int32_t> DacControl::getFeatureValue(Feature feature) {
     char value[PROPERTY_VALUE_MAX];
 
     switch(feature) {
-        case Feature::QuadDAC: {
-            property = PROPERTY_HIFI_DAC_ENABLED;
-            property_get(property.c_str(), value, PROPERTY_VALUE_HIFI_DAC_DISABLED);
-            if(strcmp(value, PROPERTY_VALUE_HIFI_DAC_ENABLED) == 0) {
-                ret = 1;
-            } else {
-                ret = 0;
-            }
-            goto end;
-        }
         case Feature::DigitalFilter: {
             property = PROPERTY_DIGITAL_FILTER;
             break;
