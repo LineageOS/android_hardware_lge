@@ -1,2 +1,3 @@
 vendor.lge.hardware.audio.dac.control::IDacAdvancedControl          u:object_r:hal_dac_control_hwservice:s0
 vendor.lge.hardware.audio.dac.control::IDacHalControl               u:object_r:hal_dac_control_hwservice:s0
+vendor.lge.hardware.audio.dac.control::IDacControl                  u:object_r:hal_dac_control_hwservice:s0
