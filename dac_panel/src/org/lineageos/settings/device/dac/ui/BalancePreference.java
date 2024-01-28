@@ -23,7 +23,6 @@ import java.util.Map;
 
 import vendor.lge.hardware.audio.dac.control.V2_0.FeatureStates;
 import vendor.lge.hardware.audio.dac.control.V2_0.Feature;
-import vendor.lge.hardware.audio.dac.control.V2_0.IDacControl;
 
 public class BalancePreference extends Preference {
 
@@ -37,8 +36,6 @@ public class BalancePreference extends Preference {
 
     private Button bt_left_plus, bt_left_minus, bt_right_plus, bt_right_minus;
     private TextView tv_left, tv_right;
-
-    private IDacControl dac;
 
     public BalancePreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
@@ -110,12 +107,12 @@ public class BalancePreference extends Preference {
     private void loadBalanceConfiguration()
     {
         try {
-            FeatureStates states = dac.getSupportedFeatureValues(Feature.BalanceLeft);
+            FeatureStates states = QuadDAC.getSupportedFeatureValues(Feature.BalanceLeft);
             min_allowed_value = (int)states.range.min;
             max_allowed_value = (int)states.range.max;
 
-            left_balance = -QuadDAC.getLeftBalance(dac);
-            right_balance = -QuadDAC.getRightBalance(dac);
+            left_balance = -QuadDAC.getLeftBalance();
+            right_balance = -QuadDAC.getRightBalance();
         } catch(Exception e) {
             Log.d(TAG, "loadBalanceConfiguration: " + e.toString());
         }
@@ -175,7 +172,7 @@ public class BalancePreference extends Preference {
             }
         }
         try {
-            QuadDAC.setLeftBalance(dac, -left_balance);
+            QuadDAC.setLeftBalance(-left_balance);
         } catch(Exception e) {
             Log.d(TAG, "updateLeftBalance: " + e.toString());
         }
@@ -211,7 +208,7 @@ public class BalancePreference extends Preference {
             }
         }
         try {
-            QuadDAC.setRightBalance(dac, -right_balance);
+            QuadDAC.setRightBalance(-right_balance);
         } catch(Exception e) {
             Log.d(TAG, "updateRightBalance: " + e.toString());
         }
@@ -220,7 +217,4 @@ public class BalancePreference extends Preference {
         tv_right.setText(sb.toString());
     }
 
-    public void setDhc(IDacControl idac) {
-        this.dac = idac;
-    }
 }
