@@ -1,6 +1,5 @@
-cc_binary {
-    name: "vendor.lge.hardware.audio.dac.control@2.0-service",
-    init_rc: ["vendor.lge.hardware.audio.dac.control@2.0-service.rc"],
+cc_defaults {
+    name: "lge_dac_control_defaults",
     vintf_fragments: ["vendor.lge.hardware.audio.dac.control@2.0-service.xml"],
     defaults: ["hidl_defaults"],
     relative_install_path: "hw",
@@ -23,4 +22,17 @@ cc_binary {
         "vendor.lge.hardware.audio.dac.control@2.0",
     ],
     vendor: true,
+}
+
+cc_binary {
+    name: "vendor.lge.hardware.audio.dac.control@2.0-service",
+    init_rc: ["vendor.lge.hardware.audio.dac.control@2.0-service.rc"],
+    defaults: ["lge_dac_control_defaults"],
+}
+
+cc_binary {
+    name: "vendor.lge.hardware.audio.dac.control@2.0-service.proprietary",
+    init_rc: ["vendor.lge.hardware.audio.dac.control@2.0-service.proprietary.rc"],
+    defaults: ["lge_dac_control_defaults"],
+    cflags: ["-DPROPRIETARY_AUDIO_MODULE"],
 }
