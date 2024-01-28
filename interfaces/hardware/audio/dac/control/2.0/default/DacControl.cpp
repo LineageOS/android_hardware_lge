@@ -229,13 +229,13 @@ DacControl::DacControl() {
     struct stat buffer;
     if(stat(avcPath.c_str(), &buffer) == 0) {
         mSupportedFeatures.push_back(Feature::AVCVolume);
-        writeAvcVolumeState(getAvcVolumeState());
+        writeAvcVolumeState(getFeatureValue(Feature::AVCVolume));
     }
 
     /* Hi-Fi Mode setting */
     if(stat(hifiPath.c_str(), &buffer) == 0) {
         mSupportedFeatures.push_back(Feature::HifiMode);
-        writeHifiModeState(getHifiModeState());
+        writeHifiModeState(getFeatureValue(Feature::HifiMode));
     }
 }
 
@@ -412,14 +412,6 @@ Return<bool> DacControl::setFeatureValue(Feature feature, int32_t value) {
     }
 }
 
-int32_t DacControl::getAvcVolumeState() {
-    return property_get_int32(PROPERTY_HIFI_DAC_AVC_VOLUME, AVC_VOLUME_DEFAULT);
-}
-
-int32_t DacControl::getHifiModeState() {
-    return property_get_int32(PROPERTY_HIFI_DAC_MODE, HIFI_MODE_DEFAULT);
-}
-
 Return<bool> DacControl::getHifiDacState() {
     char value[PROPERTY_VALUE_MAX];
     property_get(PROPERTY_HIFI_DAC_ENABLED, value, PROPERTY_VALUE_HIFI_DAC_DISABLED);
@@ -432,7 +424,7 @@ Return<int32_t> DacControl::getFeatureValue(Feature feature) {
         return -1;
     }
 
-    int32_t ret;
+    int32_t property_default_value = 0;
     std::string property;
     char value[PROPERTY_VALUE_MAX];
 
@@ -454,21 +446,20 @@ Return<int32_t> DacControl::getFeatureValue(Feature feature) {
             break;
         }
         case Feature::AVCVolume: {
-            ret = getAvcVolumeState();
-            goto end;
+            property = PROPERTY_HIFI_DAC_AVC_VOLUME;
+            property_default_value = AVC_VOLUME_DEFAULT;
+            break;
         }
         case Feature::HifiMode: {
-            ret = getHifiModeState();
-            goto end;
+            property = PROPERTY_HIFI_DAC_MODE;
+            property_default_value = HIFI_MODE_DEFAULT;
+            break;
         }
         default:
             return false;
     }
-    property_get(property.c_str(), value, "0");
-    ret = std::stoi(value);
-
-end:
-    return ret;
+    property_get(property.c_str(), value, std::to_string(property_default_value).c_str());
+    return std::stoi(value);
 }
 
 }  // namespace implementation
