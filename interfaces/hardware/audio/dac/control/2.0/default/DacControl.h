@@ -60,6 +60,10 @@ class DacControl : public IDacControl {
 
     Return<void> getSupportedFeatureValues(Feature feature, getSupportedFeatureValues_cb _hidl_cb) override;
 
+    Return<bool> getHifiDacState() override;
+
+    Return<bool> setHifiDacState(bool enable) override;
+    
     Return<bool> setFeatureValue(Feature feature, int32_t value) override;
 
     Return<int32_t> getFeatureValue(Feature feature) override;
@@ -72,6 +76,7 @@ class DacControl : public IDacControl {
     FeatureStates getHifiModeStates();
     bool writeAvcVolumeState(int32_t value);
     bool writeHifiModeState(int32_t value);
+    bool setAudioHALParameters(KeyValue kv);
     int32_t getAvcVolumeState();
     int32_t getHifiModeState();
 
