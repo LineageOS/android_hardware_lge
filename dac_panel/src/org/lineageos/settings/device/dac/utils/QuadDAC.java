@@ -5,8 +5,6 @@ import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.util.Log;
 
-import org.lineageos.hardware.util.FileUtils;
-
 import vendor.lge.hardware.audio.dac.control.V1_0.AdvancedFeature;
 import vendor.lge.hardware.audio.dac.control.V1_0.HalFeature;
 import vendor.lge.hardware.audio.dac.control.V1_0.IDacAdvancedControl;
