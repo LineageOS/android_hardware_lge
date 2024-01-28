@@ -22,16 +22,26 @@
 #define HIFI_MODE                          "headset_type"
 
 /* Properties */
+#ifndef PROPRIETARY_AUDIO_MODULE
+#define PROPERTY_HIFI_DAC_ENABLED          "persist.vendor.audio.hifi.enabled"
+#else
 #define PROPERTY_HIFI_DAC_ENABLED          "persist.vendor.lge.audio.hifi_dac"
+#endif
+
 #define PROPERTY_DIGITAL_FILTER            "persist.vendor.lge.audio.hifi_dac.digitalFilter"
 #define PROPERTY_SOUND_PRESET              "persist.vendor.lge.audio.hifi_dac.soundPreset"
 #define PROPERTY_LEFT_BALANCE              "persist.vendor.lge.audio.hifi_dac.left_balance"
 #define PROPERTY_RIGHT_BALANCE             "persist.vendor.lge.audio.hifi_dac.right_balance"
-#define PROPERTY_HIFI_DAC_MODE             "persist.vendor.lge.audio.hifi_dac.mode"
+#define PROPERTY_HIFI_DAC_MODE             "persist.vendor.audio.ess.mode"
 #define PROPERTY_HIFI_DAC_AVC_VOLUME       "persist.vendor.lge.audio.hifi_dac.avc_volume"
 
+#ifndef PROPRIETARY_AUDIO_MODULE
+#define PROPERTY_VALUE_HIFI_DAC_ENABLED    "true"
+#define PROPERTY_VALUE_HIFI_DAC_DISABLED   "false"
+#else
 #define PROPERTY_VALUE_HIFI_DAC_ENABLED    "ON"
 #define PROPERTY_VALUE_HIFI_DAC_DISABLED   "OFF"
+#endif
 
 /* Defaults */
 #define AVC_VOLUME_DEFAULT                 -14
