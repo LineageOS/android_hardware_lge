@@ -12,3 +12,4 @@
 /sys/bus/i2c/drivers/es9218-codec(/.*)?                                     u:object_r:sysfs_dac:s0
 /sys/bus/i2c/drivers/es9218-codec/[0-9]-0048(/.*)?                          u:object_r:sysfs_dac:s0
 /sys/devices/platform/soc/[0-9a-f]+\.i2c/i2c-[0-9]/[0-9]-0048(/.*)?         u:object_r:sysfs_dac:s0
+/sys/kernel/es9218_dac(/.*)?                                                u:object_r:sysfs_dac:s0
