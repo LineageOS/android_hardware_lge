@@ -11,27 +11,21 @@ import android.util.Log;
 
 import org.lineageos.settings.device.dac.utils.QuadDAC;
 
-import vendor.lge.hardware.audio.dac.control.V2_0.IDacControl;
-
 public class QuadDACTileService extends TileService {
 
     private final static String TAG = "QuadDACTileService";
 
     private HeadsetPluggedTileReceiver headsetPluggedTileReceiver = new HeadsetPluggedTileReceiver();
 
-    private IDacControl dac;
-
-    private boolean dac_service_available = false;
-
     @Override
     public void onClick() {
         super.onClick();
         try {
-            if (QuadDAC.isEnabled(dac)) {
-                QuadDAC.disable(dac);
+            if (QuadDAC.isEnabled()) {
+                QuadDAC.disable();
                 setTileInactive();
             } else {
-                QuadDAC.enable(dac);
+                QuadDAC.enable();
                 setTileActive();
             }
         } catch(Exception e) {}
@@ -46,26 +40,21 @@ public class QuadDACTileService extends TileService {
 
         AudioManager am = getSystemService(AudioManager.class);
 
-        try {
-            dac = IDacControl.getService(true);
-            dac_service_available = true;
-        } catch(Exception e)
-        { }
-
         if(!am.isWiredHeadsetOn())
         {
             setTileUnavailable();
-	    return;
+	        return;
         }
 
         try {
-            if (QuadDAC.isEnabled(dac)) {
+            if (QuadDAC.isEnabled()) {
                 setTileActive();
             } else {
                 setTileInactive();
             }
         } catch(Exception e) {}
-        if(!dac_service_available) {
+
+        if(!QuadDAC.dac_service_available) {
             setTileUnavailable();
         }
     }
@@ -112,7 +101,7 @@ public class QuadDACTileService extends TileService {
                 {
                     case 1: // Headset plugged in
                         try {
-                            if (QuadDAC.isEnabled(dac)) {
+                            if (QuadDAC.isEnabled()) {
                                 setTileActive();
                             } else {
                                 setTileInactive();
