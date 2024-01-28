@@ -7,10 +7,8 @@ import android.util.Log;
 
 import org.lineageos.hardware.util.FileUtils;
 
-import vendor.lge.hardware.audio.dac.control.V1_0.AdvancedFeature;
-import vendor.lge.hardware.audio.dac.control.V1_0.HalFeature;
-import vendor.lge.hardware.audio.dac.control.V1_0.IDacAdvancedControl;
-import vendor.lge.hardware.audio.dac.control.V1_0.IDacHalControl;
+import vendor.lge.hardware.audio.dac.control.V2_0.Feature;
+import vendor.lge.hardware.audio.dac.control.V2_0.IDacControl;
 
 public class QuadDAC {
 
@@ -18,93 +16,93 @@ public class QuadDAC {
 
     private QuadDAC() {}
 
-    public static void enable(IDacHalControl dhc, IDacAdvancedControl dac)
+    public static void enable(IDacControl dac)
     {
         try {
-            int digital_filter = getDigitalFilter(dhc);
-            int sound_preset = getSoundPreset(dhc);
-            int left_balance = getLeftBalance(dhc);
-            int right_balance = getRightBalance(dhc);
+            int digital_filter = getDigitalFilter(dac);
+            int sound_preset = getSoundPreset(dac);
+            int left_balance = getLeftBalance(dac);
+            int right_balance = getRightBalance(dac);
             int mode = getDACMode(dac);
             int avc_vol = getAVCVolume(dac);
-            dhc.setFeatureValue(HalFeature.QuadDAC, 1);
+            dac.setFeatureValue(Feature.QuadDAC, 1);
             setDACMode(dac, mode);
-            setLeftBalance(dhc, left_balance);
-            setRightBalance(dhc, right_balance);
-            setDigitalFilter(dhc, digital_filter);
-            setSoundPreset(dhc, sound_preset);
+            setLeftBalance(dac, left_balance);
+            setRightBalance(dac, right_balance);
+            setDigitalFilter(dac, digital_filter);
+            setSoundPreset(dac, sound_preset);
             setAVCVolume(dac, avc_vol);
         } catch(Exception e) {}
     }
 
-    public static void disable(IDacHalControl dhc) throws RemoteException
+    public static void disable(IDacControl dac) throws RemoteException
     {
-        dhc.setFeatureValue(HalFeature.QuadDAC, 0);
+        dac.setFeatureValue(Feature.QuadDAC, 0);
     }
 
-    public static void setDACMode(IDacAdvancedControl dac, int mode) throws RemoteException
+    public static void setDACMode(IDacControl dac, int mode) throws RemoteException
     {
-        dac.setFeatureValue(AdvancedFeature.HifiMode, mode);
+        dac.setFeatureValue(Feature.HifiMode, mode);
     }
 
-    public static int getDACMode(IDacAdvancedControl dac) throws RemoteException
+    public static int getDACMode(IDacControl dac) throws RemoteException
     {
-        return dac.getFeatureValue(AdvancedFeature.HifiMode);
+        return dac.getFeatureValue(Feature.HifiMode);
     }
 
-    public static void setAVCVolume(IDacAdvancedControl dac, int avc_volume) throws RemoteException
+    public static void setAVCVolume(IDacControl dac, int avc_volume) throws RemoteException
     {
-        dac.setFeatureValue(AdvancedFeature.AVCVolume, avc_volume);
+        dac.setFeatureValue(Feature.AVCVolume, avc_volume);
     }
 
-    public static int getAVCVolume(IDacAdvancedControl dac) throws RemoteException
+    public static int getAVCVolume(IDacControl dac) throws RemoteException
     {
-        return dac.getFeatureValue(AdvancedFeature.AVCVolume);
+        return dac.getFeatureValue(Feature.AVCVolume);
     }
 
-    public static void setDigitalFilter(IDacHalControl dhc, int filter) throws RemoteException
+    public static void setDigitalFilter(IDacControl dac, int filter) throws RemoteException
     {
-        dhc.setFeatureValue(HalFeature.DigitalFilter, filter);
+        dac.setFeatureValue(Feature.DigitalFilter, filter);
     }
 
-    public static int getDigitalFilter(IDacHalControl dhc) throws RemoteException
+    public static int getDigitalFilter(IDacControl dac) throws RemoteException
     {
-        return dhc.getFeatureValue(HalFeature.DigitalFilter);
+        return dac.getFeatureValue(Feature.DigitalFilter);
     }
 
-    public static void setSoundPreset(IDacHalControl dhc, int preset) throws RemoteException
+    public static void setSoundPreset(IDacControl dac, int preset) throws RemoteException
     {
-        dhc.setFeatureValue(HalFeature.SoundPreset, preset);
+        dac.setFeatureValue(Feature.SoundPreset, preset);
     }
 
-    public static int getSoundPreset(IDacHalControl dhc) throws RemoteException
+    public static int getSoundPreset(IDacControl dac) throws RemoteException
     {
-        return dhc.getFeatureValue(HalFeature.SoundPreset);
+        return dac.getFeatureValue(Feature.SoundPreset);
     }
 
-    public static void setLeftBalance(IDacHalControl dhc, int balance) throws RemoteException
+    public static void setLeftBalance(IDacControl dac, int balance) throws RemoteException
     {
-        dhc.setFeatureValue(HalFeature.BalanceLeft, balance);
+        dac.setFeatureValue(Feature.BalanceLeft, balance);
     }
 
-    public static int getLeftBalance(IDacHalControl dhc) throws RemoteException
+    public static int getLeftBalance(IDacControl dac) throws RemoteException
     {
-        return dhc.getFeatureValue(HalFeature.BalanceLeft);
+        return dac.getFeatureValue(Feature.BalanceLeft);
     }
 
-    public static void setRightBalance(IDacHalControl dhc, int balance) throws RemoteException
+    public static void setRightBalance(IDacControl dac, int balance) throws RemoteException
     {
-        dhc.setFeatureValue(HalFeature.BalanceRight, balance);
+        dac.setFeatureValue(Feature.BalanceRight, balance);
     }
 
-    public static int getRightBalance(IDacHalControl dhc) throws RemoteException
+    public static int getRightBalance(IDacControl dac) throws RemoteException
     {
-        return dhc.getFeatureValue(HalFeature.BalanceRight);
+        return dac.getFeatureValue(Feature.BalanceRight);
     }
 
-    public static boolean isEnabled(IDacHalControl dhc) throws RemoteException
+    public static boolean isEnabled(IDacControl dac) throws RemoteException
     {
-        return dhc.getFeatureValue(HalFeature.QuadDAC) == 1;
+        return dac.getFeatureValue(Feature.QuadDAC) == 1;
     }
 
 }

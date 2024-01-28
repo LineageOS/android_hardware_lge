@@ -25,11 +25,9 @@ import org.lineageos.settings.device.dac.utils.QuadDAC;
 
 import java.util.ArrayList;
 
-import vendor.lge.hardware.audio.dac.control.V1_0.AdvancedFeature;
-import vendor.lge.hardware.audio.dac.control.V1_0.HalFeature;
-import vendor.lge.hardware.audio.dac.control.V1_0.IDacAdvancedControl;
-import vendor.lge.hardware.audio.dac.control.V1_0.IDacHalControl;
-import vendor.lge.hardware.audio.dac.control.V1_0.Range;
+import vendor.lge.hardware.audio.dac.control.V2_0.Feature;
+import vendor.lge.hardware.audio.dac.control.V2_0.IDacControl;
+import vendor.lge.hardware.audio.dac.control.V2_0.Range;
 
 public class QuadDACPanelFragment extends PreferenceFragment
         implements OnPreferenceChangeListener {
@@ -43,22 +41,17 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
     private HeadsetPluggedFragmentReceiver headsetPluggedFragmentReceiver;
 
-    private IDacAdvancedControl dac;
-
-    private IDacHalControl dhc;
+    private IDacControl dac;
 
     private ArrayList<Integer> dac_features;
-    private ArrayList<Integer> dhc_features;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         headsetPluggedFragmentReceiver = new HeadsetPluggedFragmentReceiver();
         try {
-            dac = IDacAdvancedControl.getService(true);
-            dhc = IDacHalControl.getService(true);
+            dac = IDacControl.getService(true);
 
-            dac_features = dac.getSupportedAdvancedFeatures();
-            dhc_features = dhc.getSupportedHalFeatures();
+            dac_features = dac.getSupportedFeatures();
         } catch(Exception e) {
             Log.d(TAG, "onCreatePreferences: " + e.toString());
         }
@@ -75,11 +68,11 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
                 if (set_dac_on) {
                     enableExtraSettings();
-                    QuadDAC.enable(dhc, dac);
+                    QuadDAC.enable(dac);
                     return true;
                 } else {
                     disableExtraSettings();
-                    QuadDAC.disable(dhc);
+                    QuadDAC.disable(dac);
                     return true;
                 }
             }
@@ -95,14 +88,14 @@ public class QuadDACPanelFragment extends PreferenceFragment
                     ListPreference lp = (ListPreference) preference;
 
                     int digital_filter = lp.findIndexOfValue((String) newValue);
-                    QuadDAC.setDigitalFilter(dhc, digital_filter);
+                    QuadDAC.setDigitalFilter(dac, digital_filter);
                     return true;
 
                 } else if (preference.getKey().equals(Constants.SOUND_PRESET_KEY)) {
                     ListPreference lp = (ListPreference) preference;
 
                     int sound_preset = lp.findIndexOfValue((String) newValue);
-                    QuadDAC.setSoundPreset(dhc, sound_preset);
+                    QuadDAC.setSoundPreset(dac, sound_preset);
                     return true;
                 }
                 return false;
@@ -165,32 +158,32 @@ public class QuadDACPanelFragment extends PreferenceFragment
         balance_preference = (BalancePreference) findPreference(Constants.BALANCE_KEY);
 
         try {
-            if (dhc_features.contains(HalFeature.QuadDAC)) {
+            if (dac_features.contains(Feature.QuadDAC)) {
                 quaddac_switch.setVisible(true);
             }
-            if (dhc_features.contains(HalFeature.SoundPreset)) {
+            if (dac_features.contains(Feature.SoundPreset)) {
                 sound_preset_list.setVisible(true);
-                sound_preset_list.setValueIndex(dhc.getFeatureValue(HalFeature.SoundPreset));
+                sound_preset_list.setValueIndex(dac.getFeatureValue(Feature.SoundPreset));
             }
-            if (dhc_features.contains(HalFeature.DigitalFilter)) {
+            if (dac_features.contains(Feature.DigitalFilter)) {
                 digital_filter_list.setVisible(true);
-                digital_filter_list.setValueIndex(dhc.getFeatureValue(HalFeature.DigitalFilter));
+                digital_filter_list.setValueIndex(dac.getFeatureValue(Feature.DigitalFilter));
             }
-            if (dhc_features.contains(HalFeature.BalanceLeft)
-                    && dhc_features.contains(HalFeature.BalanceRight)) {
+            if (dac_features.contains(Feature.BalanceLeft)
+                    && dac_features.contains(Feature.BalanceRight)) {
                 balance_preference.setVisible(true);
-                balance_preference.setDhc(dhc);
+                balance_preference.setDhc(dac);
             }
-            if (dac_features.contains(AdvancedFeature.AVCVolume)) {
+            if (dac_features.contains(Feature.AVCVolume)) {
                 avc_volume.setVisible(true);
-                Range range = dac.getSupportedAdvancedFeatureValues(AdvancedFeature.AVCVolume).range;
+                Range range = dac.getSupportedFeatureValues(Feature.AVCVolume).range;
                 avc_volume.setMin((int)range.min);
                 avc_volume.setMax((int)range.max);
-                avc_volume.setValue(dac.getFeatureValue(AdvancedFeature.AVCVolume));
+                avc_volume.setValue(dac.getFeatureValue(Feature.AVCVolume));
             }
-            if (dac_features.contains(AdvancedFeature.HifiMode)) {
+            if (dac_features.contains(Feature.HifiMode)) {
                 mode_list.setVisible(true);
-                mode_list.setValueIndex(dac.getFeatureValue(AdvancedFeature.HifiMode));
+                mode_list.setValueIndex(dac.getFeatureValue(Feature.HifiMode));
             }
         } catch(Exception e) {
             Log.d(TAG, "addPreferencesFromResource: " + e.toString());
@@ -199,7 +192,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
         try {
             if (am.isWiredHeadsetOn()) {
                 quaddac_switch.setEnabled(true);
-                if (QuadDAC.isEnabled(dhc)) {
+                if (QuadDAC.isEnabled(dac)) {
                     quaddac_switch.setChecked(true);
                     enableExtraSettings();
                 } else {
@@ -209,7 +202,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
             } else {
                 quaddac_switch.setEnabled(false);
                 disableExtraSettings();
-                if (QuadDAC.isEnabled(dhc)) {
+                if (QuadDAC.isEnabled(dac)) {
                     quaddac_switch.setChecked(true);
                 }
             }
@@ -261,6 +254,6 @@ public class QuadDACPanelFragment extends PreferenceFragment
         }
     }
 
-    public IDacHalControl getDhc() { return dhc; }
+    public IDacControl getDhc() { return dac; }
 
 }
