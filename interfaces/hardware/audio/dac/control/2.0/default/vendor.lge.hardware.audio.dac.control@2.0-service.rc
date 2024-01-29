@@ -3,6 +3,10 @@ on init
     chmod 0660 /sys/kernel/es9218_dac/avc_volume
     chown system system /sys/kernel/es9218_dac/headset_type
     chmod 0660 /sys/kernel/es9218_dac/headset_type
+    chown system system /sys/kernel/es9218_dac/left_volume
+    chmod 0660 /sys/kernel/es9218_dac/left_volume
+    chown system system /sys/kernel/es9218_dac/right_volume
+    chmod 0660 /sys/kernel/es9218_dac/right_volume
     chown system system /sys/kernel/es9218_dac/ess_filter
     chmod 0660 /sys/kernel/es9218_dac/ess_filter
     chown system system /sys/kernel/es9218_dac/ess_custom_filter
