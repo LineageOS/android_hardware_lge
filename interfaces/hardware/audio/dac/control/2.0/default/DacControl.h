@@ -90,6 +90,7 @@ class DacControl : public IDacControl {
     bool writeHifiModeState(int32_t value);
     bool setAudioHALParameters(KeyValue kv);
     bool setDigitalFilterState(int32_t value);
+    bool setVolumeBalance(Feature direction, int32_t value);
     std::string parseUpdatedCustomFilterData();
 
     android::sp<::android::hardware::audio::V2_0::IDevice> mAudioDevice_V2_0;
@@ -105,6 +106,8 @@ class DacControl : public IDacControl {
   
     std::string avcPath;
     std::string hifiPath;
+    std::string volumeLeftPath;
+    std::string volumeRightPath;
     std::string essFilterPath;
     std::string customFilterPath;
 };

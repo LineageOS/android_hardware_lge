@@ -22,6 +22,8 @@
 /* Paths */
 #define COMMON_ES9218_PATH                 "/sys/kernel/es9218_dac/"
 #define AVC_VOLUME                         "avc_volume"
+#define VOLUME_LEFT                        "left_volume"
+#define VOLUME_RIGHT                       "right_volume"
 #define HIFI_MODE                          "headset_type"
 #define ESS_FILTER                         "ess_filter"
 #define ESS_CUSTOM_FILTER                  "ess_custom_filter"
@@ -62,6 +64,3 @@ extern std::vector<std::string> PROPERTY_CUSTOM_FILTER_COEFFS;
 #define SET_DAC_OFF_COMMAND                 "off"
 
 #define SET_SOUND_PRESET_COMMAND            "SOUND_PRESET"
-
-#define SET_LEFT_BALANCE_COMMAND            "hifi_dac_l_volume"
-#define SET_RIGHT_BALANCE_COMMAND           "hifi_dac_r_volume"
