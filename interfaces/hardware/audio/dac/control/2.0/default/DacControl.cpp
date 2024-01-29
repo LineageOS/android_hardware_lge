@@ -77,6 +77,10 @@ DacControl::DacControl() {
 
     avcPath = std::string(COMMON_ES9218_PATH);
     avcPath.append(AVC_VOLUME);
+    volumeLeftPath = std::string(COMMON_ES9218_PATH);
+    volumeLeftPath.append(VOLUME_LEFT);
+    volumeRightPath = std::string(COMMON_ES9218_PATH);
+    volumeRightPath.append(VOLUME_RIGHT);
     hifiPath = std::string(COMMON_ES9218_PATH);
     hifiPath.append(HIFI_MODE);
     essFilterPath = std::string(COMMON_ES9218_PATH);
@@ -218,22 +222,26 @@ DacControl::DacControl() {
 #endif
 
     /* Balance Left */
-    mSupportedFeatures.push_back(Feature::BalanceLeft);
-    FeatureStates balanceleft_fstates;
-    balanceleft_fstates.range.max = MAX_BALANCE_VALUE;
-    balanceleft_fstates.range.min = MIN_BALANCE_VALUE;
-    balanceleft_fstates.range.step = 1;
-    mSupportedStates.emplace(Feature::BalanceLeft, balanceleft_fstates);
-    setFeatureValue(Feature::BalanceLeft, getFeatureValue(Feature::BalanceLeft));
+    if(stat(volumeLeftPath.c_str(), &buffer) == 0) {
+        mSupportedFeatures.push_back(Feature::BalanceLeft);
+        FeatureStates balanceleft_fstates;
+        balanceleft_fstates.range.max = MAX_BALANCE_VALUE;
+        balanceleft_fstates.range.min = MIN_BALANCE_VALUE;
+        balanceleft_fstates.range.step = 1;
+        mSupportedStates.emplace(Feature::BalanceLeft, balanceleft_fstates);
+        setFeatureValue(Feature::BalanceLeft, getFeatureValue(Feature::BalanceLeft));
+    }
 
     /* Balance Right */
-    mSupportedFeatures.push_back(Feature::BalanceRight);
-    FeatureStates balanceright_fstates;
-    balanceright_fstates.range.max = MAX_BALANCE_VALUE;
-    balanceright_fstates.range.min = MIN_BALANCE_VALUE;
-    balanceright_fstates.range.step = 1;
-    mSupportedStates.emplace(Feature::BalanceRight, balanceright_fstates);
-    setFeatureValue(Feature::BalanceRight, getFeatureValue(Feature::BalanceRight));
+    if(stat(volumeRightPath.c_str(), &buffer) == 0) {
+        mSupportedFeatures.push_back(Feature::BalanceRight);
+        FeatureStates balanceright_fstates;
+        balanceright_fstates.range.max = MAX_BALANCE_VALUE;
+        balanceright_fstates.range.min = MIN_BALANCE_VALUE;
+        balanceright_fstates.range.step = 1;
+        mSupportedStates.emplace(Feature::BalanceRight, balanceright_fstates);
+        setFeatureValue(Feature::BalanceRight, getFeatureValue(Feature::BalanceRight));
+    }
 
     /* AVC Volume */
     if(stat(avcPath.c_str(), &buffer) == 0) {
@@ -407,6 +415,21 @@ bool DacControl::setDigitalFilterState(int32_t value) {
     return true;
 }
 
+bool DacControl::setVolumeBalance(Feature direction, int32_t value) {
+    switch(direction) {
+        case Feature::BalanceLeft:
+            set(volumeLeftPath, value);
+            property_set(PROPERTY_LEFT_BALANCE, std::to_string(value).c_str());
+            return true;
+        case Feature::BalanceRight:
+            set(volumeRightPath, value);
+            property_set(PROPERTY_RIGHT_BALANCE, std::to_string(value).c_str());
+            return true;
+        default:
+            return false;
+    }
+}
+
 Return<bool> DacControl::setFeatureValue(Feature feature, int32_t value) {
 
     bool rc;
@@ -427,16 +450,9 @@ Return<bool> DacControl::setFeatureValue(Feature feature, int32_t value) {
             property = PROPERTY_SOUND_PRESET;
             break;
         }
-        case Feature::BalanceLeft: {
-            kv.name = SET_LEFT_BALANCE_COMMAND;
-            property = PROPERTY_LEFT_BALANCE;
-            break;
-        }
-        case Feature::BalanceRight: {
-            kv.name = SET_RIGHT_BALANCE_COMMAND;
-            property = PROPERTY_RIGHT_BALANCE;
-            break;
-        }
+        case Feature::BalanceLeft:
+        case Feature::BalanceRight:
+            return setVolumeBalance(feature, value);
         case Feature::AVCVolume: {
             return writeAvcVolumeState(value);
         }
