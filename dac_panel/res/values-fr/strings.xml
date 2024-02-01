@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Console Quad DAC</string>
+    <string name="quad_dac">Quad DAC Hi-Fi</string>
+    <string name="quad_dac_on">Quad DAC activé</string>
+    <string name="quad_dac_off">Quad DAC désactivé</string>
+    <string name="quad_dac_unavail">Quad DAC indisponible</string>
+    <string name="quad_dac_settings">Réglages Quad DAC</string>
+    <string name="quad_dac_balance">Équilibrage</string>
+    <string name="quad_dac_balance_summary">Modifier l\'équilibrage Gauche/Droite</string>
+    <string name="sound_preset">Préréglages Son</string>
+    <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Amélioré</string>
+    <string name="sound_preset_detailed">Détaillé</string>
+    <string name="sound_preset_live">Direct</string>
+    <string name="sound_preset_bass">Basses</string>
+    <string name="digital_filter">Filtre numérique</string>
+    <string name="digital_filter_short">Court</string>
+    <string name="digital_filter_sharp">Net</string>
+    <string name="digital_filter_slow">Lent</string>
+    <string name="digital_filter_slow2">Lent 2</string>
+    <string name="digital_filter_4">Phase linéaire à décroissance rapide</string>
+    <string name="digital_filter_5">Phase linéaire à décroissance lente</string>
+    <string name="digital_filter_6">Phase minimum à décroissance rapide</string>
+    <string name="digital_filter_7">Phase minimum à décroissance lente</string>
+    <string name="digital_filter_8">Fenêtrage à décroissance rapide 1</string>
+    <string name="digital_filter_9">Fenêtrage à décroissance rapide 2</string>
+    <string name="digital_filter_10">Décroissance rapide hybride</string>
+    <string name="digital_filter_11">Rectangulaire</string>
+    <string name="hifi_mode">Mode Hi-Fi</string>
+    <string name="hifi_mode_normal">Normal</string>
+    <string name="hifi_mode_him">Impédance haute</string>
+    <string name="hifi_mode_aux">AUX</string>
+    <string name="avc_volume">Contrôle automatique du volume</string>
+    <string name="avc_volume_summary">Amplifie le volume</string>
+</resources>
