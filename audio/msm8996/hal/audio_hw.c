@@ -987,44 +987,46 @@ int pcm_ioctl(struct pcm *pcm, int request, ...)
 static void check_and_enable_ess_hifi(struct audio_device *adev, struct audio_usecase *usecase, snd_device_t snd_device)
 {
     if (property_get_bool("persist.vendor.audio.ess.supported",false) == true) {
-        if (snd_device == SND_DEVICE_OUT_HEADPHONES){
-		if (property_get_bool("persist.vendor.audio.hifi.enabled",false) == true) {
-		    ALOGD("%s: ESS hifi requested...", __func__);
-		    disable_audio_route(adev, usecase);
-		    disable_snd_device(adev, usecase->out_snd_device);
-		    switch (property_get_int32("persist.vendor.audio.ess.mode",0))
-		    {
-		    case 0:
-		        usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC;
-		        audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi");
-		        ALOGD("%s: Setting ESS hifi mode \n", __func__);
-		        break;
-		    case 1:
-		        usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED;
-		        audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi-advanced");
-		        ALOGD("%s: Setting advanced ESS hifi mode \n", __func__);
-		        break;
-		    case 2:
-		        usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX;
-		        audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi-aux");
-		        ALOGD("%s: Setting aux ESS hifi mode \n", __func__);
-		        break;
-		    default:
-		        usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC;
-		        audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi");
-		        ALOGE("%s: INVALID ESS MODE... Using normal ess route.\n", __func__);
-		    }
-		    property_set("persist.vendor.audio.ess.status","true");
-		    platform_set_snd_device_backend(usecase->out_snd_device, "headphones tert-mi2s-headphones", "SEC_MI2S_RX");
-		}
-        	enable_snd_device(adev, usecase->out_snd_device);
-	}
-	else {
-	ALOGD("%s: Not an ESS hifi scenario \n", __func__);
-	property_set("persist.vendor.audio.ess.status","false");
-	}
+        if (snd_device == SND_DEVICE_OUT_HEADPHONES) {
+            if (property_get_bool("persist.vendor.audio.hifi.enabled",false) == true) {
+                ALOGD("%s: ESS hifi requested...", __func__);
+                disable_audio_route(adev, usecase);
+                disable_snd_device(adev, usecase->out_snd_device);
+                switch (property_get_int32("persist.vendor.audio.ess.mode",0))
+                {
+                case 0:
+                    usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC;
+                    audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi");
+                    ALOGD("%s: Setting ESS hifi mode \n", __func__);
+                    break;
+                case 1:
+                    usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED;
+                    audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi-advanced");
+                    ALOGD("%s: Setting advanced ESS hifi mode \n", __func__);
+                    break;
+                case 2:
+                    usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX;
+                    audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi-aux");
+                    ALOGD("%s: Setting aux ESS hifi mode \n", __func__);
+                    break;
+                default:
+                    usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC;
+                    audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi");
+                    ALOGE("%s: INVALID ESS MODE... Using normal ess route.\n", __func__);
+                }
+                property_set("persist.vendor.audio.ess.status","true");
+                platform_set_snd_device_backend(usecase->out_snd_device, "headphones tert-mi2s-headphones", "SEC_MI2S_RX");
+            }
+            enable_snd_device(adev, usecase->out_snd_device);
+        }
+        else {
+            ALOGD("%s: Not an ESS hifi scenario \n", __func__);
+            property_set("persist.vendor.audio.ess.status","false");
+        }
     }
-    else { ALOGE("%s: ESS hifi not supported on this device! \n", __func__); }
+    else {
+        ALOGE("%s: ESS hifi not supported on this device! \n", __func__);
+    }
 }
 
 int enable_audio_route(struct audio_device *adev,
