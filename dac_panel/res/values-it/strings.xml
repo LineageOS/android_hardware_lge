@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Pannello Quad DAC</string>
+    <string name="quad_dac">Quad DAC Hi-Fi</string>
+    <string name="quad_dac_on">Quad DAC attivato</string>
+    <string name="quad_dac_off">Quad DAC disattivato</string>
+    <string name="quad_dac_unavail">Quad DAC non disponibile</string>
+    <string name="quad_dac_settings">Impostazioni Quad DAC</string>
+    <string name="quad_dac_balance">Bilanciamento</string>
+    <string name="quad_dac_balance_summary">Modifica il bilanciamento sinistra/destra</string>
+    <string name="sound_preset">Regolazione del suono</string>
+    <string name="sound_preset_normal">Normale</string>
+    <string name="sound_preset_enhanced">Migliorato</string>
+    <string name="sound_preset_detailed">Dettagliato</string>
+    <string name="sound_preset_live">Dal vivo</string>
+    <string name="sound_preset_bass">Bassi</string>
+    <string name="digital_filter">Filtro digitale</string>
+    <string name="digital_filter_short">Breve</string>
+    <string name="digital_filter_sharp">Nitido</string>
+    <string name="digital_filter_slow">Lento</string>
+    <string name="digital_filter_slow2">Lento 2</string>
+    <string name="digital_filter_4">Fase lineare, alta attenuazione</string>
+    <string name="digital_filter_5">Fase lineare, bassa attenuazione</string>
+    <string name="digital_filter_6">Fase minima, alta attenuazione</string>
+    <string name="digital_filter_7">Fase minima, bassa attenuazione</string>
+    <string name="digital_filter_8">Apodizzante, alta attenuazione, 1</string>
+    <string name="digital_filter_9">Apodizzante, alta attenuazione, 2</string>
+    <string name="digital_filter_10">Ibrido, alta attenuazione</string>
+    <string name="digital_filter_11">Filtro rettangolare ideale</string>
+    <string name="hifi_mode">Modalità Hi-Fi</string>
+    <string name="hifi_mode_normal">Normale</string>
+    <string name="hifi_mode_him">Alta impedenza</string>
+    <string name="hifi_mode_aux">AUX</string>
+    <string name="avc_volume">Regolazione automatica volume (AVC)</string>
+    <string name="avc_volume_summary">Amplifica il volume</string>
+</resources>

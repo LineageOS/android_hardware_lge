@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Quad DAC paneel</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC aan</string>
+    <string name="quad_dac_off">Quad DAC uit</string>
+    <string name="quad_dac_unavail">Quad DAC niet beschikbaar </string>
+    <string name="quad_dac_settings">Quad DAC Instellingen</string>
+    <string name="quad_dac_balance">Balans</string>
+    <string name="quad_dac_balance_summary">Wijzig de balans links/rechts</string>
+    <string name="sound_preset">Geluidsvoorinstelling</string>
+    <string name="sound_preset_normal">Normaal</string>
+    <string name="sound_preset_enhanced">Verbeterd</string>
+    <string name="sound_preset_detailed">Gedetailleerd</string>
+    <string name="sound_preset_live">Live</string>
+    <string name="sound_preset_bass">Bas</string>
+    <string name="digital_filter">Digitaai filter</string>
+    <string name="digital_filter_short">Kort</string>
+    <string name="digital_filter_sharp">Scherp</string>
+    <string name="digital_filter_slow">Langzaam</string>
+    <string name="digital_filter_slow2">Langzaam 2</string>
+    <string name="digital_filter_4">Lineaire fase snelle roll-off</string>
+    <string name="digital_filter_5">Lineaire fase langzame roll-off</string>
+    <string name="digital_filter_6">Minimale fase snelle roll-off</string>
+    <string name="digital_filter_7">Minimale fase langzame roll-off</string>
+    <string name="digital_filter_8">Apodizing snelle roll-off 1</string>
+    <string name="digital_filter_9">Apodizing snelle roll-off 2</string>
+    <string name="digital_filter_10">Hybride snelle roll-off</string>
+    <string name="digital_filter_11">Stenen Muur</string>
+    <string name="hifi_mode">HiFi mode</string>
+    <string name="hifi_mode_normal">Normaal</string>
+    <string name="hifi_mode_him">Hoge impedantie </string>
+    <string name="hifi_mode_aux">AUX</string>
+    <string name="avc_volume">AVC volume</string>
+    <string name="avc_volume_summary">Versterkt volume</string>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Quad DAC plošča</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC vklopljen</string>
+    <string name="quad_dac_off">Quad DAC izklopljen</string>
+    <string name="quad_dac_unavail">Quad DAC ni na voljo</string>
+    <string name="quad_dac_settings">Quad DAC nastavitve</string>
+    <string name="quad_dac_balance">Ravnovesje</string>
+    <string name="quad_dac_balance_summary">Spremeni ravnovesje levo/desno</string>
+    <string name="sound_preset">Prednastavitev zvoka</string>
+    <string name="sound_preset_normal">Običajno</string>
+    <string name="sound_preset_enhanced">Izboljšano</string>
+    <string name="sound_preset_detailed">Podrobno</string>
+    <string name="sound_preset_live">V živo</string>
+    <string name="sound_preset_bass">Nizki toni</string>
+    <string name="digital_filter">Digitalni filter</string>
+    <string name="digital_filter_short">Kratko</string>
+    <string name="digital_filter_sharp">Ostro</string>
+    <string name="digital_filter_slow">Počasno</string>
+    <string name="digital_filter_slow2">Počasno 2</string>
+    <string name="digital_filter_4">Zaporedna faza hiter odvoj</string>
+    <string name="digital_filter_5">Zaporedna faza počasni odvoj</string>
+    <string name="digital_filter_6">Najmanjša faza hiter odvoj</string>
+    <string name="digital_filter_7">Najmanjša faza počasni odvoj</string>
+    <string name="digital_filter_8">Apodizacija hiter odvoj 1</string>
+    <string name="digital_filter_9">Apodizacija hiter odvoj 2</string>
+    <string name="digital_filter_10">Hibridno hiter odvoj</string>
+    <string name="digital_filter_11">Opečnati zid</string>
+    <string name="hifi_mode">HiFi način</string>
+    <string name="hifi_mode_normal">Običajno</string>
+    <string name="hifi_mode_him">Visoka impedanca</string>
+    <string name="hifi_mode_aux">AUX</string>
+    <string name="avc_volume">AVC glasnost</string>
+    <string name="avc_volume_summary">Ojača glasnost</string>
+</resources>

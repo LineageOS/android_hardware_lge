@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">クアッド DAC パネル</string>
+    <string name="quad_dac">Hi-Fi クアッド DAC</string>
+    <string name="quad_dac_on">クアッド DAC オン</string>
+    <string name="quad_dac_off">クアッド DAC オフ</string>
+    <string name="quad_dac_unavail">クアッド DAC 利用不可</string>
+    <string name="quad_dac_settings">クアッド DAC の設定</string>
+    <string name="quad_dac_balance">バランス</string>
+    <string name="quad_dac_balance_summary">左右のバランスを変更します</string>
+    <string name="sound_preset">サウンドプリセット</string>
+    <string name="sound_preset_normal">標準</string>
+    <string name="sound_preset_enhanced">強調</string>
+    <string name="sound_preset_detailed">精細</string>
+    <string name="sound_preset_live">ライブ</string>
+    <string name="sound_preset_bass">バス</string>
+    <string name="digital_filter">デジタルフィルター</string>
+    <string name="digital_filter_short">ショート</string>
+    <string name="digital_filter_sharp">シャープ</string>
+    <string name="digital_filter_slow">スロー</string>
+    <string name="digital_filter_slow2">スロー 2</string>
+    <string name="digital_filter_4">Linear phase fast roll-off</string>
+    <string name="digital_filter_5">Linear phase slow roll-off</string>
+    <string name="digital_filter_6">Minimum phase fast roll-off</string>
+    <string name="digital_filter_7">Minimum phase slow roll-off</string>
+    <string name="digital_filter_8">Apodizing fast roll-off 1</string>
+    <string name="digital_filter_9">Apodizing fast roll-off 2</string>
+    <string name="digital_filter_10">Hybrid fast roll-off</string>
+    <string name="digital_filter_11">ブリックウォール</string>
+    <string name="hifi_mode">Hi-Fi モード</string>
+    <string name="hifi_mode_normal">標準</string>
+    <string name="hifi_mode_him">ハイインピーダンス</string>
+    <string name="hifi_mode_aux">AUX</string>
+    <string name="avc_volume">AVC 音量</string>
+    <string name="avc_volume_summary">音量を増幅します</string>
+</resources>

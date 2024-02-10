@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Panou Quad DAC</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC pornit</string>
+    <string name="quad_dac_off">Quad DAC oprit</string>
+    <string name="quad_dac_unavail">Quad DAC indisponibil</string>
+    <string name="quad_dac_settings">Setări Quad DAC</string>
+    <string name="quad_dac_balance">Balans</string>
+    <string name="quad_dac_balance_summary">Modifică balansul stânga/dreapta</string>
+    <string name="sound_preset">Presetare sunet</string>
+    <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Îmbunătățit</string>
+    <string name="sound_preset_detailed">Detaliat</string>
+    <string name="sound_preset_live">Live</string>
+    <string name="sound_preset_bass">Bass</string>
+    <string name="digital_filter">Filtru digital</string>
+    <string name="digital_filter_short">Scurt</string>
+    <string name="digital_filter_sharp">Ascuţit</string>
+    <string name="digital_filter_slow">Încet</string>
+    <string name="digital_filter_slow2">Încet 2</string>
+    <string name="digital_filter_4">Roll-off rapid fază liniară</string>
+    <string name="digital_filter_5">Roll-off încet fază liniară</string>
+    <string name="digital_filter_6">Roll-off rapid fază minimă</string>
+    <string name="digital_filter_7">Roll-off încet fază minimă</string>
+    <string name="digital_filter_8">Apodizing fast roll-off 1</string>
+    <string name="digital_filter_9">Apodizing fast roll-off 2</string>
+    <string name="digital_filter_10">Roll-off rapid hibrid</string>
+    <string name="digital_filter_11">Perete de cărămidă</string>
+    <string name="hifi_mode">Mod HiFi</string>
+    <string name="hifi_mode_normal">Normal</string>
+    <string name="hifi_mode_him">Impedanță înaltă</string>
+    <string name="hifi_mode_aux">AUX</string>
+    <string name="avc_volume">Volum AVC</string>
+    <string name="avc_volume_summary">Amplifică volumul</string>
+</resources>

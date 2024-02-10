@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Bảng điều khiển Quad DAC</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Bật Quad DAC</string>
+    <string name="quad_dac_off">Tắt Quad DAC</string>
+    <string name="quad_dac_unavail">Quad DAC không khả dụng</string>
+    <string name="quad_dac_settings">Cài đặt Quad DAC</string>
+    <string name="quad_dac_balance">Cân bằng</string>
+    <string name="quad_dac_balance_summary">Thay đổi cân bằng Trái / Phải</string>
+    <string name="sound_preset">Cài đặt âm thanh sẵn có</string>
+    <string name="sound_preset_normal">Bình thường</string>
+    <string name="sound_preset_enhanced">Nâng cao</string>
+    <string name="sound_preset_detailed">Chi tiết</string>
+    <string name="sound_preset_live">Trực tiếp</string>
+    <string name="sound_preset_bass">Âm trầm</string>
+    <string name="digital_filter">Bộ lọc kỹ thuật số</string>
+    <string name="digital_filter_short">Ngắn</string>
+    <string name="digital_filter_sharp">Sắc nét</string>
+    <string name="digital_filter_slow">Chậm</string>
+    <string name="digital_filter_slow2">Chậm 2</string>
+    <string name="digital_filter_4">Pha tuyến tính nhanh</string>
+    <string name="digital_filter_5">Pha tuyến tính chậm</string>
+    <string name="digital_filter_6">Pha tối thiểu nhanh</string>
+    <string name="digital_filter_7">Pha tối thiểu chậm</string>
+    <string name="digital_filter_8">Lọc nhanh apodization1</string>
+    <string name="digital_filter_9">Lọc nhanh apodization 2</string>
+    <string name="digital_filter_10">Lọc nhanh Hybrid</string>
+    <string name="digital_filter_11">Bức tường gạch</string>
+    <string name="hifi_mode">Chế độ HiFi</string>
+    <string name="hifi_mode_normal">Bình thường</string>
+    <string name="hifi_mode_him">Trở kháng cao</string>
+    <string name="hifi_mode_aux">AUX</string>
+    <string name="avc_volume">Âm lượng AVC</string>
+    <string name="avc_volume_summary">Khuếch đại âm lượng</string>
+</resources>
