@@ -80,6 +80,8 @@ class DacControl : public IDacControl {
 
     Return<bool> setCustomFilterCoeff(int32_t coeffIndex, int32_t value) override;
 
+    Return<bool> resetCustomFilterCoeffs() override;
+
     std::map<Feature, FeatureStates> mSupportedStates;
     std::vector<Feature> mSupportedFeatures;
 

@@ -57,12 +57,10 @@ public class ButtonPreference extends Preference {
 
     private void resetCoefficients()
     {
-        for(int i = 0; i < 14; i++) {
-            try {
-                QuadDAC.setCustomFilterCoeff(i, 0);
-            } catch (Exception e) {}
-            QuadDACPanelFragment.setCoeffSummary(i, 0);
-        }
+        try {
+            QuadDAC.resetCustomFilterCoeffs();
+        } catch (Exception e) {}
+        QuadDACPanelFragment.setCoeffSummary(i, 0);
     }
 }
 

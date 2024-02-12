@@ -190,4 +190,9 @@ public class QuadDAC {
     {
         return dac.getCustomFilterCoeff(coeffIndex);
     }
+
+    public static void resetCustomFilterCoeff() throws RemoteException
+    {
+        dac.resetCustomFilterCoeff();
+    }
 }
