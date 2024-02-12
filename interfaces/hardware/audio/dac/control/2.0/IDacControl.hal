@@ -83,4 +83,8 @@ interface IDacControl {
     */
     setCustomFilterCoeff(int32_t coeffIndex, int32_t value) generates (bool rc);
 
+    /**
+    * Resets all coefficients for the custom ESS filter
+    */
+    resetCustomFilterCoeffs() generates (bool rc);
 };
