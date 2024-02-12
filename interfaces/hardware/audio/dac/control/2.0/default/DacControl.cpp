@@ -609,6 +609,26 @@ Return<bool> DacControl::setCustomFilterCoeff(int coeffIndex, int value) {
     return true;
 }
 
+Return<bool> DacControl::resetCustomFilterCoeffs() {
+    int rc;
+
+    if(std::find(mSupportedFeatures.begin(), mSupportedFeatures.end(), Feature::CustomFilter) == mSupportedFeatures.end()) {
+        LOG(ERROR) << "DacControl::setCustomFilterCoeff: tried to set custom filter control on unsupported device";
+        return false;
+    }
+
+    for (int i = 0; i < 14; i++) {
+        rc = property_set(PROPERTY_CUSTOM_FILTER_COEFFS.at(i).c_str(), "0");
+        if(!rc) {
+            LOG(ERROR) << "DacControl::resetCustomFilterCoeff: failed to set property " << PROPERTY_CUSTOM_FILTER_COEFFS.at(i) << " with error " << rc;
+            return false;
+        }
+    }
+    set(customFilterPath, parseUpdatedCustomFilterData());
+
+    return true;
+}
+
 }  // namespace implementation
 }  // namespace V2_0
 }  // namespace control
