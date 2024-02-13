@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12445627_0706c4df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-02-13T12:20:47Z",
+      "side": 1,
+      "message": "To go along with device change If3edd847b503009e7ebfe539badf5f6077530a28",
+      "revId": "ddadd0c1d88b4d415ede0f892630b030f1660060",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
