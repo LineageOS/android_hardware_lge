@@ -16,6 +16,23 @@
       "message": "To go along with device change If3edd847b503009e7ebfe539badf5f6077530a28",
       "revId": "ddadd0c1d88b4d415ede0f892630b030f1660060",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d1195d_c70cf322",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 29891
+      },
+      "writtenOn": "2024-02-13T15:59:34Z",
+      "side": 1,
+      "message": "On h910, the hal already worked normally without this change, but adding it doesn\u0027t hurt anything in the least so fine by me.",
+      "revId": "ddadd0c1d88b4d415ede0f892630b030f1660060",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
