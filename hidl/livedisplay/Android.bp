@@ -32,3 +32,12 @@ cc_binary {
     defaults: ["livedisplay_lge_defaults"],
     vendor: true,
 }
+
+cc_binary {
+    name: "vendor.lineage.livedisplay@2.0-service.lge.nohdr",
+    vintf_fragments: ["vendor.lineage.livedisplay@2.0-service.lge.nohdr.xml"],
+    init_rc: ["vendor.lineage.livedisplay@2.0-service.lge.nohdr.rc"],
+    defaults: ["livedisplay_lge_defaults"],
+    vendor: true,
+    cflags: ["-DDISABLE_COLOR_ENHANCEMENT"],
+}
