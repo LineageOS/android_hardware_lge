@@ -4,7 +4,17 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-cc_defaults {
+soong_config_module_type {
+    name: "livedisplay_lge",
+    module_type: "cc_defaults",
+    config_namespace: "lgeLiveDisplayVars",
+    bool_variables: [
+        "disable_color_enhancement",
+    ],
+    properties: ["cflags"],
+}
+
+livedisplay_lge {
     name: "livedisplay_lge_defaults",
     defaults: ["hidl_defaults"],
     relative_install_path: "hw",
@@ -23,6 +33,11 @@ cc_defaults {
         "libutils",
         "vendor.lineage.livedisplay@2.0",
     ],
+    soong_config_variables: {
+        disable_color_enhancement: {
+            cflags: ["-DDISABLE_COLOR_ENHANCEMENT"],
+        },
+    },
 }
 
 cc_binary {

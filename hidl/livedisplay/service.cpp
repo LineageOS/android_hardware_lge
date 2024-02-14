@@ -52,13 +52,14 @@ int main() {
 
     LOG(INFO) << "LiveDisplay HAL service is starting.";
 
-
+#ifndef DISABLE_COLOR_ENHANCEMENT
     ce = new ColorEnhancement();
     if (ce == nullptr) {
         LOG(ERROR)
                 << "Can not create an instance of LiveDisplay HAL ColorEnhancement Iface, exiting.";
         goto shutdown;
     }
+#endif
 
     dm = new DisplayModes();
     if (dm == nullptr) {
@@ -116,10 +117,12 @@ int main() {
 
     configureRpcThreadpool(1, true /*callerWillJoin*/);
 
+#ifndef DISABLE_COLOR_ENHANCEMENT
     if (ce->registerAsService() != android::OK) {
         LOG(ERROR) << "Cannot register ColorEnhancement HAL service.";
         goto shutdown;
     }
+#endif
 
     if (dm->registerAsService() != android::OK) {
         LOG(ERROR) << "Cannot register DisplayModes HAL service.";
