@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Paneli i Quad DAC</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC i ndezur</string>
+    <string name="quad_dac_off">Quad DAC i fikur</string>
+    <string name="quad_dac_unavail">Quad DAC i padisponueshëm</string>
+    <string name="quad_dac_settings">Cilësimet e Quad DAC</string>
+    <string name="quad_dac_balance">Balanca</string>
+    <string name="quad_dac_balance_summary">Ndryshoni ekuilibrin majtas/djathtas</string>
+    <string name="sound_preset">Paracaktimi i zërit</string>
+    <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Rritur</string>
+    <string name="sound_preset_detailed">Detajuar</string>
+    <string name="sound_preset_live">Drejtpërdrejt</string>
+    <string name="sound_preset_bass">Basi</string>
+    <string name="digital_filter">Filtër dixhital</string>
+    <string name="cf_shape_2">Rrotullimi i shpejtë i fazës minimale</string>
+    <string name="cf_shape_3">Rrotullimi i ngadaltë i fazës minimale</string>
+    <string name="cf_shape_5">Rrotullimi i shpejtë hibrid</string>
+    <string name="cf_shape_6">Mur me tulla</string>
+    <string name="hifi_mode">Modaliteti HiFi</string>
+    <string name="hifi_mode_normal">Normal</string>
+    <string name="hifi_mode_him">Rezistencë e lartë</string>
+    <string name="avc_volume">Volumi AVC</string>
+    <string name="avc_volume_summary">Përforco volumin</string>
+</resources>
