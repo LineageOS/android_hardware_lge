@@ -15,19 +15,10 @@
     <string name="sound_preset_live">현장감 있게</string>
     <string name="sound_preset_bass">저음 강화</string>
     <string name="digital_filter">디지털 필터</string>
-    <string name="digital_filter_short">기본 (Short)</string>
-    <string name="digital_filter_sharp">자연스럽게 (Sharp)</string>
-    <string name="digital_filter_slow">깨끗하게 (Slow)</string>
-    <string name="digital_filter_slow2">깨끗하게 (Slow) 2</string>
-    <string name="digital_filter_4">리니어 페이즈 빠른 롤 오프</string>
-    <string name="digital_filter_5">리니어 페이즈 느린 롤 오프</string>
-    <string name="digital_filter_6">미니멈 페이즈 빠른 롤 오프</string>
-    <string name="digital_filter_7">미니멈 페이즈 느린 롤 오프</string>
-    <string name="digital_filter_8">아포다이징 빠른 롤 오프 1</string>
-    <string name="digital_filter_9">아포다이징 빠른 롤 오프 2</string>
-    <string name="digital_filter_10">하이브리드 빠른 롤 오프</string>
+    <string name="cf_shape_2">미니멈 페이즈 빠른 롤 오프</string>
+    <string name="cf_shape_3">미니멈 페이즈 느린 롤 오프</string>
+    <string name="cf_shape_5">하이브리드 빠른 롤 오프</string>
     <string name="hifi_mode">HiFi 모드</string>
     <string name="hifi_mode_normal">기본</string>
-    <string name="hifi_mode_aux">AUX</string>
     <string name="avc_volume">AVC 볼륨</string>
 </resources>
