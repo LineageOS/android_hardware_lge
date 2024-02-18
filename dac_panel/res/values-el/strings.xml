@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Πίνακας Quad DAC</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC ενεργό</string>
+    <string name="quad_dac_off">Quad DAC ανενεργό</string>
+    <string name="quad_dac_unavail">Quad DAC μη διαθέσιμο</string>
+    <string name="quad_dac_settings">Ρυθμίσεις Quad DAC</string>
+    <string name="quad_dac_balance">Iσορροπία</string>
+    <string name="quad_dac_balance_summary">Αλλαγή της ισορροπίας Αριστερά/Δεξιά</string>
+    <string name="sound_preset">Προεπιλογή ήχου</string>
+    <string name="sound_preset_normal">Κανονικό</string>
+    <string name="sound_preset_enhanced">Ενισχυμένο</string>
+    <string name="sound_preset_detailed">Λεπτομερής</string>
+    <string name="sound_preset_live">Ζωντανά</string>
+    <string name="sound_preset_bass">Μπάσο</string>
+    <string name="digital_filter">Ψηφιακό φίλτρο</string>
+    <string name="digital_filter_0">Σύντομο</string>
+    <string name="digital_filter_1">Έντονο</string>
+    <string name="digital_filter_2">Αργό</string>
+    <string name="hifi_mode">Λειτουργία HiFi</string>
+    <string name="hifi_mode_normal">Κανονική</string>
+    <string name="hifi_mode_him">Υψηλή Αντίσταση</string>
+    <string name="hifi_mode_aux-him">Υψηλή Αντίσταση AUX</string>
+    <string name="avc_volume">Ένταση AVC</string>
+    <string name="avc_volume_summary">Ενισχύει την ένταση</string>
+</resources>
