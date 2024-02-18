@@ -15,22 +15,9 @@
     <string name="sound_preset_live">Live</string>
     <string name="sound_preset_bass">Bass</string>
     <string name="digital_filter">數位濾波器</string>
-    <string name="digital_filter_short">短</string>
-    <string name="digital_filter_sharp">銳利</string>
-    <string name="digital_filter_slow">Slow</string>
-    <string name="digital_filter_slow2">Slow 2</string>
-    <string name="digital_filter_4">線性相位快速衰減</string>
-    <string name="digital_filter_5">線性相位慢速衰減</string>
-    <string name="digital_filter_6">最小相位快速衰減</string>
-    <string name="digital_filter_7">最小相位慢速衰減</string>
-    <string name="digital_filter_8">Apodizing 快速衰減 1</string>
-    <string name="digital_filter_9">Apodizing 快速衰減 2</string>
-    <string name="digital_filter_10">混合快速衰減</string>
-    <string name="digital_filter_11">磚牆</string>
     <string name="hifi_mode">HiFi 模式</string>
     <string name="hifi_mode_normal">標準</string>
     <string name="hifi_mode_him">高阻抗</string>
-    <string name="hifi_mode_aux">AUX</string>
     <string name="avc_volume">AVC 音量</string>
     <string name="avc_volume_summary">放大音量</string>
 </resources>

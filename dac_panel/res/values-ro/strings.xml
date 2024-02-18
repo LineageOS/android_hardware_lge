@@ -15,22 +15,13 @@
     <string name="sound_preset_live">Live</string>
     <string name="sound_preset_bass">Bass</string>
     <string name="digital_filter">Filtru digital</string>
-    <string name="digital_filter_short">Scurt</string>
-    <string name="digital_filter_sharp">Ascuţit</string>
-    <string name="digital_filter_slow">Încet</string>
-    <string name="digital_filter_slow2">Încet 2</string>
-    <string name="digital_filter_4">Roll-off rapid fază liniară</string>
-    <string name="digital_filter_5">Roll-off încet fază liniară</string>
-    <string name="digital_filter_6">Roll-off rapid fază minimă</string>
-    <string name="digital_filter_7">Roll-off încet fază minimă</string>
-    <string name="digital_filter_8">Apodizing fast roll-off 1</string>
-    <string name="digital_filter_9">Apodizing fast roll-off 2</string>
-    <string name="digital_filter_10">Roll-off rapid hibrid</string>
-    <string name="digital_filter_11">Perete de cărămidă</string>
+    <string name="digital_filter_0">Scurt</string>
+    <string name="digital_filter_1">Ascuţit</string>
+    <string name="digital_filter_2">Încet</string>
     <string name="hifi_mode">Mod HiFi</string>
     <string name="hifi_mode_normal">Normal</string>
     <string name="hifi_mode_him">Impedanță înaltă</string>
-    <string name="hifi_mode_aux">AUX</string>
+    <string name="hifi_mode_aux-him">Impedanță înaltă AUX</string>
     <string name="avc_volume">Volum AVC</string>
     <string name="avc_volume_summary">Amplifică volumul</string>
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">四路 DAC 面板</string>
+    <string name="quad_dac">Hi-Fi 四路 DAC</string>
+    <string name="quad_dac_on">四路 DAC 开</string>
+    <string name="quad_dac_off">四路 DAC 关</string>
+    <string name="quad_dac_unavail">四路 DAC 不可用</string>
+    <string name="quad_dac_settings">四路 DAC 设置</string>
+    <string name="quad_dac_balance">平衡</string>
+    <string name="quad_dac_balance_summary">修改左/右平衡</string>
+    <string name="sound_preset">预设声音</string>
+    <string name="sound_preset_normal">普通</string>
+    <string name="sound_preset_enhanced">增强</string>
+    <string name="sound_preset_detailed">细节</string>
+    <string name="sound_preset_live">现场</string>
+    <string name="sound_preset_bass">重低音</string>
+    <string name="digital_filter">数字过滤器</string>
+    <string name="digital_filter_0">短</string>
+    <string name="digital_filter_1">尖锐</string>
+    <string name="digital_filter_2">慢</string>
+    <string name="hifi_mode">HiFi 模式</string>
+    <string name="hifi_mode_normal">普通</string>
+    <string name="hifi_mode_him">高阻抗</string>
+    <string name="hifi_mode_aux-him">AUX 高阻抗</string>
+    <string name="avc_volume">AVC 音量</string>
+    <string name="avc_volume_summary">放大音量</string>
+</resources>
