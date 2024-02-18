@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Panel Quad DAC</string>
+    <string name="quad_dac">Quad DAC Hi-Fi</string>
+    <string name="quad_dac_on">Quad DAC ativât</string>
+    <string name="quad_dac_off">Quad DAC disativât</string>
+    <string name="quad_dac_unavail">Quad DAC no disponibil</string>
+    <string name="quad_dac_settings">Impostazions Quad DAC</string>
+    <string name="quad_dac_balance">Belançament</string>
+    <string name="quad_dac_balance_summary">Modifiche il belançament çampe/diestre</string>
+    <string name="sound_preset">Preconfigurazion dal sun</string>
+    <string name="sound_preset_normal">Normâl</string>
+    <string name="sound_preset_enhanced">Miorât</string>
+    <string name="sound_preset_detailed">Detaiât</string>
+    <string name="sound_preset_live">Dal vîf</string>
+    <string name="sound_preset_bass">Bas</string>
+    <string name="digital_filter">Filtri digjitâl</string>
+    <string name="digital_filter_0">Curt</string>
+    <string name="digital_filter_1">Net</string>
+    <string name="digital_filter_2">Lent</string>
+    <string name="digital_filter_3">Filtri personalizabil</string>
+    <string name="customizable_filter_settings">Impostazions filtri personalizabil</string>
+    <string name="cf_shape">Forme dal filtri personalizabil</string>
+    <string name="cf_shape_0">Alte atenuazion</string>
+    <string name="cf_shape_1">Basse atenuazion</string>
+    <string name="cf_shape_2">Fase minime, alte atenuazion</string>
+    <string name="cf_shape_3">Fase minime, basse atenuazion</string>
+    <string name="cf_shape_4">Taiât da pîts, alte atenuazion</string>
+    <string name="cf_shape_5">Ibrit, alte atenuazion</string>
+    <string name="cf_shape_6">Mûr di modons</string>
+    <string name="cf_symmetry">Simetrie filtri personalizade</string>
+    <string name="cf_symmetry_0">Simetrie sen</string>
+    <string name="cf_symmetry_1">Simetrie cosen</string>
+    <string name="customizable_filter_coeffs">Coeficients filtri personalizabil</string>
+    <string name="customizable_filter_coeffs_summary">NOTE: se ducj i coeficients a son a 0, l\'audio al vignarà cidinât</string>
+    <string name="hifi_mode">Modalitât HiFi</string>
+    <string name="hifi_mode_normal">Normâl</string>
+    <string name="hifi_mode_him">Alte impedence</string>
+    <string name="hifi_mode_aux-him">Alte impedence AUX</string>
+    <string name="avc_volume">Volum AVC</string>
+    <string name="avc_volume_summary">Al amplifiche il volum</string>
+</resources>

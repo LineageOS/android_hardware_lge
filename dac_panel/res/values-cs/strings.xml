@@ -15,22 +15,13 @@
     <string name="sound_preset_live">Živý</string>
     <string name="sound_preset_bass">Basy</string>
     <string name="digital_filter">Digitální filtr</string>
-    <string name="digital_filter_short">Krátký</string>
-    <string name="digital_filter_sharp">Ostrý</string>
-    <string name="digital_filter_slow">Pomalý</string>
-    <string name="digital_filter_slow2">Pomalý 2</string>
-    <string name="digital_filter_4">Lineární fáze s rychlým překlopením</string>
-    <string name="digital_filter_5">Lineární fáze s pomalým překlopením</string>
-    <string name="digital_filter_6">Minimální fáze s rychlým překlopením</string>
-    <string name="digital_filter_7">Minimální fáze s pomalým překlopením</string>
-    <string name="digital_filter_8">Apodizační rychlé překlopení 1</string>
-    <string name="digital_filter_9">Apodizační rychlé překlopení 2</string>
-    <string name="digital_filter_10">Hybridní rychlé překlopení</string>
-    <string name="digital_filter_11">Cihlová zeď</string>
+    <string name="cf_shape_2">Minimální fáze s rychlým překlopením</string>
+    <string name="cf_shape_3">Minimální fáze s pomalým překlopením</string>
+    <string name="cf_shape_5">Hybridní rychlé překlopení</string>
+    <string name="cf_shape_6">Cihlová zeď</string>
     <string name="hifi_mode">Režim HiFi</string>
     <string name="hifi_mode_normal">Normální</string>
     <string name="hifi_mode_him">Vysoká impedance</string>
-    <string name="hifi_mode_aux">AUX</string>
     <string name="avc_volume">Hlasitost AVC</string>
     <string name="avc_volume_summary">Zesiluje hlasitost</string>
 </resources>
