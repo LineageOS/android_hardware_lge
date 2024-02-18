@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Quad-DAC-სამართავი</string>
+    <string name="quad_dac">Hi-Fi-Quad-DAC</string>
+    <string name="quad_dac_on">Quad-DAC ჩართ.</string>
+    <string name="quad_dac_off">Quad-DAC გამორთ.</string>
+    <string name="quad_dac_unavail">Quad-DAC მიუწვდომელია</string>
+    <string name="quad_dac_settings">Quad-DAC-პარამეტრები</string>
+    <string name="quad_dac_balance">წონასწორობა</string>
+    <string name="quad_dac_balance_summary">მარცხენა/მარჯვენა თანაფარდობის შეცვლა</string>
+    <string name="sound_preset">ხმის მზა პარამეტრები</string>
+    <string name="sound_preset_normal">ჩვეულებრივი</string>
+    <string name="sound_preset_enhanced">გაძლიერებული</string>
+    <string name="sound_preset_detailed">გავრცობილი</string>
+    <string name="sound_preset_live">ცოცხალი</string>
+    <string name="sound_preset_bass">ბოხი</string>
+    <string name="digital_filter">ციფრული ფილტრი</string>
+    <string name="digital_filter_0">მოკლე</string>
+    <string name="digital_filter_1">მკვეთრი</string>
+    <string name="digital_filter_2">ნელი</string>
+    <string name="hifi_mode">HiFi-რეჟიმი</string>
+    <string name="hifi_mode_normal">ჩვეულებრივი</string>
+    <string name="hifi_mode_him">მაღალი წინაღობით</string>
+    <string name="hifi_mode_aux-him">AUX მაღალი წინაღობით</string>
+    <string name="avc_volume">AVC-ხმოვანება</string>
+    <string name="avc_volume_summary">ხმის დონის მაძლიერებელი</string>
+</resources>

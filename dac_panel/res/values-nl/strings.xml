@@ -15,22 +15,13 @@
     <string name="sound_preset_live">Live</string>
     <string name="sound_preset_bass">Bas</string>
     <string name="digital_filter">Digitaai filter</string>
-    <string name="digital_filter_short">Kort</string>
-    <string name="digital_filter_sharp">Scherp</string>
-    <string name="digital_filter_slow">Langzaam</string>
-    <string name="digital_filter_slow2">Langzaam 2</string>
-    <string name="digital_filter_4">Lineaire fase snelle roll-off</string>
-    <string name="digital_filter_5">Lineaire fase langzame roll-off</string>
-    <string name="digital_filter_6">Minimale fase snelle roll-off</string>
-    <string name="digital_filter_7">Minimale fase langzame roll-off</string>
-    <string name="digital_filter_8">Apodizing snelle roll-off 1</string>
-    <string name="digital_filter_9">Apodizing snelle roll-off 2</string>
-    <string name="digital_filter_10">Hybride snelle roll-off</string>
-    <string name="digital_filter_11">Stenen Muur</string>
+    <string name="digital_filter_0">Kort</string>
+    <string name="digital_filter_1">Scherp</string>
+    <string name="digital_filter_2">Langzaam</string>
     <string name="hifi_mode">HiFi mode</string>
     <string name="hifi_mode_normal">Normaal</string>
     <string name="hifi_mode_him">Hoge impedantie </string>
-    <string name="hifi_mode_aux">AUX</string>
+    <string name="hifi_mode_aux-him">AUX hoge impedantie</string>
     <string name="avc_volume">AVC volume</string>
     <string name="avc_volume_summary">Versterkt volume</string>
 </resources>
