@@ -4,10 +4,10 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-ifeq ($(SEPOLICY_PATH), device/qcom/sepolicy_vndr-legacy-um)
-	SEPOLICY_PLATFORM := vndr
-else
+ifeq ($(SEPOLICY_PATH), device/qcom/sepolicy-legacy-um)
 	SEPOLICY_PLATFORM := legacy-um
+else
+	SEPOLICY_PLATFORM := vndr
 endif
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += hardware/lge/sepolicy/private
