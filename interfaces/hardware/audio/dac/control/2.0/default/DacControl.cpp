@@ -353,7 +353,23 @@ Return<bool> DacControl::setHifiDacState(bool enable) {
     kv.value = enable ? SET_DAC_ON_COMMAND : SET_DAC_OFF_COMMAND;
     return setAudioHALParameters(kv);
 #else
-    return (bool)property_set(PROPERTY_HIFI_DAC_ENABLED, enable ? PROPERTY_VALUE_HIFI_DAC_ENABLED : PROPERTY_VALUE_HIFI_DAC_DISABLED);
+    int rc = 0;
+    rc = property_set(PROPERTY_HIFI_DAC_ENABLED, enable ? PROPERTY_VALUE_HIFI_DAC_ENABLED : PROPERTY_VALUE_HIFI_DAC_DISABLED);
+
+    // Wait for the audio HAL to get back together to avoid potential race conditions.
+    // Don't care about disabling the HAL, the other interface functions don't work in
+    // in that state anyway.
+    if (enable) {
+        for(int i = 0; i < 5; i++) {
+            if(!property_get_bool(PROPERTY_HIFI_DAC_STATE, 0))
+                goto end;
+            sleep(1);
+        }
+        LOG(ERROR) << "DacControl::setHifiDacState(): Failed to enable DAC";
+        return false;
+    }
+end:
+    return true;
 #endif
 }
 
