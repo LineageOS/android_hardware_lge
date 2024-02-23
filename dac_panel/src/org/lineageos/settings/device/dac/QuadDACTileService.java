@@ -10,30 +10,30 @@ import android.service.quicksettings.TileService;
 import android.util.Log;
 
 import org.lineageos.settings.device.dac.utils.QuadDAC;
-import org.lineageos.settings.device.dac.QuadDACPanelActivity;
 
 public class QuadDACTileService extends TileService {
 
     private final static String TAG = "QuadDACTileService";
-
-    private Tile QuadDACTile;
 
     private HeadsetPluggedTileReceiver headsetPluggedTileReceiver = new HeadsetPluggedTileReceiver();
 
     @Override
     public void onClick() {
         super.onClick();
-
-        Intent intent = new Intent(this, QuadDACPanelActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivityAndCollapse(intent);
+        try {
+            if (QuadDAC.isEnabled()) {
+                QuadDAC.disable();
+                setTileInactive();
+            } else {
+                QuadDAC.enable();
+                setTileActive();
+            }
+        } catch(Exception e) {}
     }
 
     @Override
     public void onStartListening() {
         super.onStartListening();
-
-        QuadDACTile = getQsTile();
 
         IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(headsetPluggedTileReceiver, filter);
@@ -66,23 +66,27 @@ public class QuadDACTileService extends TileService {
 
     private void setTileActive()
     {
-        QuadDACTile.setState(Tile.STATE_ACTIVE);
-        QuadDACTile.setLabel(getResources().getString(R.string.quad_dac_on));
-	    QuadDACTile.updateTile();
+        QuadDAC.enabledSetup();
+        Tile quaddactile = getQsTile();
+        quaddactile.setState(Tile.STATE_ACTIVE);
+        quaddactile.setLabel(getResources().getString(R.string.quad_dac_on));
+	    quaddactile.updateTile();
     }
 
     private void setTileInactive()
     {
-        QuadDACTile.setState(Tile.STATE_INACTIVE);
-        QuadDACTile.setLabel(getResources().getString(R.string.quad_dac_off));
-	    QuadDACTile.updateTile();
+        Tile quaddactile = getQsTile();
+        quaddactile.setState(Tile.STATE_INACTIVE);
+        quaddactile.setLabel(getResources().getString(R.string.quad_dac_off));
+	    quaddactile.updateTile();
     }
 
     private void setTileUnavailable()
     {
-        QuadDACTile.setState(Tile.STATE_UNAVAILABLE);
-        QuadDACTile.setLabel(getResources().getString(R.string.quad_dac_unavail));
-	    QuadDACTile.updateTile();
+        Tile quaddactile = getQsTile();
+        quaddactile.setState(Tile.STATE_UNAVAILABLE);
+        quaddactile.setLabel(getResources().getString(R.string.quad_dac_unavail));
+	    quaddactile.updateTile();
     }
 
     private class HeadsetPluggedTileReceiver extends BroadcastReceiver {
