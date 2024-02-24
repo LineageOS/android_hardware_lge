@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84cc654e_087dc4cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 29891
+      },
+      "writtenOn": "2024-02-24T22:11:42Z",
+      "side": 1,
+      "message": "Builds, and panel works fine... also fixes situations where simply opening the panel would trigger a settings re-apply on the dac (once a workaround for the AOSP HAL, now just an annoyance for users).",
+      "revId": "16159066f9d25261bc7202a7ab41be36d3232efa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
