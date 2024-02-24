@@ -30,12 +30,9 @@ public class QuadDAC {
 
     public static void enable() throws RemoteException
     {
-        dac.setHifiDacState(true);
-    }
-
-    public static void enabledSetup()
-    {
         try {
+            dac.setHifiDacState(true);
+
             int mode = getDACMode();
             int left_balance = getLeftBalance();
             int right_balance = getRightBalance();
