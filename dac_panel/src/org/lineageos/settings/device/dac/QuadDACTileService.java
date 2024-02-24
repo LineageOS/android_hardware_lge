@@ -66,7 +66,6 @@ public class QuadDACTileService extends TileService {
 
     private void setTileActive()
     {
-        QuadDAC.enabledSetup();
         Tile quaddactile = getQsTile();
         quaddactile.setState(Tile.STATE_ACTIVE);
         quaddactile.setLabel(getResources().getString(R.string.quad_dac_on));

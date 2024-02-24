@@ -30,12 +30,9 @@ public class QuadDAC {
 
     public static void enable() throws RemoteException
     {
-        dac.setHifiDacState(true);
-    }
-
-    public static void enabledSetup()
-    {
         try {
+            dac.setHifiDacState(true);
+
             int mode = getDACMode();
             int left_balance = getLeftBalance();
             int right_balance = getRightBalance();
@@ -68,7 +65,9 @@ public class QuadDAC {
                     setCustomFilterCoeff(i, custom_filter_coefficients[i]);
                 }
             }
-        } catch(Exception e) {}
+        } catch(Exception e) {
+            Log.d(TAG, "QuadDAC: enable: " + e.toString());
+        }
     }
 
     public static void disable() throws RemoteException
