@@ -18,8 +18,6 @@
 
 #include <vendor/lge/hardware/audio/dac/control/2.0/IDacControl.h>
 
-#include <android/hardware/audio/2.0/IDevice.h>
-#include <android/hardware/audio/2.0/IDevicesFactory.h>
 #include <android/hardware/audio/4.0/IDevice.h>
 #include <android/hardware/audio/4.0/IDevicesFactory.h>
 #include <android/hardware/audio/5.0/IDevice.h>
@@ -50,7 +48,7 @@ using ::vendor::lge::hardware::audio::dac::control::V2_0::Feature;
 using ::vendor::lge::hardware::audio::dac::control::V2_0::FeatureStates;
 using ::vendor::lge::hardware::audio::dac::control::V2_0::FeatureState;
 
-enum AudioVersion { V2_0, V4_0, V5_0, V6_0 };
+enum AudioVersion { V4_0, V5_0, V6_0 };
 
 class DacControl : public IDacControl {
   public:
@@ -95,8 +93,6 @@ class DacControl : public IDacControl {
     bool setVolumeBalance(Feature direction, int32_t value);
     std::string parseUpdatedCustomFilterData();
 
-    android::sp<::android::hardware::audio::V2_0::IDevice> mAudioDevice_V2_0;
-    android::sp<::android::hardware::audio::V2_0::IDevicesFactory> mAudioDevicesFactory_V2_0;
     android::sp<::android::hardware::audio::V4_0::IDevice> mAudioDevice_V4_0;
     android::sp<::android::hardware::audio::V4_0::IDevicesFactory> mAudioDevicesFactory_V4_0;
     android::sp<::android::hardware::audio::V5_0::IDevice> mAudioDevice_V5_0;
