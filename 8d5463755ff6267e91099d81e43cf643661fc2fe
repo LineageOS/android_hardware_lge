@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d89690d7_53539f2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-02-26T17:44:49Z",
+      "side": 1,
+      "message": "Without this, after lge-libperfmgr topic is ported to 21 (for lge8150), building us996d breaks as the audio HAL targets are gone.\n\nNeed some feedback, as this doesn\u0027t seem like the correct way to handle it.",
+      "revId": "8d5463755ff6267e91099d81e43cf643661fc2fe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
