@@ -15,9 +15,13 @@
     <string name="sound_preset_live">Drejtpërdrejt</string>
     <string name="sound_preset_bass">Basi</string>
     <string name="digital_filter">Filtër dixhital</string>
+    <string name="digital_filter_0">E shkurtër</string>
+    <string name="digital_filter_1">I mprehtë</string>
+    <string name="digital_filter_2">Ngadalë</string>
     <string name="hifi_mode">Modaliteti HiFi</string>
     <string name="hifi_mode_normal">Normal</string>
     <string name="hifi_mode_him">Rezistencë e lartë</string>
+    <string name="hifi_mode_aux-him">Impedancë e lartë AUX</string>
     <string name="avc_volume">Volumi AVC</string>
     <string name="avc_volume_summary">Përforco volumin</string>
 </resources>

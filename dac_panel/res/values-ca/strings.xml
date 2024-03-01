@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_balance">Balanç</string>
+    <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Millorat</string>
+    <string name="sound_preset_detailed">Detallat</string>
+    <string name="sound_preset_live">En directe</string>
+    <string name="sound_preset_bass">Greus</string>
+    <string name="digital_filter">Filtre digital</string>
+    <string name="digital_filter_0">Curt</string>
+    <string name="digital_filter_2">Lent</string>
+    <string name="hifi_mode_normal">Normal</string>
+    <string name="hifi_mode_him">Alta impedància</string>
+    <string name="avc_volume">Volum AVC</string>
+    <string name="avc_volume_summary">Amplifica el volum</string>
+</resources>
