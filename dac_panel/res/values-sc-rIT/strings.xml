@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="digital_filter_3">Filtru personalizàbile</string>
+    <string name="customizable_filter_settings">Cunfiguratzione de su filtru personalizàbile</string>
+    <string name="cf_shape">Forma de su filtru personalizadu</string>
+    <string name="cf_shape_0">Iscurrimentu lestru</string>
+    <string name="cf_shape_1">Iscurrimentu lentu</string>
+    <string name="cf_shape_2">Fase mìnima de s\'iscurrimentu lestru</string>
+    <string name="cf_shape_3">Fase mìnima de s\'iscurrimentu lentu</string>
+    <string name="cf_shape_4">Apodizatzione de s\'iscurrimentu lestru</string>
+    <string name="cf_shape_5">Iscurrimentu lestru ìbridu</string>
+    <string name="cf_shape_6">Filtru retangulare ideale</string>
+    <string name="cf_symmetry">Simmetria de su filtru personalizadu</string>
+    <string name="cf_symmetry_0">Simmetria sinus</string>
+    <string name="cf_symmetry_1">Simmetria cosinus</string>
+    <string name="customizable_filter_coeffs">Coefitzientes de su filtru personalizàbile</string>
+    <string name="customizable_filter_coeffs_summary">NOTA: Si totu is coefitzientes sunt 0, s\'àudio at a èssere postu a sa muda</string>
+    <string name="hifi_mode_aux-him">Impedèntzia arta de AUX</string>
+</resources>
