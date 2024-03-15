@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="digital_filter">Filtru dixital</string>
+    <string name="cf_shape_6">Muria de lladriyos</string>
+    <string name="cf_symmetry_0">Simetría del senu</string>
+    <string name="cf_symmetry_1">Simetría del cosenu</string>
+    <string name="customizable_filter_coeffs_summary">NOTA: si tolos coeficientes son 0, l\'audiu va desactivase</string>
     <string name="avc_volume_summary">Amplifica\'l volume</string>
 </resources>
