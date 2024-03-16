@@ -1,0 +1,12 @@
+<manifest version="1.0" type="device">
+    <hal format="hidl">
+        <name>android.hardware.radio</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.4::IRadio/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>lineage.hardware.radio</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.4::IRadio/default</fqname>
+    </hal>
+</manifest>
