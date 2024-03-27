@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Quad DAC spjald</string>
+    <string name="quad_dac_on">Kveikt á Quad DAC</string>
+    <string name="quad_dac_off">Slökkt á Quad DAC</string>
+    <string name="quad_dac_unavail">Quad DAC ekki tiltækt</string>
+    <string name="quad_dac_settings">Stillingar Quad DAC</string>
+    <string name="quad_dac_balance">Jafnvægi</string>
+    <string name="quad_dac_balance_summary">Stilla jafnvægi vinstri/hægri</string>
+    <string name="sound_preset">Forstilling hljóðs</string>
+    <string name="sound_preset_normal">Venjulegt</string>
+    <string name="sound_preset_enhanced">Endurbætt</string>
+    <string name="sound_preset_detailed">Ítarlegt</string>
+    <string name="sound_preset_live">Lifandi</string>
+    <string name="sound_preset_bass">Bassi</string>
+    <string name="digital_filter">Stafræn sía</string>
+    <string name="digital_filter_0">Stutt</string>
+    <string name="digital_filter_1">Skörp</string>
+    <string name="digital_filter_2">Hægt</string>
+    <string name="digital_filter_3">Sérsníðanleg sía</string>
+    <string name="customizable_filter_settings">Stillingar sérsníðanlegrar síu</string>
+    <string name="cf_shape">Lögun sérsniðinnar síu</string>
+    <string name="cf_shape_0">Hröð afrúnnun</string>
+    <string name="cf_shape_1">Hæg afrúnnun</string>
+    <string name="cf_shape_2">Hröð afrúnnun lágmarksfasa</string>
+    <string name="cf_shape_3">Hæg afrúnnun lágmarksfasa</string>
+    <string name="cf_shape_4">Afmörkuð (apodizing) hröð afrúnnun</string>
+    <string name="cf_shape_5">Blönduð hröð afrúnnun</string>
+    <string name="cf_shape_6">Múrsteinsveggur</string>
+    <string name="cf_symmetry">Samhverfa sérsniðinnar síu</string>
+    <string name="cf_symmetry_0">Sínus-samhverfa</string>
+    <string name="cf_symmetry_1">Kósínus-samhverfa</string>
+    <string name="customizable_filter_coeffs">Breytur sérsníðanlegrar síu</string>
+    <string name="customizable_filter_coeffs_summary">ATH: Ef allar breytur eru 0, er þaggað niður í hljóði</string>
+    <string name="hifi_mode">HiFi-hamur</string>
+    <string name="hifi_mode_normal">Venjulegur</string>
+    <string name="hifi_mode_him">Mikill impedans</string>
+    <string name="hifi_mode_aux-him">AUX mikill impedans</string>
+    <string name="avc_volume">AVC-hljóðstyrkur</string>
+    <string name="avc_volume_summary">Magnar hljóðstyrk</string>
+</resources>
