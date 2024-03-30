@@ -24,10 +24,10 @@ namespace vibrator {
 // How many buffer entries needed per ms
 static constexpr double BUFFER_ENTRIES_PER_MS = 8.21;
 
-// Maximum amplitude value
+// Default amplitude value
 // The vibration is a sine curve, the negative parts are 255 + negative value
 // So, 127 is the maximum before it starts going the other direction
-static constexpr uint8_t MAXIMUM_AMPLITUDE = 127;
+static constexpr uint8_t DEFAULT_AMPLITUDE = 80;
 
 // Output buffer size (immvibed uses 40 and not size of VIBE_OUTPUT_SAMPLE_SIZE)
 static constexpr int32_t OUTPUT_BUFFER_SIZE = 40;
@@ -57,7 +57,7 @@ Vibrator::Vibrator(int32_t file_desc, int32_t numActuators) {
     mFile_desc = file_desc;
     mNumActuators = numActuators;
 
-    mCurrentAmplitude = MAXIMUM_AMPLITUDE;
+    mCurrentAmplitude = DEFAULT_AMPLITUDE;
 
     mClickDuration = property_get_int32("ro.vibrator.hal.click.duration", WAVEFORM_CLICK_EFFECT_MS);
     mTickDuration = property_get_int32("ro.vibrator.hal.tick.duration", WAVEFORM_TICK_EFFECT_MS);
@@ -143,11 +143,13 @@ static uint8_t convertEffectStrength(EffectStrength strength) {
 
     switch (strength) {
     case EffectStrength::LIGHT:
-        amplitude = MAXIMUM_AMPLITUDE / 2;
+        amplitude = DEFAULT_AMPLITUDE / 2;
         break;
     case EffectStrength::MEDIUM:
+        amplitude = DEFAULT_AMPLITUDE;
+	break;
     case EffectStrength::STRONG:
-        amplitude = MAXIMUM_AMPLITUDE;
+        amplitude = DEFAULT_AMPLITUDE * 1.5;
         break;
     }
 
