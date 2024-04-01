@@ -15,9 +15,13 @@
     <string name="sound_preset_live">Živý</string>
     <string name="sound_preset_bass">Basy</string>
     <string name="digital_filter">Digitální filtr</string>
+    <string name="digital_filter_0">Short</string>
+    <string name="digital_filter_1">Sharp</string>
+    <string name="digital_filter_2">Slow</string>
     <string name="hifi_mode">Režim HiFi</string>
     <string name="hifi_mode_normal">Normální</string>
     <string name="hifi_mode_him">Vysoká impedance</string>
+    <string name="hifi_mode_aux-him">Vysoká impedance AUX</string>
     <string name="avc_volume">Hlasitost AVC</string>
     <string name="avc_volume_summary">Zesiluje hlasitost</string>
 </resources>
