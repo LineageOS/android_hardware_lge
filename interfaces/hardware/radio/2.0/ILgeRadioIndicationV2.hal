@@ -1,0 +1,123 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.lge.hardware.radio@2.0;
+
+import android.hardware.radio@1.0::RadioIndicationType;
+
+interface ILgeRadioIndicationV2 {
+    oneway testLgeRadioIndication(int32_t serial);
+
+    oneway racInd(RadioIndicationType type, vec<int32_t> data);
+
+    oneway wcdmaNetChanged(RadioIndicationType type, vec<int32_t> data);
+
+    oneway wcdmaNetToKoreaChanged(RadioIndicationType type, vec<int32_t> data);
+
+    oneway periodicCsgSearch(RadioIndicationType type);
+
+    oneway lgeCipheringInd(RadioIndicationType type, vec<int32_t> data);
+
+    oneway lteAcbInfoInd(RadioIndicationType type, vec<int32_t> data);
+
+    oneway logRfBandInfo(RadioIndicationType type, vec<int32_t> info);
+
+    oneway vssMocaMiscNoti(RadioIndicationType type, LgeMocaConfigInfo info);
+
+    oneway vssMocaAlaramEvent(RadioIndicationType type, LgeMocaConfigInfo info);
+
+    oneway vssMocaMemLimit(RadioIndicationType type, int32_t limit);
+
+    oneway volteE9111xConnected(RadioIndicationType type, vec<int32_t> data);
+
+    oneway volteEmergencyCallFailCause(RadioIndicationType type, vec<int32_t> data);
+
+    oneway volteEmergencyAttachInfo(RadioIndicationType type, vec<int32_t> info);
+
+    oneway volteLteConnectionStatus(RadioIndicationType type, vec<int32_t> data);
+
+    oneway voiceCodecIndicator(RadioIndicationType type, int32_t codec);
+
+    oneway lgeLteCaInd(RadioIndicationType type, int32_t lteCaInd);
+
+    oneway protocolInfoInd(RadioIndicationType type, LgeProtocolInfoUnsolInd unsolInfo);
+
+    oneway dataQosChanged(RadioIndicationType type, LgeDataQosResponse qosInfo);
+
+    oneway volteE911NetworkType(RadioIndicationType type, vec<int32_t> data);
+
+    oneway dqslEvent(RadioIndicationType type, int32_t event);
+
+    oneway vzwReservedPcoInfo(RadioIndicationType type, vec<int32_t> data);
+
+    oneway lteRejectCause(RadioIndicationType type, int32_t rejectCode);
+
+    oneway sib16TimeReceived(RadioIndicationType type, string sib16Time, int64_t receivedTime);
+
+    oneway lteNetworkInfo(RadioIndicationType type, vec<int32_t> info);
+
+    oneway modemResetCompleteInd(RadioIndicationType type);
+
+    oneway wcdmaRejectReceived(RadioIndicationType type, vec<int32_t> data);
+
+    oneway wcdmaAcceptReceived(RadioIndicationType type, vec<int32_t> data);
+
+    oneway lteEmmReject(RadioIndicationType type, vec<int32_t> data);
+
+    oneway imsPrefStatusInd(RadioIndicationType type, vec<int32_t> data);
+
+    oneway SsacChangeInfoInd(RadioIndicationType type, vec<int32_t> data);
+
+    oneway vssNsriNotiMsg(RadioIndicationType type, LgeNsriNotice notice);
+
+    oneway resimTimeExpired(RadioIndicationType type);
+
+    oneway lgeCsfbStatusInfo(RadioIndicationType type, vec<int32_t> info);
+
+    oneway lgeHoStatusInfo(RadioIndicationType type, vec<int32_t> info);
+
+    oneway lgeNetBandInfo(RadioIndicationType type, vec<int32_t> info);
+
+    oneway lgeGsmEncrypInfo(RadioIndicationType type, vec<int32_t> info);
+
+    oneway lgeUnsol(RadioIndicationType type, LgeRpIndResponse index);
+
+    oneway lgeRilConnect(RadioIndicationType type);
+
+    oneway lgeCurrentSignalStrength(RadioIndicationType type, LgeSignalStrength signalStrength);
+
+    oneway rrcStateInd(RadioIndicationType type, int32_t ind);
+
+    oneway dataImsPCSCFResoration(RadioIndicationType type, ImsPCSCFRestorationVZW data);
+
+    oneway onUssdMtk(RadioIndicationType type, int32_t modeType, int32_t ind, string msg);
+
+    oneway volteScmInformation(RadioIndicationType type, vec<int32_t> info);
+
+    oneway dataPdnThrottleInfo(RadioIndicationType type, DataPdnThrottleIndInfo info);
+
+    oneway newSmsOverIms(RadioIndicationType type, string format, vec<int8_t> pdu);
+
+    oneway newSmsStatusReportOverIms(RadioIndicationType type, vec<int8_t> pdu);
+
+    oneway onLgeNrDcParamChange(RadioIndicationType type, vec<int32_t> data);
+
+    oneway nrNetworkInfo(RadioIndicationType type, vec<int32_t> info);
+
+    oneway onLgeNrStatusChange(RadioIndicationType type, int32_t state);
+
+    oneway uiccEventNotify(RadioIndicationType type, int32_t slot, string event, string data);
+
+    oneway smsE911NetworkType(RadioIndicationType type, vec<int32_t> data);
+
+    oneway callReady(RadioIndicationType type, int32_t data);
+
+    oneway mmtelResponse(RadioIndicationType type, vec<int32_t> data);
+
+    oneway handoffInformation(RadioIndicationType type, vec<int32_t> data);
+
+    oneway nrRegistrationInfo(RadioIndicationType type, vec<int32_t> data);
+};
