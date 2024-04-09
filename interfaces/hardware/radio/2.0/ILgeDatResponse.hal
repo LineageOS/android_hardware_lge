@@ -1,0 +1,13 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.lge.hardware.radio@2.0;
+
+import android.hardware.radio@1.0::RadioResponseInfo;
+
+interface ILgeDatResponse {
+    setRfDatStateResponse(RadioResponseInfo info);
+};

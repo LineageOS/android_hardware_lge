@@ -1,0 +1,193 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.lge.hardware.radio@2.0;
+
+import ILgeDatResponse;
+import ILgeRadioIndicationV2;
+import ILgeRadioResponseV2;
+
+interface ILgeRadio {
+    oneway setResponseFunctions(ILgeRadioResponseV2 response, ILgeRadioIndicationV2 indication);
+
+    oneway setDatResponseFunctions(ILgeDatResponse response);
+
+    oneway testLgeRadioInterface(int32_t serial, int32_t index);
+
+    oneway PBMReadRecord(int32_t serial, int32_t EFDevice, int32_t recIndex);
+
+    oneway PBMWriteRecord(int32_t serial, LgePbmRecords records);
+
+    oneway PBMDeleteRecord(int32_t serial, int32_t EFDevice, int32_t recIndex);
+
+    oneway PBMGetInitState(int32_t serial);
+
+    oneway PBMGetInfo(int32_t serial, int32_t EFDevice);
+
+    oneway UIMInternalRequestCmd(int32_t serial, LgeUimInternal req);
+
+    oneway iccSetTransmitBehaviour(int32_t serial, int32_t channelNumber, bool expectDataWithWarningSW);
+
+    oneway setCdmaEriVersion(int32_t serial, int32_t version);
+
+    oneway setCdmaFactoryReset(int32_t serial);
+
+    oneway getMipErrorCode(int32_t serial);
+
+    oneway cancelManualSearchingRequest(int32_t serial);
+
+    oneway setPreviousNetworkSelectionModeManual(int32_t serial, string operatorNumeric, string operatorRat);
+
+    oneway setRmnetAutoconnect(int32_t serial, int32_t param);
+
+    oneway getSearchStatus(int32_t serial);
+
+    oneway getEngineeringModeInfo(int32_t serial, int32_t parameter);
+
+    oneway setCSGSelectionManual(int32_t serial, int32_t data);
+
+    oneway getLteEmmErrorCode(int32_t serial);
+
+    // emcType should be 1 in default cases.
+    // Verizon models appear to have type 2.
+    oneway loadVolteE911ScanList(int32_t serial, int32_t airplaneModeState, int32_t imsRegistrationState, int32_t emcType);
+
+    oneway getVolteE911NetworkType(int32_t serial);
+
+    oneway exitVolteE911EmergencyMode(int32_t serial);
+
+    oneway sendE911CallState(int32_t serial, int32_t state);
+
+    oneway setVoiceDomainPref(int32_t serial, int32_t mode);
+
+    oneway setSrvccCallContextTransfer(int32_t serial, LgeSrvccCallContextConfig srvccCont);
+
+    oneway setRssiTestAntConf(int32_t serial, int32_t antType);
+
+    oneway getRssiTest(int32_t serial, int32_t sysMode);
+
+    oneway setQcril(int32_t serial, int32_t cmdId);
+
+    oneway setMiMoAntennaControlTest(int32_t serial, int32_t sys_mode, int32_t mask);
+
+    oneway setModemInfo(int32_t serial, LgeIntString data);
+
+    oneway getModemInfo(int32_t serial, int32_t index, string data);
+
+    oneway getGPRIItem(int32_t serial, int32_t parameter);
+
+    oneway setGNOSInfo(int32_t serial, LgeIntString data);
+
+    oneway setLteBandMode(int32_t serial, vec<int64_t> bandMode);
+
+    oneway setEmergency(int32_t serial, int32_t state);
+
+    oneway vssModemReset(int32_t serial);
+
+    oneway mocaGetRFParameter(int32_t serial, int32_t kindOfData, int32_t buffer_num);
+
+    oneway mocaGetMisc(int32_t serial, LgeMocaGetMisc data);
+
+    oneway mocaSetLog(int32_t serial, LgeMocaConfigInfo maskInfo);
+
+    oneway mocaAlarmEvent(int32_t serial, vec<int8_t> data);
+
+    oneway mocaGetData(int32_t serial, int32_t buffer_num);
+
+    oneway mocaSetMem(int32_t serial, int32_t kindOf, int32_t percent);
+
+    oneway mocaAlarmEventReg(int32_t serial, int32_t event);
+
+    oneway DMRequest(int32_t serial, LgeDmRequest data);
+
+    oneway setImsDataFlushEnabled(int32_t serial, int32_t enable);
+
+    oneway NSRI_SetCaptureMode_requestProc(int32_t serial, int32_t index, vec<int8_t> data);
+
+    oneway NSRI_requestProc(int32_t serial, int32_t len_data, vec<int8_t> data);
+
+    oneway NSRI_Oem_requestProc(int32_t serial, int32_t index, vec<int8_t> data);
+
+    oneway setNSRICallInfoTransfer(int32_t serial, int32_t callState, int32_t UEType, string phoneNumber);
+
+    oneway sendSarPowerState(int32_t serial, int32_t near);
+
+    oneway setImsRegistrationStatus(int32_t serial, vec<int32_t> data);
+
+    oneway setImsCallStatus(int32_t serial, vec<int32_t> data);
+
+    oneway setScmMode(int32_t serial, int32_t type, int32_t mode, int32_t emergency);
+
+    oneway getIMSNetworkInfo(int32_t serial);
+
+    oneway lgeGetSignalStrength(int32_t serial);
+
+    oneway lgeGetCurrentCalls(int32_t serial);
+
+    oneway getAvailableNetworks(int32_t serial);
+
+    oneway getDataRegistrationState(int32_t serial);
+
+    oneway setPcasInfo(int32_t serial);
+
+    oneway setLteProc(int32_t serial, int32_t type);
+
+    oneway setOtasnPdnState(int32_t serial, int32_t state);
+
+    oneway setImsCallStateForTuneAway(int32_t serial, vec<int32_t> data);
+
+    oneway setRfDatState(int32_t mode);
+
+    oneway sendCallDuration(int32_t serial, int32_t sec);
+
+    oneway requestWifiIccSimAuthentication(int32_t serial, int32_t authContext, string authData, string aid);
+
+    oneway getWifiImsiForApp(int32_t serial, string aid);
+
+    oneway getWifiIccCardStatus(int32_t serial);
+
+    oneway sendLgeRequestRaw(int32_t serial, vec<int8_t> data);
+
+    oneway sendLgeRequestStrings(int32_t serial, vec<string> data);
+
+    oneway getInitialAttachApn(int32_t serial);
+
+    oneway setLge5GEnabled(int32_t serial);
+
+    oneway setLge5GDisabled(int32_t serial);
+
+    oneway getLge5GStatus(int32_t serial);
+
+    oneway setLgeEndcControl(int32_t serial, int32_t value);
+
+    // data[0]: call status
+    // data[1]: call type
+    // data[2]: sys mode
+    // data[3]: call direction
+    oneway notifyImsCallState(int32_t serial, vec<int32_t> data);
+
+    // data[0]: mode
+    // data[1]: call type
+    oneway changeCallPreference(int32_t serial, vec<int32_t> data);
+
+    oneway setLteDataCallType(int32_t serial, vec<int32_t> data, string name);
+
+    oneway setTuneaway(int32_t serial, int32_t enable);
+
+    oneway goDormant(int32_t serial, string interfaceName);
+
+    oneway reportPdnThrottleInd(int32_t serial, bool enable);
+
+    oneway setApnDisableFlag(int32_t serial, int32_t profileId, string apn, bool isDisabled);
+
+    oneway setApnRoamingDisallowedFlag(int32_t serial, int32_t profileId, string apn, bool isRoamingDisabled);
+
+    oneway lgeSetNetworkSelectionModeManual(int32_t serial, string operatorNumeric, string operatorRat);
+
+    oneway getDataRegistrationState_1_3(int32_t serial);
+
+    oneway getInitialAttachApn_1_3(int32_t serial);
+};
