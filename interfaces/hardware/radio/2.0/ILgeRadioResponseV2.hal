@@ -1,0 +1,182 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.lge.hardware.radio@2.0;
+
+import android.hardware.radio@1.0::IccIoResult;
+import android.hardware.radio@1.0::RadioResponseInfo;
+import android.hardware.radio@1.4::DataProfileInfo;
+import android.hardware.radio@1.5::DataProfileInfo;
+
+interface ILgeRadioResponseV2 {
+    oneway testLgeRadioInterfaceResponse(RadioResponseInfo info, int32_t serial);
+
+    oneway PBMReadRecordResponse(RadioResponseInfo info, LgePbmRecords recordInfo);
+
+    oneway PBMWriteRecordResponse(RadioResponseInfo info, vec<int32_t> recordInfo);
+
+    oneway PBMDeleteRecordResponse(RadioResponseInfo info, vec<int32_t> recordInfo);
+
+    oneway PBMGetInitStateResponse(RadioResponseInfo info, int32_t initDone);
+
+    oneway PBMGetInfoResponse(RadioResponseInfo info, LgePbmRecordInfo recordInfo);
+
+    oneway UIMInternalRequestCmdResponse(RadioResponseInfo info, int32_t num, string data);
+
+    oneway iccSetTransmitBehaviourResponse(RadioResponseInfo info);
+
+    oneway setCdmaEriVersionResponse(RadioResponseInfo info);
+
+    oneway setCdmaFactoryResetResponse(RadioResponseInfo info, int32_t outData);
+
+    oneway getMipErrorCodeResponse(RadioResponseInfo info, int32_t errorCode);
+
+    oneway cancelManualSearchingRequestResponse(RadioResponseInfo info);
+
+    oneway setPreviousNetworkSelectionModeManualResponse(RadioResponseInfo info);
+
+    oneway setRmnetAutoconnectResponse(RadioResponseInfo info);
+
+    oneway getSearchStatusResponse(RadioResponseInfo info, int32_t state);
+
+    oneway getEngineeringModeInfoResponse(RadioResponseInfo info, string modemInfoStr);
+
+    oneway setCSGSelectionManualResponse(RadioResponseInfo info, string session);
+
+    oneway getLteEmmErrorCodeResponse(RadioResponseInfo info, int32_t emmReject);
+
+    oneway loadVolteE911ScanListResponse(RadioResponseInfo info);
+
+    oneway getVolteE911NetworkTypeResponse(RadioResponseInfo info);
+
+    oneway exitVolteE911EmergencyModeResponse(RadioResponseInfo info);
+
+    oneway sendE911CallStateResponse(RadioResponseInfo info);
+
+    oneway setVoiceDomainPrefResponse(RadioResponseInfo info);
+
+    oneway setSrvccCallContextTransferResponse(RadioResponseInfo info);
+
+    oneway setRssiTestAntConfResponse(RadioResponseInfo info, int32_t antConfNum, int32_t result);
+
+    oneway getRssiTestResponse(RadioResponseInfo info, vec<int32_t> antennaInfo);
+
+    oneway setQcrilResponse(RadioResponseInfo info);
+
+    oneway setMiMoAntennaControlTestResponse(RadioResponseInfo info);
+
+    oneway setModemInfoResponse(RadioResponseInfo info, int32_t data);
+
+    oneway getModemInfoResponse(RadioResponseInfo info, int32_t num, string text);
+
+    oneway getGPRIItemResponse(RadioResponseInfo info, string gpriInfo);
+
+    oneway setGNOSInfoResponse(RadioResponseInfo info);
+
+    oneway setLteBandModeResponse(RadioResponseInfo info);
+
+    oneway setEmergencyResponse(RadioResponseInfo info, int32_t ret);
+
+    oneway vssModemResetResponse(RadioResponseInfo info);
+
+    oneway mocaGetRFParameterResponse(RadioResponseInfo info, LgeMocaGetMisc data);
+
+    oneway mocaGetMiscResponse(RadioResponseInfo info, LgeMocaGetMisc data);
+
+    oneway mocaAlarmEventResponse(RadioResponseInfo info, int8_t result);
+
+    oneway mocaSetLogResponse(RadioResponseInfo info, int8_t result);
+
+    oneway mocaGetDataResponse(RadioResponseInfo info, LgeModemLoggingData data);
+
+    oneway mocaSetMemResponse(RadioResponseInfo info, vec<int32_t> ret);
+
+    oneway mocaAlarmEventRegResponse(RadioResponseInfo info, int32_t ret);
+
+    oneway DMRequestResponse(RadioResponseInfo info, vec<int8_t> data);
+
+    oneway setImsDataFlushEnabledResponse(RadioResponseInfo info);
+
+    oneway NSRI_SetCaptureMode_requestProcResponse(RadioResponseInfo info, vec<int8_t> data);
+
+    oneway NSRI_requestProcResponse(RadioResponseInfo info, vec<int8_t> data);
+
+    oneway NSRI_Oem_requestProcResponse(RadioResponseInfo info, vec<int8_t> data);
+
+    oneway setNSRICallInfoTransferResponse(RadioResponseInfo info);
+
+    oneway sendSarPowerStateResponse(RadioResponseInfo info);
+
+    oneway setImsRegistrationStatusResponse(RadioResponseInfo info);
+
+    oneway setImsCallStatusResponse(RadioResponseInfo info);
+
+    oneway setScmModeResponse(RadioResponseInfo info);
+
+    oneway getIMSNetworkInfoResponse(RadioResponseInfo info, vec<string> data);
+
+    oneway lgeGetSignalStrengthResponse(RadioResponseInfo info, LgeSignalStrength signalStrength);
+
+    oneway lgeGetCurrentCallsResponse(RadioResponseInfo info, vec<LgeCall> calls);
+
+    oneway getAvailableNetworksResponse(RadioResponseInfo info, vec<LgeOperatorInfo> networkInfos);
+
+    oneway getDataRegistrationStateResponse(RadioResponseInfo info, DataRegStateResult dataRegResponse);
+
+    oneway lgeAcknowledgeRequest(int32_t serial);
+
+    oneway setPcasInfofaceResponse(RadioResponseInfo info);
+
+    oneway setLteProcResponse(RadioResponseInfo info);
+
+    oneway setOtasnPdnStateResponse(RadioResponseInfo info);
+
+    oneway setImsCallStateForTuneAwayResponse(RadioResponseInfo info);
+
+    oneway sendCallDurationResponse(RadioResponseInfo info, int32_t result);
+
+    oneway requestWifiIccSimAuthenticationResponse(RadioResponseInfo info, IccIoResult result);
+
+    oneway getWifiIMSIForAppResponse(RadioResponseInfo info, string imsi);
+
+    oneway getWifiIccCardStatusResponse(RadioResponseInfo info, LgeCardStatus status);
+
+    oneway sendLgeRequestRawResponse(RadioResponseInfo info, vec<int8_t> data);
+
+    oneway sendLgeRequestStringsResponse(RadioResponseInfo info, vec<string> data);
+
+    oneway getInitialAttachApnResponse(RadioResponseInfo info, android.hardware.radio@1.5::DataProfileInfo profile);
+
+    oneway setLge5GEnabledResponse(RadioResponseInfo info);
+
+    oneway setLge5GDisabledResponse(RadioResponseInfo info);
+
+    oneway getLge5GStatusResponse(RadioResponseInfo info, int32_t state);
+
+    oneway setLgeEndcControlResponse(RadioResponseInfo info);
+
+    oneway notifyImsCallStateResponse(RadioResponseInfo info);
+
+    oneway changeCallPreferenceResponse(RadioResponseInfo info);
+
+    oneway setLteDataCallTypeResponse(RadioResponseInfo info);
+
+    oneway setTuneawayResponse(RadioResponseInfo info);
+
+    oneway goDormantResponse(RadioResponseInfo info);
+
+    oneway reportPdnThrottleIndResponse(RadioResponseInfo info);
+
+    oneway setApnDisableFlagResponse(RadioResponseInfo info);
+
+    oneway setApnRoamingDisallowedFlagResponse(RadioResponseInfo info);
+
+    oneway lgeSetNetworkSelectionModeManualResponse(RadioResponseInfo info);
+
+    oneway getDataRegistrationStateResponse_1_3(RadioResponseInfo info, DataRegStateResult_1_4 dataRegResponse);
+
+    oneway getInitialAttachApnResponse_1_3(RadioResponseInfo info, android.hardware.radio@1.4::DataProfileInfo profile);
+};
