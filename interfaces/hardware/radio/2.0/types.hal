@@ -1,0 +1,245 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+package vendor.lge.hardware.radio@2.0;
+
+import android.hardware.radio@1.0::UusInfo;
+import android.hardware.radio@1.0::CdmaSignalStrength;
+import android.hardware.radio@1.0::EvdoSignalStrength;
+import android.hardware.radio@1.0::LteSignalStrength;
+import android.hardware.radio@1.2::TdscdmaSignalStrength;
+import android.hardware.radio@1.2::WcdmaSignalStrength;
+import android.hardware.radio@1.4::NrSignalStrength;
+import android.hardware.radio@1.4::DataRegStateResult;
+import android.hardware.radio@1.5::RegStateResult;
+
+struct DataRegStateResult {
+    RegStateResult base;
+    int32_t[4] extraInfo;
+};
+
+struct DataRegStateResult_1_4 {
+    android.hardware.radio@1.4::DataRegStateResult base;
+    int32_t[4] extraInfo;
+    int32_t sib_info;
+    int32_t restrict_dcnr;
+    int32_t nr_mode;
+};
+
+struct LgeDmRequest {
+    int32_t req_len;
+    int8_t[1028] req;
+};
+
+struct LgePbmRecords {
+    int32_t device;
+    int32_t index;
+    int32_t type;
+    int32_t ad_type;
+    string number;
+    string name;
+    string[3] additional_number;
+    string email_address;
+    string second_name;
+    int32_t gas_id;
+    int32_t sync_cnt;
+};
+
+struct LgePbmRecordInfo {
+    int32_t device;
+    int32_t status;
+    int32_t max_num_length;
+    int32_t max_text_length;
+    int32_t num_of_used_rec;
+    int32_t num_of_free_ext;
+    int32_t num_of_tot_rec;
+    int32_t file_type;
+    int32_t[8] records_in_pb_set;
+    int32_t[8] used_records_in_pb_set;
+};
+
+struct LgeUimInternal {
+    int32_t command;
+    int32_t datalen;
+    string dataPtr;
+};
+
+struct LgeMocaGetMisc {
+    int32_t kind_of_data;
+    int32_t send_buf_num;
+    int32_t data_len;
+    vec<int8_t> data;
+};
+
+struct LgeMocaConfigInfo {
+    int32_t conf_info;
+    int32_t config_data_len;
+    int8_t[512] config;
+};
+
+struct LgeOperatorInfo {
+    string alphaLong;
+    string alphaShort;
+    string operatorNumeric;
+    string operatorRat;
+    int32_t status;
+};
+
+struct LgeIntString {
+    int32_t num;
+    string text;
+};
+
+struct LgeSrvccCall {
+    int32_t instance_id;
+    int32_t call_type;
+    int32_t call_state;
+    int32_t call_substate;
+    int32_t is_mpty_call;
+    int32_t direction;
+    string address;
+    int32_t is_alerting_type_valid;
+    int32_t alerting_type;
+    int32_t is_num_pi_valid;
+    int32_t num_pi;
+    int32_t is_caller_name_type_valid;
+    int32_t name_pi;
+    int32_t name_len;
+    string caller_name;
+};
+
+struct LgeSrvccCallContextConfig {
+    int32_t num_calls;
+    vec<LgeSrvccCall> srvcc_calls;
+    int32_t alerting_type_list_len;
+};
+
+struct LgeAppStatus {
+    int32_t appType;
+    int32_t appState;
+    int32_t persoSubstate;
+    string aidPtr;
+    string appLabelPtr;
+    int32_t pin1Replaced;
+    int32_t pin1;
+    int32_t pin2;
+    int32_t pin1_remaining_cnt;
+    int32_t puk1_remaining_cnt;
+    int32_t pin2_remaining_cnt;
+    int32_t puk2_remaining_cnt;
+};
+
+struct LgeCardStatus {
+    int32_t cardState;
+    int32_t universalPinState;
+    int32_t gsmUmtsSubscriptionAppIndex;
+    int32_t cdmaSubscriptionAppIndex;
+    int32_t imsSubscriptionAppIndex;
+    vec<LgeAppStatus> applications;
+};
+
+struct LgeGsmSignalStrength {
+    uint32_t signalStrength;
+    uint32_t bitErrorRate;
+    int32_t timingAdvance;
+    int32_t dbm;
+    int32_t ecio;
+    int32_t ecno;
+};
+
+struct LgeSignalStrength {
+    LgeGsmSignalStrength gw;
+    CdmaSignalStrength cdma;
+    EvdoSignalStrength evdo;
+    LteSignalStrength lte;
+    TdscdmaSignalStrength tdScdma;
+    WcdmaSignalStrength wcdma;
+    NrSignalStrength nr;
+};
+
+struct LgeModemLoggingData {
+    int32_t send_buf_num;
+    int32_t data_len;
+    vec<int8_t> data;
+};
+
+struct ImsPCSCFRestorationVZW {
+    int32_t num_pcscf;
+};
+
+struct DataPdnThrottleInfo {
+    int8_t is_ipv4_throttled;
+    int8_t is_ipv6_throttled;
+    int32_t remaining_ipv4_throttled_time;
+    int32_t remaining_ipv6_throttled_time;
+    string apn_string;
+};
+
+struct DataPdnThrottleInfoExt {
+    int8_t is_ipv4_throttled;
+    int8_t is_ipv6_throttled;
+    int8_t is_non_ip_throttled;
+    int32_t remaining_ipv4_throttled_time;
+    int32_t remaining_ipv6_throttled_time;
+    int32_t remaining_non_ip_throttled_time;
+    string apn_string;
+};
+
+struct DataPdnThrottleIndInfo {
+    int32_t throttle_info_len;
+    vec<DataPdnThrottleInfo> throttle_info;
+    int32_t throttle_info_ext_len;
+    vec<DataPdnThrottleInfoExt> throttle_info_ext;
+};
+
+struct LgeDataQosResponse {
+    int32_t cid;
+    int32_t qid;
+    int32_t status;
+    string tx_flow_desc;
+    string rx_flow_desc;
+    string tx_tft;
+    string rx_tft;
+};
+
+struct LgeRpIndResponse {
+    int32_t param;
+    int8_t data_valid;
+    int32_t data_len;
+    vec<int8_t> data;
+};
+
+struct LgeProtocolInfoUnsolInd {
+    int32_t param;
+    int8_t data_valid;
+    int32_t data_len;
+    vec<int8_t> data;
+};
+
+struct LgeNsriNotice {
+    int8_t[11] nsri_phonenum;
+    int32_t phoneNumLen;
+    int8_t bsend;
+};
+
+struct LgeCall {
+    int32_t state;
+    int32_t index;
+    int32_t toa;
+    bool isMpty;
+    bool isMT;
+    int8_t als;
+    bool isVoice;
+    bool isVoicePrivacy;
+    string number;
+    int32_t numberPresentation;
+    string name;
+    int32_t namePresentation;
+    vec<UusInfo> uusInfo;
+    string numberplus;
+    int32_t signalIE;
+    int32_t audioQuality;
+};
