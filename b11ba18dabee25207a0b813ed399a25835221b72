@@ -54,6 +54,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "156d4620_b8b087ff",
+        "filename": "audio/msm8998/hal/msm8974/platform.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 7621,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-04-20T21:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75446c47_78d1327a",
+      "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "558fb2e5_568f1ad9",
@@ -67,6 +85,24 @@
       "writtenOn": "2024-04-20T20:00:14Z",
       "side": 1,
       "message": "space after if, same for all other ifs, not going to mark all of them",
+      "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f7e186e_85a6ce0a",
+        "filename": "audio/msm8998/hal/msm8974/platform.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 7622,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-04-20T21:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "558fb2e5_568f1ad9",
       "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
@@ -88,6 +124,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87500e11_7d170338",
+        "filename": "audio/msm8998/hal/msm8974/platform.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 7631,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-04-20T21:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78e6ebba_35d44253",
+      "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49c620f3_d6b883d6",
@@ -101,6 +155,24 @@
       "writtenOn": "2024-04-20T20:00:14Z",
       "side": 1,
       "message": "line length",
+      "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "786edf4f_a6120e6e",
+        "filename": "audio/msm8998/hal/msm8974/platform.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 9016,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-04-20T21:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49c620f3_d6b883d6",
       "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
