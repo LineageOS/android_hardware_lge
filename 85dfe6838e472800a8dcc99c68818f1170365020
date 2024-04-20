@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c03283_d77cd9c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-04-20T06:56:38Z",
+      "side": 1,
+      "message": "So, this is working on joan. But that\u0027s using msm8998 and not msm8996.\n\nIt also completely rewrites what you guys had, but I feel as though this is the solution going forward; it fixes the issue of not needing to reboot audioserver anymore, and also if we could align all our implementations in a similar fashion I don\u0027t have to write a third version just for joan (and lge845/8150 which will need OSS audio soon:tm:).\n\nWould like some testing/feedback, since I don\u0027t have a V20 to verify any of this works.",
+      "revId": "85dfe6838e472800a8dcc99c68818f1170365020",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
