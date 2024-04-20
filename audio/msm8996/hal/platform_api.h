@@ -196,7 +196,6 @@ bool platform_sound_trigger_usecase_needs_event(audio_usecase_t uc_id);
 
 int platform_set_snd_device_backend(snd_device_t snd_device, const char * backend,
                                     const char * hw_interface);
-
 int platform_get_snd_device_backend_index(snd_device_t device);
 const char * platform_get_snd_device_backend_interface(snd_device_t device);
 int platform_set_snd_device_name(snd_device_t snd_device, const char * name);

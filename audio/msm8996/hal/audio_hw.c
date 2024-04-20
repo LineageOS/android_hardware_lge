@@ -984,33 +984,6 @@ int pcm_ioctl(struct pcm *pcm, int request, ...)
     return ioctl(pcm_fd, request, arg);
 }
 
-
-static void check_and_enable_ess_hifi(struct audio_device *adev, struct audio_usecase *usecase, snd_device_t snd_device)
-{
-    if (property_get_bool("persist.vendor.audio.ess.supported",false) == true) {
-        if (snd_device == SND_DEVICE_OUT_HEADPHONES) {
-            if (property_get_bool("persist.vendor.audio.hifi.enabled",false) == true) {
-                ALOGD("%s: ESS hifi requested...", __func__);
-                disable_audio_route(adev, usecase);
-                disable_snd_device(adev, usecase->out_snd_device);
-                usecase->out_snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC;
-                audio_route_apply_and_update_path(adev->audio_route, "ess-headphones-hifi");
-                platform_set_snd_device_backend(usecase->out_snd_device, "headphones tert-mi2s-headphones", "SEC_MI2S_RX");
-                ALOGD("%s: Setting ESS hifi mode \n", __func__);
-                property_set("persist.vendor.audio.ess.status","true");
-            }
-            enable_snd_device(adev, usecase->out_snd_device);
-        }
-        else {
-            ALOGD("%s: Not an ESS hifi scenario \n", __func__);
-            property_set("persist.vendor.audio.ess.status","false");
-        }
-    }
-    else {
-        ALOGE("%s: ESS hifi not supported on this device! \n", __func__);
-    }
-}
-
 int enable_audio_route(struct audio_device *adev,
                        struct audio_usecase *usecase)
 {
@@ -1024,14 +997,10 @@ int enable_audio_route(struct audio_device *adev,
 
     ALOGV("%s: enter: usecase(%d)", __func__, usecase->id);
 
-    if (usecase->type == PCM_CAPTURE){
+    if (usecase->type == PCM_CAPTURE)
         snd_device = usecase->in_snd_device;
-        }
-        
-    else {
+    else
         snd_device = usecase->out_snd_device;
-        }
-
 
 #ifdef DS1_DOLBY_DAP_ENABLED
     audio_extn_dolby_set_dmid(adev);
@@ -1051,6 +1020,7 @@ int enable_audio_route(struct audio_device *adev,
             audio_extn_utils_compress_set_clk_rec_mode(usecase);
     }
     audio_extn_set_custom_mtmx_params(adev, usecase, true);
+
     strlcpy(mixer_path, use_case_table[usecase->id], MIXER_PATH_MAX_LENGTH);
     platform_add_backend_name(mixer_path, snd_device, usecase);
     ALOGD("%s: apply mixer and update path: %s", __func__, mixer_path);
@@ -1100,7 +1070,7 @@ int enable_snd_device(struct audio_device *adev,
     int i, num_devices = 0;
     snd_device_t new_snd_devices[SND_DEVICE_OUT_END];
     char device_name[DEVICE_NAME_MAX_SIZE] = {0};
-    
+
     if (snd_device < SND_DEVICE_MIN ||
         snd_device >= SND_DEVICE_MAX) {
         ALOGE("%s: Invalid sound device %d", __func__, snd_device);
@@ -1147,6 +1117,8 @@ int enable_snd_device(struct audio_device *adev,
         }
     } else {
         ALOGD("%s: snd_device(%d: %s)", __func__, snd_device, device_name);
+
+
         if ((SND_DEVICE_OUT_BT_A2DP == snd_device) &&
             (audio_extn_a2dp_start_playback() < 0)) {
             ALOGE(" fail to configure A2dp control path ");
@@ -1183,7 +1155,6 @@ int enable_snd_device(struct audio_device *adev,
                                               "true-native-mode");
             adev->native_playback_enabled = true;
         }
-
         if (((snd_device == SND_DEVICE_IN_HANDSET_6MIC) ||
             (snd_device == SND_DEVICE_IN_HANDSET_QMIC)) &&
             (audio_extn_ffv_get_stream() == adev->active_input)) {
@@ -1261,9 +1232,7 @@ int disable_snd_device(struct audio_device *adev,
             ALOGD("%s: %d: disabling asrc mode in hardware", __func__, __LINE__);
             disable_asrc_mode(adev);
             audio_route_apply_and_update_path(adev->audio_route, "hph-lowpower-mode");
-        } 
-        
-        else if (((snd_device == SND_DEVICE_IN_HANDSET_6MIC) ||
+        } else if (((snd_device == SND_DEVICE_IN_HANDSET_6MIC) ||
                     (snd_device == SND_DEVICE_IN_HANDSET_QMIC)) &&
                 (audio_extn_ffv_get_stream() == adev->active_input)) {
             ALOGD("%s: deinit ec ref loopback", __func__);
@@ -1427,7 +1396,6 @@ static void check_usecases_codec_backend(struct audio_device *adev,
     int i, num_uc_to_switch = 0, num_devices = 0;
     int status = 0;
     bool force_restart_session = false;
-    
     /*
      * This function is to make sure that all the usecases that are active on
      * the hardware codec backend are always routed to any one device that is
@@ -2412,8 +2380,6 @@ int select_devices(struct audio_device *adev, audio_usecase_t uc_id)
             usecase->stream.out->app_type_cfg.sample_rate = DEFAULT_OUTPUT_SAMPLING_RATE;
         }
     }
-    
-    check_and_enable_ess_hifi(adev, usecase, out_snd_device);
     enable_audio_route(adev, usecase);
 
     /* If input stream is already running then effect needs to be
@@ -3221,7 +3187,6 @@ int start_output_stream(struct stream_out *out)
     } else {
          select_devices(adev, out->usecase);
     }
-    
 
     if (out->usecase == USECASE_INCALL_MUSIC_UPLINK ||
                 out->usecase == USECASE_INCALL_MUSIC_UPLINK2)
