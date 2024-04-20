@@ -210,11 +210,6 @@ static const snd_device_t tasha_liquid_variant_devices[] = {
     SND_DEVICE_IN_SPEAKER_STEREO_DMIC,
 };
 
-static const snd_device_t ess_audio_devices[] = {
-    SND_DEVICE_OUT_HEADPHONES_HIFI_DAC,
-    SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED,
-    SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX,
-};
 
 static const snd_device_t tavil_qrd_variant_devices[] = {
     SND_DEVICE_OUT_SPEAKER,
@@ -454,7 +449,7 @@ static void  update_hardware_info_msm8998(struct hardware_info *hw_info, const c
     } else if (!strcmp(snd_card_name, "msm8998-skuk-tavil-snd-card")) {
         hw_info->is_stereo_spkr = false;
     } else {
-        ALOGW("%s: Not a 8998 device", __func__);
+        ALOGW("%s: Not a msm8998 device", __func__);
     }
 }
 
