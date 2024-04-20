@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1df7b026_c1e766ed",
+        "filename": "audio/msm8998/hal/msm8974/platform.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 7621,
+      "author": {
+        "id": 13028
+      },
+      "writtenOn": "2024-04-20T20:00:14Z",
+      "side": 1,
+      "message": "line length",
+      "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "558fb2e5_568f1ad9",
+        "filename": "audio/msm8998/hal/msm8974/platform.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 7622,
+      "author": {
+        "id": 13028
+      },
+      "writtenOn": "2024-04-20T20:00:14Z",
+      "side": 1,
+      "message": "space after if, same for all other ifs, not going to mark all of them",
+      "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78e6ebba_35d44253",
+        "filename": "audio/msm8998/hal/msm8974/platform.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 7631,
+      "author": {
+        "id": 13028
+      },
+      "writtenOn": "2024-04-20T20:00:14Z",
+      "side": 1,
+      "message": "else goes into same line as the previous }\nsame with all other elses",
+      "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49c620f3_d6b883d6",
+        "filename": "audio/msm8998/hal/msm8974/platform.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 9016,
+      "author": {
+        "id": 13028
+      },
+      "writtenOn": "2024-04-20T20:00:14Z",
+      "side": 1,
+      "message": "line length",
+      "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
