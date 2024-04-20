@@ -477,10 +477,9 @@ static const char * device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_OUT_SPEAKER_AND_BT_SCO] = "speaker-and-bt-sco",
     [SND_DEVICE_OUT_SPEAKER_AND_BT_SCO_WB] = "speaker-and-bt-sco-wb",
     [SND_DEVICE_OUT_ULTRASOUND_HANDSET] = "ultrasound-handset",
+
     /* ESS Audio Devices */
     [SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = "ess-headphones-hifi",
-    [SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED] = "ess-headphones-hifi-advanced",
-    [SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX] = "ess-headphones-hifi-aux",
 
     /* Capture sound devices */
     [SND_DEVICE_IN_HANDSET_MIC] = "handset-mic",
@@ -578,7 +577,6 @@ static const char * device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_IN_INCALL_REC_RX_TX] = "incall-rec-rx-tx",
     [SND_DEVICE_IN_EC_REF_LOOPBACK_QUAD] = "ec-ref-loopback-quad",
     [SND_DEVICE_IN_ULTRASOUND_MIC] = "ultrasound-mic",
-    
 };
 
 // Platform specific backend bit width table
@@ -619,12 +617,6 @@ static int acdb_device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_OUT_HEADPHONES_DSD] = 10,
     [SND_DEVICE_OUT_HEADPHONES_44_1] = 10,
     [SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES] = 10,
-    
-    /* ESS ACDB IDS */
-    [SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = 10,
-    [SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED] = 10,
-    [SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX] = 10,
-    
     [SND_DEVICE_OUT_SPEAKER_AND_LINE] = 10,
     [SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES_EXTERNAL_1] = 130,
     [SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES_EXTERNAL_2] = 130,
@@ -790,12 +782,6 @@ static struct name_to_index snd_device_name_index[SND_DEVICE_MAX] = {
     {TO_NAME_INDEX(SND_DEVICE_OUT_HEADPHONES)},
     {TO_NAME_INDEX(SND_DEVICE_OUT_HEADPHONES_DSD)},
     {TO_NAME_INDEX(SND_DEVICE_OUT_HEADPHONES_44_1)},
-
-    /* ESS */
-    {TO_NAME_INDEX(SND_DEVICE_OUT_HEADPHONES_HIFI_DAC)},
-    {TO_NAME_INDEX(SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED)},
-    {TO_NAME_INDEX(SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX)},
-    
     {TO_NAME_INDEX(SND_DEVICE_OUT_LINE)},
     {TO_NAME_INDEX(SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES)},
     {TO_NAME_INDEX(SND_DEVICE_OUT_SPEAKER_AND_LINE)},
@@ -1310,15 +1296,6 @@ void platform_set_echo_reference(struct audio_device *adev, bool enable,
         if (adev->snd_dev_ref_cnt[SND_DEVICE_OUT_HEADPHONES_44_1] > 0)
             strlcat(ec_ref_mixer_path, " headphones-44.1",
                     MIXER_PATH_MAX_LENGTH);
-        else if (adev->snd_dev_ref_cnt[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] > 0)
-            strlcat(ec_ref_mixer_path, " ess-headphones-hifi",
-                    MIXER_PATH_MAX_LENGTH);
-        else if (adev->snd_dev_ref_cnt[	SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED] > 0)
-            strlcat(ec_ref_mixer_path, " ess-headphones-hifi-advanced",
-                    MIXER_PATH_MAX_LENGTH);
-        else if (adev->snd_dev_ref_cnt[	SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX] > 0)
-            strlcat(ec_ref_mixer_path, " ess-headphones-hifi-aux",
-                    MIXER_PATH_MAX_LENGTH);
         else if (adev->snd_dev_ref_cnt[SND_DEVICE_OUT_SPEAKER_VBAT] > 0)
             strlcat(ec_ref_mixer_path, " speaker-vbat",
                     MIXER_PATH_MAX_LENGTH);
@@ -1556,7 +1533,8 @@ static void set_platform_defaults(struct platform_data * my_data)
     backend_tag_table[SND_DEVICE_OUT_VOICE_TTY_FULL_USB] = strdup("usb-headset");
     backend_tag_table[SND_DEVICE_OUT_VOICE_TTY_VCO_USB] = strdup("usb-headphones");
     backend_tag_table[SND_DEVICE_OUT_VOICE_USB_HEADPHONES] = strdup("usb-headphones");
-    backend_tag_table[SND_DEVICE_OUT_SPEAKER_AND_USB_HEADSET] = strdup("speaker-and-usb-headphones");
+    backend_tag_table[SND_DEVICE_OUT_SPEAKER_AND_USB_HEADSET] =
+        strdup("speaker-and-usb-headphones");
     backend_tag_table[SND_DEVICE_IN_VOICE_TTY_FULL_USB_MIC] = strdup("usb-headset-mic");
     backend_tag_table[SND_DEVICE_IN_VOICE_TTY_HCO_USB_MIC] = strdup("usb-headset-mic");
     backend_tag_table[SND_DEVICE_IN_USB_HEADSET_MIC] = strdup("usb-headset-mic");
@@ -1572,11 +1550,6 @@ static void set_platform_defaults(struct platform_data * my_data)
     backend_tag_table[SND_DEVICE_OUT_TRANSMISSION_FM] = strdup("transmission-fm");
     backend_tag_table[SND_DEVICE_OUT_HEADPHONES_DSD] = strdup("headphones-dsd");
     backend_tag_table[SND_DEVICE_OUT_HEADPHONES_44_1] = strdup("headphones-44.1");
-    /* ESS */
-    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("headphones tert-mi2s-headphones");
-    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED] = strdup("headphones tert-mi2s-headphones");
-    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX] = strdup("headphones tert-mi2s-headphones");
-    
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_VBAT] = strdup("voice-speaker-vbat");
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_2_VBAT] = strdup("voice-speaker-2-vbat");
     backend_tag_table[SND_DEVICE_OUT_BT_A2DP] = strdup("bt-a2dp");
@@ -1587,18 +1560,15 @@ static void set_platform_defaults(struct platform_data * my_data)
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_STEREO_AND_VOICE_HEADPHONES] = strdup("speaker-and-headphones");
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_STEREO_AND_VOICE_ANC_HEADSET] = strdup("speaker-and-headphones");
     backend_tag_table[SND_DEVICE_OUT_VOICE_SPEAKER_STEREO_AND_VOICE_ANC_FB_HEADSET] = strdup("speaker-and-headphones");
+    backend_tag_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("headphones tert-mi2s-headphones");
+
     hw_interface_table[SND_DEVICE_OUT_HANDSET] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_SPEAKER] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_SPEAKER_EXTERNAL_1] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_SPEAKER_EXTERNAL_2] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_SPEAKER_REVERSE] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_SPEAKER_VBAT] = strdup("SLIMBUS_0_RX");
-    hw_interface_table[SND_DEVICE_OUT_LINE] = strdup("SLIMBUS_6_RX"); 
-    /* ESS */
-    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("SEC_MI2S_RX");
-    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_ADVANCED] = strdup("SEC_MI2S_RX");
-    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC_AUX] = strdup("SEC_MI2S_RX");
-    
+    hw_interface_table[SND_DEVICE_OUT_LINE] = strdup("SLIMBUS_6_RX");
     hw_interface_table[SND_DEVICE_OUT_HEADPHONES] = strdup("SLIMBUS_6_RX");
     hw_interface_table[SND_DEVICE_OUT_HEADPHONES_DSD] = strdup("SLIMBUS_2_RX");
     hw_interface_table[SND_DEVICE_OUT_HEADPHONES_44_1] = strdup("SLIMBUS_5_RX");
@@ -1657,6 +1627,7 @@ static void set_platform_defaults(struct platform_data * my_data)
     hw_interface_table[SND_DEVICE_OUT_SPEAKER_WSA] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_VOICE_SPEAKER_WSA] = strdup("SLIMBUS_0_RX");
     hw_interface_table[SND_DEVICE_OUT_VOICE_SPEAKER_2_WSA] = strdup("SLIMBUS_0_RX");
+    hw_interface_table[SND_DEVICE_OUT_HEADPHONES_HIFI_DAC] = strdup("SEC_MI2S_RX");
     hw_interface_table[SND_DEVICE_IN_HANDSET_MIC] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_HANDSET_MIC_EXTERNAL] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_HANDSET_MIC_AEC] = strdup("SLIMBUS_0_TX");
@@ -1736,7 +1707,7 @@ static void set_platform_defaults(struct platform_data * my_data)
     hw_interface_table[SND_DEVICE_IN_UNPROCESSED_HEADSET_MIC] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_HANDSET_GENERIC_QMIC] = strdup("SLIMBUS_0_TX");
     hw_interface_table[SND_DEVICE_IN_INCALL_REC_RX] = strdup("INCALL_RECORD_RX");
-    hw_interface_table[SND_DEVICE_IN_INCALL_REC_TX] = strdup("INCALL_RECORD_TX");   
+    hw_interface_table[SND_DEVICE_IN_INCALL_REC_TX] = strdup("INCALL_RECORD_TX");
 
     my_data->max_mic_count = PLATFORM_DEFAULT_MIC_COUNT;
 
@@ -2195,7 +2166,7 @@ void *platform_init(struct audio_device *adev)
             free(snd_card_name);
         return NULL;
     }
-    
+
     if (platform_is_i2s_ext_modem(snd_card_name, my_data)) {
         ALOGD("%s: Call MIXER_XML_PATH_I2S", __func__);
 
@@ -2603,10 +2574,6 @@ acdb_init_fail:
         strdup("SLIM_5_RX Format");
     my_data->current_backend_cfg[HEADPHONE_44_1_BACKEND].samplerate_mixer_ctl =
         strdup("SLIM_5_RX SampleRate");
-    my_data->current_backend_cfg[ESS_HEADPHONE_BACKEND].bitwidth_mixer_ctl =
-        strdup("SEC_MI2S_RX Format");
-    my_data->current_backend_cfg[ESS_HEADPHONE_BACKEND].samplerate_mixer_ctl =
-        strdup("SEC_MI2S_RX SampleRate");
 
     if (!my_data->is_slimbus_interface) {
         //TODO:: make generic interfaceface to check Slimbus/I2S/CDC_DMA
@@ -3523,15 +3490,6 @@ int platform_get_backend_index(snd_device_t snd_device)
                 else if (strncmp(backend_tag_table[snd_device], "headphones",
                             sizeof("headphones")) == 0)
                         port = HEADPHONE_BACKEND;
-                else if (strncmp(backend_tag_table[snd_device], "headphones tert-mi2s-headphones",
-                            sizeof("ess-headphones-hifi")) == 0)
-                        port = ESS_HEADPHONE_BACKEND;
-                else if (strncmp(backend_tag_table[snd_device], "headphones tert-mi2s-headphones",
-                            sizeof("ess-headphones-hifi-advanced")) == 0)
-                        port = ESS_HEADPHONE_BACKEND;
-                else if (strncmp(backend_tag_table[snd_device], "headphones tert-mi2s-headphones",
-                            sizeof("ess-headphones-hifi-aux")) == 0)
-                        port = ESS_HEADPHONE_BACKEND;
                 else if (strcmp(backend_tag_table[snd_device], "hdmi") == 0)
                         port = HDMI_RX_BACKEND;
                 else if (strcmp(backend_tag_table[snd_device], "display-port") == 0)
@@ -4347,6 +4305,17 @@ snd_device_t platform_get_output_snd_device(void *platform, struct stream_out *o
     if (devices & AUDIO_DEVICE_OUT_WIRED_HEADPHONE ||
         devices & AUDIO_DEVICE_OUT_WIRED_HEADSET ||
         devices & AUDIO_DEVICE_OUT_LINE) {
+
+/* LINEAGEOS LGE CHANGES START */
+// Implement Hi-Fi Quad DAC feature.
+// If DAC is enabled, return the DAC output device
+        bool enable_hifi_dac = property_get_bool("persist.vendor.audio.hifi.enabled", false);
+        if (enable_hifi_dac) {
+            snd_device = SND_DEVICE_OUT_HEADPHONES_HIFI_DAC;
+            goto exit;
+        }
+/* LINEAGEOS LGE CHANGES END */
+
         if (devices & AUDIO_DEVICE_OUT_WIRED_HEADSET
             && audio_extn_get_anc_enabled()) {
                 if (audio_extn_should_use_fb_anc())
@@ -4364,7 +4333,6 @@ snd_device_t platform_get_output_snd_device(void *platform, struct stream_out *o
                 snd_device = SND_DEVICE_OUT_HEADPHONES_DSD;
         } else
                 snd_device = SND_DEVICE_OUT_HEADPHONES;
-                    
     } else if (devices & AUDIO_DEVICE_OUT_LINE) {
         snd_device = SND_DEVICE_OUT_LINE;
     } else if (devices & AUDIO_DEVICE_OUT_SPEAKER) {
@@ -5535,6 +5503,50 @@ int platform_set_parameters(void *platform, struct str_parms *parms)
         my_data->max_mic_count = atoi(value);
         ALOGV("%s: max_mic_count %d", __func__, my_data->max_mic_count);
     }
+
+/* LINEAGEOS LGE CHANGES START */
+// Add parameters to enable/disable the Hi-Fi Quad DAC feature
+    err = str_parms_get_str(parms, "hifi_dac", value, sizeof(value));
+    if (err >= 0) {
+        struct audio_usecase *usecase;
+        struct listnode *node;
+        list_for_each(node, &my_data->adev->usecase_list) {
+            usecase = node_to_item(node, struct audio_usecase, list);
+            bool is_hifi_dac_enabled = property_get_bool("persist.vendor.audio.hifi.enabled", false);
+            if(!strncmp(value, "on", 2)) {
+                if(is_hifi_dac_enabled) {
+                    ALOGD("LGE Hi-Fi DAC: already enabled!");
+                    ret = -EINVAL;
+                    goto done;
+                }
+                ALOGD("Enabling Hi-Fi Quad DAC.");
+                property_set("persist.vendor.audio.hifi.enabled", "true");
+            }
+            else if(!strncmp(value, "off", 3)) {
+                if(!is_hifi_dac_enabled) {
+                    ALOGD("LGE Hi-Fi DAC: already disabled!");
+                    ret = -EINVAL;
+                    goto done;
+                }
+                ALOGD("Disabling Hi-Fi Quad DAC.");
+                property_set("persist.vendor.audio.hifi.enabled", "false");
+            }
+            else {
+                ALOGE("LGE Hi-Fi DAC: Invalid parameter");
+                ret = -EINVAL;
+                goto done;
+            }
+
+            // If this was triggered during playback, switch immediately!
+            if (usecase->stream.out && (usecase->type == PCM_PLAYBACK) &&
+                (usecase->devices & AUDIO_DEVICE_OUT_WIRED_HEADPHONE)) {
+                // Trigger a switch to Hi-Fi DAC
+                select_devices(my_data->adev, usecase->id);
+            }
+            break;
+        }
+    }
+/* LINEAGEOS LGE CHANGES END */
 
     /* handle audio calibration parameters */
     set_audiocal(platform, parms, value, len);
@@ -6713,8 +6725,8 @@ static bool platform_check_codec_backend_cfg(struct audio_device* adev,
         backend_change = true;
     }
 
-    if (snd_device == SND_DEVICE_OUT_HEADPHONES ||
-        snd_device == SND_DEVICE_OUT_HEADPHONES_44_1) {
+    if (snd_device == SND_DEVICE_OUT_HEADPHONES || snd_device ==
+        SND_DEVICE_OUT_HEADPHONES_44_1) {
         if (sample_rate > 48000 ||
             (bit_width >= 24 && (sample_rate == 48000  || sample_rate == 44100))) {
             ALOGI("%s: apply HPH HQ mode\n", __func__);
@@ -6723,7 +6735,18 @@ static bool platform_check_codec_backend_cfg(struct audio_device* adev,
             ALOGI("%s: apply HPH LP mode\n", __func__);
             audio_route_apply_and_update_path(adev->audio_route, "hph-lowpower-mode");
         }
-    } return backend_change;
+    }
+
+/* LINEAGEOS LGE CHANGES START */
+// Apply mixer path to enable/disable Hi-Fi Quad DAC feature
+    if (snd_device == SND_DEVICE_OUT_HEADPHONES_HIFI_DAC) {
+        bool enable_hifi_dac = property_get_bool("persist.vendor.audio.hifi.enabled", false);
+        ALOGD("%s: %s Hi-Fi Quad DAC", __func__, enable_hifi_dac ? "Enabling" : "Disabling");
+        audio_route_apply_and_update_path(adev->audio_route, enable_hifi_dac ? "ess-hifi-mode" : "ess-bypass-mode");
+    }
+/* LINEAGEOS LGE CHANGES END */
+
+    return backend_change;
 }
 
 bool platform_check_and_set_codec_backend_cfg(struct audio_device* adev,
@@ -6768,13 +6791,6 @@ bool platform_check_and_set_codec_backend_cfg(struct audio_device* adev,
         else if (backend_cfg.sample_rate == INPUT_SAMPLING_RATE_DSD128)
             backend_cfg.sample_rate = OUTPUT_SAMPLING_RATE_DSD128;
     }
-    
-    /*Set backend sampling rate to 192 for ESS backends */
-    if (backend_idx == ESS_HEADPHONE_BACKEND) {
-    	backend_cfg.bit_width = 16;
-    	backend_cfg.sample_rate = OUTPUT_ESS_SAMPLING_RATE_192KHZ;
-    }
-    
     ALOGI("%s:becf: afe: bitwidth %d, samplerate %d channels %d"
           ", backend_idx %d usecase = %d device (%s)", __func__, backend_cfg.bit_width,
           backend_cfg.sample_rate, backend_cfg.channels, backend_idx, usecase->id,
