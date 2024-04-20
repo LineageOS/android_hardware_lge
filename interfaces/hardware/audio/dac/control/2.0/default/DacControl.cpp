@@ -88,7 +88,6 @@ DacControl::DacControl() {
     customFilterPath = std::string(COMMON_ES9218_PATH);
     customFilterPath.append(ESS_CUSTOM_FILTER);
 
-#ifdef PROPRIETARY_AUDIO_MODULE
     mAudioDevicesFactory_V6_0 = ::android::hardware::audio::V6_0::IDevicesFactory::getService();
     if(mAudioDevicesFactory_V6_0 == nullptr) {
         LOG(INFO) << "mAudioDevicesFactory_V6_0 null, trying V5_0";
@@ -171,7 +170,6 @@ DacControl::DacControl() {
             break;
         default: return; // Should never reach this state
     }
-#endif // PROPRIETARY_AUDIO_MODULE
 
     /* Quad DAC */
     mSupportedFeatures.push_back(Feature::QuadDAC);
@@ -347,30 +345,10 @@ bool DacControl::setAudioHALParameters(KeyValue kv) {
 }
 
 Return<bool> DacControl::setHifiDacState(bool enable) {
-#ifdef PROPRIETARY_AUDIO_MODULE
     KeyValue kv;
     kv.name = DAC_COMMAND;
     kv.value = enable ? SET_DAC_ON_COMMAND : SET_DAC_OFF_COMMAND;
     return setAudioHALParameters(kv);
-#else
-    int rc = 0;
-    rc = property_set(PROPERTY_HIFI_DAC_ENABLED, enable ? PROPERTY_VALUE_HIFI_DAC_ENABLED : PROPERTY_VALUE_HIFI_DAC_DISABLED);
-
-    // Wait for the audio HAL to get back together to avoid potential race conditions.
-    // Don't care about disabling the HAL, the other interface functions don't work in
-    // in that state anyway.
-    if (enable) {
-        for(int i = 0; i < 5; i++) {
-            if(!property_get_bool(PROPERTY_HIFI_DAC_STATE, 0))
-                goto end;
-            sleep(1);
-        }
-        LOG(ERROR) << "DacControl::setHifiDacState(): Failed to enable DAC";
-        return false;
-    }
-end:
-    return true;
-#endif
 }
 
 bool DacControl::setDigitalFilterState(int32_t value) {
