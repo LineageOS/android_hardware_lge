@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75446c47_78d1327a",
+        "filename": "audio/msm8998/hal/msm8974/platform.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 7621,
+      "author": {
+        "id": 13028
+      },
+      "writtenOn": "2024-04-20T20:13:39Z",
+      "side": 1,
+      "message": "100. i think gerrit defaults to that, so every time you see no line number in a diff it\u0027s because its still the previous line and thus too long",
+      "parentUuid": "b09686f9_42ba601c",
+      "revId": "b11ba18dabee25207a0b813ed399a25835221b72",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "558fb2e5_568f1ad9",
         "filename": "audio/msm8998/hal/msm8974/platform.c",
         "patchSetId": 5
