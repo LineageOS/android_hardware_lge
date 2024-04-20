@@ -33,6 +33,24 @@
       "message": "guard with vendor \u003d lge?",
       "revId": "8d5463755ff6267e91099d81e43cf643661fc2fe",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea0a96f0_6f07cf3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-04-20T07:30:34Z",
+      "side": 1,
+      "message": "It seems not even that is needed; the root of hardware/lge requires Soong namespacing to parse the rest of the Makefiles.\n\nI was more so worried about other LG devices accidentally including audio/msm8996 when it\u0027s not the needed chipset; turns out we also have the qcom-audio thing in qcom-caf branches that made its way here, so it just works :)",
+      "parentUuid": "9f5be384_ae65a5d0",
+      "revId": "8d5463755ff6267e91099d81e43cf643661fc2fe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
