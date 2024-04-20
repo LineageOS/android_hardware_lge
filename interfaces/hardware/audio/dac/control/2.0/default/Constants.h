@@ -35,7 +35,6 @@
 #define PROPERTY_HIFI_DAC_ENABLED          "persist.vendor.lge.audio.hifi_dac"
 #endif
 
-#define PROPERTY_HIFI_DAC_STATE            "persist.vendor.audio.ess.status"
 #define PROPERTY_DIGITAL_FILTER            "persist.vendor.audio.ess.digitalFilter"
 #define PROPERTY_SOUND_PRESET              "persist.vendor.audio.ess.soundPreset"
 #define PROPERTY_LEFT_BALANCE              "persist.vendor.audio.ess.left_balance"
