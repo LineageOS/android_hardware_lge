@@ -15,12 +15,6 @@ on init
 on property:sys.boot_completed=1
     start vendor.lge-dac-control-2-0
 
-on property:persist.vendor.audio.hifi.enabled=*
-    restart vendor.audio-hal
-
-on property:persist.vendor.audio.ess.mode=*
-    restart vendor.audio-hal
-
 service vendor.lge-dac-control-2-0 /vendor/bin/hw/vendor.lge.hardware.audio.dac.control@2.0-service
     class hal
     user system
