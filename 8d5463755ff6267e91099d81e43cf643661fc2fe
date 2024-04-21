@@ -51,6 +51,24 @@
       "parentUuid": "9f5be384_ae65a5d0",
       "revId": "8d5463755ff6267e91099d81e43cf643661fc2fe",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "995f3be1_f066bfed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-04-21T02:48:13Z",
+      "side": 1,
+      "message": "that statement confuses me - soong namespace for Android.mk?\n\nThere\u0027s a reason people still guard android.mk with vendor guards in vendor/samsung.",
+      "parentUuid": "ea0a96f0_6f07cf3f",
+      "revId": "8d5463755ff6267e91099d81e43cf643661fc2fe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
