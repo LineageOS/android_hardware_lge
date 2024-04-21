@@ -69,6 +69,24 @@
       "parentUuid": "ea0a96f0_6f07cf3f",
       "revId": "8d5463755ff6267e91099d81e43cf643661fc2fe",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "297a4c1e_362dcf88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-04-21T10:53:06Z",
+      "side": 1,
+      "message": "On hardware/lge, we\u0027re checking for PRODUCT_SOONG_NAMESPACES rather than BOARD_VENDOR.",
+      "parentUuid": "995f3be1_f066bfed",
+      "revId": "8d5463755ff6267e91099d81e43cf643661fc2fe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
