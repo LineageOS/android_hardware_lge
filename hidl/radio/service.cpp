@@ -30,6 +30,7 @@ sp<V1_0::IRadio> getRealRadio(int slotId) {
     sp<V1_0::IRadio> realRadio = nullptr;
     std::string serviceName = "slot" + std::to_string(slotId);
 
+    /*
     realRadio = V1_4::IRadio::getService(serviceName);
     if (realRadio != nullptr) {
         return realRadio;
@@ -43,7 +44,7 @@ sp<V1_0::IRadio> getRealRadio(int slotId) {
     realRadio = V1_2::IRadio::getService(serviceName);
     if (realRadio != nullptr) {
         return realRadio;
-    }
+    } */
 
     realRadio = V1_1::IRadio::getService(serviceName);
     if (realRadio != nullptr) {
@@ -71,7 +72,6 @@ int main() {
         }
 
         // TODO: Use linkToDeath to monitor realRadio.
-
         slotIdToRadio[slotId] = new Radio(realRadio);
     }
 
