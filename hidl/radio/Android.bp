@@ -9,6 +9,7 @@ cc_binary {
     cflags: [
         "-Wno-unused-variable",
         "-Wno-error",
+        "-Wno-unused-parameter",
     ],
     owner: "lineage",
     relative_install_path: "hw",
