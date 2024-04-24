@@ -8,6 +8,10 @@
 
 namespace vendor::lge::hardware::radio::implementation {
 
+LgeRadioIndicationV2::LgeRadioIndicationV2(const sp<IRadioIndication>& radioIndication) {
+    mRadioIndication = radioIndication;
+}
+
 // Methods from ::vendor::lge::hardware::radio::V2_0::ILgeRadioIndicationV2 follow.
 Return<void> LgeRadioIndicationV2::testLgeRadioIndication(int32_t serial) {
     return Void();
