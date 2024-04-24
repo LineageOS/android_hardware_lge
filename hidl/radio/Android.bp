@@ -6,6 +6,11 @@
 
 cc_binary {
     name: "android.hardware.radio@1.4-service.lge",
+    cflags: [
+        "-Wno-unused-variable",
+        "-Wno-error",
+        "-Wno-unused-parameter",
+    ],
     owner: "lineage",
     relative_install_path: "hw",
     vendor: true,
