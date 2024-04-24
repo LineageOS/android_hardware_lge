@@ -50,7 +50,6 @@
     do {                                                     \
         auto realRadio_V1_4 = getRealRadio_V1_4();           \
         if (realRadio_V1_4 != nullptr) {                     \
-            LOG(WARNING) << "Using wrapper when not needed"; \
             return realRadio_V1_4->method(__VA_ARGS__);      \
         }                                                    \
     } while (0)
