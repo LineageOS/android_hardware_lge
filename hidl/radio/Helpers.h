@@ -17,5 +17,7 @@ using ::android::hardware::Void;
 #define TDSCDMABIT ((int) V1_0::RadioAccessFamily::TD_SCDMA)
 
 android::hardware::radio::V1_4::SignalStrength Create1_4SignalStrength(const android::hardware::radio::V1_0::SignalStrength& sigStrength);
+android::hardware::radio::V1_4::SignalStrength Create1_4SignalStrength(const android::hardware::radio::V1_2::SignalStrength& sigStrength);
 hidl_vec<android::hardware::radio::V1_4::CellInfo> Create1_4CellInfoList(const hidl_vec<android::hardware::radio::V1_0::CellInfo>& cellInfo);
+hidl_vec<android::hardware::radio::V1_4::CellInfo> Create1_4CellInfoList(const hidl_vec<android::hardware::radio::V1_2::CellInfo>& cellInfo);
 android::hardware::radio::V1_4::SetupDataCallResult Create1_4SetupDataCallResult(const android::hardware::radio::V1_0::SetupDataCallResult& dcResponse);

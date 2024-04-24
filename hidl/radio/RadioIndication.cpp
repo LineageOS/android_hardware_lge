@@ -247,70 +247,71 @@ Return<void> RadioIndication::keepaliveStatus(V1_0::RadioIndicationType type,
 // Methods from ::android::hardware::radio::V1_2::IRadioIndication follow.
 Return<void> RadioIndication::networkScanResult_1_2(V1_0::RadioIndicationType type,
                                                     const V1_2::NetworkScanResult& result) {
-    // TODO implement
-    return Void();
+    V1_4::NetworkScanResult newNSR = {};
+    newNSR.status = result.status;
+    newNSR.error = result.error;
+    newNSR.networkInfos = Create1_4CellInfoList(result.networkInfos);
+    return mRealRadioIndication->networkScanResult_1_4(type, newNSR);
 }
 
 Return<void> RadioIndication::cellInfoList_1_2(V1_0::RadioIndicationType type,
                                                const hidl_vec<V1_2::CellInfo>& records) {
-    // TODO implement
-    return Void();
+    return mRealRadioIndication->cellInfoList_1_4(type, Create1_4CellInfoList(records));
 }
 
 Return<void> RadioIndication::currentLinkCapacityEstimate(V1_0::RadioIndicationType type,
                                                           const V1_2::LinkCapacityEstimate& lce) {
-    // TODO implement
-    return Void();
+    return mRealRadioIndication->currentLinkCapacityEstimate(type, lce);
 }
 
 Return<void> RadioIndication::currentPhysicalChannelConfigs(
-        V1_0::RadioIndicationType type, const hidl_vec<V1_2::PhysicalChannelConfig>& configs) {
-    // TODO implement
-    return Void();
+    V1_0::RadioIndicationType type, const hidl_vec<V1_2::PhysicalChannelConfig>& configs) {
+
+    hidl_vec<V1_4::PhysicalChannelConfig> newConfigs;
+    newConfigs.resize(configs.size());
+    for(int x = 0; x < configs.size(); ++x){
+        newConfigs[x].base = configs[x];
+        newConfigs[x].rat = V1_4::RadioTechnology::UNKNOWN;
+        newConfigs[x].physicalCellId = -1;
+    }
+    return mRealRadioIndication->currentPhysicalChannelConfigs_1_4(type, newConfigs);
 }
 
 Return<void> RadioIndication::currentSignalStrength_1_2(
         V1_0::RadioIndicationType type, const V1_2::SignalStrength& signalStrength) {
-    // TODO implement
-    return Void();
+    return mRealRadioIndication->currentSignalStrength_1_4(type, Create1_4SignalStrength(signalStrength));
 }
 
 // Methods from ::android::hardware::radio::V1_4::IRadioIndication follow.
 Return<void> RadioIndication::currentEmergencyNumberList(
         V1_0::RadioIndicationType type,
         const hidl_vec<V1_4::EmergencyNumber>& emergencyNumberList) {
-    // TODO implement
-    return Void();
+    return mRealRadioIndication->currentEmergencyNumberList(type, emergencyNumberList);
 }
 
 Return<void> RadioIndication::cellInfoList_1_4(V1_0::RadioIndicationType type,
                                                const hidl_vec<V1_4::CellInfo>& records) {
-    // TODO implement
-    return Void();
+    return mRealRadioIndication->cellInfoList_1_4(type, records);
 }
 
 Return<void> RadioIndication::networkScanResult_1_4(V1_0::RadioIndicationType type,
                                                     const V1_4::NetworkScanResult& result) {
-    // TODO implement
-    return Void();
+    return mRealRadioIndication->networkScanResult_1_4(type, result);
 }
 
 Return<void> RadioIndication::currentPhysicalChannelConfigs_1_4(
         V1_0::RadioIndicationType type, const hidl_vec<V1_4::PhysicalChannelConfig>& configs) {
-    // TODO implement
-    return Void();
+    return mRealRadioIndication->currentPhysicalChannelConfigs_1_4(type, configs);
 }
 
 Return<void> RadioIndication::dataCallListChanged_1_4(
         V1_0::RadioIndicationType type, const hidl_vec<V1_4::SetupDataCallResult>& dcList) {
-    // TODO implement
-    return Void();
+    return mRealRadioIndication->dataCallListChanged_1_4(type, dcList);
 }
 
 Return<void> RadioIndication::currentSignalStrength_1_4(
         V1_0::RadioIndicationType type, const V1_4::SignalStrength& signalStrength) {
-    // TODO implement
-    return Void();
+    return mRealRadioIndication->currentSignalStrength_1_4(type, signalStrength);
 }
 
 }  // namespace android::hardware::radio::implementation
