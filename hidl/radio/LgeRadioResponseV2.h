@@ -6,6 +6,9 @@
 
 #pragma once
 
+#include <android/hardware/radio/1.3/IRadioResponse.h>
+#include <android/hardware/radio/1.4/IRadioResponse.h>
+#include <android/hardware/radio/1.5/IRadioResponse.h>
 #include <vendor/lge/hardware/radio/2.0/ILgeRadioResponseV2.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
@@ -20,6 +23,7 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 using ::android::sp;
 
+using ::android::hardware::radio::V1_4::IRadioResponse;
 using ::android::hardware::radio::V1_0::RadioResponseInfo;
 using ::android::hardware::radio::V1_0::IccIoResult;
 using ::android::hardware::radio::V1_5::DataProfileInfo;
@@ -37,6 +41,7 @@ using ::vendor::lge::hardware::radio::V2_0::DataRegStateResult_1_4;
 using ::vendor::lge::hardware::radio::V2_0::LgeCardStatus;
 
 struct LgeRadioResponseV2 : public V2_0::ILgeRadioResponseV2 {
+    LgeRadioResponseV2(const sp<IRadioResponse>& radioResponse);
     // Methods from ::vendor::lge::hardware::radio::V2_0::ILgeRadioResponseV2 follow.
     Return<void> testLgeRadioInterfaceResponse(const RadioResponseInfo& info, int32_t serial) override;
     Return<void> PBMReadRecordResponse(const RadioResponseInfo& info, const LgePbmRecords& recordInfo) override;
@@ -123,6 +128,8 @@ struct LgeRadioResponseV2 : public V2_0::ILgeRadioResponseV2 {
     Return<void> getDataRegistrationStateResponse_1_3(const RadioResponseInfo& info, const DataRegStateResult_1_4& dataRegResponse) override;
     Return<void> getInitialAttachApnResponse_1_3(const RadioResponseInfo& info, const DataProfileInfo_1_4& profile) override;
 
+private:
+    sp<IRadioResponse> mRadioResponse;
 };
 
 }  // namespace vendor::lge::hardware::radio::implementation
