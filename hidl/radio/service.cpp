@@ -7,6 +7,7 @@
 #define LOG_TAG "android.hardware.radio@1.4-service.lge"
 
 #include <android-base/logging.h>
+#include <android-base/properties.h>
 #include <hidl/HidlTransportSupport.h>
 
 #include "Radio.h"
@@ -17,6 +18,7 @@ using namespace android::hardware::radio;
 
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
+using android::base::GetIntProperty;
 
 using android::hardware::radio::implementation::Radio;
 
@@ -24,13 +26,12 @@ using android::OK;
 using android::sp;
 using android::status_t;
 
-#define MAX_SLOT_ID 4
-
 int main() {
     // Note: Starts from slot 1
     std::map<int, sp<V1_4::IRadio>> slotIdToRadio;
+    int slotCount = GetIntProperty("ro.boot.vendor.lge.sim_num", 1);
 
-    for (int slotId = 1; slotId <= MAX_SLOT_ID; slotId++) {
+    for (int slotId = 1; slotId <= slotCount; slotId++) {
         sp<V1_0::IRadio> realRadio = V1_0::IRadio::getService("slot" + std::to_string(slotId));
         if (realRadio == nullptr) {
             LOG(INFO) << "Cannot get radio service for slot " << slotId;
@@ -44,10 +45,10 @@ int main() {
         }
 
         // TODO: Use linkToDeath to monitor realRadio.
-        slotIdToRadio[slotId] = new Radio(realRadio);
+        slotIdToRadio[slotId] = new Radio(realRadio, slotId);
     }
 
-    configureRpcThreadpool(1, true);
+    configureRpcThreadpool(slotCount * 2 + 2, true);
 
     for (auto const& [slotId, radio] : slotIdToRadio) {
         status_t status = radio->registerAsService("slot" + std::to_string(slotId));
