@@ -8,6 +8,10 @@
 
 namespace vendor::lge::hardware::radio::implementation {
 
+LgeRadioResponseV2::LgeRadioResponseV2(const sp<IRadioResponse>& radioResponse) {
+    mRadioResponse = radioResponse;
+}
+
 // Methods from ::vendor::lge::hardware::radio::V2_0::ILgeRadioResponseV2 follow.
 Return<void> LgeRadioResponseV2::testLgeRadioInterfaceResponse(const RadioResponseInfo& info, int32_t serial) {
     return Void();
