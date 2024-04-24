@@ -20,6 +20,7 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 using ::android::sp;
 
+using ::android::hardware::radio::V1_4::IRadioIndication;
 using ::android::hardware::radio::V1_0::RadioIndicationType;
 
 using ::vendor::lge::hardware::radio::V2_0::LgeMocaConfigInfo;
@@ -32,6 +33,9 @@ using ::vendor::lge::hardware::radio::V2_0::ImsPCSCFRestorationVZW;
 using ::vendor::lge::hardware::radio::V2_0::DataPdnThrottleIndInfo;
 
 struct LgeRadioIndicationV2 : public V2_0::ILgeRadioIndicationV2 {
+public:
+    LgeRadioIndicationV2(const sp<IRadioIndication>& radioIndication);
+
     // Methods from ::vendor::lge::hardware::radio::V2_0::ILgeRadioIndicationV2 follow.
     Return<void> testLgeRadioIndication(int32_t serial) override;
     Return<void> racInd(RadioIndicationType type, const hidl_vec<int32_t>& data) override;
@@ -90,6 +94,8 @@ struct LgeRadioIndicationV2 : public V2_0::ILgeRadioIndicationV2 {
     Return<void> handoffInformation(RadioIndicationType type, const hidl_vec<int32_t>& data) override;
     Return<void> nrRegistrationInfo(RadioIndicationType type, const hidl_vec<int32_t>& data) override;
 
+private:
+    sp<IRadioIndication> mRadioIndication;
 };
 
 }  // namespace vendor::lge::hardware::radio::implementation
