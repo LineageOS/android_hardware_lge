@@ -56,7 +56,9 @@
 
 namespace android::hardware::radio::implementation {
 
-Radio::Radio(sp<::lineage::hardware::radio::V1_0::IRadio> realRadio) : mRealRadio(realRadio) {}
+Radio::Radio(sp<::lineage::hardware::radio::V1_0::IRadio> realRadio, int slotId) : mRealRadio(realRadio) {
+    mSlotId = slotId;
+}
 
 // Methods from ::android::hardware::radio::V1_0::IRadio follow.
 Return<void> Radio::setResponseFunctions(const sp<V1_0::IRadioResponse>& radioResponse,
@@ -64,6 +66,13 @@ Return<void> Radio::setResponseFunctions(const sp<V1_0::IRadioResponse>& radioRe
     mRadioResponse->setRealRadioResponse(radioResponse);
     mRadioIndication->setRealRadioIndication(radioIndication);
 
+    // We also need to do some funny for LgeRadio here.
+    mLgeRadioResponse = new LgeRadioResponseV2(mRadioResponse->mRealRadioResponse);
+    mLgeRadioIndication = new LgeRadioIndicationV2(mRadioIndication->mRealRadioIndication);
+    auto svc = ILgeRadio::getService("lge_radio" + (mSlotId != 1 ? std::to_string(mSlotId) : ""));
+    svc->setResponseFunctions(mLgeRadioResponse, mLgeRadioIndication);
+
+    // Finally, set up radio
     WRAP_V1_0_CALL(
             setResponseFunctions,
             reinterpret_cast<sp<::lineage::hardware::radio::V1_0::IRadioResponse>&>(mRadioResponse),

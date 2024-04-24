@@ -14,6 +14,10 @@
 #include "RadioIndication.h"
 #include "RadioResponse.h"
 
+#include <vendor/lge/hardware/radio/2.0/ILgeRadio.h>
+#include "LgeRadioIndicationV2.h"
+#include "LgeRadioResponseV2.h"
+
 namespace android::hardware::radio::implementation {
 
 using ::android::sp;
@@ -24,9 +28,15 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
+using vendor::lge::hardware::radio::V2_0::ILgeRadio;
+using vendor::lge::hardware::radio::V2_0::ILgeRadioIndicationV2;
+using vendor::lge::hardware::radio::V2_0::ILgeRadioResponseV2;
+using vendor::lge::hardware::radio::implementation::LgeRadioIndicationV2;
+using vendor::lge::hardware::radio::implementation::LgeRadioResponseV2;
+
 struct Radio : public V1_4::IRadio {
   public:
-    Radio(sp<lineage::hardware::radio::V1_0::IRadio> realRadio);
+    Radio(sp<lineage::hardware::radio::V1_0::IRadio> realRadio, int slotId);
 
     // Methods from ::android::hardware::radio::V1_0::IRadio follow.
     Return<void> setResponseFunctions(const sp<V1_0::IRadioResponse>& radioResponse,
@@ -261,10 +271,17 @@ struct Radio : public V1_4::IRadio {
     Return<void> getSignalStrength_1_4(int32_t serial) override;
 
   private:
+<<<<<<< HEAD
     sp<::lineage::hardware::radio::V1_0::IRadio> mRealRadio;
 
+=======
+    int mSlotId;
+    sp<V1_0::IRadio> mRealRadio;
+>>>>>>> 6848f18a (radio: setup LgeRadio)
     sp<RadioResponse> mRadioResponse = new RadioResponse();
     sp<RadioIndication> mRadioIndication = new RadioIndication();
+    sp<LgeRadioResponseV2> mLgeRadioResponse;
+    sp<LgeRadioIndicationV2> mLgeRadioIndication;
 
     sp<::lineage::hardware::radio::V1_1::IRadio> getRealRadio_V1_1();
     sp<::lineage::hardware::radio::V1_2::IRadio> getRealRadio_V1_2();

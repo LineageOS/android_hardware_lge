@@ -7,6 +7,7 @@
 #define LOG_TAG "android.hardware.radio@1.4-service.lge"
 
 #include <android-base/logging.h>
+#include <android-base/properties.h>
 #include <hidl/HidlTransportSupport.h>
 #include <lineage/hardware/radio/1.6/IRadio.h>
 
@@ -19,14 +20,13 @@ using namespace android::hardware::hidl_utils;
 
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
+using android::base::GetIntProperty;
 
 using android::hardware::radio::implementation::Radio;
 
 using android::OK;
 using android::sp;
 using android::status_t;
-
-static constexpr int kMaxSlotId = 4;
 
 static sp<lineage::hardware::radio::V1_0::IRadio> getRealRadio(int slotId) {
     sp<lineage::hardware::radio::V1_0::IRadio> realRadio = nullptr;
@@ -68,6 +68,7 @@ static sp<lineage::hardware::radio::V1_0::IRadio> getRealRadio(int slotId) {
 int main() {
     // Note: Starts from slot 1
     std::map<int, sp<android::hardware::radio::V1_4::IRadio>> slotIdToRadio;
+    int kMaxSlotId = GetIntProperty("ro.boot.vendor.lge.sim_num", 1);
 
     for (int slotId = 1; slotId <= kMaxSlotId; slotId++) {
         sp<lineage::hardware::radio::V1_0::IRadio> realRadio = getRealRadio(slotId);
@@ -86,7 +87,7 @@ int main() {
         slotIdToRadio[slotId] = new Radio(realRadio);
     }
 
-    configureRpcThreadpool(1, true);
+    configureRpcThreadpool(kMaxSlotId * 2 + 2, true);
 
     for (auto const& [slotId, radio] : slotIdToRadio) {
         status_t status = radio->registerAsService("slot" + std::to_string(slotId));
