@@ -794,140 +794,123 @@ Return<void> RadioResponse::stopKeepaliveResponse(const V1_0::RadioResponseInfo&
 // Methods from ::android::hardware::radio::V1_2::IRadioResponse follow.
 Return<void> RadioResponse::getCellInfoListResponse_1_2(const V1_0::RadioResponseInfo& info,
                                                         const hidl_vec<V1_2::CellInfo>& cellInfo) {
-    // TODO implement
-    return Void();
+     return mRealRadioResponse->getCellInfoListResponse_1_4(info, Create1_4CellInfoList(cellInfo));
 }
 
 Return<void> RadioResponse::getIccCardStatusResponse_1_2(const V1_0::RadioResponseInfo& info,
                                                          const V1_2::CardStatus& cardStatus) {
-    // TODO implement
-    return Void();
+    V1_4::CardStatus newCS = {};
+    newCS.base = cardStatus;
+    return mRealRadioResponse->getIccCardStatusResponse_1_4(info, newCS);
 }
 
 Return<void> RadioResponse::setSignalStrengthReportingCriteriaResponse(
         const V1_0::RadioResponseInfo& info) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->setSignalStrengthReportingCriteriaResponse(info);
 }
 
 Return<void> RadioResponse::setLinkCapacityReportingCriteriaResponse(
         const V1_0::RadioResponseInfo& info) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->setLinkCapacityReportingCriteriaResponse(info);
 }
 
 Return<void> RadioResponse::getCurrentCallsResponse_1_2(const V1_0::RadioResponseInfo& info,
                                                         const hidl_vec<V1_2::Call>& calls) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getCurrentCallsResponse_1_2(info, calls);
 }
 
 Return<void> RadioResponse::getSignalStrengthResponse_1_2(
         const V1_0::RadioResponseInfo& info, const V1_2::SignalStrength& signalStrength) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getSignalStrengthResponse_1_4(info, Create1_4SignalStrength(signalStrength));
 }
 
 Return<void> RadioResponse::getVoiceRegistrationStateResponse_1_2(
         const V1_0::RadioResponseInfo& info, const V1_2::VoiceRegStateResult& voiceRegResponse) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getVoiceRegistrationStateResponse_1_2(info, voiceRegResponse);
 }
 
 Return<void> RadioResponse::getDataRegistrationStateResponse_1_2(
         const V1_0::RadioResponseInfo& info, const V1_2::DataRegStateResult& dataRegResponse) {
-    // TODO implement
-    return Void();
+
+    mDataRoaming = (dataRegResponse.regState == V1_0::RegState::REG_ROAMING);
+    V1_4::DataRegStateResult newDRR = {};
+    newDRR.base = dataRegResponse;
+    return mRealRadioResponse->getDataRegistrationStateResponse_1_4(info, newDRR);
 }
 
 // Methods from ::android::hardware::radio::V1_3::IRadioResponse follow.
 Return<void> RadioResponse::setSystemSelectionChannelsResponse(
         const V1_0::RadioResponseInfo& info) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->setSystemSelectionChannelsResponse(info);
 }
 
 Return<void> RadioResponse::enableModemResponse(const V1_0::RadioResponseInfo& info) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->enableModemResponse(info);
 }
 
 Return<void> RadioResponse::getModemStackStatusResponse(const V1_0::RadioResponseInfo& info,
                                                         bool isEnabled) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getModemStackStatusResponse(info, isEnabled);
 }
 
 // Methods from ::android::hardware::radio::V1_4::IRadioResponse follow.
 Return<void> RadioResponse::emergencyDialResponse(const V1_0::RadioResponseInfo& info) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->emergencyDialResponse(info);
 }
 
 Return<void> RadioResponse::startNetworkScanResponse_1_4(const V1_0::RadioResponseInfo& info) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->startNetworkScanResponse_1_4(info);
 }
 
 Return<void> RadioResponse::getCellInfoListResponse_1_4(const V1_0::RadioResponseInfo& info,
                                                         const hidl_vec<V1_4::CellInfo>& cellInfo) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getCellInfoListResponse_1_4(info, cellInfo);
 }
 
 Return<void> RadioResponse::getDataRegistrationStateResponse_1_4(
         const V1_0::RadioResponseInfo& info, const V1_4::DataRegStateResult& dataRegResponse) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getDataRegistrationStateResponse_1_4(info, dataRegResponse);
 }
 
 Return<void> RadioResponse::getIccCardStatusResponse_1_4(const V1_0::RadioResponseInfo& info,
                                                          const V1_4::CardStatus& cardStatus) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getIccCardStatusResponse_1_4(info, cardStatus);
 }
 
 Return<void> RadioResponse::getPreferredNetworkTypeBitmapResponse(
         const V1_0::RadioResponseInfo& info, hidl_bitfield<V1_4::RadioAccessFamily> networkTypeBitmap) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getPreferredNetworkTypeBitmapResponse(info, networkTypeBitmap);
 }
 
 Return<void> RadioResponse::setPreferredNetworkTypeBitmapResponse(
         const V1_0::RadioResponseInfo& info) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->setPreferredNetworkTypeBitmapResponse(info);
 }
 
 Return<void> RadioResponse::getDataCallListResponse_1_4(
         const V1_0::RadioResponseInfo& info,
         const hidl_vec<V1_4::SetupDataCallResult>& dcResponse) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getDataCallListResponse_1_4(info, dcResponse);
 }
 
 Return<void> RadioResponse::setupDataCallResponse_1_4(const V1_0::RadioResponseInfo& info,
                                                       const V1_4::SetupDataCallResult& dcResponse) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->setupDataCallResponse_1_4(info, dcResponse);
 }
 
 Return<void> RadioResponse::setAllowedCarriersResponse_1_4(const V1_0::RadioResponseInfo& info) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->setAllowedCarriersResponse_1_4(info);
 }
 
 Return<void> RadioResponse::getAllowedCarriersResponse_1_4(
         const V1_0::RadioResponseInfo& info, const V1_4::CarrierRestrictionsWithPriority& carriers,
         V1_4::SimLockMultiSimPolicy multiSimPolicy) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getAllowedCarriersResponse_1_4(info, carriers, multiSimPolicy);
 }
 
 Return<void> RadioResponse::getSignalStrengthResponse_1_4(
         const V1_0::RadioResponseInfo& info, const V1_4::SignalStrength& signalStrength) {
-    // TODO implement
-    return Void();
+    return mRealRadioResponse->getSignalStrengthResponse_1_4(info, signalStrength);
 }
 
 }  // namespace android::hardware::radio::implementation

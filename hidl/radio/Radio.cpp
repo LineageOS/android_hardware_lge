@@ -783,6 +783,9 @@ Return<void> Radio::setupDataCall_1_4(int32_t serial, V1_4::AccessNetwork access
     MAYBE_WRAP_V1_4_CALL(setupDataCall_1_4, serial, accessNetwork, dataProfileInfo, roamingAllowed,
                          reason, addresses, dnses);
 
+    MAYBE_WRAP_V1_2_CALL(setupDataCall_1_2, serial, (V1_2::AccessNetwork) accessNetwork, Get1_0DataProfileInfo(dataProfileInfo), dataProfileInfo.persistent,
+                   roamingAllowed, mRadioResponse->mDataRoaming, reason, addresses, dnses);
+
     WRAP_V1_0_CALL(setupDataCall, serial, mRadioResponse->mRat, Get1_0DataProfileInfo(dataProfileInfo), dataProfileInfo.persistent,
                    roamingAllowed, mRadioResponse->mDataRoaming);
 }
@@ -825,6 +828,7 @@ Return<void> Radio::emergencyDial(int32_t serial, const V1_0::Dial& dialInfo,
 
 Return<void> Radio::startNetworkScan_1_4(int32_t serial, const V1_2::NetworkScanRequest& request) {
     MAYBE_WRAP_V1_4_CALL(startNetworkScan_1_4, serial, request);
+    MAYBE_WRAP_V1_2_CALL(startNetworkScan_1_2, serial, request);
 
     V1_1::NetworkScanRequest legacyRequest = {};
     legacyRequest.type = request.type;
