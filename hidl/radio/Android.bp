@@ -6,6 +6,10 @@
 
 cc_binary {
     name: "android.hardware.radio@1.4-service.lge",
+    cflags: [
+        "-Wno-unused-variable",
+        "-Wno-unused-parameter",
+    ],
     owner: "lineage",
     relative_install_path: "hw",
     vendor: true,
@@ -18,6 +22,8 @@ cc_binary {
         "service.cpp",
         "Helpers.cpp",
         "hidl-utils.cpp",
+        "LgeRadioIndicationV2.cpp",
+        "LgeRadioResponseV2.cpp",
     ],
     shared_libs: [
         "libbase",
@@ -28,6 +34,8 @@ cc_binary {
         "android.hardware.radio@1.2",
         "android.hardware.radio@1.3",
         "android.hardware.radio@1.4",
+        "android.hardware.radio@1.5",
+        "vendor.lge.hardware.radio@2.0",
         "android.hidl.safe_union@1.0",
         "lineage.hardware.radio@1.0",
         "lineage.hardware.radio@1.1",
