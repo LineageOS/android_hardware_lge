@@ -31,6 +31,30 @@ V1_4::SignalStrength Create1_4SignalStrength(const V1_0::SignalStrength& sigStre
     return newSigStrength;
 }
 
+V1_4::SignalStrength Create1_4SignalStrength(const V1_2::SignalStrength& sigStrength){
+
+    V1_4::SignalStrength newSigStrength = {};
+    newSigStrength.gsm = sigStrength.gsm;
+    newSigStrength.cdma = sigStrength.cdma;
+    newSigStrength.evdo = sigStrength.evdo;
+    newSigStrength.lte = sigStrength.lte;
+    newSigStrength.wcdma = sigStrength.wcdma;
+
+    newSigStrength.tdscdma.signalStrength = INT_MAX;
+    newSigStrength.tdscdma.bitErrorRate = INT_MAX;
+    newSigStrength.tdscdma.rscp = sigStrength.tdScdma.rscp != INT_MAX ?
+        -sigStrength.tdScdma.rscp + 120 : INT_MAX;
+
+    newSigStrength.nr.ssRsrp = INT_MAX;
+    newSigStrength.nr.ssRsrq = INT_MAX;
+    newSigStrength.nr.ssSinr = INT_MAX;
+    newSigStrength.nr.csiRsrp = INT_MAX;
+    newSigStrength.nr.csiRsrq = INT_MAX;
+    newSigStrength.nr.csiSinr = INT_MAX;
+
+    return newSigStrength;
+}
+
 hidl_vec<V1_4::CellInfo> Create1_4CellInfoList(const hidl_vec<V1_0::CellInfo>& cellInfo) {
     hidl_vec<V1_4::CellInfo> newCI;
     newCI.resize(cellInfo.size());
@@ -77,6 +101,35 @@ hidl_vec<V1_4::CellInfo> Create1_4CellInfoList(const hidl_vec<V1_0::CellInfo>& c
                 -cellInfo[x].tdscdma[0].signalStrengthTdscdma.rscp + 120 : INT_MAX;
             newCI[x].info.tdscdma(TdscdmaInfo);
         }
+    }
+
+    return newCI;
+}
+
+hidl_vec<V1_4::CellInfo> Create1_4CellInfoList(const hidl_vec<V1_2::CellInfo>& cellInfo) {
+    hidl_vec<V1_4::CellInfo> newCI;
+    newCI.resize(cellInfo.size());
+
+    for(int x = 0; x < cellInfo.size(); ++x){
+        newCI[x].isRegistered = cellInfo[x].registered;
+        newCI[x].connectionStatus = cellInfo[x].connectionStatus;
+        if(cellInfo[x].gsm.size() == 1)
+            newCI[x].info.gsm(cellInfo[x].gsm[0]);
+
+        else if(cellInfo[x].cdma.size() == 1)
+            newCI[x].info.cdma(cellInfo[x].cdma[0]);
+
+        else if(cellInfo[x].lte.size() == 1){
+             V1_4::CellInfoLte LteInfo = {};
+             LteInfo.base = cellInfo[x].lte[0];
+             LteInfo.cellConfig.isEndcAvailable = false;
+             newCI[x].info.lte(LteInfo);
+        }
+        else if(cellInfo[x].wcdma.size() == 1)
+            newCI[x].info.wcdma(cellInfo[x].wcdma[0]);
+
+        else if(cellInfo[x].tdscdma.size() == 1)
+            newCI[x].info.tdscdma(cellInfo[x].tdscdma[0]);
     }
 
     return newCI;
