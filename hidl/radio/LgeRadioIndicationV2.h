@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <android/hardware/radio/1.4/IRadioIndication.h>
 #include <vendor/lge/hardware/radio/2.0/ILgeRadioIndicationV2.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
