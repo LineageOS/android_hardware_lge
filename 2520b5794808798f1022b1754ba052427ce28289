@@ -16,6 +16,24 @@
       "message": "You\u0027re right on the interface instance name, but your original service is supposed to register `lineage.hardware.radio`, else it won\u0027t work, you\u0027ll have two interfaces with the same name, AOSP will pick a random one",
       "revId": "2520b5794808798f1022b1754ba052427ce28289",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef1f3bfe_392acd3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-04-29T14:13:56Z",
+      "side": 1,
+      "message": "I do have lineage.hardware.radio in device manifest.\n\nNot mentioned in the commit message is my other reasoning for removing it; we also expect devices to have a variable number of slots. So it didn\u0027t make sense to have a fragment that might define a number that doesn\u0027t match the device, making me need to do an ODM override unnecessarily.",
+      "parentUuid": "9ed65b5e_752f4755",
+      "revId": "2520b5794808798f1022b1754ba052427ce28289",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
