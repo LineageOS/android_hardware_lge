@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ed65b5e_752f4755",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2024-04-29T13:48:10Z",
+      "side": 1,
+      "message": "You\u0027re right on the interface instance name, but your original service is supposed to register `lineage.hardware.radio`, else it won\u0027t work, you\u0027ll have two interfaces with the same name, AOSP will pick a random one",
+      "revId": "2520b5794808798f1022b1754ba052427ce28289",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
