@@ -15,6 +15,9 @@
     <string name="sound_preset_live">Live</string>
     <string name="sound_preset_bass">Bass</string>
     <string name="digital_filter">Digitaler Filter</string>
+    <string name="digital_filter_0">Kurz</string>
+    <string name="digital_filter_1">Scharf</string>
+    <string name="digital_filter_2">Langsam</string>
     <string name="digital_filter_3">Benutzerdefinierter Filter</string>
     <string name="customizable_filter_settings">Benutzerdefinierter Filter Einstellungen</string>
     <string name="cf_shape">Benutzerdefinierte Filterform</string>
