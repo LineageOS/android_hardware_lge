@@ -74,6 +74,7 @@ int main() {
     se = new SunlightEnhancement();
     if (se == nullptr) {
         LOG(ERROR) << "Can not create an instance of LiveDisplay HAL SunlightEnhancement Iface, exiting.";
+        goto shutdown;
     }
 
     for (auto&& lib : SDM_DISP_LIBS) {
