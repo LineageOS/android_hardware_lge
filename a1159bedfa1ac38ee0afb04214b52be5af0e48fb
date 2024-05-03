@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c555185_8c2a1cdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-05-03T07:17:20Z",
+      "side": 1,
+      "message": "Ideally we move to this solution, which would be unified across all LG: I4d61a288746c2eb34849831d58633c298e04622e",
+      "revId": "a1159bedfa1ac38ee0afb04214b52be5af0e48fb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
