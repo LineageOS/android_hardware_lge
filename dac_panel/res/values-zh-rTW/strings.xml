@@ -15,9 +15,13 @@
     <string name="sound_preset_live">Live</string>
     <string name="sound_preset_bass">Bass</string>
     <string name="digital_filter">數位濾波器</string>
+    <string name="digital_filter_0">短</string>
+    <string name="digital_filter_1">銳利</string>
+    <string name="digital_filter_2">慢</string>
     <string name="hifi_mode">HiFi 模式</string>
     <string name="hifi_mode_normal">標準</string>
     <string name="hifi_mode_him">高阻抗</string>
+    <string name="hifi_mode_aux-him">AUX 高阻抗</string>
     <string name="avc_volume">AVC 音量</string>
     <string name="avc_volume_summary">放大音量</string>
 </resources>

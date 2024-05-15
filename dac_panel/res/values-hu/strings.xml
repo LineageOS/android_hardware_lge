@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Quad DAC-panel</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC be</string>
+    <string name="quad_dac_off">Quad DAC ki</string>
+    <string name="quad_dac_unavail">A Quad DAC nem érhető el</string>
+    <string name="quad_dac_settings">Quad DAC-beállítások</string>
+    <string name="quad_dac_balance">Egyensúly</string>
+    <string name="quad_dac_balance_summary">Megváltoztathaó a bal és a jobb egymáshoz viszonyított egyensúlya</string>
+    <string name="sound_preset">Hangzás-beállítások</string>
+    <string name="sound_preset_normal">Szokásos</string>
+    <string name="sound_preset_enhanced">Kiemelt</string>
+    <string name="sound_preset_detailed">Részletes</string>
+    <string name="sound_preset_live">Élő</string>
+    <string name="sound_preset_bass">Basszus</string>
+    <string name="digital_filter">Digitális szűrő</string>
+    <string name="digital_filter_0">Rövid</string>
+    <string name="digital_filter_1">Éles</string>
+    <string name="digital_filter_2">Lassú</string>
+    <string name="hifi_mode">Hi-Fi-mód</string>
+    <string name="hifi_mode_normal">Szokásos</string>
+    <string name="hifi_mode_him">Nagy impedanciájú</string>
+    <string name="hifi_mode_aux-him">AUX nagy impedancia</string>
+    <string name="avc_volume">AVC-hangerő</string>
+    <string name="avc_volume_summary">Erősítő hangerő</string>
+</resources>
