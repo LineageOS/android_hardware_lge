@@ -1,18 +1,40 @@
 //
-// Copyright (C) 2019 The LineageOS Project
+// Copyright (C) 2019-2024 The LineageOS Project
 //
 // SPDX-License-Identifier: Apache-2.0
 //
+
+filegroup {
+    name: "vendor.lineage.livedisplay@2.0-lge-ce",
+    srcs: ["ColorEnhancement.cpp"],
+}
+
+filegroup {
+    name: "vendor.lineage.livedisplay@2.0-lge-dm",
+    srcs: ["DisplayModes.cpp"],
+}
+
+filegroup {
+    name: "vendor.lineage.livedisplay@2.0-lge-se",
+    srcs: ["SunlightEnhancement.cpp"],
+}
+
+cc_library_headers {
+    name: "vendor.lineage.livedisplay@2.0-lge-headers",
+    vendor_available: true,
+    export_include_dirs: ["include"],
+}
 
 cc_defaults {
     name: "livedisplay_lge_defaults",
     defaults: ["hidl_defaults"],
     relative_install_path: "hw",
     srcs: [
-        "ColorEnhancement.cpp",
-        "DisplayModes.cpp",
-        "PictureAdjustment.cpp",
-        "SunlightEnhancement.cpp",
+        ":vendor.lineage.livedisplay@2.0-lge-ce",
+        ":vendor.lineage.livedisplay@2.0-lge-dm",
+        ":vendor.lineage.livedisplay@2.0-lge-se",
+        ":vendor.lineage.livedisplay@2.0-sdm-pa",
+        ":vendor.lineage.livedisplay@2.0-sdm-utils",
         "service.cpp",
     ],
     shared_libs: [
@@ -23,6 +45,10 @@ cc_defaults {
         "libhidlbase",
         "libutils",
         "vendor.lineage.livedisplay@2.0",
+    ],
+    header_libs: [
+        "vendor.lineage.livedisplay@2.0-sdm-headers",
+        "vendor.lineage.livedisplay@2.0-lge-headers",
     ],
 }
 

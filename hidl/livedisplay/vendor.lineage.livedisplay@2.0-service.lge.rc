@@ -10,6 +10,6 @@ on init
     chmod 0660 /sys/devices/virtual/panel/img_tune/hdr_mode
 
 service vendor.livedisplay-hal-2-0-lge /vendor/bin/hw/vendor.lineage.livedisplay@2.0-service.lge
-    class hal
+    class late_start
     user system
     group system

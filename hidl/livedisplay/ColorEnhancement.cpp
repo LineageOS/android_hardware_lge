@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "ColorEnhancement.h"
+#include <livedisplay/lge/ColorEnhancement.h>
 
 #include <android-base/logging.h>
 #include <android-base/file.h>

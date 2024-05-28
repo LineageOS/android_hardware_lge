@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "DisplayModes.h"
+#include <livedisplay/lge/DisplayModes.h>
 #include <android-base/logging.h>
 #include <fstream>
 
