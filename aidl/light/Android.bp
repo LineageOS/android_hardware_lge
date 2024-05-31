@@ -1,0 +1,24 @@
+//
+// Copyright (C) 2024 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    name: "android.hardware.light-service.lge",
+    relative_install_path: "hw",
+    init_rc: ["android.hardware.light-service.lge.rc"],
+    vintf_fragments: ["android.hardware.light-service.lge.xml"],
+    local_include_dirs: ["include"],
+    srcs: [
+        "Lights.cpp",
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "liblog",
+        "android.hardware.light-V2-ndk",
+    ],
+    vendor: true,
+}
