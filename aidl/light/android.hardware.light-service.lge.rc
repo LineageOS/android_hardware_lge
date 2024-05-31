@@ -1,0 +1,6 @@
+service vendor.light-default /vendor/bin/hw/android.hardware.light-service.lge
+    class hal
+    user system
+    group system
+    shutdown critical
+
