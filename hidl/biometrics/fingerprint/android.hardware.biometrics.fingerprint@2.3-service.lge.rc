@@ -1,3 +1,7 @@
+on boot    
+    chmod 664 /sys/devices/virtual/input/lge_touch/reset_ctrl
+    chown system system /sys/devices/virtual/input/lge_touch/reset_ctrl
+
 service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.3-service.lge
     # "class hal" causes a race condition on some devices due to files created
     # in /data. As a workaround, postpone startup until later in boot once

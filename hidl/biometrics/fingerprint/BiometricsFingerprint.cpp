@@ -405,9 +405,14 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t *msg) {
 
 #ifdef LGE_EGISTEC_UDFPS
 #define FOD_HBM_PATH "/sys/devices/virtual/panel/brightness/fp_lhbm"
+#define LGE_TOUCH_RESET_PATH "/sys/devices/virtual/input/lge_touch/reset_ctrl"
 
 static void setFodHbm(bool status) {
     android::base::WriteStringToFile(status ? "1" : "0", FOD_HBM_PATH);
+}
+
+static void resetLgeTouchPanel(void) {
+    android::base::WriteStringToFile("4", LGE_TOUCH_RESET_PATH);
 }
 
 void BiometricsFingerprint::disableHighBrightFod() {
@@ -420,6 +425,7 @@ void BiometricsFingerprint::disableHighBrightFod() {
     mDevice->do_extra_api_in(FINGERPRINT_LGE_SCAN_STOP, &param);
 
     setFodHbm(false);
+    resetLgeTouchPanel();
 
     hbmFodEnabled = false;
 }
