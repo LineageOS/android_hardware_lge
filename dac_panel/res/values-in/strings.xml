@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Ditingkatkan</string>
     <string name="sound_preset_bass">Bass</string>
+    <string name="digital_filter">Filter digital</string>
+    <string name="digital_filter_0">Singkat</string>
+    <string name="digital_filter_1">Tajam</string>
+    <string name="digital_filter_2">Lambat</string>
     <string name="hifi_mode_normal">Normal</string>
 </resources>
