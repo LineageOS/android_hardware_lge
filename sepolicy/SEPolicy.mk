@@ -6,6 +6,9 @@
 
 ifeq ($(SEPOLICY_PATH), device/qcom/sepolicy-legacy-um)
 	SEPOLICY_PLATFORM := legacy-um
+else ifeq ($(TARGET_BOARD_PLATFORM),sdm845)
+# because SDM845 is different and uses legacy-um definitions in sepolicy_vndr...
+	SEPOLICY_PLATFORM := legacy-um
 else
 	SEPOLICY_PLATFORM := vndr
 endif
