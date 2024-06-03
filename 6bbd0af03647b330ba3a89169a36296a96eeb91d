@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b1efd4d_40cb4531",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19979
+      },
+      "writtenOn": "2024-06-03T10:24:01Z",
+      "side": 1,
+      "message": "ifneq (,$(findstring legacy-um,$(SEPOLICY_PATH)))\n  SEPOLICY_PLATFORM :\u003d legacy-um\nelse\n  SEPOLICY_PLATFORM :\u003d vndr\nendif",
+      "revId": "6bbd0af03647b330ba3a89169a36296a96eeb91d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
