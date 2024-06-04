@@ -16,6 +16,24 @@
       "message": "ifneq (,$(findstring legacy-um,$(SEPOLICY_PATH)))\n  SEPOLICY_PLATFORM :\u003d legacy-um\nelse\n  SEPOLICY_PLATFORM :\u003d vndr\nendif",
       "revId": "6bbd0af03647b330ba3a89169a36296a96eeb91d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b98af07_f8b77b54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-06-04T15:04:26Z",
+      "side": 1,
+      "message": "msmnile and kona will break if we do it this way, because they use type definitions with `vendor_` prefix, yet also uses `device/qcom/sepolicy_vndr/legacy-um`.\n\nThe issue is that `device/qcom/sepolicy_vndr` is supposed to all have that prefix... just, SDM845 doesn\u0027t, it uses the old `device/qcom/sepolicy` definitions.\n(That\u0027s the only difference between `legacy-um` and `vndr` in this repo, the latter uses the `vendor_` prefix.)",
+      "parentUuid": "1b1efd4d_40cb4531",
+      "revId": "6bbd0af03647b330ba3a89169a36296a96eeb91d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
