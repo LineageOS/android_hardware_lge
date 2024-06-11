@@ -17,7 +17,6 @@ LOCAL_SRC_FILES := \
 LOCAL_VENDOR_MODULE := true
 
 LOCAL_C_INCLUDES += \
-    $(TARGET_DAC_PLUGIN_INCLUDE_DIR) \
     $(call include-path-for, audio-route) \
     $(call include-path-for, audio-utils) \
     $(call project-path-for, qcom-audio)/hal \
@@ -41,9 +40,22 @@ LOCAL_SHARED_LIBRARIES += \
 LOCAL_CFLAGS += \
     -Wno-unused-parameter
 
+ifeq ($(BOARD_LGE_HAS_HIFI_QUAD_DAC), true)
+LOCAL_C_INCLUES += \
+    $(TARGET_DAC_PLUGIN_INCLUDE_DIR)
+
+LOCAL_CFLAGS += \
+    -DSUPPORT_HIFI_QUAD_DAC
+
 ifneq ($(filter msm8996 msm8998,$(TARGET_BOARD_PLATFORM)),)
 LOCAL_CFLAGS += \
     -DTARGET_LEGACY_UM
+endif
+endif
+
+ifeq ($(BOARD_LGE_HAS_EXT_AMPLIFIER), true)
+LOCAL_CFLAGS += \
+    -DSUPPORT_EXT_AMPLIFIER
 endif
 
 include $(BUILD_SHARED_LIBRARY)
