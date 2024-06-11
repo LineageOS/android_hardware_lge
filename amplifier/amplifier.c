@@ -33,6 +33,7 @@ typedef struct lge_amplifier_device {
     bool hifi_dac_enabled;
 } lge_amplifier_device_t;
 
+#ifdef SUPPORT_EXT_AMPLIFIER
 static int lge_amplifier_is_speaker(uint32_t snd_device) {
     int speaker = 0;
     switch (snd_device) {
@@ -154,6 +155,21 @@ void lge_amplifier_stop_feedback(amplifier_device_t* device, uint32_t snd_device
     return;
 }
 
+static int lge_amplifier_set_feedback(amplifier_device_t* device, void* adev, uint32_t devices,
+                                      bool enable) {
+    lge_amplifier_device_t* lge_amplifier = (lge_amplifier_device_t*)device;
+    lge_amplifier->adev = (struct audio_device*)adev;
+
+    if (enable) {
+        lge_amplifier_start_feedback(device, devices);
+    } else {
+        lge_amplifier_stop_feedback(device, devices);
+    }
+    return 0;
+}
+#endif // SUPPORT_EXT_AMPLIFIER
+
+#ifdef SUPPORT_HIFI_QUAD_DAC
 static int lge_amplifier_set_output_devices(struct amplifier_device* device, uint32_t devices) {
     lge_amplifier_device_t* lge_amplifier = (lge_amplifier_device_t*)device;
     bool want_to_enable_hifi_dac = property_get_bool("persist.vendor.audio.hifi.enabled", false);
@@ -281,19 +297,7 @@ done:
     if (value != NULL) free(value);
     return ret;
 }
-
-static int lge_amplifier_set_feedback(amplifier_device_t* device, void* adev, uint32_t devices,
-                                      bool enable) {
-    lge_amplifier_device_t* lge_amplifier = (lge_amplifier_device_t*)device;
-    lge_amplifier->adev = (struct audio_device*)adev;
-
-    if (enable) {
-        lge_amplifier_start_feedback(device, devices);
-    } else {
-        lge_amplifier_stop_feedback(device, devices);
-    }
-    return 0;
-}
+#endif // SUPPORT_HIFI_QUAD_DAC
 
 // We're not really calibrating anything. We just need to save the audio_device.
 static int lge_amplifier_calibrate(struct amplifier_device* device, void* adev) {
@@ -335,9 +339,13 @@ static int lge_amplifier_module_open(const hw_module_t* module, const char* name
     lge_amplifier->amp_dev.common.version = HARDWARE_DEVICE_API_VERSION(1, 0);
     lge_amplifier->amp_dev.common.close = lge_amplifier_dev_close;
 
+#ifdef SUPPORT_HIFI_QUAD_DAC
     lge_amplifier->amp_dev.set_output_devices = lge_amplifier_set_output_devices;
     lge_amplifier->amp_dev.set_parameters = lge_amplifier_set_parameters;
+#endif
+#ifdef SUPPORT_EXT_AMPLIFIER
     lge_amplifier->amp_dev.set_feedback = lge_amplifier_set_feedback;
+#endif
     lge_amplifier->amp_dev.calibrate = lge_amplifier_calibrate;
 
     lge_amplifier->hifi_dac_enabled = false;
