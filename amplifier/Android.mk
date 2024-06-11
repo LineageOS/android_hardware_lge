@@ -10,9 +10,10 @@ ifeq ($(AUDIO_FEATURE_ENABLED_EXT_AMPLIFIER),true)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := audio_amplifier.hifi_dac
+LOCAL_MODULE := audio_amplifier.lge
 LOCAL_MODULE_RELATIVE_PATH := hw
-LOCAL_SRC_FILES := dac_plugin.c
+LOCAL_SRC_FILES := \
+    amplifier.c
 LOCAL_VENDOR_MODULE := true
 
 LOCAL_C_INCLUDES += \
