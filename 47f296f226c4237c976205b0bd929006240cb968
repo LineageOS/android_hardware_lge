@@ -16,6 +16,24 @@
       "message": "Verified on judyln",
       "revId": "47f296f226c4237c976205b0bd929006240cb968",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be2abf60_b07d70f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-06-11T18:39:09Z",
+      "side": 1,
+      "message": "also works on joan, so that covers both no LED and LED",
+      "parentUuid": "e96c2278_31fcae4b",
+      "revId": "47f296f226c4237c976205b0bd929006240cb968",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
