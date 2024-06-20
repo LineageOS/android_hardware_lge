@@ -16,6 +16,23 @@
       "message": "$(call soong_config_set,LGE_LIGHTS_HAL,INCLUDE_DIR,$(DEVICE_PATH)/include)",
       "revId": "2c520eef4b82f140fb21a371105acfbf2cbe8e4b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "838d5e2e_dcf23833",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10067
+      },
+      "writtenOn": "2024-06-20T17:45:40Z",
+      "side": 1,
+      "message": "original change was also moving include/* to .",
+      "revId": "2c520eef4b82f140fb21a371105acfbf2cbe8e4b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
