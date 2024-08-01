@@ -20,11 +20,17 @@
     <string name="digital_filter_2">Lento</string>
     <string name="digital_filter_3">Filtro personalizzabile</string>
     <string name="customizable_filter_settings">Impostazioni filtro personalizzabile</string>
+    <string name="cf_shape">Risposta del filtro personalizzata</string>
+    <string name="cf_shape_0">Alta attenuazione</string>
+    <string name="cf_shape_1">Bassa attenuazione</string>
     <string name="cf_shape_2">Fase minima, alta attenuazione</string>
     <string name="cf_shape_3">Fase minima, bassa attenuazione</string>
+    <string name="cf_shape_4">Apodizzante ad alta attenuazione</string>
     <string name="cf_shape_5">Ibrido, alta attenuazione</string>
     <string name="cf_shape_6">Filtro rettangolare ideale</string>
     <string name="cf_symmetry">Simmetria filtro personalizzabile</string>
+    <string name="cf_symmetry_0">Simmetria seno</string>
+    <string name="cf_symmetry_1">Simmetria coseno</string>
     <string name="customizable_filter_coeffs">Coefficienti filtro personalizzabile</string>
     <string name="customizable_filter_coeffs_summary">NOTA: se tutti i coefficienti sono nulli, l\'audio sarà silenziato</string>
     <string name="hifi_mode">Modalità Hi-Fi</string>
