@@ -5,7 +5,6 @@
 
 cc_library {
     name: "libgptutils.lge",
-    cflags: ["-D_BSG_FRAMEWORK_KERNEL_HEADERS"],
     export_include_dirs: ["."],
     header_libs: ["generated_kernel_headers"],
     recovery_available: true,
