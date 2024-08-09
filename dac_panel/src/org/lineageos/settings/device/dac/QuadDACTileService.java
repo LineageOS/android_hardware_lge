@@ -61,6 +61,7 @@ public class QuadDACTileService extends TileService {
 
     @Override
     public void onStopListening() {
+        super.onStopListening();
         unregisterReceiver(headsetPluggedTileReceiver);
     }
 
