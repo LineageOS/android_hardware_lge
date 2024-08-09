@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.media.AudioManager;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.util.Log;
@@ -37,26 +36,6 @@ public class QuadDACTileService extends TileService {
 
         IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(headsetPluggedTileReceiver, filter);
-
-        AudioManager am = getSystemService(AudioManager.class);
-
-        if(!am.isWiredHeadsetOn())
-        {
-            setTileUnavailable();
-	        return;
-        }
-
-        try {
-            if (QuadDAC.isEnabled()) {
-                setTileActive();
-            } else {
-                setTileInactive();
-            }
-        } catch(Exception e) {}
-
-        if(!QuadDAC.dac_service_available) {
-            setTileUnavailable();
-        }
     }
 
     @Override
@@ -93,6 +72,10 @@ public class QuadDACTileService extends TileService {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            if(!QuadDAC.dac_service_available) {
+                setTileUnavailable();
+                return;
+            }
             if (intent.getAction().equals(Intent.ACTION_HEADSET_PLUG)) {
                 int state = intent.getIntExtra("state", -1);
                 switch(state)
