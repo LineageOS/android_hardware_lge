@@ -16,15 +16,17 @@ public class QuadDACTileService extends TileService {
 
     private HeadsetPluggedTileReceiver headsetPluggedTileReceiver = new HeadsetPluggedTileReceiver();
 
+    private QuadDAC DacControlInterface = new QuadDAC();
+
     @Override
     public void onClick() {
         super.onClick();
         try {
-            if (QuadDAC.isEnabled()) {
-                QuadDAC.disable();
+            if (DacControlInterface.isEnabled()) {
+                DacControlInterface.disable();
                 setTileInactive();
             } else {
-                QuadDAC.enable();
+                DacControlInterface.enable();
                 setTileActive();
             }
         } catch(Exception e) {}
@@ -33,7 +35,9 @@ public class QuadDACTileService extends TileService {
     @Override
     public void onStartListening() {
         super.onStartListening();
-
+        try {
+            DacControlInterface.initialize();
+        } catch(Exception e) {}
         IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(headsetPluggedTileReceiver, filter);
     }
@@ -72,7 +76,7 @@ public class QuadDACTileService extends TileService {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(!QuadDAC.dac_service_available) {
+            if(!DacControlInterface.dac_service_available) {
                 setTileUnavailable();
                 return;
             }
@@ -82,7 +86,7 @@ public class QuadDACTileService extends TileService {
                 {
                     case 1: // Headset plugged in
                         try {
-                            if (QuadDAC.isEnabled()) {
+                            if (DacControlInterface.isEnabled()) {
                                 setTileActive();
                             } else {
                                 setTileInactive();
@@ -97,5 +101,4 @@ public class QuadDACTileService extends TileService {
             }
         }
     }
-
 }

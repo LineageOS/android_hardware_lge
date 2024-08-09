@@ -35,6 +35,8 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
     private static final String TAG = "QuadDACPanelFragment";
 
+    private QuadDAC DacControlInterface = new QuadDAC();
+
     private SwitchPreference quaddac_switch;
     private ListPreference sound_preset_list, digital_filter_list, mode_list;
     private BalancePreference balance_preference;
@@ -59,7 +61,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         headsetPluggedFragmentReceiver = new HeadsetPluggedFragmentReceiver();
         try {
-            QuadDAC.initialize();
+            DacControlInterface.initialize();
         } catch(Exception e) {
             Log.d(TAG, "onCreatePreferences: " + e.toString());
         }
@@ -80,11 +82,11 @@ public class QuadDACPanelFragment extends PreferenceFragment
                 boolean set_dac_on = (boolean) newValue;
 
                 if (set_dac_on) {
-                    QuadDAC.enable();
+                    DacControlInterface.enable();
                     enableExtraSettings();
                     return true;
                 } else {
-                    QuadDAC.disable();
+                    DacControlInterface.disable();
                     disableExtraSettings();
                     return true;
                 }
@@ -94,17 +96,17 @@ public class QuadDACPanelFragment extends PreferenceFragment
                     ListPreference lp = (ListPreference) preference;
 
                     int mode = lp.findIndexOfValue((String) newValue);
-                    QuadDAC.setDACMode(mode);
+                    DacControlInterface.setDACMode(mode);
                     return true;
 
                 } else if (preference.getKey().equals(Constants.DIGITAL_FILTER_KEY)) {
                     ListPreference lp = (ListPreference) preference;
 
                     int digital_filter = lp.findIndexOfValue((String) newValue);
-                    QuadDAC.setDigitalFilter(digital_filter);
+                    DacControlInterface.setDigitalFilter(digital_filter);
 
                     /* Custom filter panel should only show up with Filter [3] (fourth one) selected */
-                    if(QuadDAC.getSupportedFeatures().contains(Feature.CustomFilter) && digital_filter == 3)
+                    if(DacControlInterface.getSupportedFeatures().contains(Feature.CustomFilter) && digital_filter == 3)
                         enableCustomFilter();
                     else
                         disableCustomFilter();
@@ -115,14 +117,14 @@ public class QuadDACPanelFragment extends PreferenceFragment
                     ListPreference lp = (ListPreference) preference;
 
                     int sound_preset = lp.findIndexOfValue((String) newValue);
-                    QuadDAC.setSoundPreset(sound_preset);
+                    DacControlInterface.setSoundPreset(sound_preset);
                     return true;
                 } else if(preference.getKey().equals(Constants.CUSTOM_FILTER_SHAPE_KEY))
                 {
                     ListPreference lp = (ListPreference) preference;
 
                     int filter_shape = lp.findIndexOfValue((String) newValue);
-                    QuadDAC.setCustomFilterShape(filter_shape);
+                    DacControlInterface.setCustomFilterShape(filter_shape);
                     return true;
 
                 } else if(preference.getKey().equals(Constants.CUSTOM_FILTER_SYMMETRY_KEY))
@@ -130,7 +132,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
                     ListPreference lp = (ListPreference) preference;
 
                     int filter_symmetry = lp.findIndexOfValue((String) newValue);
-                    QuadDAC.setCustomFilterSymmetry(filter_symmetry);
+                    DacControlInterface.setCustomFilterSymmetry(filter_symmetry);
                     return true;
 
                 }
@@ -144,7 +146,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
                         //avc_volume.setSummary( ((double)avc_vol) + " db");
 
-                        QuadDAC.setAVCVolume(avc_vol);
+                        DacControlInterface.setAVCVolume(avc_vol);
                         return true;
                     } else {
                         return false;
@@ -159,7 +161,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
                                 setCoeffSummary(i, coeffVal);
 
-                                QuadDAC.setCustomFilterCoeff(i, coeffVal);
+                                DacControlInterface.setCustomFilterCoeff(i, coeffVal);
                                 return true;
                             } else
                                 return false;
@@ -225,42 +227,42 @@ public class QuadDACPanelFragment extends PreferenceFragment
         balance_preference = (BalancePreference) findPreference(Constants.BALANCE_KEY);
 
         try {
-            if (QuadDAC.getSupportedFeatures().contains(Feature.QuadDAC)) {
+            if (DacControlInterface.getSupportedFeatures().contains(Feature.QuadDAC)) {
                 quaddac_switch.setVisible(true);
             }
-            if (QuadDAC.getSupportedFeatures().contains(Feature.SoundPreset)) {
+            if (DacControlInterface.getSupportedFeatures().contains(Feature.SoundPreset)) {
                 sound_preset_list.setVisible(true);
-                sound_preset_list.setValueIndex(QuadDAC.getSoundPreset());
+                sound_preset_list.setValueIndex(DacControlInterface.getSoundPreset());
             }
-            if (QuadDAC.getSupportedFeatures().contains(Feature.DigitalFilter)) {
+            if (DacControlInterface.getSupportedFeatures().contains(Feature.DigitalFilter)) {
                 digital_filter_list.setVisible(true);
-                digital_filter_list.setValueIndex(QuadDAC.getDigitalFilter());
+                digital_filter_list.setValueIndex(DacControlInterface.getDigitalFilter());
             }
-            if (QuadDAC.getSupportedFeatures().contains(Feature.BalanceLeft)
-                    && QuadDAC.getSupportedFeatures().contains(Feature.BalanceRight)) {
+            if (DacControlInterface.getSupportedFeatures().contains(Feature.BalanceLeft)
+                    && DacControlInterface.getSupportedFeatures().contains(Feature.BalanceRight)) {
                 balance_preference.setVisible(true);
             }
-            if (QuadDAC.getSupportedFeatures().contains(Feature.AVCVolume)) {
+            if (DacControlInterface.getSupportedFeatures().contains(Feature.AVCVolume)) {
                 avc_volume.setVisible(true);
-                Range range = QuadDAC.getSupportedFeatureValues(Feature.AVCVolume).range;
+                Range range = DacControlInterface.getSupportedFeatureValues(Feature.AVCVolume).range;
                 avc_volume.setMin((int)range.min);
                 avc_volume.setMax((int)range.max);
-                avc_volume.setValue(QuadDAC.getAVCVolume());
+                avc_volume.setValue(DacControlInterface.getAVCVolume());
             }
-            if (QuadDAC.getSupportedFeatures().contains(Feature.HifiMode)) {
+            if (DacControlInterface.getSupportedFeatures().contains(Feature.HifiMode)) {
                 mode_list.setVisible(true);
-                mode_list.setValueIndex(QuadDAC.getDACMode());
+                mode_list.setValueIndex(DacControlInterface.getDACMode());
             }
-            if (QuadDAC.getSupportedFeatures().contains(Feature.CustomFilter)) {
+            if (DacControlInterface.getSupportedFeatures().contains(Feature.CustomFilter)) {
                 custom_filter_shape.setVisible(true);
-                custom_filter_shape.setValueIndex(QuadDAC.getCustomFilterShape());
+                custom_filter_shape.setValueIndex(DacControlInterface.getCustomFilterShape());
                 custom_filter_symmetry.setVisible(true);
-                custom_filter_symmetry.setValueIndex(QuadDAC.getCustomFilterSymmetry());
+                custom_filter_symmetry.setValueIndex(DacControlInterface.getCustomFilterSymmetry());
                 for(int i = 0; i < 14; i++)
                 {
                     custom_filter_coeffs[i].setVisible(true);
-                    custom_filter_coeffs[i].setValue(QuadDAC.getCustomFilterCoeff(i));
-                    setCoeffSummary(i, QuadDAC.getCustomFilterCoeff(i));
+                    custom_filter_coeffs[i].setValue(DacControlInterface.getCustomFilterCoeff(i));
+                    setCoeffSummary(i, DacControlInterface.getCustomFilterCoeff(i));
                 }
             }
         } catch(Exception e) {
@@ -270,7 +272,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
         try {
             if (am.isWiredHeadsetOn()) {
                 quaddac_switch.setEnabled(true);
-                if (QuadDAC.isEnabled()) {
+                if (DacControlInterface.isEnabled()) {
                     quaddac_switch.setChecked(true);
                     enableExtraSettings();
                 } else {
@@ -280,7 +282,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
             } else {
                 quaddac_switch.setEnabled(false);
                 disableExtraSettings();
-                if (QuadDAC.isEnabled()) {
+                if (DacControlInterface.isEnabled()) {
                     quaddac_switch.setChecked(true);
                 }
             }
@@ -291,7 +293,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
     private void enableExtraSettings()
     {
-        ArrayList<Integer> supportedFeatures = QuadDAC.getSupportedFeatures();
+        ArrayList<Integer> supportedFeatures = DacControlInterface.getSupportedFeatures();
         digital_filter_list.setEnabled(true);
         mode_list.setEnabled(true);
         avc_volume.setEnabled(true);
@@ -325,7 +327,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
 
         try {
             /* To apply the custom filter's settings */
-            QuadDAC.setCustomFilterShape(QuadDAC.getCustomFilterShape());
+            DacControlInterface.setCustomFilterShape(DacControlInterface.getCustomFilterShape());
         } catch (Exception e) {}
     }
 
@@ -347,7 +349,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
          * to remove unused preferences from the panel.
         */
         try {
-            if(QuadDAC.getDigitalFilter() == 3) {
+            if(DacControlInterface.getDigitalFilter() == 3) {
                 custom_filter_shape.setVisible(true);
                 custom_filter_symmetry.setVisible(true);
                 for(int i = 0; i < 14; i++)

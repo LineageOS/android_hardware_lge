@@ -14,7 +14,7 @@ public class QuadDAC {
 
     private static final String TAG = "QuadDAC";
 
-    private QuadDAC() {}
+    public QuadDAC() {}
 
     private static IDacControl dac;
 
