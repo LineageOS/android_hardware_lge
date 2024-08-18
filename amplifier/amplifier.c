@@ -167,7 +167,7 @@ static int lge_amplifier_set_feedback(amplifier_device_t* device, void* adev, ui
     }
     return 0;
 }
-#endif // SUPPORT_EXT_AMPLIFIER
+#endif  // SUPPORT_EXT_AMPLIFIER
 
 #ifdef SUPPORT_HIFI_QUAD_DAC
 static int lge_amplifier_set_output_devices(struct amplifier_device* device, uint32_t devices) {
@@ -297,7 +297,7 @@ done:
     if (value != NULL) free(value);
     return ret;
 }
-#endif // SUPPORT_HIFI_QUAD_DAC
+#endif  // SUPPORT_HIFI_QUAD_DAC
 
 // We're not really calibrating anything. We just need to save the audio_device.
 static int lge_amplifier_calibrate(struct amplifier_device* device, void* adev) {
