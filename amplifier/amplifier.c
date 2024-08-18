@@ -266,29 +266,30 @@ static int lge_amplifier_set_parameters(struct amplifier_device* device, struct 
         struct listnode* node;
         list_for_each(node, &lge_amplifier->adev->usecase_list) {
             usecase = node_to_item(node, struct audio_usecase, list);
-            // If this was triggered during playback, switch immediately!
-            if (usecase->stream.out && (usecase->type == PCM_PLAYBACK) &&
+            // DAC is not supported with FM; disable it in this case
+            if (usecase->id == USECASE_AUDIO_PLAYBACK_FM) {
+                ALOGE("%s: FM is enabled; disabling Hi-Fi Quad DAC.", __func__);
+                property_set("persist.vendor.audio.hifi.enabled", "false");
+                if (lge_amplifier->hifi_dac_enabled)
+                    usecase->stream.out->stream_config_changed = true;
+            } else {
+                // If this was triggered during playback, switch immediately!
+                if (usecase->stream.out && (usecase->type == PCM_PLAYBACK) &&
 #ifndef TARGET_LEGACY_UM
-                compare_device_type(&usecase->device_list, AUDIO_DEVICE_OUT_WIRED_HEADPHONE)) {
+                    compare_device_type(&usecase->device_list, AUDIO_DEVICE_OUT_WIRED_HEADPHONE))
 #else
-                (usecase->devices & AUDIO_DEVICE_OUT_WIRED_HEADPHONE)) {
+                    (usecase->devices & AUDIO_DEVICE_OUT_WIRED_HEADPHONE))
 #endif
-                /*
-                    HACK: when selecting devices, and the device is the same, QCOM audio HAL does
-                    not re-configure devices
-                    Unfortunately, we are unable to define our own device for the DAC, so the
-                    audio HAL will not re-configure, thus we cannot turn it on (if only we could
-                    just clone the HAL...)
-                    We can abuse the `force_device_switch()` function, that would do it for us
-                    The only way, in this HAL's context, to make that function return true, is
-                    to set this variable to true
-                */
-                usecase->stream.out->stream_config_changed = true;
+                {
+                    usecase->stream.out->stream_config_changed = true;
+                }
+            }
+            if (usecase->stream.out->stream_config_changed) {
                 // Trigger a switch to Hi-Fi DAC
                 select_devices(lge_amplifier->adev, usecase->id);
                 usecase->stream.out->stream_config_changed = false;
-                goto done;
             }
+            goto done;
         }
     }
 done:
