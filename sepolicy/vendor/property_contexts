@@ -2,6 +2,6 @@
 persist.vendor.lge.audio.hifi_dac           u:object_r:vendor_audio_prop:s0
 
 # Vibrator
-ro.vibrator.hal.click.duration              u:object_r:vendor_vibrator_prop:s0
-ro.vibrator.hal.tick.duration               u:object_r:vendor_vibrator_prop:s0
-ro.vibrator.hal.heavyclick.duration         u:object_r:vendor_vibrator_prop:s0
+ro.vendor.vibrator.hal.click.duration              u:object_r:vendor_vibrator_prop:s0
+ro.vendor.vibrator.hal.tick.duration               u:object_r:vendor_vibrator_prop:s0
+ro.vendor.vibrator.hal.heavyclick.duration         u:object_r:vendor_vibrator_prop:s0

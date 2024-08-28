@@ -59,10 +59,10 @@ Vibrator::Vibrator(int32_t file_desc, int32_t numActuators) {
 
     mCurrentAmplitude = DEFAULT_AMPLITUDE;
 
-    mClickDuration = property_get_int32("ro.vibrator.hal.click.duration", WAVEFORM_CLICK_EFFECT_MS);
-    mTickDuration = property_get_int32("ro.vibrator.hal.tick.duration", WAVEFORM_TICK_EFFECT_MS);
+    mClickDuration = property_get_int32("ro.vendor.vibrator.hal.click.duration", WAVEFORM_CLICK_EFFECT_MS);
+    mTickDuration = property_get_int32("ro.vendor.vibrator.hal.tick.duration", WAVEFORM_TICK_EFFECT_MS);
     mHeavyClickDuration = property_get_int32(
-        "ro.vibrator.hal.heavyclick.duration", WAVEFORM_HEAVY_CLICK_EFFECT_MS);
+        "ro.vendor.vibrator.hal.heavyclick.duration", WAVEFORM_HEAVY_CLICK_EFFECT_MS);
 
 }
 
