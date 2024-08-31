@@ -13,31 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.lge"
-#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.1-service.lge"
+#define LOG_TAG "android.hardware.biometrics.fingerprint@2.3-service.lge"
+#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.3-service.lge"
 
 #include <hardware/hw_auth_token.h>
 
+#include <android-base/file.h>
+#include <android-base/logging.h>
 #include <android-base/strings.h>
 #include <hardware/hardware.h>
 #include <hardware/fingerprint.h>
 #include "BiometricsFingerprint.h"
 
+#include <fcntl.h>
 #include <inttypes.h>
+#include <poll.h>
+#include <sys/stat.h>
 #include <unistd.h>
+
+#include <chrono>
+#include <cmath>
+#include <fstream>
+#include <thread>
 
 namespace android {
 namespace hardware {
 namespace biometrics {
 namespace fingerprint {
-namespace V2_1 {
+namespace V2_3 {
 namespace implementation {
 
 // Supported fingerprint HAL version
 static const uint16_t kVersion = HARDWARE_MODULE_API_VERSION(2, 1);
-
-using RequestStatus =
-        android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
 
 using ::android::base::StartsWith;
 
@@ -357,6 +364,20 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t *msg) {
             }
             break;
     }
+}
+
+// ::V2_3::IBiometricsFingerprint follow.
+
+Return<bool> BiometricsFingerprint::isUdfps(uint32_t) {
+    return false;
+}
+
+Return<void> BiometricsFingerprint::onFingerDown(uint32_t, uint32_t, float, float) {
+    return Void();
+}
+
+Return<void> BiometricsFingerprint::onFingerUp() {
+    return Void();
 }
 
 } // namespace implementation
