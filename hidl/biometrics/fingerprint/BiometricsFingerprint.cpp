@@ -13,31 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.lge"
-#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.1-service.lge"
+#define LOG_TAG "android.hardware.biometrics.fingerprint@2.3-service.lge"
+#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.3-service.lge"
 
 #include <hardware/hw_auth_token.h>
 
+#include <android-base/file.h>
+#include <android-base/logging.h>
 #include <android-base/strings.h>
 #include <hardware/hardware.h>
-#include <hardware/fingerprint.h>
+#include "fingerprint.h"
 #include "BiometricsFingerprint.h"
 
+#include <fcntl.h>
 #include <inttypes.h>
+#include <poll.h>
+#include <sys/stat.h>
 #include <unistd.h>
+
+#include <chrono>
+#include <cmath>
+#include <fstream>
+#include <thread>
 
 namespace android {
 namespace hardware {
 namespace biometrics {
 namespace fingerprint {
-namespace V2_1 {
+namespace V2_3 {
 namespace implementation {
 
 // Supported fingerprint HAL version
 static const uint16_t kVersion = HARDWARE_MODULE_API_VERSION(2, 1);
-
-using RequestStatus =
-        android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
 
 using ::android::base::StartsWith;
 
@@ -357,6 +364,72 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t *msg) {
             }
             break;
     }
+}
+
+#ifdef LGE_EGISTEC_UDFPS
+#define FOD_HBM_PATH "/sys/devices/virtual/panel/brightness/fp_lhbm"
+
+static void setFodHbm(bool status) {
+    android::base::WriteStringToFile(status ? "1" : "0", FOD_HBM_PATH);
+}
+
+void BiometricsFingerprint::disableHighBrightFod() {
+    std::lock_guard<std::mutex> lock(mSetHbmFodMutex);
+    uint32_t param = 0;
+
+    if (!hbmFodEnabled)
+        return;
+
+    mDevice->do_extra_api_in(FINGERPRINT_LGE_SCAN_STOP, &param);
+
+    setFodHbm(false);
+
+    hbmFodEnabled = false;
+}
+
+void BiometricsFingerprint::enableHighBrightFod() {
+    std::lock_guard<std::mutex> lock(mSetHbmFodMutex);
+    uint32_t param = 0;
+    if (hbmFodEnabled)
+        return;
+
+    mDevice->do_extra_api_in(FINGERPRINT_LGE_SCAN_START, &param);
+
+    setFodHbm(true);
+
+    hbmFodEnabled = true;
+}
+#endif // LGE_EGISTEC_UDFPS
+
+// ::V2_3::IBiometricsFingerprint follow.
+
+Return<bool> BiometricsFingerprint::isUdfps(uint32_t) {
+#ifdef LGE_EGISTEC_UDFPS
+    return true;
+#else // LGE_EGISTEC_UDFPS
+    return false;
+#endif // LGE_EGISTEC_UDFPS
+}
+
+Return<void> BiometricsFingerprint::onFingerDown(uint32_t, uint32_t, float, float) {
+#ifdef LGE_EGISTEC_UDFPS
+    BiometricsFingerprint::enableHighBrightFod();
+
+    std::thread([this]() {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        BiometricsFingerprint::onFingerUp();
+    }).detach();
+#endif // LGE_EGISTEC_UDFPS
+
+    return Void();
+}
+
+Return<void> BiometricsFingerprint::onFingerUp() {
+#ifdef LGE_EGISTEC_UDFPS
+    BiometricsFingerprint::disableHighBrightFod();
+#endif // LGE_EGISTEC_UDFPS
+
+    return Void();
 }
 
 } // namespace implementation
