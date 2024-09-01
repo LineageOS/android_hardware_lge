@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d3f90a2_9d8068be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2024-09-01T07:52:39Z",
+      "side": 1,
+      "message": "Verified on:\n- mh2lm (UDFPS)\n- judyln (non-UDFPS)\n\nThis change affects lucye (which doesn\u0027t boot for other reasons), all LGE SDM845 devices except judyp, and all LGE SM8150 devices.\n\nCorresponding device tree change: I8ad219c5a383b1f4476d8ebc83a6217df8b21df7",
+      "revId": "5d8830b39f6d2d636bdd88d0002239750f88d392",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
