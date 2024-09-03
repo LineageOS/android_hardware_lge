@@ -184,6 +184,11 @@ Return<uint64_t> BiometricsFingerprint::getAuthenticatorId() {
 }
 
 Return<RequestStatus> BiometricsFingerprint::cancel() {
+#ifdef LGE_EGISTEC_UDFPS
+    if (hbmFodEnabled) {
+        BiometricsFingerprint::onFingerUp();
+    }
+#endif // LGE_EGISTEC_UDFPS
     return ErrorFilter(mDevice->cancel(mDevice));
 }
 
@@ -364,6 +369,11 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t *msg) {
             }
             break;
     }
+#ifdef LGE_EGISTEC_UDFPS
+    if (thisPtr->hbmFodEnabled) {
+        thisPtr->onFingerUp();
+    }
+#endif // LGE_EGISTEC_UDFPS
 }
 
 #ifdef LGE_EGISTEC_UDFPS
@@ -414,11 +424,6 @@ Return<bool> BiometricsFingerprint::isUdfps(uint32_t) {
 Return<void> BiometricsFingerprint::onFingerDown(uint32_t, uint32_t, float, float) {
 #ifdef LGE_EGISTEC_UDFPS
     BiometricsFingerprint::enableHighBrightFod();
-
-    std::thread([this]() {
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        BiometricsFingerprint::onFingerUp();
-    }).detach();
 #endif // LGE_EGISTEC_UDFPS
 
     return Void();
