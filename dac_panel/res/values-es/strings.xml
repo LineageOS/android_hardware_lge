@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Panel Quad DAC</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC activo</string>
+    <string name="quad_dac_off">Quad DAC inactivo</string>
+    <string name="quad_dac_unavail">Quad DAC no disponible</string>
+    <string name="quad_dac_settings">Ajustes de Quad DAC</string>
+    <string name="quad_dac_balance">Balance</string>
+    <string name="quad_dac_balance_summary">Cambiar el balance izquierda/derecha</string>
+    <string name="sound_preset">Sonido preestablecido</string>
+    <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Mejorado</string>
+    <string name="sound_preset_detailed">Detallado</string>
+    <string name="sound_preset_live">En vivo</string>
+    <string name="sound_preset_bass">Grave</string>
+    <string name="digital_filter">Filtro digital</string>
+    <string name="digital_filter_0">Corto</string>
+    <string name="digital_filter_1">Agudo</string>
+    <string name="digital_filter_2">Lento</string>
+    <string name="digital_filter_3">Filtro personalizable</string>
+    <string name="customizable_filter_settings">Ajustes de filtros personalizables</string>
+    <string name="cf_shape">Forma de filtro personalizada</string>
+    <string name="cf_shape_0">Reducción rápida</string>
+    <string name="cf_shape_1">Reducción lenta</string>
+    <string name="cf_shape_2"> Fase mínima de reducción rápida</string>
+    <string name="cf_shape_3">Fase mínima de reducción lenta</string>
+    <string name="cf_shape_4">Apodización de reducción rápida</string>
+    <string name="cf_shape_5">Reducción rápida híbrida</string>
+    <string name="cf_shape_6">Pared de ladrillo</string>
+    <string name="cf_symmetry">Simetría, filtro personalizado</string>
+    <string name="cf_symmetry_0">Simetría senoidal</string>
+    <string name="cf_symmetry_1">Simetría cosenoidal</string>
+    <string name="customizable_filter_coeffs">Coeficientes para el filtro personalizable</string>
+    <string name="customizable_filter_coeffs_summary">NOTA: si todos los coeficientes son 0 se silenciará el audio</string>
+    <string name="hifi_mode">Modo Hi-Fi</string>
+    <string name="hifi_mode_normal">Normal</string>
+    <string name="hifi_mode_him">Alta impedancia</string>
+    <string name="hifi_mode_aux-him">AUX con alta impedancia</string>
+    <string name="avc_volume">Volumen AVC</string>
+    <string name="avc_volume_summary">Amplifica el volumen</string>
+</resources>
