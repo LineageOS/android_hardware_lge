@@ -101,7 +101,7 @@ int lge_amplifier_start_feedback(amplifier_device_t* device, uint32_t snd_device
 
     lge_amplifier->pcm_out = pcm_open(lge_amplifier->adev->snd_card, pcm_dev_tx_id, PCM_IN,
                                       &pcm_config_lge_amplifier);
-    if (!(lge_amplifier->pcm_out || pcm_is_ready(lge_amplifier->pcm_out))) {
+    if (!pcm_is_ready(lge_amplifier->pcm_out)) {
         ALOGE("%d: %s", __LINE__, pcm_get_error(lge_amplifier->pcm_out));
         rc = -EIO;
         goto error;
