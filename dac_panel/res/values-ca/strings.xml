@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="quad_dac_app_name">Tauler Quad DAC</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC activat</string>
+    <string name="quad_dac_off">Quad DAC desactivat</string>
+    <string name="quad_dac_unavail">El Quad DAC no està disponible</string>
+    <string name="quad_dac_settings">Paràmetres Quad DAC</string>
     <string name="quad_dac_balance">Balanç</string>
+    <string name="quad_dac_balance_summary">Canvia el balanç esquerra/dreta</string>
     <string name="sound_preset_normal">Normal</string>
     <string name="sound_preset_enhanced">Millorat</string>
     <string name="sound_preset_detailed">Detallat</string>
@@ -8,6 +15,7 @@
     <string name="sound_preset_bass">Greus</string>
     <string name="digital_filter">Filtre digital</string>
     <string name="digital_filter_0">Curt</string>
+    <string name="digital_filter_1">Nítid</string>
     <string name="digital_filter_2">Lent</string>
     <string name="digital_filter_3">Filtre a mida</string>
     <string name="customizable_filter_settings">Paràmetres del filtre a mida</string>
@@ -15,10 +23,13 @@
     <string name="cf_shape_6">Paret de maons</string>
     <string name="cf_symmetry">Simetria del filtre a mida</string>
     <string name="cf_symmetry_0">Simetria sinusoidal</string>
+    <string name="cf_symmetry_1">Simetria del cosinus</string>
     <string name="customizable_filter_coeffs">Coeficients del filtre a mida</string>
     <string name="customizable_filter_coeffs_summary">NOTA: Si tots els coeficients són 0, l\'àudio se silenciarà</string>
+    <string name="hifi_mode">Mode HiFi</string>
     <string name="hifi_mode_normal">Normal</string>
     <string name="hifi_mode_him">Alta impedància</string>
+    <string name="hifi_mode_aux-him">Alta impedància d\'AUX</string>
     <string name="avc_volume">Volum AVC</string>
     <string name="avc_volume_summary">Amplifica el volum</string>
 </resources>
