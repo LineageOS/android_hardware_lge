@@ -31,6 +31,7 @@ typedef struct lge_amplifier_device {
     struct audio_usecase* usecase_tx;
     struct pcm* pcm_out;
     bool hifi_dac_enabled;
+    bool hifi_dac_config_changed;
 } lge_amplifier_device_t;
 
 #ifdef SUPPORT_EXT_AMPLIFIER
@@ -186,6 +187,11 @@ static int lge_amplifier_set_output_devices(struct amplifier_device* device, uin
         return 0;
     }
 
+    if (!lge_amplifier->hifi_dac_config_changed) {
+        ALOGD("%s: Hi-Fi DAC config unchanged.", __func__);
+        return 0;
+    }
+
     // If DAC is currently not enabled, but the prop is set to true, change paths
     if (want_to_enable_hifi_dac) {
         platform_set_snd_device_backend(SND_DEVICE_OUT_HEADPHONES, HIFI_DAC_BACKEND,
@@ -283,9 +289,11 @@ static int lge_amplifier_set_parameters(struct amplifier_device* device, struct 
                     The only way, in this HAL's context, to make that function return true, is
                     to set this variable to true
                 */
+                lge_amplifier->hifi_dac_config_changed = true;
                 usecase->stream.out->stream_config_changed = true;
                 // Trigger a switch to Hi-Fi DAC
                 select_devices(lge_amplifier->adev, usecase->id);
+                lge_amplifier->hifi_dac_config_changed = false;
                 usecase->stream.out->stream_config_changed = false;
                 goto done;
             }
@@ -349,6 +357,7 @@ static int lge_amplifier_module_open(const hw_module_t* module, const char* name
     lge_amplifier->amp_dev.calibrate = lge_amplifier_calibrate;
 
     lge_amplifier->hifi_dac_enabled = false;
+    lge_amplifier->hifi_dac_config_changed = false;
     *device = (hw_device_t*)lge_amplifier;
 
     return 0;
