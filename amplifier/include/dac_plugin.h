@@ -18,8 +18,8 @@
 
 #define DEFAULT_BACKEND "headphones"
 #define DEFAULT_INTERFACE "SLIMBUS_6_RX"
-#define DEFAULT_MIXER_PATH "headphones"
+#define ESS_BYPASS_MODE_MIXER_PATH "ess-bypass-mode"
 
 #define HIFI_DAC_BACKEND "TERT_MI2S_RX"
 #define HIFI_DAC_INTERFACE "TERT_MI2S_RX"
-#define HIFI_DAC_MIXER_PATH "headphones-hifi-dac"
+#define ESS_HIFI_MODE_MIXER_PATH "ess-hifi-mode"
