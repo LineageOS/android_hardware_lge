@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfd3380e_cc073037",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2025-01-01T15:29:59Z",
+      "side": 1,
+      "message": "It seems our issue isn\u0027t actually that the module can\u0027t load. It loads, and then proceeds to crash if the fingerprint sensor is loose.",
+      "revId": "71f448566c8491333ce11758bfd3936286024d6e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
