@@ -1,7 +1,6 @@
 /*
- * Copyright (C) 2015 The CyanogenMod Open Source Project
- * Copyright (C) 2024 The LineageOS Project
- *
+ * SPDX-FileCopyrightText: The CyanogenMod Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -15,11 +14,11 @@
 #include <cutils/log.h>
 #include <cutils/properties.h>
 #include <cutils/str_parms.h>
+#include <dlfcn.h>
 
 #include <hardware/audio_amplifier.h>
 #include <hardware/hardware.h>
 
-#include "audio_hw.h"
 #include "platform.h"
 #include "platform_api.h"
 
@@ -32,6 +31,12 @@ typedef struct lge_amplifier_device {
     struct pcm* pcm_out;
     bool hifi_dac_enabled;
     bool hifi_dac_config_changed;
+    typeof(enable_snd_device)* enable_snd_device;
+    typeof(enable_audio_route)* enable_audio_route;
+    typeof(disable_snd_device)* disable_snd_device;
+    typeof(disable_audio_route)* disable_audio_route;
+    typeof(platform_get_pcm_device_id)* platform_get_pcm_device_id;
+    typeof(get_usecase_from_list)* get_usecase_from_list;
 } lge_amplifier_device_t;
 
 #ifdef SUPPORT_EXT_AMPLIFIER
@@ -87,10 +92,11 @@ int lge_amplifier_start_feedback(amplifier_device_t* device, uint32_t snd_device
 #endif
 
     list_add_tail(&lge_amplifier->adev->usecase_list, &lge_amplifier->usecase_tx->list);
-    enable_snd_device(lge_amplifier->adev, lge_amplifier->usecase_tx->in_snd_device);
-    enable_audio_route(lge_amplifier->adev, lge_amplifier->usecase_tx);
+    lge_amplifier->enable_snd_device(lge_amplifier->adev, lge_amplifier->usecase_tx->in_snd_device);
+    lge_amplifier->enable_audio_route(lge_amplifier->adev, lge_amplifier->usecase_tx);
 
-    pcm_dev_tx_id = platform_get_pcm_device_id(lge_amplifier->usecase_tx->id,
+    pcm_dev_tx_id = 
+            lge_amplifier->platform_get_pcm_device_id(lge_amplifier->usecase_tx->id,
                                                lge_amplifier->usecase_tx->type);
     ALOGD("pcm_dev_tx_id = %d", pcm_dev_tx_id);
     if (pcm_dev_tx_id < 0) {
@@ -122,8 +128,8 @@ error:
         lge_amplifier->pcm_out = NULL;
     }
     list_remove(&lge_amplifier->usecase_tx->list);
-    disable_snd_device(lge_amplifier->adev, lge_amplifier->usecase_tx->in_snd_device);
-    disable_audio_route(lge_amplifier->adev, lge_amplifier->usecase_tx);
+    lge_amplifier->disable_snd_device(lge_amplifier->adev, lge_amplifier->usecase_tx->in_snd_device);
+    lge_amplifier->disable_audio_route(lge_amplifier->adev, lge_amplifier->usecase_tx);
     free(lge_amplifier->usecase_tx);
 
     return rc;
@@ -144,13 +150,13 @@ void lge_amplifier_stop_feedback(amplifier_device_t* device, uint32_t snd_device
         lge_amplifier->pcm_out = NULL;
     }
 
-    disable_snd_device(lge_amplifier->adev, SND_DEVICE_IN_CAPTURE_VI_FEEDBACK);
+    lge_amplifier->disable_snd_device(lge_amplifier->adev, SND_DEVICE_IN_CAPTURE_VI_FEEDBACK);
 
     lge_amplifier->usecase_tx =
-            get_usecase_from_list(lge_amplifier->adev, USECASE_AUDIO_SPKR_CALIB_TX);
+            lge_amplifier->get_usecase_from_list(lge_amplifier->adev, USECASE_AUDIO_SPKR_CALIB_TX);
     if (lge_amplifier->usecase_tx) {
         list_remove(&lge_amplifier->usecase_tx->list);
-        disable_audio_route(lge_amplifier->adev, lge_amplifier->usecase_tx);
+        lge_amplifier->disable_audio_route(lge_amplifier->adev, lge_amplifier->usecase_tx);
         free(lge_amplifier->usecase_tx);
     }
     return;
@@ -341,6 +347,25 @@ static int lge_amplifier_module_open(const hw_module_t* module, const char* name
         ALOGE("%s:%d: Unable to allocate memory for amplifier device\n", __func__, __LINE__);
         return -ENOMEM;
     }
+
+#define LOAD_AHAL_SYMBOL(symbol)                                          \
+    do {                                                                  \
+        lge_amplifier->symbol = dlsym(RTLD_NEXT, #symbol);                \
+        if (lge_amplifier->symbol == NULL) {                              \
+            ALOGW("%s: %s not found (%s)", __func__, #symbol, dlerror()); \
+            free(lge_amplifier);                                          \
+            return -ENODEV;                                               \
+        }                                                                 \
+    } while (0)
+
+    LOAD_AHAL_SYMBOL(enable_snd_device);
+    LOAD_AHAL_SYMBOL(enable_audio_route);
+    LOAD_AHAL_SYMBOL(disable_snd_device);
+    LOAD_AHAL_SYMBOL(disable_audio_route);
+    LOAD_AHAL_SYMBOL(platform_get_pcm_device_id);
+    LOAD_AHAL_SYMBOL(get_usecase_from_list);
+
+#undef LOAD_AHAL_SYMBOL
 
     lge_amplifier->amp_dev.common.tag = HARDWARE_DEVICE_TAG;
     lge_amplifier->amp_dev.common.module = (hw_module_t*)module;
