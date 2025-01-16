@@ -1,0 +1,57 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_library {
+    name: "lge_amplifier",
+    cflags: select({
+        "BOARD_LGE_HAS_HIFI_QUAD_DAC": ["-DSUPPORT_HIFI_QUAD_DAC"],
+        "BOARD_LGE_HAS_EXT_AMPLIFIER": ["-DSUPPORT_EXT_AMPLIFIER"],
+        "default": [],
+    }),
+    include_dirs: select({
+        "BOARD_LGE_HAS_HIFI_QUAD_DAC": ["$(TARGET_DAC_PLUGIN_INCLUDE_DIR)"],
+        "default": [],
+    }),
+    srcs: ["amplifier.c"],
+}
+
+cc_library_shared {
+    name: "audio_amplifier.qcom",
+    relative_install_path: "hw",
+    vendor: true,
+    owner: "qti",
+
+    srcs: [
+        "audio_amplifier.c",
+    ],
+
+    local_include_dirs: ["include"],
+
+    include_dirs: [
+        "external/tinyalsa/include",
+        "external/tinycompress/include",
+        "system/media/audio_route/include",
+        "system/media/audio_utils/include",
+    ] + select(soong_config_variable("ANDROID", "target_board_platform"), {
+        "kona": [
+            "hardware/qcom-caf/sm8250/audio/hal",
+            "hardware/qcom-caf/sm8250/audio/hal/audio_extn",
+            "hardware/qcom-caf/sm8250/audio/hal/msm8974",
+        ],
+        default: [],
+    }),
+
+    header_libs: [
+        "libhardware_headers",
+        "qti_kernel_headers",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libdl",
+        "liblog",
+        "libtinyalsa",
+    ],
+}
