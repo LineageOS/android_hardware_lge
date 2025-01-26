@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bb21a86_fce25156",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2025-01-26T09:58:38Z",
+      "side": 1,
+      "message": "I know this hal is likely unused, the reason for uploading these changes is to sync with the main hal. Context: this repository is being synced by default in the local_manifest for crowdin translations and I am trying to minimize Android.mk usage in all repos synced by default",
+      "revId": "f4f9a2635cd7b189292aaf155cd5cb44a3d1ee8e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
