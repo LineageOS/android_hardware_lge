@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">پنل چهارگانه DAC</string>
+    <string name="quad_dac">Hi-Fi چهارگانه DAC</string>
+    <string name="quad_dac_on">چهارگانه DAC روشن</string>
+    <string name="quad_dac_off">چهارگانه DAC خاموش</string>
+    <string name="quad_dac_unavail">چهارگانه DAC در دسترس نیست</string>
+    <string name="quad_dac_settings">تنظیمات چهارگانه DAC</string>
+    <string name="quad_dac_balance">تعادل</string>
+    <string name="quad_dac_balance_summary">تعادل چپ و راست را تغییر دهید</string>
+    <string name="sound_preset">پیش‌‎تنظیم صدا</string>
+    <string name="sound_preset_normal">عادی</string>
+    <string name="sound_preset_enhanced">بهبود یافته</string>
+    <string name="sound_preset_detailed">با جزئیات</string>
+    <string name="sound_preset_live">زنده</string>
+    <string name="sound_preset_bass">بم</string>
+    <string name="digital_filter">فیلتر دیجیتال</string>
+    <string name="digital_filter_0">کوتاه</string>
+    <string name="digital_filter_1">تیز</string>
+    <string name="digital_filter_2">کند</string>
+    <string name="digital_filter_3">فیلتر قابل تنظیم</string>
+    <string name="customizable_filter_settings">تنظیمات فیلتر قابل تنظیم</string>
+    <string name="cf_shape">شکل فیلتر سفارشی</string>
+    <string name="cf_shape_0">رول کردن سریع</string>
+    <string name="cf_shape_1">رول کردن کند</string>
+    <string name="cf_shape_2">فاز حداقل رول کردن سریع</string>
+    <string name="cf_shape_3">فاز حداقل رول کردن کند</string>
+    <string name="cf_shape_4">رول کردن سریع آپادیز کردن</string>
+    <string name="cf_shape_5">رول کردن سریع هیبریدی</string>
+    <string name="cf_shape_6">دیوار آجری</string>
+    <string name="cf_symmetry">تقارن فیلتر سفارشی</string>
+    <string name="cf_symmetry_0">تقارن سینوسی</string>
+    <string name="cf_symmetry_1">تقارن کسینوس</string>
+    <string name="customizable_filter_coeffs">ضرایب فیلتر قابل تنظیم</string>
+    <string name="customizable_filter_coeffs_summary">توجه: اگر همه ضرایب 0 باشند، صدا قطع خواهد شد</string>
+    <string name="hifi_mode">حالت HiFi</string>
+    <string name="hifi_mode_normal">عادی</string>
+    <string name="hifi_mode_him">امپدانس زیاد</string>
+    <string name="hifi_mode_aux-him">امپدانس بالا AUX</string>
+    <string name="avc_volume">صدای AVC</string>
+    <string name="avc_volume_summary">تقویت صدا</string>
+</resources>
