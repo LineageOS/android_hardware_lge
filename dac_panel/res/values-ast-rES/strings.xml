@@ -5,5 +5,6 @@
     <string name="cf_symmetry_0">Simetría del senu</string>
     <string name="cf_symmetry_1">Simetría del cosenu</string>
     <string name="customizable_filter_coeffs_summary">NOTA: si tolos coeficientes son 0, l\'audiu desactívase</string>
+    <string name="hifi_mode">Mou HiFi</string>
     <string name="avc_volume_summary">Amplifica\'l volume</string>
 </resources>
