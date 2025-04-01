@@ -8,6 +8,7 @@
     <string name="quad_dac_settings">Paràmetres Quad DAC</string>
     <string name="quad_dac_balance">Balanç</string>
     <string name="quad_dac_balance_summary">Canvia el balanç esquerra/dreta</string>
+    <string name="sound_preset">So predefinit</string>
     <string name="sound_preset_normal">Normal</string>
     <string name="sound_preset_enhanced">Millorat</string>
     <string name="sound_preset_detailed">Detallat</string>
@@ -20,6 +21,12 @@
     <string name="digital_filter_3">Filtre a mida</string>
     <string name="customizable_filter_settings">Paràmetres del filtre a mida</string>
     <string name="cf_shape">Forma del filtre a mida</string>
+    <string name="cf_shape_0">Desplaçament ràpid</string>
+    <string name="cf_shape_1">Desplaçament lent</string>
+    <string name="cf_shape_2">Fase mínima de desplaçament ràpid</string>
+    <string name="cf_shape_3">Fase mínima de desplaçament lent</string>
+    <string name="cf_shape_4">Apodització de desplegament ràpid</string>
+    <string name="cf_shape_5">Desplaçament ràpid híbrid </string>
     <string name="cf_shape_6">Paret de maons</string>
     <string name="cf_symmetry">Simetria del filtre a mida</string>
     <string name="cf_symmetry_0">Simetria sinusoidal</string>
