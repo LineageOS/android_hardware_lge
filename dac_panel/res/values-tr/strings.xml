@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Quad DAC Paneli</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC açık</string>
+    <string name="quad_dac_off">Dörtlü DAC kapalı</string>
+    <string name="quad_dac_unavail">Dörtlü DAC kullanılamıyor</string>
+    <string name="quad_dac_settings">Dörtlü DAC Ayarları</string>
+    <string name="quad_dac_balance">Denge</string>
+    <string name="quad_dac_balance_summary">Sağ sol dengesini değiştir</string>
+    <string name="sound_preset">Hazır ses ayarı</string>
+    <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Geliştirilmiş</string>
+    <string name="sound_preset_detailed">Detaylı</string>
+    <string name="sound_preset_live">Canlı</string>
+    <string name="sound_preset_bass">Bas</string>
+    <string name="digital_filter">Dijital filtre</string>
+    <string name="digital_filter_0">Kısa</string>
+    <string name="digital_filter_1">Keskin</string>
+    <string name="digital_filter_2">Yavaş</string>
+    <string name="digital_filter_3">Kişiselleştirilebilen Süzgeç</string>
+    <string name="customizable_filter_settings">Kişiselleştirilebilen Süzgeç Ayarları</string>
+    <string name="cf_shape">Kişiselleştirilmiş Süzgeç Şekli</string>
+    <string name="cf_shape_0">Hızlı roll-off</string>
+    <string name="cf_shape_1">Yavaş roll-off</string>
+    <string name="cf_shape_2">Minimum faz hızlı roll-off</string>
+    <string name="cf_shape_3">Minimum faz yavaş roll-off</string>
+    <string name="cf_shape_4">Apodize hızlı roll-off</string>
+    <string name="cf_shape_5">Hibrit hızlı roll-off</string>
+    <string name="cf_shape_6">Tuğla duvar</string>
+    <string name="cf_symmetry">Özel Filtre Simetrisi</string>
+    <string name="cf_symmetry_0">Sinüs Simetrisi</string>
+    <string name="cf_symmetry_1">Kosinüs Simetrisi</string>
+    <string name="customizable_filter_coeffs">Kişiselleştirilebilen Süzgeç Katsayıları</string>
+    <string name="customizable_filter_coeffs_summary">Not: Tüm katsayılar 0 olursa ses susturulur</string>
+    <string name="hifi_mode">HiFi modu</string>
+    <string name="hifi_mode_normal">Normal</string>
+    <string name="hifi_mode_him">Yüksek Empedans</string>
+    <string name="hifi_mode_aux-him">AUX Yüksek Empedans</string>
+    <string name="avc_volume">AVC Ses Düzeyi</string>
+    <string name="avc_volume_summary">Ses seviyesini yükseltir</string>
+</resources>
