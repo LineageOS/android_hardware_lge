@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="quad_dac_app_name">Panel de Quad DAC</string>
+    <string name="quad_dac">Quad DAC Hi-Fi</string>
+    <string name="quad_dac_on">Quad DAC activáu</string>
+    <string name="quad_dac_off">Quad DAC desactiváu</string>
+    <string name="quad_dac_unavail">Quad DAC nun ta disponible</string>
+    <string name="quad_dac_settings">Configuración de Quad DAC</string>
+    <string name="quad_dac_balance">Balance</string>
+    <string name="quad_dac_balance_summary">Camuda\'l balance d\'esquierda/drecha</string>
+    <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Ameyoráu</string>
+    <string name="sound_preset_detailed">Detalláu</string>
+    <string name="sound_preset_live">En direutu</string>
+    <string name="sound_preset_bass">Graves</string>
     <string name="digital_filter">Filtru dixital</string>
+    <string name="digital_filter_0">Curtiu</string>
+    <string name="digital_filter_2">Lentu</string>
+    <string name="digital_filter_3">Filtru personalizable</string>
+    <string name="customizable_filter_settings">Configuración del filtru personalizable</string>
+    <string name="cf_shape_0">Graves amenorgaos con rapideza</string>
+    <string name="cf_shape_1">Graves amenorgaos con lentitú</string>
+    <string name="cf_shape_4">Apodización de los graves amenorgaos con rapideza</string>
     <string name="cf_shape_6">Muria de lladriyos</string>
     <string name="cf_symmetry_0">Simetría del senu</string>
     <string name="cf_symmetry_1">Simetría del cosenu</string>
     <string name="customizable_filter_coeffs_summary">NOTA: si tolos coeficientes son 0, l\'audiu desactívase</string>
     <string name="hifi_mode">Mou HiFi</string>
+    <string name="hifi_mode_normal">Normal</string>
+    <string name="hifi_mode_him">Impedancia alta</string>
+    <string name="hifi_mode_aux-him">Impedancia alta d\'AUX</string>
+    <string name="avc_volume">Volume AVC</string>
     <string name="avc_volume_summary">Amplifica\'l volume</string>
 </resources>
