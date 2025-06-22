@@ -1,0 +1,17 @@
+# Executables
+/(vendor|system/vendor)/bin/ppd         u:object_r:hal_display_color_default_exec:s0
+/(vendor|system/vendor)/bin/qrtr-lookup u:object_r:qrtr_exec:s0
+
+# Init
+/(vendor|system/vendor)/bin/init\.lge\.usb\.default\.sh u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.lge\.usb\.lao\.sh     u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.lge\.usb\.sh          u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.qcom\.devstart\.sh    u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.qti\.chg_policy\.sh   u:object_r:qti_init_shell_exec:s0
+
+# Persist files
+/mnt/vendor/persist(/.*)?                  u:object_r:persist_file:s0
+/mnt/vendor/persist-lg/data/widevine(/.*)? u:object_r:persist_drm_file:s0
+
+# Sysfs
+/sys/devices(/platform)?/soc/[a-f0-9]+.qcom,cam-req-mgr/video4linux/video[0-33]/name(/.*)? u:object_r:sysfs_graphics:s0
