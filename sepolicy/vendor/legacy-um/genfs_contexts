@@ -1,2 +1,22 @@
 # LGE Panel
 genfscon sysfs /devices/virtual/panel/brightness u:object_r:sysfs_graphics:s0
+
+# Light
+genfscon sysfs /class/backlight/panel0-backlight/brightness                                                        u:object_r:sysfs_graphics:s0
+genfscon sysfs /class/backlight/panel0-backlight-ex/brightness                                                     u:object_r:sysfs_graphics:s0
+genfscon sysfs /class/backlight/panel0-backlight/max_brightness                                                    u:object_r:sysfs_graphics:s0
+genfscon sysfs /class/backlight/panel0-backlight-ex/max_brightness                                                 u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/soc/c900000.qcom,mdss_mdp/c900000.qcom,mdss_mdp:qcom,mdss_fb_primary/leds/lcd-backlight-ex u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/virtual/graphics/fb0                                                                       u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/virtual/graphics/fb1                                                                       u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/virtual/graphics/fb2                                                                       u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/virtual/graphics/fb3                                                                       u:object_r:sysfs_graphics:s0
+
+# kgsl
+genfscon sysfs /class/kgsl u:object_r:sysfs_kgsl:s0
+
+# Power
+genfscon sysfs /kernel/boot_cdsp/boot u:object_r:sysfs_boot_adsp:s0
+
+# Sensors
+genfscon sysfs /devices/platform/soc/5c00000.qcom,ssc/subsys5/state u:object_r:sysfs_sensors:s0

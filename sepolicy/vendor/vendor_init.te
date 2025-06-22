@@ -1,0 +1,16 @@
+allow vendor_init tmpfs:dir create_dir_perms;
+
+get_prop(vendor_init, persist_debug_prop)
+set_prop(vendor_init, vendor_audio_prop)
+set_prop(vendor_init, vendor_persist_dpm_prop)
+set_prop(vendor_init, vendor_lge_misc_prop)
+set_prop(vendor_init, vendor_lge_usb_prop)
+set_prop(vendor_init, vendor_qni_prop)
+
+allow vendor_init persdata_abt_block_device:dir relabelto;
+
+allow vendor_init sec_block_device:blk_file r_file_perms;
+
+allow vendor_init proc_swappiness:file w_file_perms;
+
+allow vendor_init debugfs:file w_file_perms;

@@ -1,0 +1,11 @@
+r_dir_file(hal_drm_widevine, widevine_data_file)
+
+rw_dir_file(hal_drm_widevine, firmware_data_file)
+
+allow hal_drm_widevine mnt_vendor_file:dir r_dir_perms;
+
+# LG puts firmware in /persist-lg/firmware/...
+r_dir_file(hal_drm_widevine, persist_lg_data_file)
+r_dir_file(hal_drm_widevine, persist_drm_file)
+# ... but they also leave qcoms copy in /firmware/image/
+r_dir_file(hal_drm_widevine, firmware_file)
