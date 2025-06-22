@@ -1,3 +1,14 @@
+on boot
+    # Swipe
+    chown system system /sys/devices/virtual/input/lge_touch/swipe_enable
+    chmod 664 /sys/devices/virtual/input/lge_touch/swipe_enable
+    chown system system /sys/devices/virtual/input/lge_touch/swipe_available
+	chmod 664 /sys/devices/virtual/input/lge_touch/swipe_available
+
+    # Glove mode
+    chown system system /sys/devices/virtual/input/lge_touch/film_status
+    chmod 664 /sys/devices/virtual/input/lge_touch/film_status
+
 service vendor.touch-default /vendor/bin/hw/vendor.lineage.touch-service.lge
     class hal
     user system
