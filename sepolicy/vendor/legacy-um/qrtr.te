@@ -1,0 +1,1 @@
+allow qrtr self:netlink_route_socket create_socket_perms;

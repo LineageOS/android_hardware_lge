@@ -4,13 +4,23 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-ifeq ($(SEPOLICY_PATH), device/qcom/sepolicy-legacy-um)
-	SEPOLICY_PLATFORM := legacy-um
-else ifeq ($(TARGET_BOARD_PLATFORM),sdm845)
-# because SDM845 is different and uses legacy-um definitions in sepolicy_vndr...
-	SEPOLICY_PLATFORM := legacy-um
+ifneq (,$(filter msm8996 msm8998 sdm845, $(TARGET_BOARD_PLATFORM)))
+SEPOLICY_PLATFORM := legacy-um
+
+ifeq (,$(filter sdm845, $(TARGET_BOARD_PLATFORM)))
+BOARD_SEPOLICY_M4DEFS += \
+	nfc_nq_prop=vendor_nfc_nq_prop \
+	qcom_ims_prop=vendor_qcom_ims_prop \
+	sensors_prop=vendor_sensors_prop \
+	sensors_dbg_prop=vendor_sensors_dbg_prop
+endif
+
 else
-	SEPOLICY_PLATFORM := vndr
+SEPOLICY_PLATFORM := vndr
+endif
+
+ifeq ($(BOARD_LGE_USES_PERSDATA_AS_METADATA),true)
+	BOARD_SEPOLICY_M4DEFS += persdata_abt_block_device=metadata_block_device
 endif
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += hardware/lge/sepolicy/private
