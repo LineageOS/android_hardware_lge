@@ -1,0 +1,5 @@
+allow tee persist_lg_data_file:dir create_dir_perms;
+create_dir_file(tee, persist_lg_data_file)
+
+allow tee qseesfs_data_file:dir create_dir_perms;
+create_dir_file(tee, qseesfs_data_file)

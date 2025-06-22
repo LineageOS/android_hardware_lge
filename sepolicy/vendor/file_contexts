@@ -1,20 +1,74 @@
+# Block devices
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/drm      u:object_r:drm_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/dtbo     u:object_r:dtbo_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/encrypt  u:object_r:encrypt_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/felica   u:object_r:felica_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/mpt      u:object_r:mpt_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/persdata u:object_r:persdata_abt_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/power    u:object_r:power_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/qni      u:object_r:qni_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/secdata  u:object_r:sec_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/sns      u:object_r:sns_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/vbmeta   u:object_r:vbmeta_block_device:s0
+/dev/block/platform/soc/1d[8a]4000\.ufshc/by-name/vendor   u:object_r:system_block_device:s0
+
+# Data files
+/data/per_boot(/.*)? u:object_r:per_boot_file:s0
+
 # Devices
+/dev/cxd22[4x]x-i2c u:object_r:nfc_device:s0
+/dev/esfp0          u:object_r:fingerprint_device:s0
+/dev/goodix_fp      u:object_r:fingerprint_device:s0
+/dev/pn547          u:object_r:nfc_device:s0
 /dev/tspdrv         u:object_r:vibrator_device:s0
+
+# Executables
+/(vendor|system/vendor)/bin/qni      u:object_r:qni_exec:s0
+
+# Firmware
+/firmware(/.*)? u:object_r:firmware_file:s0
 
 # HALs
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service\.lge  u:object_r:hal_fingerprint_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.ir@1\.2-service\.lge                       u:object_r:hal_ir_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light-service\.lge                         u:object_r:hal_light_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.lge                    u:object_r:hal_light_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.nfc@1\.2-service-cxd22xx                   u:object_r:hal_nfc_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.radio@1\.4-service\.lge                    u:object_r:hal_radio_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.vibrator(@1\.[1-3])?-service\.lge          u:object_r:hal_vibrator_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.audio\.dac\.control@[1-2]\.0-service.* u:object_r:hal_dac_control_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.biometrics\.fingerprint@2\.1-service	 u:object_r:hal_fingerprint_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.lgdata@1\.1-service                    u:object_r:hal_lgdata_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.nfc@1\.1-service	                     u:object_r:hal_nfc_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.powerhint\.rescontrol@2\.0-service     u:object_r:hal_powerhint_default_exec:s0
-/(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.vss_ims@1\.0-service                              u:object_r:hal_vssims_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.vss_ims@1\.0-service                   u:object_r:hal_vssims_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.lge                u:object_r:hal_lineage_livedisplay_qti_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.trustonic\.tee@1\.1-service                           u:object_r:hal_trustonic_default_exec:s0
+
+# LG
+/mnt/vendor/absolute(/.*)? u:object_r:abt_pers_data_file:s0
+
+# Persist files
+/mnt/vendor/persist-lg(/.*)?               u:object_r:persist_lg_data_file:s0
+/mnt/vendor/persist-lg/data(/.*)?          u:object_r:qseesfs_data_file:s0
+/mnt/vendor/persist-lg/firmware(/.*)?      u:object_r:firmware_data_file:s0
+/mnt/vendor/persist-lg/kmstore(/.*)?       u:object_r:kmstore_data_file:s0
+/mnt/vendor/persist-lg/widevine(/.*)?      u:object_r:widevine_data_file:s0
+
+# Power
+/mnt/vendor/power(/.*)? u:object_r:power_file:s0
+
+# SNS
+/mnt/vendor/sns(/.*)? u:object_r:sns_file:s0
 
 # Sysfs
-/sys/bus/i2c/drivers/es9218-codec(/.*)?                                     u:object_r:sysfs_dac:s0
-/sys/bus/i2c/drivers/es9218-codec/[0-9]-0048(/.*)?                          u:object_r:sysfs_dac:s0
-/sys/devices/platform/soc/[0-9a-f]+\.i2c/i2c-[0-9]/[0-9]-0048(/.*)?         u:object_r:sysfs_dac:s0
-/sys/kernel/es9218_dac(/.*)?                                                u:object_r:sysfs_dac:s0
+/sys/devices/virtual/input/input[0-9]+/ldaf_thread_pause u:object_r:sysfs_ldaf:s0
+
+# Sysfs - DAC
+/sys/bus/i2c/drivers/es9218-codec(/.*)?                             u:object_r:sysfs_dac:s0
+/sys/bus/i2c/drivers/es9218-codec/[0-9]-0048(/.*)?                  u:object_r:sysfs_dac:s0
+/sys/devices/platform/soc/[0-9a-f]+\.i2c/i2c-[0-9]/[0-9]-0048(/.*)? u:object_r:sysfs_dac:s0
+/sys/kernel/es9218_dac(/.*)?                                        u:object_r:sysfs_dac:s0
+
+# Swap
+/dev/block/zram1 u:object_r:swap_block_device:s0

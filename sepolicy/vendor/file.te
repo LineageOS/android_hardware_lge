@@ -1,3 +1,44 @@
+# Data files
+type per_boot_file, file_type, data_file_type, core_data_file_type;
+
+# Debugfs
+type debugfs_wlan, debugfs_type, fs_type;
+
+# Executables
+type qni_exec, exec_type, vendor_file_type, file_type;
+
+# LG
+type abt_pers_data_file, file_type;
+
+# MPT
+type mpt_file, file_type, data_file_type;
+
+# Persist
+type firmware_data_file, file_type;
+type kmstore_data_file, file_type;
+type persist_lg_data_file, file_type;
+type qseesfs_data_file, file_type;
+type widevine_data_file, file_type;
+
+# Power
+type power_file, file_type;
+
+# Proc
+type proc_devices, proc_type, fs_type;
+type proc_laptop_mode, proc_type, fs_type;
+type proc_sensordata, proc_type, fs_type;
+type proc_swappiness, proc_type, fs_type;
+
+# Sensors
+type sns_file, file_type;
+
 # Sysfs
 type sysfs_dac, sysfs_type, fs_type;
+type sysfs_input, fs_type, sysfs_type;
+type sysfs_ldaf, sysfs_type, fs_type;
+type sysfs_lge_fingerprint, sysfs_type, fs_type;
+type sysfs_lge_power, sysfs_type, fs_type;
 type sysfs_lge_touch, sysfs_type, fs_type;
+type sysfs_msm_subsys, sysfs_type, fs_type;
+type sysfs_qni, sysfs_type, fs_type;
+type sysfs_scsi_devices_0000, sysfs_type, fs_type;

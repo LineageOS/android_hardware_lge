@@ -1,0 +1,4 @@
+allow ueventd persist_lg_data_file:dir create_dir_perms;
+create_dir_file(ueventd, persist_lg_data_file)
+
+r_dir_file(ueventd, metadata_file);

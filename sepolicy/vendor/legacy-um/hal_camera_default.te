@@ -1,0 +1,7 @@
+allow hal_camera_default persist_file:dir search;
+allow hal_camera_default sysfs_kgsl:file r_file_perms;
+
+# Properties
+get_prop(hal_camera_default, camera_prop)
+get_prop(hal_camera_default, sensors_prop)
+get_prop(hal_camera_default, sensors_dbg_prop)
