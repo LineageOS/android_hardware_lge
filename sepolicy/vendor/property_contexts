@@ -1,7 +1,45 @@
-# DAC
-persist.vendor.lge.audio.hifi_dac           u:object_r:vendor_audio_prop:s0
+# Audio
+persist.vendor.lge.3rd.speaker.prot.enable u:object_r:vendor_audio_prop:s0
+vendor.lge.wlan.earpiece                   u:object_r:vendor_audio_prop:s0
+
+# Audio - LGE
+persist.vendor.lge.audio.                        u:object_r:vendor_audio_prop:s0
+ro.vendor.lge.config.hifi_enhance_support        u:object_r:vendor_audio_prop:s0
+ro.vendor.lge.feature.use_audio_headset_type_ext u:object_r:vendor_audio_prop:s0
+vendor.lge.audio.hifi_rec.                       u:object_r:vendor_audio_prop:s0
+vendor.lge.fm_gain_control_headset               u:object_r:vendor_audio_prop:s0
+vendor.lge.fm_gain_control_speaker               u:object_r:vendor_audio_prop:s0
+
+# Display
+sdm.disable_hdr_lut_gen u:object_r:vendor_display_prop:s0
+vendor.display.mode u:object_r:vendor_display_prop:s0
+
+# LGE Misc
+ro.vendor.lge.build.target_country  u:object_r:vendor_lge_misc_prop:s0
+ro.vendor.lge.build.target_operator u:object_r:vendor_lge_misc_prop:s0
+ro.vendor.lge.build.target_region   u:object_r:vendor_lge_misc_prop:s0
+ro.vendor.lge.capp_cupss.           u:object_r:vendor_lge_misc_prop:s0
+ro.vendor.lge.swversion             u:object_r:vendor_lge_misc_prop:s0
+
+# QNI
+vendor.lge.qnovo.                        u:object_r:vendor_qni_prop:s0
+persist.vendor.lge.service.chg_mode      u:object_r:vendor_qni_prop:s0
+persist.vendor.lge.service.kernel.enable u:object_r:vendor_qni_prop:s0
+
+# RIL
+vendor.chre.enabled        u:object_r:vendor_radio_prop:s0
+vendor.lge.data.net.iwlan. u:object_r:vendor_radio_prop:s0
+vendor.lge.ril.            u:object_r:telephony_status_prop:s0
+vendor.lge.gsm.            u:object_r:telephony_status_prop:s0
+
+# Thermal
+persist.vendor.lge.sys.thermald_miti_off u:object_r:thermal-engine_prop:s0
 
 # Vibrator
-ro.vendor.vibrator.hal.click.duration              u:object_r:vendor_vibrator_prop:s0
-ro.vendor.vibrator.hal.tick.duration               u:object_r:vendor_vibrator_prop:s0
-ro.vendor.vibrator.hal.heavyclick.duration         u:object_r:vendor_vibrator_prop:s0
+ro.vendor.vibrator.hal.click.duration      u:object_r:vendor_vibrator_prop:s0
+ro.vendor.vibrator.hal.tick.duration       u:object_r:vendor_vibrator_prop:s0
+ro.vendor.vibrator.hal.heavyclick.duration u:object_r:vendor_vibrator_prop:s0
+
+# USB
+ro.vendor.lge.usb. u:object_r:vendor_lge_usb_prop:s0
+vendor.lge.usb.    u:object_r:vendor_lge_usb_prop:s0
