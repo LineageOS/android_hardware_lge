@@ -1,0 +1,4 @@
+r_dir_file(ueventd, persist_lg_data_file)
+r_dir_file(ueventd, persist_lg_wlan_file)
+
+r_dir_file(ueventd, metadata_file);

@@ -1,0 +1,4 @@
+# Get NFC properties
+get_prop(hal_nfc_default, nfc_nq_prop)
+
+rw_dir_file(hal_nfc_default, nfc_vendor_data_file)

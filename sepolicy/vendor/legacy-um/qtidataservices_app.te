@@ -1,0 +1,1 @@
+allow qtidataservices_app qtidataservices_app:socket create_socket_perms_no_ioctl;
