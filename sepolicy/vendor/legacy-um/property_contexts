@@ -1,0 +1,6 @@
+# Camera
+persist.camera.			         u:object_r:camera_prop:s0
+persist.vendor.lge.camera.       u:object_r:camera_prop:s0
+ro.vendor.lge.aux.camera         u:object_r:camera_prop:s0
+vendor.lge.camera.pd_test.result u:object_r:camera_prop:s0
+vendor.lge.faceprint.use.camera  u:object_r:camera_prop:s0

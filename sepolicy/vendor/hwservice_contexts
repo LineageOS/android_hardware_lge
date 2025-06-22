@@ -1,6 +1,16 @@
+# NXP
+vendor.nxp.nxpnfc::INxpNfc u:object_r:hal_nfc_hwservice:s0
+vendor.nxp.nxpnfc::INxpEse u:object_r:hal_nfc_hwservice:s0
+vendor.nxp.nxpese::INxpEse u:object_r:hal_nfc_hwservice:s0
+
 # Stock additions
-vendor.lge.hardware.powerhint.rescontrol::IResControl                   u:object_r:hal_lge_powerhint_hwservice:s0
-vendor.lge.hardware.vss_ims::IVssIms                                    u:object_r:hal_lge_vssims_hwservice:s0
+vendor.lge.hardware.biometrics.fingerprint::ILgeBiometricsFingerprint u:object_r:hal_fingerprint_hwservice:s0
+vendor.lge.hardware.lgdata::ILgData                                   u:object_r:hal_lgdata_hwservice:s0
+vendor.lge.hardware.lgdata::ILgDataVendorRil                          u:object_r:hal_lgdata_hwservice:s0
+vendor.lge.hardware.nfc::ILgeNfc_1_1                                  u:object_r:hal_nfc_hwservice:s0
+vendor.lge.hardware.powerhint.rescontrol::IResControl                 u:object_r:hal_lge_powerhint_hwservice:s0
+vendor.lge.hardware.radio::ILgeRadio                                  u:object_r:hal_telephony_hwservice:s0
+vendor.lge.hardware.vss_ims::IVssIms                                  u:object_r:hal_lge_vssims_hwservice:s0
 
 # Custom additions
-vendor.lge.hardware.audio.dac.control::IDacControl                  u:object_r:hal_dac_control_hwservice:s0
+vendor.lge.hardware.audio.dac.control::IDacControl u:object_r:hal_dac_control_hwservice:s0
