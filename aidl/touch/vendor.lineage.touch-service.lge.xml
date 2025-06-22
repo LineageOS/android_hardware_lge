@@ -1,0 +1,10 @@
+<manifest version="1.0" type="device">
+    <hal format="aidl">
+        <name>vendor.lineage.touch</name>
+        <fqname>IGloveMode/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.lineage.touch</name>
+        <fqname>ITouchscreenGesture/default</fqname>
+    </hal>
+</manifest>
