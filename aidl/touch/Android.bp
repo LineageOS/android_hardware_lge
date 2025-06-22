@@ -8,6 +8,14 @@ cc_binary {
     relative_install_path: "hw",
     init_rc: ["vendor.lineage.touch-service.lge.rc"],
     vintf_fragments: ["vendor.lineage.touch-service.lge.xml"],
+    cflags: select(soong_config_variable("LGE_TOUCH", "LEGACY_TOUCHSCREEN_INTERFACE_HEADERS"), {
+        any @ flag_val: ["-DLEGACY_TOUCHSCREEN_INTERFACE"],
+        default: [],
+    }),
+    include_dirs: select(soong_config_variable("LGE_TOUCH", "LEGACY_TOUCHSCREEN_INTERFACE_HEADERS"), {
+        any @ flag_val: [flag_val],
+        default: [],
+    }),
     srcs: [
         "GloveMode.cpp",
         "TouchscreenGesture.cpp",
