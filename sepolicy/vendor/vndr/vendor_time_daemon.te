@@ -1,0 +1,1 @@
+allow vendor_time_daemon vendor_persist_file:dir search;

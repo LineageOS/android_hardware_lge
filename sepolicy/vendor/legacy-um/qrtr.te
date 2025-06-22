@@ -1,0 +1,2 @@
+allow qrtr self:netlink_route_socket { create_socket_perms_no_ioctl nlmsg_write};
+allow qrtr self:capability net_admin;
