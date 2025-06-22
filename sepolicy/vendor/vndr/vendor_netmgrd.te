@@ -1,0 +1,5 @@
+get_prop(vendor_netmgrd, radio_control_prop)
+get_prop(vendor_netmgrd, vendor_lge_misc_prop)
+set_prop(vendor_netmgrd, vendor_radio_prop)
+
+r_dir_file(vendor_netmgrd, vendor_sysfs_slpi);

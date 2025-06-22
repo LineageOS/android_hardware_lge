@@ -1,0 +1,24 @@
+hal_client_domain(hal_camera_default, hal_configstore)
+
+binder_call(hal_camera_default, hal_configstore_default)
+binder_call(hal_camera_default, hal_configstore)
+
+allow hal_camera_default mnt_vendor_file:dir search;
+allow hal_camera_default persist_file:dir search;
+rw_dir_file(hal_camera_default, persist_lg_data_file)
+rw_dir_file(hal_camera_default, persist_lg_camera_file)
+
+r_dir_file(hal_camera_default, input_device)
+allow hal_camera_default input_device:chr_file rw_file_perms;
+
+allow hal_camera_default sysfs_ldaf:file rw_file_perms;
+
+r_dir_file(hal_camera_default, proc_devices)
+
+# Properties
+get_prop(hal_camera_default, bootanim_system_prop)
+get_prop(hal_camera_default, build_bootimage_prop)
+get_prop(hal_camera_default, vendor_lge_misc_prop)
+
+# Camera service keeps searching for power service which is a neverallow
+dontaudit hal_camera_default hal_power_hwservice:hwservice_manager find;

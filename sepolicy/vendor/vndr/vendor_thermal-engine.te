@@ -1,0 +1,5 @@
+get_prop(vendor_thermal-engine, vendor_lge_misc_prop);
+get_prop(vendor_thermal-engine, thermal-engine_prop);
+set_prop(vendor_thermal-engine, thermal-engine_prop);
+
+r_dir_file(vendor_thermal-engine, vendor_sysfs_usb_supply);
