@@ -1,0 +1,5 @@
+get_prop(rild, vendor_lge_misc_prop);
+get_prop(rild, boot_status_prop);
+binder_call(rild, hal_lgdata_default);
+
+allow rild hal_lgdata_hwservice:hwservice_manager find;

@@ -2,6 +2,10 @@ attribute hal_dac_control;
 attribute hal_dac_control_client;
 attribute hal_dac_control_server;
 
+attribute hal_lgdata;
+attribute hal_lgdata_client;
+attribute hal_lgdata_server;
+
 attribute hal_powerhint;
 attribute hal_powerhint_client;
 attribute hal_powerhint_server;
