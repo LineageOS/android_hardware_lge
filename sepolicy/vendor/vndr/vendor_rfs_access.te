@@ -1,0 +1,1 @@
+allow vendor_rfs_access vendor_persist_file:dir search;

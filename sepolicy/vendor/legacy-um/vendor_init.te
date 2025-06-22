@@ -1,0 +1,3 @@
+set_prop(vendor_init, camera_prop)
+set_prop(vendor_init, qcom_ims_prop)
+set_prop(vendor_init, sensors_prop)

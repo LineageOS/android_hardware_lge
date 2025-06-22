@@ -1,0 +1,16 @@
+allow qti_init_shell sysfs_boot_adsp:file rw_file_perms;
+
+rw_dir_file(qti_init_shell, sensors_vendor_data_file)
+rw_dir_file(qti_init_shell, vendor_radio_data_file)
+allow qti_init_shell sns_file:dir rw_dir_perms;
+allow qti_init_shell sns_file:file { rw_file_perms setattr };
+
+allow qti_init_shell sysfs_leds:file setattr;
+
+get_prop(qti_init_shell, vendor_lge_misc_prop)
+set_prop(qti_init_shell, vendor_lge_usb_prop)
+
+# For configfs permission
+allow qti_init_shell configfs:dir create_dir_perms;
+allow qti_init_shell configfs:file create_file_perms;
+allow qti_init_shell configfs:lnk_file { create r_file_perms };

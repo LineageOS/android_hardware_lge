@@ -1,3 +1,2 @@
 # DT2W
-allow hal_power_default sysfs_lge_touch:dir search;
-allow hal_power_default sysfs_lge_touch:file w_file_perms;
+rw_dir_file(hal_power_default, sysfs_lge_touch)
