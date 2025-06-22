@@ -1,0 +1,5 @@
+service vendor.touch-default /vendor/bin/hw/vendor.lineage.touch-service.lge
+    class hal
+    user nobody
+    group nobody
+    shutdown critical
