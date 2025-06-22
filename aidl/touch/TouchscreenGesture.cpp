@@ -8,13 +8,19 @@
 
 #include "TouchscreenGesture.h"
 
+#ifdef LEGACY_TOUCHSCREEN_INTERFACE
+#include <lge_touch.h>
+#endif
+
 namespace aidl {
 namespace vendor {
 namespace lineage {
 namespace touch {
 
-const std::string kAvailableGesturePath = "/sys/devices/virtual/input/lge_touch/swipe_available"; 
 const std::string kGesturePath = "/sys/devices/virtual/input/lge_touch/swipe_enable"; 
+
+#ifndef LEGACY_TOUCHSCREEN_INTERFACE
+const std::string kAvailableGesturePath = "/sys/devices/virtual/input/lge_touch/swipe_available"; 
 const char* kGestureNames[6] = {
     "Swipe Down",
     "Swipe Up",
@@ -24,8 +30,13 @@ const char* kGestureNames[6] = {
     "Swipe Bottom Left",
 };
 bool gestureAvailable[6] = {false, false, false, false, false, false };
+#endif
 
 TouchscreenGesture::TouchscreenGesture() {
+#ifdef LEGACY_TOUCHSCREEN_INTERFACE
+    // To be defined per device.
+    kGestureInfoMap = device_kGestureInfoMap;
+#else
     std::ifstream file(kAvailableGesturePath);
     std::string line;
     while(getline(file, line)) {
@@ -50,6 +61,7 @@ TouchscreenGesture::TouchscreenGesture() {
             j++;
         }
     }
+#endif
 }
 
 ndk::ScopedAStatus TouchscreenGesture::getSupportedGestures(std::vector<Gesture>* _aidl_return) {
