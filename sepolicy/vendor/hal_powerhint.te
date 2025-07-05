@@ -1,0 +1,2 @@
+binder_call(hal_powerhint_client, hal_powerhint_server)
+binder_call(hal_powerhint_server, hal_powerhint_client)

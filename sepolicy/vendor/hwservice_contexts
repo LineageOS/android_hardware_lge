@@ -1,1 +1,5 @@
+# Stock additions
+vendor.lge.hardware.powerhint.rescontrol::IResControl                   u:object_r:hal_lge_powerhint_hwservice:s0
+
+# Custom additions
 vendor.lge.hardware.audio.dac.control::IDacControl                  u:object_r:hal_dac_control_hwservice:s0
