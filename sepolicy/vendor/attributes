@@ -5,3 +5,7 @@ attribute hal_dac_control_server;
 attribute hal_powerhint;
 attribute hal_powerhint_client;
 attribute hal_powerhint_server;
+
+attribute hal_vssims;
+attribute hal_vssims_client;
+attribute hal_vssims_server;
