@@ -1,0 +1,5 @@
+binder_call(hal_vssims_client, hal_vssims_server)
+binder_call(hal_vssims_server, hal_vssims_client)
+
+add_hwservice(hal_vssims_server, hal_lge_vssims_hwservice)
+allow hal_vssims_client hal_lge_vssims_hwservice:hwservice_manager find;
