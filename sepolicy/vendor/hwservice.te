@@ -1,0 +1,1 @@
+type hal_lge_powerhint_hwservice, hwservice_manager_type;
