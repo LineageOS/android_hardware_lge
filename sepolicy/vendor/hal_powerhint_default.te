@@ -1,0 +1,8 @@
+type hal_powerhint_default, domain;
+hal_server_domain(hal_powerhint_default, hal_powerhint);
+
+type hal_powerhint_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_powerhint_default);
+
+add_hwservice(hal_powerhint_server, hal_lge_powerhint_hwservice)
+allow hal_powerhint_client hal_lge_powerhint_hwservice:hwservice_manager find;
