@@ -24,6 +24,7 @@
 #include "fingerprint.h"
 #include "BiometricsFingerprint.h"
 
+#include <fstream>
 #include <inttypes.h>
 #include <unistd.h>
 
@@ -47,6 +48,14 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevi
     if (!mDevice) {
         ALOGE("Can't open HAL module");
     }
+#ifdef LGE_EGISTEC_UDFPS
+    if(std::ifstream(FOD_HBM_LEGACY_PATH).good())
+        mHbmPath = FOD_HBM_LEGACY_PATH;
+    else if(std::ifstream(FOD_HBM_PATH).good())
+        mHbmPath = FOD_HBM_PATH;
+    else
+        mHbmPath = "/dev/null"; // avoid any possible null deref
+#endif
 }
 
 BiometricsFingerprint::~BiometricsFingerprint() {
@@ -404,14 +413,11 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t *msg) {
 }
 
 #ifdef LGE_EGISTEC_UDFPS
-#define FOD_HBM_PATH "/sys/devices/virtual/panel/brightness/fp_lhbm"
-#define LGE_TOUCH_RESET_PATH "/sys/devices/virtual/input/lge_touch/reset_ctrl"
-
-static void setFodHbm(bool status) {
-    android::base::WriteStringToFile(status ? "1" : "0", FOD_HBM_PATH);
+void BiometricsFingerprint::setFodHbm(bool status) {
+    android::base::WriteStringToFile(status ? "1" : "0", mHbmPath);
 }
 
-static void resetLgeTouchPanel(void) {
+void BiometricsFingerprint::resetLgeTouchPanel(void) {
     android::base::WriteStringToFile("4", LGE_TOUCH_RESET_PATH);
 }
 

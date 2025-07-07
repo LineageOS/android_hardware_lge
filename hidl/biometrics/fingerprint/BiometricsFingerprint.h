@@ -48,6 +48,12 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::hidl_string;
 using ::android::sp;
 
+#ifdef LGE_EGISTEC_UDFPS
+#define FOD_HBM_LEGACY_PATH "/sys/devices/virtual/panel/brightness/fp_lhbm"
+#define FOD_HBM_PATH "/sys/devices/virtual/panel/panel-0/brightness/fp_lhbm"
+#define LGE_TOUCH_RESET_PATH "/sys/devices/virtual/input/lge_touch/reset_ctrl"
+#endif
+
 struct BiometricsFingerprint : public IBiometricsFingerprint {
 public:
     BiometricsFingerprint();
@@ -82,9 +88,12 @@ private:
     static BiometricsFingerprint* sInstance;
 
 #ifdef LGE_EGISTEC_UDFPS
+    void setFodHbm(bool status);
+    void resetLgeTouchPanel(void);
     void disableHighBrightFod();
     void enableHighBrightFod();
     bool hbmFodEnabled;
+    std::string mHbmPath;
     std::mutex mSetHbmFodMutex;
 #endif
 
