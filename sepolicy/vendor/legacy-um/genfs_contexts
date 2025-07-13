@@ -1,0 +1,2 @@
+# LGE Panel
+genfscon sysfs /devices/virtual/panel/brightness u:object_r:sysfs_graphics:s0
