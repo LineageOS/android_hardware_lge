@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b571a5e3_688cc3b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2025-07-14T08:39:12Z",
+      "side": 1,
+      "message": "the non-(panel-0) node should be moved to `legacy-um` or it will break build for sm8150 and later.\n\nboth nodes should have a copy in the `vndr` directory, referencing `vendor_sysfs_graphics` instead.",
+      "revId": "552641afbbff336352e4a1c9d29edea686d86749",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
