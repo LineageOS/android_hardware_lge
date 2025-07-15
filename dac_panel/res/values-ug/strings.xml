@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">تۆت يوللۇق DAC تاختا</string>
+    <string name="quad_dac">Hi-Fi تۆت يوللۇق DAC</string>
+    <string name="quad_dac_on">تۆت يوللۇق DAC ئوچۇق</string>
+    <string name="quad_dac_off">تۆت يوللۇق DAC تاقاق</string>
+    <string name="quad_dac_unavail">تۆت يوللۇق DAC نى ئىشلەتكىلى بولمايدۇ</string>
+    <string name="quad_dac_settings">تۆت يوللۇق DAC تەڭشەك</string>
+    <string name="quad_dac_balance">تەڭپۇڭ</string>
+    <string name="quad_dac_balance_summary">ئوڭ/سول تەڭپۇڭلۇقنى ئۆزگەرتىدۇ</string>
+    <string name="sound_preset">ئاۋازنىڭ ئالدىن تەڭشىكى</string>
+    <string name="sound_preset_normal">ئادەتتىكى</string>
+    <string name="sound_preset_enhanced">كۈچەيتىلگەن</string>
+    <string name="sound_preset_detailed">تەپسىلاتى</string>
+    <string name="sound_preset_live">بىۋاستە</string>
+    <string name="sound_preset_bass">تۆۋەن ئاۋاز</string>
+    <string name="digital_filter">رەقەملىك سۈزگۈچ</string>
+    <string name="digital_filter_0">قىسقا</string>
+    <string name="digital_filter_1">ئىتتىك</string>
+    <string name="digital_filter_2">ئاستا</string>
+    <string name="digital_filter_3">ئىختىيارىي سۈزگۈچ</string>
+    <string name="customizable_filter_settings">ئىختىيارىي سۈزگۈچ تەڭشىكى</string>
+    <string name="cf_shape">ئىختىيارى سۈزگۈچ شەكلى</string>
+    <string name="cf_shape_0">تېز دومىلىتىش</string>
+    <string name="cf_shape_1">ئاستا دومىلىتىش</string>
+    <string name="cf_shape_2">ئەڭ ئاز نىسپىي تېز دومىلىتىش</string>
+    <string name="cf_shape_3">ئەڭ ئاز نىسپىي ئاستا دومىلىتىش</string>
+    <string name="cf_shape_4">سۈرئەت ئۆزگەرتىپ تېز دومىلىتىش</string>
+    <string name="cf_shape_5">ئارىلاش تېز دومىلىتىش</string>
+    <string name="cf_shape_6">خىش تام</string>
+    <string name="cf_symmetry">ئىختىيارى سۈزگۈچ سىممېتىرىكلىكى</string>
+    <string name="cf_symmetry_0">سىنوس سىممېتىرىكلىكى</string>
+    <string name="cf_symmetry_1">كوسىنوس سىممېتىرىكلىكى</string>
+    <string name="customizable_filter_coeffs">ئىختىيارىي سۈزگۈچ نىسبىتى</string>
+    <string name="customizable_filter_coeffs_summary">دىققەت: ئەگەر بارلىق كوئېفېنسىنتنىڭ ھەممىسى 0 بولسا، ئاۋاز ئۈنسىزلىنىدۇ</string>
+    <string name="hifi_mode">HiFi ھالىتى</string>
+    <string name="hifi_mode_normal">ئادەتتىكى</string>
+    <string name="hifi_mode_him">يۇقىرى قارشىلىق</string>
+    <string name="hifi_mode_aux-him">AUX يۇقىرى قارشىلىق</string>
+    <string name="avc_volume">AVC ئاۋاز مىقدارى</string>
+    <string name="avc_volume_summary">ئاۋازنى يۇقىرىلىتىدۇ</string>
+</resources>
