@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d94b6de0_11ba2103",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2025-08-01T12:52:59Z",
+      "side": 1,
+      "message": "joan (8998) isn\u0027t building because 8998 is using `vendor_` prefix on several defines, yet sdm845 doesn\u0027t, but then QSSI does.\nWhat?",
+      "revId": "07239642649c68d169b1e53ae983e74127d9967c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
