@@ -1,2 +1,4 @@
 # LGE Touch
 genfscon sysfs /devices/virtual/input/lge_touch u:object_r:sysfs_lge_touch:s0
+# Livedisplay
+/vendor/bin/hw/vendor\.lineage\.livedisplay-service\.lge u:object_r:hal_lineage_livedisplay_exec:s0
