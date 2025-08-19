@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2019 The LineageOS Project
- *
+ * SPDX-FileCopyrightText: 2019-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,10 +7,10 @@
 #include <android-base/logging.h>
 #include <fstream>
 
+namespace aidl {
 namespace vendor {
 namespace lineage {
 namespace livedisplay {
-namespace V2_0 {
 namespace implementation {
 
 static constexpr const char* kModePath = "/sys/devices/virtual/panel/img_tune/screen_mode";
@@ -23,7 +22,6 @@ const std::map<int32_t, DisplayModes::ModeInfo> DisplayModes::kModeMap = {
     {2, {"Game", "5"}},
     {3, {"Photos", "2"}},
     {4, {"Web", "3"}},
-//    {5, {"Expert", "10"}},
 };
 
 DisplayModes::DisplayModes() {
@@ -47,16 +45,16 @@ DisplayModes::DisplayModes() {
 }
 
 // Methods from ::vendor::lineage::livedisplay::V2_0::IDisplayModes follow.
-Return<void> DisplayModes::getDisplayModes(getDisplayModes_cb resultCb) {
+ndk::ScopedAStatus DisplayModes::getDisplayModes(std::vector<DisplayMode>* _aidl_return) {
     std::vector<DisplayMode> modes;
     for (const auto& entry : kModeMap) {
         modes.push_back({entry.first, entry.second.name});
     }
-    resultCb(modes);
-    return Void();
+    *_aidl_return = modes;
+    return ndk::ScopedAStatus::ok();
 }
 
-Return<void> DisplayModes::getCurrentDisplayMode(getCurrentDisplayMode_cb resultCb) {
+ndk::ScopedAStatus DisplayModes::getCurrentDisplayMode(DisplayMode* _aidl_return) {
     int32_t currentModeId = mDefaultModeId;
     std::ifstream modeFile(kModePath);
     std::string value;
@@ -70,39 +68,41 @@ Return<void> DisplayModes::getCurrentDisplayMode(getCurrentDisplayMode_cb result
             }
         }
     }
-    resultCb({currentModeId, kModeMap.at(currentModeId).name});
-    return Void();
+
+    *_aidl_return = DisplayMode{(currentModeId, kModeMap.at(currentModeId).name)};
+    return ndk::ScopedAStatus::ok();
 }
 
-Return<void> DisplayModes::getDefaultDisplayMode(getDefaultDisplayMode_cb resultCb) {
-    resultCb({mDefaultModeId, kModeMap.at(mDefaultModeId).name});
-    return Void();
+ndk::ScopedAStatus DisplayModes::getDefaultDisplayMode(DisplayMode* _aidl_return) {
+    *_aidl_return = DisplayMode{(currentModeId, kModeMap.at(currentModeId).name)};
+    return ndk::ScopedAStatus::ok();
 }
 
-Return<bool> DisplayModes::setDisplayMode(int32_t modeID, bool makeDefault) {
+ndk::ScopedAStatus DisplayModes::setDisplayMode(int32_t modeID, bool makeDefault) {
     const auto iter = kModeMap.find(modeID);
     if (iter == kModeMap.end()) {
-        return false;
+        return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
     }
     std::ofstream modeFile(kModePath);
     modeFile << iter->second.value;
     if (modeFile.fail()) {
-        return false;
+        return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
     }
 
     if (makeDefault) {
         std::ofstream defaultFile(kDefaultPath);
         defaultFile << iter->second.value;
         if (defaultFile.fail()) {
-            return false;
+            return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
         }
         mDefaultModeId = iter->first;
     }
-    return true;
+    return ndk::ScopedAStatus::ok();
 }
 
-}  // namespace sdm
-}  // namespace V2_0
+
+}  // namespace implementation
 }  // namespace livedisplay
 }  // namespace lineage
 }  // namespace vendor
+}  // namespace aidl
