@@ -1,0 +1,58 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+filegroup {
+    name: "vendor.lineage.livedisplay-lge-ce",
+    srcs: ["ColorEnhancement.cpp"],
+}
+
+filegroup {
+    name: "vendor.lineage.livedisplay-lge-dm",
+    srcs: ["DisplayModes.cpp"],
+}
+
+filegroup {
+    name: "vendor.lineage.livedisplay-lge-se",
+    srcs: ["SunlightEnhancement.cpp"],
+}
+
+cc_library_headers {
+    name: "vendor.lineage.livedisplay-lge-headers",
+    vendor_available: true,
+    export_include_dirs: ["include"],
+}
+
+cc_defaults {
+    name: "livedisplay_lge_defaults",
+    defaults: ["hidl_defaults"],
+    relative_install_path: "hw",
+    srcs: [
+        ":vendor.lineage.livedisplay-lge-ce",
+        ":vendor.lineage.livedisplay-lge-dm",
+        ":vendor.lineage.livedisplay-lge-se",
+        ":vendor.lineage.livedisplay-sdm-pa",
+        ":vendor.lineage.livedisplay-sdm-utils",
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libbinder_ndk",
+        "libutils",
+        "vendor.lineage.livedisplay-V1-ndk",
+    ],
+    header_libs: [
+        "vendor.lineage.livedisplay-sdm-headers",
+        "vendor.lineage.livedisplay-lge-headers",
+    ],
+}
+
+cc_binary {
+    name: "vendor.lineage.livedisplay-service.lge",
+    vintf_fragments: ["vendor.lineage.livedisplay-service.lge.xml"],
+    init_rc: ["vendor.lineage.livedisplay-service.lge.rc"],
+    defaults: ["livedisplay_lge_defaults"],
+    vendor: true,
+}
