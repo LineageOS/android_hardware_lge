@@ -1,0 +1,15 @@
+on early-boot
+    # LiveDisplay sysfs
+    chown system system /sys/devices/virtual/panel/img_tune/screen_mode
+    chmod 0660 /sys/devices/virtual/panel/img_tune/screen_mode
+    chown system system /sys/devices/virtual/panel/img_tune/screen_tune
+    chmod 0660 /sys/devices/virtual/panel/img_tune/screen_tune
+    chown system system /sys/devices/virtual/panel/img_tune/rgb_tune
+    chmod 0660 /sys/devices/virtual/panel/img_tune/rgb_tune
+    chown system system /sys/devices/virtual/panel/img_tune/hdr_mode
+    chmod 0660 /sys/devices/virtual/panel/img_tune/hdr_mode
+
+service vendor.livedisplay-hal-lge /vendor/bin/hw/vendor.lineage.livedisplay-service.lge
+    class late_start
+    user system
+    group system
