@@ -4,4 +4,14 @@
         <version>1</version>
         <fqname>IAdaptiveBacklight/default</fqname>
     </hal>
+      <hal format="aidl">
+        <name>vendor.lineage.livedisplay</name>
+        <version>1</version>
+        <fqname>IAntiFlicker/default</fqname>
+    </hal>
+     <hal format="aidl">
+        <name>vendor.lineage.livedisplay</name>
+        <version>1</version>
+        <fqname>ISunlightEnhancement/default</fqname>
+    </hal>
 </manifest>

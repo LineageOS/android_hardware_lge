@@ -9,7 +9,6 @@
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
 #include <binder/ProcessState.h>
-#include <livedisplay/lge/AdaptiveBacklight.h>
 #include <livedisplay/lge/SunlightEnhancement.h>
 
 using ::aidl::vendor::lineage::livedisplay::AdaptiveBacklight;
