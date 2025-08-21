@@ -20,17 +20,8 @@ int main() {
 
     LOG(INFO) << "LiveDisplay HAL service is starting.";
 
-    std::shared_ptr<AdaptiveBacklight> ab =
-            ENABLE_AB ? ndk::SharedRefBase::make<AdaptiveBacklight>() : nullptr;
     std::shared_ptr<SunlightEnhancement> se =
             ENABLE_SE ? ndk::SharedRefBase::make<SunlightEnhancement>() : nullptr;
-
-    if (ab) {
-        std::string instance = std::string() + AdaptiveBacklight::descriptor + "/default";
-        binder_status_t status = AServiceManager_addService(ab->asBinder().get(), instance.c_str());
-        CHECK_EQ(status, STATUS_OK);
-    }
-
 
     if (se) {
         std::string instance = std::string() + SunlightEnhancement::descriptor + "/default";
