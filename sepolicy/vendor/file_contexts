@@ -11,8 +11,6 @@
 /(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.audio\.dac\.control@[1-2]\.0-service.* u:object_r:hal_dac_control_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.powerhint\.rescontrol@2\.0-service     u:object_r:hal_powerhint_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.vss_ims@1\.0-service                              u:object_r:hal_vssims_default_exec:s0
-/(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.lge                u:object_r:hal_lineage_livedisplay_qti_exec:s0
-
 # Sysfs
 /sys/bus/i2c/drivers/es9218-codec(/.*)?                                     u:object_r:sysfs_dac:s0
 /sys/bus/i2c/drivers/es9218-codec/[0-9]-0048(/.*)?                          u:object_r:sysfs_dac:s0
