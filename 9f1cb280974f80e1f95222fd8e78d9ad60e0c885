@@ -16,6 +16,23 @@
       "message": "much closer, now just edit the commit message to just be the first part...",
       "revId": "9f1cb280974f80e1f95222fd8e78d9ad60e0c885",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1344313_07458940",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13028
+      },
+      "writtenOn": "2025-08-22T09:59:43Z",
+      "side": 1,
+      "message": "Once more: \"git commit --amend\", not abandon and upload a new one...",
+      "revId": "9f1cb280974f80e1f95222fd8e78d9ad60e0c885",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": []
