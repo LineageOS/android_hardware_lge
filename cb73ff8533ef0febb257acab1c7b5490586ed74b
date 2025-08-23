@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "476859dd_36de3ddd",
+        "filename": "aidl/livedisplay/vendor.lineage.livedisplay-service.lge.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 32674
+      },
+      "writtenOn": "2025-08-23T12:46:38Z",
+      "side": 1,
+      "message": "Aren\u0027t these nodes created on init?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 13
+      },
+      "revId": "cb73ff8533ef0febb257acab1c7b5490586ed74b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e026ceb7_37293e1b",
+        "filename": "aidl/livedisplay/vendor.lineage.livedisplay-service.lge.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 32674
+      },
+      "writtenOn": "2025-08-23T12:46:38Z",
+      "side": 1,
+      "message": "IDisplayModes, IColorEnhancement, IPictureAdjustment",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 53
+      },
+      "revId": "cb73ff8533ef0febb257acab1c7b5490586ed74b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6b3f152_6d95bcdf",
+        "filename": "sepolicy/vendor/genfs_contexts",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 32674
+      },
+      "writtenOn": "2025-08-23T12:46:38Z",
+      "side": 1,
+      "message": "Give me a reason of this should be labeled in genfs_contexts.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 15
+      },
+      "revId": "cb73ff8533ef0febb257acab1c7b5490586ed74b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
