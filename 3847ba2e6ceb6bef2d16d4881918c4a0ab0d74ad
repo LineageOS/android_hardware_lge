@@ -16,6 +16,24 @@
       "message": "Instead of \"git commit\" you want \"git commit --amend\" next time. One doesnt do this in parts but as a single commit.\nWhatyou can now do is:\ngit branch mytempbranch\ngit checkout mytempbranch\ngit branch -u github/lineage-22.2\ngit rebase -i\n\nThe editor will show you your 5 commits. Choose \"squash\" on all but the first one. Edit the commit message. Acknowledge the change - you will be left with 1 change as supposed to, you can then push that single commit",
       "revId": "3847ba2e6ceb6bef2d16d4881918c4a0ab0d74ad",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "685befa8_de8d78a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-08-25T04:19:16Z",
+      "side": 1,
+      "message": "hy thanks for info, let me fixed",
+      "parentUuid": "c2c17f31_7f3f85d1",
+      "revId": "3847ba2e6ceb6bef2d16d4881918c4a0ab0d74ad",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": []
