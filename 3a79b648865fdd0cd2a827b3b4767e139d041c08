@@ -70,6 +70,24 @@
       "parentUuid": "c9faccda_0c912eff",
       "revId": "3a79b648865fdd0cd2a827b3b4767e139d041c08",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "163c363c_ccc01750",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-08-25T09:46:15Z",
+      "side": 1,
+      "message": "No you didn\u0027t amend, otherwise it wouldn\u0027t have generated another change-Id. Please learn how to use Git and Gerrit. There\u0027s an easy how-to in our Wiki.",
+      "parentUuid": "e44c9a5d_14822191",
+      "revId": "3a79b648865fdd0cd2a827b3b4767e139d041c08",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
