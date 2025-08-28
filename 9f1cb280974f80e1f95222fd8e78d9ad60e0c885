@@ -33,6 +33,24 @@
       "message": "Once more: \"git commit --amend\", not abandon and upload a new one...",
       "revId": "9f1cb280974f80e1f95222fd8e78d9ad60e0c885",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e7a04b9_9b909e07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-08-28T11:24:15Z",
+      "side": 1,
+      "message": "thanks let me edit",
+      "parentUuid": "1e19fec6_fc712c21",
+      "revId": "9f1cb280974f80e1f95222fd8e78d9ad60e0c885",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": []
