@@ -16,6 +16,24 @@
       "message": "6 violations found:\nsdm.disable_hdr_lut_gen u:object_r:vendor_display_prop:s0\nminios.camera_auto.                                 u:object_r:vendor_camera_prop:s0\nminios.camera_tof                                   u:object_r:vendor_camera_prop:s0\nproduct.lge.minios.ost.camera.                      u:object_r:vendor_camera_prop:s0\nro.camera.req.fmq.size                              u:object_r:vendor_camera_prop:s0\nro.camera.res.fmq.size                              u:object_r:vendor_camera_prop:s0\n******************************\nvendor\u0027s and odm\u0027s property_contexts MUST use ONLY vendor-prefixed properties.\nThis is enforced by VTS, so please fix such offending properties.",
       "revId": "b36f71ddec474a70bbd47cf1d7eb9aa50316f2e4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2f3f571_638320e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2025-09-01T04:57:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2152aecc_e1fc91c1",
+      "revId": "b36f71ddec474a70bbd47cf1d7eb9aa50316f2e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
