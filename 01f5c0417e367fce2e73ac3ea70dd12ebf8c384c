@@ -24,6 +24,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a708fe1d_227c75b2",
+        "filename": "sepolicy/vendor/legacy-um/thermal-engine.te",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2025-09-01T23:55:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5585a390_d599d938",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 45
+      },
+      "revId": "01f5c0417e367fce2e73ac3ea70dd12ebf8c384c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08c2f985_20e5a54c",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-09-01T23:48:38Z",
       "side": 1,
       "message": "set_prop implies get_prop",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 53
+      },
+      "revId": "01f5c0417e367fce2e73ac3ea70dd12ebf8c384c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e800b24_e8db81b0",
+        "filename": "sepolicy/vendor/vndr/vendor_thermal-engine.te",
+        "patchSetId": 12
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2025-09-01T23:55:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08c2f985_20e5a54c",
       "range": {
         "startLine": 2,
         "startChar": 0,
