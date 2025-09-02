@@ -1,0 +1,37 @@
+/*
+ * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+cc_binary {
+    name: "vendor.lineage.touch-service.lge",
+    vendor: true,
+    relative_install_path: "hw",
+    init_rc: ["vendor.lineage.touch-service.lge.rc"],
+    vintf_fragments: select(soong_config_variable("touch_lge", "enable_tg"), {
+        "true": ["vendor.lineage.touch-service.lge-tg.xml"],
+        default: [],
+    }) + select(soong_config_variable("touch_lge", "enable_gm"), {
+        "true": ["vendor.lineage.touch-service.lge-gm.xml"],
+        default: [],
+    }),
+    cflags: select(soong_config_variable("touch_lge", "enable_tg"), {
+         "true": ["-DENABLE_TG=true"],
+        default: ["-DENABLE_TG=false"],
+    }) + select(soong_config_variable("touch_lge", "enable_gm"), {
+        "true": ["-DENABLE_GM=true"],
+        default: ["-DENABLE_GM=false"],
+    }),
+    srcs: [
+        "GloveMode.cpp",
+        "TouchscreenGesture.cpp",
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "liblog",
+        "libbinder_ndk",
+        "libutils",
+        "vendor.lineage.touch-V1-ndk",
+    ],
+}
