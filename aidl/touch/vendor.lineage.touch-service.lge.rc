@@ -1,0 +1,8 @@
+on boot
+    chown system system /sys/devices/virtual/input/lge_touch/swipe_available
+    chmod 0664 /sys/devices/virtual/input/lge_touch/swipe_available
+
+service vendor.touch-hal /vendor/bin/hw/vendor.lineage.touch-service.lge
+    class hal
+    user system
+    group system
