@@ -18,6 +18,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe702daf_31ea48e2",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T10:00:54Z",
+      "side": 1,
+      "message": "note,thanks",
+      "parentUuid": "c04e1328_3bbcba9c",
+      "revId": "97405ca610857fd1eb5977d89767ad2f3fde00ed",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20887a93_2d2cceaa",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-02T09:39:40Z",
       "side": 1,
       "message": "Kona naming doesn\u0027t belong in a common repo",
+      "revId": "97405ca610857fd1eb5977d89767ad2f3fde00ed",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78cc84c7_51a19d0e",
+        "filename": "aidl/touch/service.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T10:00:54Z",
+      "side": 1,
+      "message": "note,changed",
+      "parentUuid": "20887a93_2d2cceaa",
       "revId": "97405ca610857fd1eb5977d89767ad2f3fde00ed",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
