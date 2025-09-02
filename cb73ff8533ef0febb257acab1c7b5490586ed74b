@@ -96,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98b0d366_a94cb5d7",
+        "filename": "aidl/livedisplay/vendor.lineage.livedisplay-service.lge.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T07:52:13Z",
+      "side": 1,
+      "message": "that  port from hidl, but later some devices need on init will change later",
+      "parentUuid": "476859dd_36de3ddd",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 13
+      },
+      "revId": "cb73ff8533ef0febb257acab1c7b5490586ed74b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e026ceb7_37293e1b",
         "filename": "aidl/livedisplay/vendor.lineage.livedisplay-service.lge.xml",
         "patchSetId": 1
@@ -107,6 +131,30 @@
       "writtenOn": "2025-08-23T12:46:38Z",
       "side": 1,
       "message": "IDisplayModes, IColorEnhancement, IPictureAdjustment",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 53
+      },
+      "revId": "cb73ff8533ef0febb257acab1c7b5490586ed74b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd7abbd3_b217c41b",
+        "filename": "aidl/livedisplay/vendor.lineage.livedisplay-service.lge.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T07:52:13Z",
+      "side": 1,
+      "message": "for display modes and ce like ly lineage interface provide auto modes",
+      "parentUuid": "e026ceb7_37293e1b",
       "range": {
         "startLine": 5,
         "startChar": 0,
@@ -154,6 +202,30 @@
       "side": 1,
       "message": "yes that must be in file_context iam not uploaded yet,thanks",
       "parentUuid": "d6b3f152_6d95bcdf",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 15
+      },
+      "revId": "cb73ff8533ef0febb257acab1c7b5490586ed74b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cd5bc00_71e1d3db",
+        "filename": "sepolicy/vendor/genfs_contexts",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T07:52:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3e9ad74_758cd134",
       "range": {
         "startLine": 4,
         "startChar": 0,
