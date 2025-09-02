@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27742376_f5a47270",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T17:09:45Z",
+      "side": 1,
+      "message": "Using VINTF fragments and isSupported() at the same time is inconsistent",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 7
+      },
+      "revId": "a571f7c29d28ee2c07abd8cf3088ea97bd3cb1d3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2b7072f_2116981a",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T17:09:45Z",
+      "side": 1,
+      "message": "cflags are not being used",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 7
+      },
+      "revId": "a571f7c29d28ee2c07abd8cf3088ea97bd3cb1d3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
