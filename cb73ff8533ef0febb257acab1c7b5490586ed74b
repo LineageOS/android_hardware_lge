@@ -118,6 +118,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0bdf60c_f371532e",
+        "filename": "aidl/livedisplay/vendor.lineage.livedisplay-service.lge.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T07:52:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98b0d366_a94cb5d7",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 13
+      },
+      "revId": "cb73ff8533ef0febb257acab1c7b5490586ed74b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e026ceb7_37293e1b",
@@ -155,6 +179,30 @@
       "side": 1,
       "message": "for display modes and ce like ly lineage interface provide auto modes",
       "parentUuid": "e026ceb7_37293e1b",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 53
+      },
+      "revId": "cb73ff8533ef0febb257acab1c7b5490586ed74b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b66c8ce_24585d43",
+        "filename": "aidl/livedisplay/vendor.lineage.livedisplay-service.lge.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T07:52:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd7abbd3_b217c41b",
       "range": {
         "startLine": 5,
         "startChar": 0,
