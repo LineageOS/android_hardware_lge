@@ -24,6 +24,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70c1608d_cf7995ff",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T11:10:10Z",
+      "side": 1,
+      "message": "for more slot for GloveMode, but still in wip",
+      "parentUuid": "a1cb832a_7814dcbd",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 7
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d9f0e95_4bf4a87f",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-09-02T10:14:50Z",
       "side": 1,
       "message": "stray spaces",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 19,
+        "endChar": 13
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52c9fc54_23a61b89",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T11:10:10Z",
+      "side": 1,
+      "message": "fixed,thanks",
+      "parentUuid": "7d9f0e95_4bf4a87f",
       "range": {
         "startLine": 19,
         "startChar": 11,
@@ -70,6 +118,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10380d5e_57f7bb13",
+        "filename": "aidl/touch/TouchscreenGesture.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T11:10:10Z",
+      "side": 1,
+      "message": "like vscode typo",
+      "parentUuid": "f1be9a43_d1916334",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 31
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73c43b1e_53f1a029",
@@ -83,6 +155,24 @@
       "writtenOn": "2025-09-02T10:14:50Z",
       "side": 1,
       "message": "Add always a newline at the end",
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20b78346_07ad371f",
+        "filename": "aidl/touch/TouchscreenGesture.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T11:10:10Z",
+      "side": 1,
+      "message": "at the end right?,fixed,thanks",
+      "parentUuid": "73c43b1e_53f1a029",
       "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
@@ -104,6 +194,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d272ebef_d950da40",
+        "filename": "aidl/touch/TouchscreenGesture.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T11:10:10Z",
+      "side": 1,
+      "message": "fixed,thanks",
+      "parentUuid": "fcfb7078_51e29afd",
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2a15d89_84a23269",
@@ -117,6 +225,30 @@
       "writtenOn": "2025-09-02T10:14:50Z",
       "side": 1,
       "message": "spaces, not tabs",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 1
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0819a0de_eb4a498f",
+        "filename": "aidl/touch/vendor.lineage.touch-service.lge-tg.rc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T11:10:10Z",
+      "side": 1,
+      "message": "fixed,thanks",
+      "parentUuid": "b2a15d89_84a23269",
       "range": {
         "startLine": 3,
         "startChar": 0,
@@ -150,6 +282,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c77d5bd0_588893f8",
+        "filename": "aidl/touch/vendor.lineage.touch-service.lge-tg.rc",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T11:10:10Z",
+      "side": 1,
+      "message": "fixed,thanks",
+      "parentUuid": "72de8ca6_4261e9b2",
+      "range": {
+        "startLine": 5,
+        "startChar": 44,
+        "endLine": 5,
+        "endChar": 70
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54ae1262_08ea14f2",
@@ -163,6 +319,30 @@
       "writtenOn": "2025-09-02T10:14:50Z",
       "side": 1,
       "message": "stray spaces",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 7
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a67da878_d7f32205",
+        "filename": "aidl/touch/vendor.lineage.touch-service.lge-tg.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T11:10:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54ae1262_08ea14f2",
       "range": {
         "startLine": 5,
         "startChar": 0,
