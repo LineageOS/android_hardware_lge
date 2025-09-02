@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c04e1328_3bbcba9c",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T09:39:40Z",
+      "side": 1,
+      "message": "Lots of stray spaces",
+      "revId": "97405ca610857fd1eb5977d89767ad2f3fde00ed",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20887a93_2d2cceaa",
+        "filename": "aidl/touch/service.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T09:39:40Z",
+      "side": 1,
+      "message": "Kona naming doesn\u0027t belong in a common repo",
+      "revId": "97405ca610857fd1eb5977d89767ad2f3fde00ed",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
