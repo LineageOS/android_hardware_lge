@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c1b1f04_7d52eaa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T07:49:47Z",
+      "side": 1,
+      "message": "abandoned this ?",
+      "parentUuid": "32c858ce_1debf45d",
+      "revId": "cb73ff8533ef0febb257acab1c7b5490586ed74b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "476859dd_36de3ddd",
         "filename": "aidl/livedisplay/vendor.lineage.livedisplay-service.lge.rc",
         "patchSetId": 1
