@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1cb832a_7814dcbd",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T10:14:50Z",
+      "side": 1,
+      "message": "I don\u0027t think this makes sense. This service only provides TouchScreennGesture implementation. Besides, cflag is not even being used.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 7
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d9f0e95_4bf4a87f",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T10:14:50Z",
+      "side": 1,
+      "message": "stray spaces",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 19,
+        "endChar": 13
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1be9a43_d1916334",
+        "filename": "aidl/touch/TouchscreenGesture.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T10:14:50Z",
+      "side": 1,
+      "message": "what",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 31
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73c43b1e_53f1a029",
+        "filename": "aidl/touch/TouchscreenGesture.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T10:14:50Z",
+      "side": 1,
+      "message": "Add always a newline at the end",
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcfb7078_51e29afd",
+        "filename": "aidl/touch/TouchscreenGesture.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T10:14:50Z",
+      "side": 1,
+      "message": "Add always a newline at the end",
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2a15d89_84a23269",
+        "filename": "aidl/touch/vendor.lineage.touch-service.lge-tg.rc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T10:14:50Z",
+      "side": 1,
+      "message": "spaces, not tabs",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 1
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72de8ca6_4261e9b2",
+        "filename": "aidl/touch/vendor.lineage.touch-service.lge-tg.rc",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T10:14:50Z",
+      "side": 1,
+      "message": "this isn\u0027t even starting the service",
+      "range": {
+        "startLine": 5,
+        "startChar": 44,
+        "endLine": 5,
+        "endChar": 70
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ae1262_08ea14f2",
+        "filename": "aidl/touch/vendor.lineage.touch-service.lge-tg.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T10:14:50Z",
+      "side": 1,
+      "message": "stray spaces",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 7
+      },
+      "revId": "8d5ad176a582eed5bbdcafc16ca56d52ead1593c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
