@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2b8ef5f_6319dd13",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T18:02:07Z",
+      "side": 1,
+      "message": "I mean either use manifest fragments like hw/oplus or use isSupported() check like hw/samsung, in this last case you need to declare the supported interfaces in the device\u0027s manifest file.",
+      "parentUuid": "e204dc60_c9a975f5",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 7
+      },
+      "revId": "a571f7c29d28ee2c07abd8cf3088ea97bd3cb1d3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2b7072f_2116981a",
         "filename": "aidl/touch/Android.bp",
         "patchSetId": 7
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "remove this cflag?",
       "parentUuid": "d2b7072f_2116981a",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 7
+      },
+      "revId": "a571f7c29d28ee2c07abd8cf3088ea97bd3cb1d3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e72b700_54ac2629",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-02T18:02:07Z",
+      "side": 1,
+      "message": "Obviously, if it won\u0027t be used.",
+      "parentUuid": "0eca5181_7e9af871",
       "range": {
         "startLine": 18,
         "startChar": 0,
