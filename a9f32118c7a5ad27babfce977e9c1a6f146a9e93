@@ -16,6 +16,24 @@
       "message": "2 change-ids",
       "revId": "a9f32118c7a5ad27babfce977e9c1a6f146a9e93",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cc62475_ee2e93f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-02T16:41:25Z",
+      "side": 1,
+      "message": "yes accident last hour edit commit message, gerrit think it other commit,any suggestion to go back and track chg id I00dbec8ec866e34ade7887d1dab06792a4ac16cc",
+      "parentUuid": "859f6908_549fde98",
+      "revId": "a9f32118c7a5ad27babfce977e9c1a6f146a9e93",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
