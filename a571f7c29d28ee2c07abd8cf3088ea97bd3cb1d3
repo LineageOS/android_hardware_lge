@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc578784_fb2262f6",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-03T03:23:44Z",
+      "side": 1,
+      "message": "in lge sys path throw output string number  0 or 1,i see in samsung it string like glovemodexxx,any better suggest approach? iam current adapt samsung adapt because it more mimic old hidl lge touch implement in tree\n\nfor lge sm8150/8250 current support glovemode \u0026 touchgesture,",
+      "parentUuid": "b2b8ef5f_6319dd13",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 7
+      },
+      "revId": "a571f7c29d28ee2c07abd8cf3088ea97bd3cb1d3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2b7072f_2116981a",
         "filename": "aidl/touch/Android.bp",
         "patchSetId": 7
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "Obviously, if it won\u0027t be used.",
       "parentUuid": "0eca5181_7e9af871",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 7
+      },
+      "revId": "a571f7c29d28ee2c07abd8cf3088ea97bd3cb1d3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dfc8b8a_02fb84de",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-03T03:23:44Z",
+      "side": 1,
+      "message": "iam adapt livedisplay/hw/interface style, but look like not very used in touch right",
+      "parentUuid": "2e72b700_54ac2629",
       "range": {
         "startLine": 18,
         "startChar": 0,
