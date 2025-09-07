@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f3ae273_e4b7d915",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-07T06:15:29Z",
+      "side": 1,
+      "message": "example by GloveMode\n$(call soong_config_set,touch_lge,enable_gm,true)\n$(call soong_config_set,touch_lge,glove_mode_path,\"/sys/devices/virtual/input/lge_touch/film_status\")",
+      "revId": "bb51d045a8828f71cb8717a99b3807e6fd840479",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
