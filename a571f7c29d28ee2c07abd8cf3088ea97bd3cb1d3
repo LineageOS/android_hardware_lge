@@ -96,6 +96,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd2d4978_b1063bab",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-07T05:45:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc578784_fb2262f6",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 7
+      },
+      "revId": "a571f7c29d28ee2c07abd8cf3088ea97bd3cb1d3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2b7072f_2116981a",
@@ -181,6 +205,30 @@
       "side": 1,
       "message": "iam adapt livedisplay/hw/interface style, but look like not very used in touch right",
       "parentUuid": "2e72b700_54ac2629",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 7
+      },
+      "revId": "a571f7c29d28ee2c07abd8cf3088ea97bd3cb1d3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f355b84_67523389",
+        "filename": "aidl/touch/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-09-07T05:45:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dfc8b8a_02fb84de",
       "range": {
         "startLine": 18,
         "startChar": 0,
