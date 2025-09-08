@@ -1,0 +1,2 @@
+# Allow hal_sensors_default to read sysfs_sensor_ssc
+allow hal_sensors_default sysfs_sensor_ssc:file r_file_perms;

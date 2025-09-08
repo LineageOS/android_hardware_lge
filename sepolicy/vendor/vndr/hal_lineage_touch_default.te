@@ -1,0 +1,2 @@
+# Allow hal_lineage_touch_default to read sensors sysfs nodes
+r_dir_file(hal_lineage_touch_default, sysfs_lge_touch);
