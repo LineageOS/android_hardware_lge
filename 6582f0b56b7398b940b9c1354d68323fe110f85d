@@ -33,6 +33,24 @@
       "message": "problem if build for other aosp, some not include QCOM AIDL bootctrl",
       "revId": "6582f0b56b7398b940b9c1354d68323fe110f85d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d26ffefc_01b26b0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10067
+      },
+      "writtenOn": "2025-09-19T08:02:44Z",
+      "side": 1,
+      "message": "not a problem since we do lineage here.",
+      "parentUuid": "b9e141a6_3461c9c3",
+      "revId": "6582f0b56b7398b940b9c1354d68323fe110f85d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
