@@ -33,6 +33,23 @@
       "message": "nolenjohnson@ODS-PROD:~/lineage-22/hardware/lge$ find -name Android.mk\n./Android.mk\n./amplifier/Android.mk\n./hidl/Android.mk",
       "revId": "a4c5c3d4ed0ea953a1bec52f7194ca3af50d84e6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e4346f7_b904807e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-09-28T19:29:27Z",
+      "side": 1,
+      "message": "Amplifier not migrated",
+      "revId": "a4c5c3d4ed0ea953a1bec52f7194ca3af50d84e6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
