@@ -68,6 +68,23 @@
       "message": "tested on caymanslm",
       "revId": "6582f0b56b7398b940b9c1354d68323fe110f85d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "773a1b4c_fc6c09ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2025-09-28T18:27:59Z",
+      "side": 1,
+      "message": "Verified on alphaplus",
+      "revId": "6582f0b56b7398b940b9c1354d68323fe110f85d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
