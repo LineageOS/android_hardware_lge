@@ -30,8 +30,9 @@ int main() {
     // AIDL frontend
     std::shared_ptr<ColorEnhancement> ce = ndk::SharedRefBase::make<ColorEnhancement>();
     std::shared_ptr<DisplayModes> dm = ndk::SharedRefBase::make<DisplayModes>();
-    std::shared_ptr<SunlightEnhancement> se = ndk::SharedRefBase::make<SunlightEnhancement>();
     std::shared_ptr<PictureAdjustment> pa = ndk::SharedRefBase::make<PictureAdjustment>(controller);
+    std::shared_ptr<SunlightEnhancement> se =
+            ENABLE_SE ? ndk::SharedRefBase::make<SunlightEnhancement>() : nullptr;
     binder_status_t status;
 
     LOG(INFO) << "LiveDisplay HAL service is starting.";
