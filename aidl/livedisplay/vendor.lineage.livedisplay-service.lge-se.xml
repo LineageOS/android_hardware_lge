@@ -2,8 +2,6 @@
      <hal format="aidl">
         <name>vendor.lineage.livedisplay</name>
         <version>1</version>
-        <fqname>IColorEnhancement/default</fqname>
-        <fqname>IDisplayModes/default</fqname>
-        <fqname>IPictureAdjustment/default</fqname>
+        <fqname>ISunlightEnhancement/default</fqname>
     </hal>
 </manifest>

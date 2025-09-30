@@ -30,31 +30,14 @@ int main() {
     // AIDL frontend
     std::shared_ptr<ColorEnhancement> ce = ndk::SharedRefBase::make<ColorEnhancement>();
     std::shared_ptr<DisplayModes> dm = ndk::SharedRefBase::make<DisplayModes>();
-    std::shared_ptr<SunlightEnhancement> se = ndk::SharedRefBase::make<SunlightEnhancement>();
     std::shared_ptr<PictureAdjustment> pa = ndk::SharedRefBase::make<PictureAdjustment>(controller);
+    std::shared_ptr<SunlightEnhancement> se =
+            ENABLE_SE ? ndk::SharedRefBase::make<SunlightEnhancement>() : nullptr;
     binder_status_t status;
 
     LOG(INFO) << "LiveDisplay HAL service is starting.";
 
-    if (ce == nullptr) {
-        LOG(ERROR) << "Can not create an instance of LiveDisplay HAL ColorEnhancement Iface, "
-                      "exiting.";
-        goto shutdown;
-    }
-
-    if (dm == nullptr) {
-        LOG(ERROR) << "Can not create an instance of LiveDisplay HAL DisplayModes Iface,"
-                   << " exiting.";
-        goto shutdown;
-    }
-
-    if (se == nullptr) {
-        LOG(ERROR) << "Can not create an instance of LiveDisplay HAL SunlightEnhancement Iface, "
-                      "exiting.";
-        goto shutdown;
-    }
-
-    if (ce->isSupported()) {
+    if (ce && ce->isSupported()) {
         std::string instance = std::string(ColorEnhancement::descriptor) + "/default";
         status = AServiceManager_addService(ce->asBinder().get(), instance.c_str());
         if (status != STATUS_OK) {
@@ -63,7 +46,7 @@ int main() {
         }
     }
 
-    if (dm->isSupported()) {
+    if (dm && dm->isSupported()) {
         std::string instance = std::string(DisplayModes::descriptor) + "/default";
         status = AServiceManager_addService(dm->asBinder().get(), instance.c_str());
         if (status != STATUS_OK) {
@@ -72,7 +55,7 @@ int main() {
         }
     }
 
-    if (se->isSupported()) {
+    if (se && se->isSupported()) {
         std::string instance = std::string(SunlightEnhancement::descriptor) + "/default";
         status = AServiceManager_addService(se->asBinder().get(), instance.c_str());
         if (status != STATUS_OK) {
