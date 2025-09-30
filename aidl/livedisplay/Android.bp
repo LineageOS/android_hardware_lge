@@ -55,10 +55,16 @@ cc_binary {
     + select(soong_config_variable("livedisplay_lge", "enable_se"), {
         "true": ["vendor.lineage.livedisplay-service.lge-se.xml"],
         default: [],
+    })+ select(soong_config_variable("livedisplay_lge", "enable_ce"), {
+        "false": [],
+        default: ["vendor.lineage.livedisplay-service.lge-ce.xml"],
     }),
     cflags: select(soong_config_variable("livedisplay_lge", "enable_se"), {
         "true": ["-DENABLE_SE=true"],
         default: ["-DENABLE_SE=false"],
+    }) + select(soong_config_variable("livedisplay_lge", "enable_ce"), {
+        "false": ["-DENABLE_CE=false"],
+        default: ["-DENABLE_CE=true"],
     }),
     init_rc: ["vendor.lineage.livedisplay-service.lge.rc"],
     defaults: ["livedisplay_lge_defaults"],
