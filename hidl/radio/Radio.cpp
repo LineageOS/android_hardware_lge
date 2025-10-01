@@ -72,6 +72,9 @@ Return<void> Radio::setResponseFunctions(const sp<V1_0::IRadioResponse>& radioRe
     mLgeRadioIndication = new LgeRadioIndicationV2(
         V1_4::IRadioIndication::castFrom(radioIndication).withDefault(nullptr));
     auto svc = ILgeRadio::getService("lge_radio" + (mSlotId != 1 ? std::to_string(mSlotId) : ""));
+    if (svc == nullptr) {
+        return Status::fromExceptionCode(Status::Exception::EX_ILLEGAL_STATE);
+    }
     svc->setResponseFunctions(mLgeRadioResponse, mLgeRadioIndication);
 
     // Finally, set up radio
