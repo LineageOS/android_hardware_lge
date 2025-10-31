@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5302a91d_ef3f8d6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35551
+      },
+      "writtenOn": "2025-10-31T03:16:38Z",
+      "side": 1,
+      "message": "some name is conflict with timelm \nname same but different propierties type",
+      "revId": "a4c0aea4af429124904a4a52b5f21897954f66de",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
