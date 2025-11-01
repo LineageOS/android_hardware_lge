@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="quad_dac_app_name">לוח בקרה של Quad DAC</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC פועל</string>
+    <string name="quad_dac_off">Quad DAC כבוי</string>
+    <string name="quad_dac_unavail">Quad DAC לא זמין</string>
+    <string name="quad_dac_settings">הגדרות Quad DAC</string>
     <string name="quad_dac_balance">איזון</string>
     <string name="quad_dac_balance_summary">שינוי איזון שמאל/ימין</string>
+    <string name="sound_preset">הגדרת שמע מראש</string>
     <string name="sound_preset_normal">רגיל</string>
     <string name="sound_preset_enhanced">משופר</string>
     <string name="sound_preset_detailed">מפורט</string>
@@ -12,11 +19,24 @@
     <string name="digital_filter_1">חד</string>
     <string name="digital_filter_2">איטי</string>
     <string name="digital_filter_3">מסנן הניתן להתאמה אישית</string>
+    <string name="customizable_filter_settings">הגדרות סינון הניתנות להתאמה אישית</string>
+    <string name="cf_shape">צורת סינון מותאמת אישית</string>
+    <string name="cf_shape_0">הנחתה מהירה</string>
+    <string name="cf_shape_1">הנחתה איטית</string>
+    <string name="cf_shape_2">הנחתה מהירה עם מופע מינימלי</string>
+    <string name="cf_shape_3">הנחתה איטית עם מופע מינימלי</string>
+    <string name="cf_shape_4">הנחתה Apodizing מהירה</string>
+    <string name="cf_shape_5">הנחתה היברידית מהירה</string>
     <string name="cf_shape_6">חומת לבנים</string>
+    <string name="cf_symmetry">סימטריית סינון מותאמת אישית</string>
+    <string name="cf_symmetry_0">סימטריית סינוס</string>
+    <string name="cf_symmetry_1">סימטריית קוסינוס</string>
+    <string name="customizable_filter_coeffs">מקדם סינון בהתאמה אישית</string>
     <string name="customizable_filter_coeffs_summary">הערה: אם כל המקדמים הם 0, האודיו יושתק</string>
     <string name="hifi_mode">מצב איכות גבוהה</string>
     <string name="hifi_mode_normal">רגיל</string>
     <string name="hifi_mode_him">התנגדות גבוהה</string>
     <string name="hifi_mode_aux-him">AUX בהתנגדות גבוהה</string>
+    <string name="avc_volume">עוצמת שמע AVC</string>
     <string name="avc_volume_summary">מגביר את עוצמת הקול</string>
 </resources>
