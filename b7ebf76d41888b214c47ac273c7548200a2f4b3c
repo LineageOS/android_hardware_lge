@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3aec92c_d8ff1a2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-11-26T07:41:01Z",
+      "side": 1,
+      "message": "Totally unrelated, do it in a separate change.",
+      "revId": "b7ebf76d41888b214c47ac273c7548200a2f4b3c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "719edc47_10d058e8",
