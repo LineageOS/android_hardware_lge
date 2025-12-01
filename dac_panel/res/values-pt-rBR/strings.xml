@@ -8,7 +8,7 @@
     <string name="quad_dac_settings">Configurações do Quad DAC</string>
     <string name="quad_dac_balance">Balanço</string>
     <string name="quad_dac_balance_summary">Alterar o balanço de Esquerda/Direita</string>
-    <string name="sound_preset">Perfil de som</string>
+    <string name="sound_preset">Pré-configuração de som</string>
     <string name="sound_preset_normal">Normal</string>
     <string name="sound_preset_enhanced">Aprimorado</string>
     <string name="sound_preset_detailed">Detalhado</string>
