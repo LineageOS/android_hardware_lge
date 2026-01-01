@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="sound_preset_normal">Normale</string>
+    <string name="sound_preset_enhanced">Megioradu</string>
+    <string name="sound_preset_detailed">Detalliadu</string>
+    <string name="sound_preset_live">In direta</string>
+    <string name="sound_preset_bass">Bàscios</string>
+    <string name="digital_filter">Filtru digitale</string>
+    <string name="digital_filter_0">Curtzu</string>
+    <string name="digital_filter_1">Lìmpiu</string>
+    <string name="digital_filter_2">Lentu</string>
     <string name="digital_filter_3">Filtru personalizàbile</string>
     <string name="customizable_filter_settings">Cunfiguratzione de su filtru personalizàbile</string>
     <string name="cf_shape">Forma de su filtru personalizadu</string>
@@ -15,5 +24,9 @@
     <string name="cf_symmetry_1">Simmetria cosinus</string>
     <string name="customizable_filter_coeffs">Coefitzientes de su filtru personalizàbile</string>
     <string name="customizable_filter_coeffs_summary">NOTA: Si totu is coefitzientes sunt 0, s\'àudio at a èssere postu a sa muda</string>
+    <string name="hifi_mode">Modalidade HiFi</string>
+    <string name="hifi_mode_normal">Normale</string>
+    <string name="hifi_mode_him">Impedèntzia arta</string>
     <string name="hifi_mode_aux-him">Impedèntzia arta de AUX</string>
+    <string name="avc_volume">Volùmene AVC</string>
 </resources>
