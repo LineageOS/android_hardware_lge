@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="quad_dac_app_name">Quad DAC பலகம்</string>
+    <string name="quad_dac">உயர்திறன் Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC இயக்கம்</string>
+    <string name="quad_dac_off">Quad DAC அணைவு</string>
+    <string name="quad_dac_unavail">Quad DAC கிடைக்கவில்லை</string>
+    <string name="quad_dac_settings">Quad DAC அமைப்புகள்</string>
+    <string name="quad_dac_balance">சமநிலை</string>
+    <string name="quad_dac_balance_summary">இடவலச் சமநிலையை மாற்றுக</string>
     <string name="sound_preset">ஒலி முன்னமைவு</string>
-    <string name="sound_preset_normal">இயல்பாக</string>
+    <string name="sound_preset_normal">இயல்புநிலை</string>
+    <string name="sound_preset_enhanced">மேம்படுத்தப்பட்ட</string>
+    <string name="sound_preset_detailed">விரிவான</string>
+    <string name="sound_preset_live">நேரடி</string>
+    <string name="sound_preset_bass">தாழ்கேளொலி</string>
+    <string name="digital_filter">எண்வடிப்பி</string>
+    <string name="digital_filter_0">குறுமை</string>
+    <string name="digital_filter_1">கூர்மை</string>
+    <string name="digital_filter_2">மெதுமை</string>
+    <string name="digital_filter_3">தனிப்பயனாக்கத் தக்க வடிகட்டி</string>
+    <string name="customizable_filter_settings">தனிப்பயனாக்கத் தக்க வடிகட்டி அமைப்புகள்</string>
+    <string name="cf_shape">தனிப்பயன் வடிகட்டி வடிவம்</string>
+    <string name="cf_shape_0">விரைந்த சரிவு</string>
+    <string name="cf_shape_1">மெதுவான சரிவு</string>
+    <string name="cf_shape_2">குறைந்த கட்ட விரைந்த சரிவு</string>
+    <string name="cf_shape_3">குறைந்த கட்ட மெதுவான சரிவு</string>
+    <string name="cf_shape_4">ஒழுங்கமை விரைந்த சரிவு</string>
+    <string name="cf_shape_5">கலப்பு விரைந்த சரிவு</string>
+    <string name="cf_shape_6">கடுத்தடை</string>
+    <string name="cf_symmetry">தனிப்பயன் வடிகட்டிச் சமச்சீர்மை</string>
+    <string name="cf_symmetry_0">நெடுக்கைச் சமச்சீர்மை</string>
+    <string name="cf_symmetry_1">கடக்கைச் சமச்சீர்மை</string>
+    <string name="customizable_filter_coeffs">தனிப்பயனாக்கத் தக்க வடிகட்டிக் குணகங்கள்</string>
+    <string name="customizable_filter_coeffs_summary">குறிப்பு: குணகங்கள் அனைத்தும் சுழியானால், ஒலியடக்கப்படும்</string>
+    <string name="hifi_mode">உயர்திறன் பயன்முறை</string>
+    <string name="hifi_mode_normal">இயல்புநிலை</string>
+    <string name="hifi_mode_him">உயர் மறிப்பு</string>
+    <string name="hifi_mode_aux-him">AUX உயர் மறிப்பு</string>
+    <string name="avc_volume">AVC ஒலியளவு</string>
+    <string name="avc_volume_summary">ஒலியளவைப் பெருக்குகிறது</string>
 </resources>
