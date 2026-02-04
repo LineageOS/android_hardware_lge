@@ -1,0 +1,10 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_library_shared {
+    name: "libets_teeclient_v2_shim",
+    srcs: ["libets_teeclient_v2_shim.c"],
+    vendor: true,
+}
