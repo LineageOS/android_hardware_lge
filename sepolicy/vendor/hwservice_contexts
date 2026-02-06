@@ -1,5 +1,4 @@
 # Stock additions
-vendor.lge.hardware.powerhint.rescontrol::IResControl                   u:object_r:hal_lge_powerhint_hwservice:s0
 vendor.lge.hardware.vss_ims::IVssIms                                    u:object_r:hal_lge_vssims_hwservice:s0
 
 # Custom additions
