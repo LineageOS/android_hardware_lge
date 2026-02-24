@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "657a6832_55ad4613",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2026-02-24T23:36:18Z",
+      "side": 1,
+      "message": "no reason to drop the sepolicy for it...",
+      "revId": "ff5798dec77a155f2579f477af1b2a296c1f7f1c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
