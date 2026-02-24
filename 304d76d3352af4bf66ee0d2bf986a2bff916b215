@@ -16,6 +16,24 @@
       "message": "Was this removed due to any particular neverallows? I see no reason to immediately drop it",
       "revId": "304d76d3352af4bf66ee0d2bf986a2bff916b215",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4ee8390_3e988d01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 34693
+      },
+      "writtenOn": "2026-02-24T23:10:40Z",
+      "side": 1,
+      "message": "This wasn’t related to neverallow rules. The issue was actually tied to the HAL service vendor/bin/hw/vendor.lge.hardware.powerhint.rescontrol@2.0-service, which was causing fingerprint to break. I decided to remove the whole LG rescontrol stack on my end (see: https://github.com/lge-timelm-dev/android_device_lge_timelm/commit/9812fd70abc37cf5944ddfc3d80acdab980b7d38) along with libfpsph. After removing the service, I noticed there were still some leftover LGE powerhint definitions, so I cleaned those up as well. I believe that this will be an ocurring issue when LG devices with that blog get ported to 23.2.",
+      "parentUuid": "59eab420_8e1a8d5e",
+      "revId": "304d76d3352af4bf66ee0d2bf986a2bff916b215",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
