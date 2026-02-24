@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59eab420_8e1a8d5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2026-02-24T14:49:49Z",
+      "side": 1,
+      "message": "Was this removed due to any particular neverallows? I see no reason to immediately drop it",
+      "revId": "304d76d3352af4bf66ee0d2bf986a2bff916b215",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
