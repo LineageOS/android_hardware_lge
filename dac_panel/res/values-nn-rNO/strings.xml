@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Quad DAC-panel</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC på</string>
+    <string name="quad_dac_off">Quad DAC av</string>
+    <string name="quad_dac_unavail">Quad DAC er ikkje tilgjengeleg</string>
+    <string name="quad_dac_settings">Quad DAC-innstillingar</string>
+    <string name="quad_dac_balance">Balanse</string>
+    <string name="quad_dac_balance_summary">Endra balansen mellom venstre og høgre side</string>
+    <string name="sound_preset">Førehandsvald lyd</string>
+    <string name="sound_preset_normal">Normal</string>
+    <string name="sound_preset_enhanced">Forbetra</string>
+    <string name="sound_preset_detailed">Detaljert</string>
+    <string name="sound_preset_live">Live</string>
+    <string name="sound_preset_bass">Bass</string>
+    <string name="digital_filter">Digitalt filter</string>
+    <string name="digital_filter_0">Kort</string>
+    <string name="digital_filter_1">Skarpt</string>
+    <string name="digital_filter_2">Treigt</string>
+    <string name="digital_filter_3">Filter som kan tilpassast</string>
+    <string name="customizable_filter_settings">Innstillingar for filteret</string>
+    <string name="cf_shape">Eiga filterform</string>
+    <string name="cf_shape_0">Bratt avrulling</string>
+    <string name="cf_shape_1">Slak avrulling</string>
+    <string name="cf_shape_2">Bratt avrulling med minimal fase</string>
+    <string name="cf_shape_3">Slak avrulling med minimal fase</string>
+    <string name="cf_shape_4">Apodiserande bratt avrulling</string>
+    <string name="cf_shape_5">Hybrid bratt avrulling</string>
+    <string name="cf_shape_6">Brattvegg</string>
+    <string name="cf_symmetry">Eigen filtersymmetri</string>
+    <string name="cf_symmetry_0">Sinussymmetri</string>
+    <string name="cf_symmetry_1">Kosinussymmetri</string>
+    <string name="customizable_filter_coeffs">Filterkoeffisientar som kan tilpassast</string>
+    <string name="customizable_filter_coeffs_summary">MERK: Dersom alle koeffisientane er 0, vert lyden dempa</string>
+    <string name="hifi_mode">HiFi-modus</string>
+    <string name="hifi_mode_normal">Normal</string>
+    <string name="hifi_mode_him">Høg impedans</string>
+    <string name="hifi_mode_aux-him">AUX høg impedans</string>
+    <string name="avc_volume">AVC-volum</string>
+    <string name="avc_volume_summary">Forsterkar volumet</string>
+</resources>
