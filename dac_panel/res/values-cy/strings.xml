@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_balance">Cydbwysedd</string>
+    <string name="sound_preset_detailed">Manwl</string>
+    <string name="sound_preset_live">Byw</string>
+    <string name="sound_preset_bass">Bas</string>
+    <string name="digital_filter">Hidlydd digidol</string>
+    <string name="digital_filter_0">Byr</string>
+    <string name="digital_filter_2">Araf</string>
+    <string name="cf_shape_6">Wal friciau</string>
+    <string name="hifi_mode">Modd HiFi</string>
+    <string name="hifi_mode_normal">Arferol</string>
+    <string name="avc_volume">Lefel Sain AVC</string>
+</resources>
