@@ -187,7 +187,8 @@ static int lge_amplifier_set_output_devices(struct amplifier_device* device, uin
         return 0;
     }
 
-    if (!lge_amplifier->hifi_dac_config_changed) {
+    if (!lge_amplifier->hifi_dac_config_changed &&
+        lge_amplifier->hifi_dac_enabled == want_to_enable_hifi_dac) {
         ALOGD("%s: Hi-Fi DAC config unchanged.", __func__);
         return 0;
     }
@@ -246,18 +247,20 @@ static int lge_amplifier_set_parameters(struct amplifier_device* device, struct 
     // Add parameters to enable/disable the Hi-Fi Quad DAC feature
     err = str_parms_get_str(parms, "hifi_dac", value, sizeof(value));
     if (err >= 0) {
+        bool hifi_dac_prop_enabled =
+                property_get_bool("persist.vendor.audio.hifi.enabled", false);
         if (!strncmp(value, "on", 2)) {
-            if (lge_amplifier->hifi_dac_enabled) {
+            if (lge_amplifier->hifi_dac_enabled && hifi_dac_prop_enabled) {
                 ALOGD("%s: already enabled!", __func__);
-                ret = -EINVAL;
+                ret = 0;
                 goto done;
             }
             ALOGD("%s: enabling Hi-Fi Quad DAC.", __func__);
             property_set("persist.vendor.audio.hifi.enabled", "true");
         } else if (!strncmp(value, "off", 3)) {
-            if (!lge_amplifier->hifi_dac_enabled) {
+            if (!lge_amplifier->hifi_dac_enabled && !hifi_dac_prop_enabled) {
                 ALOGD("%s: already disabled!", __func__);
-                ret = -EINVAL;
+                ret = 0;
                 goto done;
             }
             ALOGD("%s: disabling Hi-Fi Quad DAC.", __func__);
@@ -275,9 +278,11 @@ static int lge_amplifier_set_parameters(struct amplifier_device* device, struct 
             // If this was triggered during playback, switch immediately!
             if (usecase->stream.out && (usecase->type == PCM_PLAYBACK) &&
 #ifndef TARGET_LEGACY_UM
-                compare_device_type(&usecase->device_list, AUDIO_DEVICE_OUT_WIRED_HEADPHONE)) {
+                    (compare_device_type(&usecase->device_list, AUDIO_DEVICE_OUT_WIRED_HEADPHONE) ||
+                     compare_device_type(&usecase->device_list, AUDIO_DEVICE_OUT_WIRED_HEADSET))) {
 #else
-                (usecase->devices & AUDIO_DEVICE_OUT_WIRED_HEADPHONE)) {
+                    (usecase->devices & (AUDIO_DEVICE_OUT_WIRED_HEADPHONE |
+                                         AUDIO_DEVICE_OUT_WIRED_HEADSET))) {
 #endif
                 /*
                     HACK: when selecting devices, and the device is the same, QCOM audio HAL does
