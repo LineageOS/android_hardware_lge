@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quad_dac_app_name">Quad DAC Panel</string>
+    <string name="quad_dac">Hi-Fi Quad DAC</string>
+    <string name="quad_dac_on">Quad DAC چالاکە</string>
+    <string name="quad_dac_off">Quad DAC ناچالاکە</string>
+    <string name="quad_dac_unavail">Quad DAC بەردەست نییە</string>
+    <string name="quad_dac_settings">ڕێکخستنەکانی Quad DAC</string>
+    <string name="quad_dac_balance">هاوسەنگی</string>
+    <string name="quad_dac_balance_summary">گۆڕینی هاوسەنگی دەنگی چەپ/ڕاست</string>
+    <string name="sound_preset">پێشوەختەی دەنگ</string>
+    <string name="sound_preset_normal">ئاسایی</string>
+    <string name="sound_preset_enhanced">باشترکراو</string>
+    <string name="sound_preset_detailed">بەتەواوی وردەکارییەوە</string>
+    <string name="sound_preset_live">ڕاستەوخۆ (Live)</string>
+    <string name="sound_preset_bass">بەرزکردنەوەی باس (Bass)</string>
+    <string name="digital_filter">پاڵێوەری دیجیتاڵی</string>
+    <string name="digital_filter_0">کورت</string>
+    <string name="digital_filter_1">تیژ</string>
+    <string name="digital_filter_2">خاو</string>
+    <string name="digital_filter_3">پاڵێوەری دەستکاری کراو</string>
+    <string name="customizable_filter_settings">ڕێکخستنەکانی پاڵێوەری دەستکاری کراو</string>
+    <string name="cf_shape">شێوەی پاڵێوەری دەستکاری کراو</string>
+    <string name="cf_shape_0">دابەزینی خێرا (Fast roll-off)</string>
+    <string name="cf_shape_1">دابەزینی خاو (Slow roll-off)</string>
+    <string name="cf_shape_2">کەمترین فەیز و دابەزینی خێرا</string>
+    <string name="cf_shape_3">کەمترین فەیز و دابەزینی خاو</string>
+    <string name="cf_shape_4">دابەزینی خێرای بێ گرژبوون (Apodizing)</string>
+    <string name="cf_shape_5">دابەزینی خێرای تێکەڵ (Hybrid)</string>
+    <string name="cf_shape_6">کۆسپ (Brick wall)</string>
+    <string name="cf_symmetry">هاوتایی پاڵێوەری دەستکاری کراو</string>
+    <string name="cf_symmetry_0">هاوتایی ساین (Sine)</string>
+    <string name="cf_symmetry_1">هاوتایی کۆساین (Cosine)</string>
+    <string name="customizable_filter_coeffs">هاوکۆلکەکانی پاڵێوەری دەستکاری کراو</string>
+    <string name="customizable_filter_coeffs_summary">تێبینی: ئەگەر هەموو هاوکۆلکەکان ٠ بن، دەنگەکە کپ دەبێت</string>
+    <string name="hifi_mode">دۆخی Hi-Fi</string>
+    <string name="hifi_mode_normal">ئاسایی</string>
+    <string name="hifi_mode_him">بەرگریی بەرز (High Impedance)</string>
+    <string name="hifi_mode_aux-him">بەرگریی بەرزی AUX (High Impedance)</string>
+    <string name="avc_volume">دەنگی AVC</string>
+    <string name="avc_volume_summary">بەرزکردنەوەی ئاستی دەنگ</string>
+</resources>
