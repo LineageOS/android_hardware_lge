@@ -16,6 +16,23 @@
       "message": "Hi, could someone please take a look when available?\n\nThis fixes DAC not being enabled when the inserted device is HEADSET instead of HEADPHONE. I verified the change on \u003cdevice/model\u003e by plugging in a headset and confirming the DAC path is enabled correctly.\n\nThanks!",
       "revId": "1b6d4c29c8f2683a044401c933e715a11e438e78",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a51aed6b_712132e0",
+        "filename": "amplifier/amplifier.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2026-05-17T05:18:38Z",
+      "side": 1,
+      "message": "what\u0027s all this change for? it seems unrelated to adding the HEADSET path",
+      "revId": "1b6d4c29c8f2683a044401c933e715a11e438e78",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
