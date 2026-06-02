@@ -214,9 +214,9 @@ OneShotSensor::OneShotSensor(int32_t sensorHandle, ISensorsEventCallback* callba
 }
 
 SysfsPollingOneShotSensor::SysfsPollingOneShotSensor(
-    int32_t sensorHandle, ISensorsEventCallback* callback, const std::string& pollPath,
-    const std::string& enablePath, const std::string& name, const std::string& typeAsString,
-    SensorType type)
+        int32_t sensorHandle, ISensorsEventCallback* callback, const std::string& pollPath,
+        const std::string& enablePath, const std::string& name, const std::string& typeAsString,
+        SensorType type)
     : OneShotSensor(sensorHandle, callback) {
     mSensorInfo.name = name;
     mSensorInfo.type = type;
@@ -248,13 +248,13 @@ SysfsPollingOneShotSensor::SysfsPollingOneShotSensor(
     }
 
     mPolls[0] = {
-        .fd = mWaitPipeFd[0],
-        .events = POLLIN,
+            .fd = mWaitPipeFd[0],
+            .events = POLLIN,
     };
 
     mPolls[1] = {
-        .fd = mPollFd,
-        .events = POLLERR | POLLPRI,
+            .fd = mPollFd,
+            .events = POLLERR | POLLPRI,
     };
 }
 

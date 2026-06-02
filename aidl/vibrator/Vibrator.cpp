@@ -10,9 +10,9 @@
 #include <android-base/logging.h>
 #include <thread>
 
+#include <cutils/properties.h>
 #include <cmath>
 #include <cstring>
-#include <cutils/properties.h>
 
 #include <linux/tspdrv.h>
 
@@ -52,26 +52,24 @@ ndk::ScopedAStatus Vibrator::getCapabilities(int32_t* _aidl_return) {
 }
 
 Vibrator::Vibrator(int32_t file_desc, int32_t numActuators) {
-
     // Initialize default values for haptic motor
     mFile_desc = file_desc;
     mNumActuators = numActuators;
 
     mCurrentAmplitude = DEFAULT_AMPLITUDE;
 
-    mClickDuration = property_get_int32("ro.vendor.vibrator.hal.click.duration", WAVEFORM_CLICK_EFFECT_MS);
-    mTickDuration = property_get_int32("ro.vendor.vibrator.hal.tick.duration", WAVEFORM_TICK_EFFECT_MS);
-    mHeavyClickDuration = property_get_int32(
-        "ro.vendor.vibrator.hal.heavyclick.duration", WAVEFORM_HEAVY_CLICK_EFFECT_MS);
-
+    mClickDuration =
+            property_get_int32("ro.vendor.vibrator.hal.click.duration", WAVEFORM_CLICK_EFFECT_MS);
+    mTickDuration =
+            property_get_int32("ro.vendor.vibrator.hal.tick.duration", WAVEFORM_TICK_EFFECT_MS);
+    mHeavyClickDuration = property_get_int32("ro.vendor.vibrator.hal.heavyclick.duration",
+                                             WAVEFORM_HEAVY_CLICK_EFFECT_MS);
 }
 
 ndk::ScopedAStatus Vibrator::off() {
-    for(int32_t i = 0; i < mNumActuators; i++)
-    {
+    for (int32_t i = 0; i < mNumActuators; i++) {
         int32_t ret = ioctl(mFile_desc, TSPDRV_DISABLE_AMP, i);
-        if(ret != 0)
-        {
+        if (ret != 0) {
             LOG(ERROR) << "Failed to deactivate Actuator with index " << i;
             return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_TRANSACTION_FAILED));
         }
@@ -83,51 +81,44 @@ ndk::ScopedAStatus Vibrator::off() {
 ndk::ScopedAStatus Vibrator::on(int32_t timeoutMs,
                                 const std::shared_ptr<IVibratorCallback>& callback) {
     // Calculate needed buffer entries
-    int32_t bufferSize = (int32_t) round(BUFFER_ENTRIES_PER_MS * timeoutMs); 
+    int32_t bufferSize = (int32_t)round(BUFFER_ENTRIES_PER_MS * timeoutMs);
     u_int8_t fullBuffer[bufferSize];
 
     // turn previous vibrations off
     off();
 
-    for(int32_t i = 0; i < bufferSize; i++)
-    {
+    for (int32_t i = 0; i < bufferSize; i++) {
         // The vibration is a sine curve, the negative parts are 255 + negative value
-        fullBuffer[i] = (u_int8_t) (mCurrentAmplitude * sin(i/BUFFER_ENTRIES_PER_MS));
+        fullBuffer[i] = (u_int8_t)(mCurrentAmplitude * sin(i / BUFFER_ENTRIES_PER_MS));
     }
 
     // Amount of buffer arrays with size of OUTPUT_BUFFER_SIZE
-    int32_t numBuffers = (int32_t) ceil((double)bufferSize / (double)OUTPUT_BUFFER_SIZE);
+    int32_t numBuffers = (int32_t)ceil((double)bufferSize / (double)OUTPUT_BUFFER_SIZE);
     u_int8_t outputBuffers[numBuffers][OUTPUT_BUFFER_SIZE];
-    memset(outputBuffers, 0, sizeof(outputBuffers));  // zero the array before we fill it with values
+    memset(outputBuffers, 0,
+           sizeof(outputBuffers));  // zero the array before we fill it with values
 
-    for(int32_t i = 0; i < bufferSize; i++)
-    {
+    for (int32_t i = 0; i < bufferSize; i++) {
         // split fullBuffer into multiple smaller buffers with size OUTPUT_BUFFER_SIZE
-        outputBuffers[i/OUTPUT_BUFFER_SIZE][i%OUTPUT_BUFFER_SIZE] = fullBuffer[i];
+        outputBuffers[i / OUTPUT_BUFFER_SIZE][i % OUTPUT_BUFFER_SIZE] = fullBuffer[i];
     }
 
-
-    for(int32_t i = 0; i < mNumActuators; i++)
-    {
-        for(int32_t j = 0; j < numBuffers; j++)
-        {
+    for (int32_t i = 0; i < mNumActuators; i++) {
+        for (int32_t j = 0; j < numBuffers; j++) {
             char output[OUTPUT_BUFFER_SIZE + SPI_HEADER_SIZE];
             memset(output, 0, sizeof(output));
-            output[0] = i;  // first byte is actuator index
-            output[1] = 8;  // per definition has to be 8
-            output[2] = OUTPUT_BUFFER_SIZE; // size of the following output buffer
-            for(int32_t k = 3; k < OUTPUT_BUFFER_SIZE+3; k++)
-            {
-                output[k] = outputBuffers[j][k-3];
+            output[0] = i;                   // first byte is actuator index
+            output[1] = 8;                   // per definition has to be 8
+            output[2] = OUTPUT_BUFFER_SIZE;  // size of the following output buffer
+            for (int32_t k = 3; k < OUTPUT_BUFFER_SIZE + 3; k++) {
+                output[k] = outputBuffers[j][k - 3];
             }
             // write the buffer to the device
             write(mFile_desc, output, sizeof(output));
-            if((j+1) % 4 == 0)
-            {
+            if ((j + 1) % 4 == 0) {
                 // every 4 buffers, but not the first if theres only 1, we send an ENABLE_AMP signal
                 int32_t ret = ioctl(mFile_desc, TSPDRV_ENABLE_AMP, i);
-                if(ret != 0)
-                {
+                if (ret != 0) {
                     LOG(ERROR) << "Failed to activate Actuator with index " << i;
                     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_TRANSACTION_FAILED));
                 }
@@ -142,15 +133,15 @@ static uint8_t convertEffectStrength(EffectStrength strength) {
     uint8_t amplitude;
 
     switch (strength) {
-    case EffectStrength::LIGHT:
-        amplitude = DEFAULT_AMPLITUDE / 2;
-        break;
-    case EffectStrength::MEDIUM:
-        amplitude = DEFAULT_AMPLITUDE;
-	break;
-    case EffectStrength::STRONG:
-        amplitude = DEFAULT_AMPLITUDE * 1.5;
-        break;
+        case EffectStrength::LIGHT:
+            amplitude = DEFAULT_AMPLITUDE / 2;
+            break;
+        case EffectStrength::MEDIUM:
+            amplitude = DEFAULT_AMPLITUDE;
+            break;
+        case EffectStrength::STRONG:
+            amplitude = DEFAULT_AMPLITUDE * 1.5;
+            break;
     }
 
     return amplitude;
@@ -164,21 +155,21 @@ ndk::ScopedAStatus Vibrator::perform(Effect effect, EffectStrength strength,
     uint8_t currentAmplitude;
 
     switch (effect) {
-    case Effect::CLICK:
-        timeMS = mClickDuration;
-        break;
-    case Effect::DOUBLE_CLICK:
-        timeMS = WAVEFORM_DOUBLE_CLICK_EFFECT_MS;
-        break;
-    case Effect::TICK:
-        timeMS = mTickDuration;
-        break;
-    case Effect::HEAVY_CLICK:
-        timeMS = mHeavyClickDuration;
-        break;
-    default:
-        *_aidl_return = 0;
-        return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
+        case Effect::CLICK:
+            timeMS = mClickDuration;
+            break;
+        case Effect::DOUBLE_CLICK:
+            timeMS = WAVEFORM_DOUBLE_CLICK_EFFECT_MS;
+            break;
+        case Effect::TICK:
+            timeMS = mTickDuration;
+            break;
+        case Effect::HEAVY_CLICK:
+            timeMS = mHeavyClickDuration;
+            break;
+        default:
+            *_aidl_return = 0;
+            return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
     }
 
     // save current amplitude
@@ -212,7 +203,7 @@ ndk::ScopedAStatus Vibrator::setExternalControl(bool /* enabled */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::getCompositionDelayMax(int32_t*  /* maxDelayMs */) {
+ndk::ScopedAStatus Vibrator::getCompositionDelayMax(int32_t* /* maxDelayMs */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
@@ -220,7 +211,8 @@ ndk::ScopedAStatus Vibrator::getCompositionSizeMax(int32_t* /* maxSize */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::getSupportedPrimitives(std::vector<CompositePrimitive>* /* supported */) {
+ndk::ScopedAStatus Vibrator::getSupportedPrimitives(
+        std::vector<CompositePrimitive>* /* supported */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
@@ -238,7 +230,8 @@ ndk::ScopedAStatus Vibrator::getSupportedAlwaysOnEffects(std::vector<Effect>* /*
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::alwaysOnEnable(int32_t id, Effect /* effect */, EffectStrength /* strength */) {
+ndk::ScopedAStatus Vibrator::alwaysOnEnable(int32_t id, Effect /* effect */,
+                                            EffectStrength /* strength */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
@@ -246,40 +239,40 @@ ndk::ScopedAStatus Vibrator::alwaysOnDisable(int32_t /* id */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::getResonantFrequency(float * /* resonantFreqHz */) {
+ndk::ScopedAStatus Vibrator::getResonantFrequency(float* /* resonantFreqHz */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::getQFactor(float * /* qFactor */) {
+ndk::ScopedAStatus Vibrator::getQFactor(float* /* qFactor */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::getFrequencyResolution(float * /* freqResolutionHz */) {
+ndk::ScopedAStatus Vibrator::getFrequencyResolution(float* /* freqResolutionHz */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::getFrequencyMinimum(float * /* freqMinimumHz */) {
+ndk::ScopedAStatus Vibrator::getFrequencyMinimum(float* /* freqMinimumHz */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::getBandwidthAmplitudeMap(std::vector<float> * /* _aidl_return */) {
+ndk::ScopedAStatus Vibrator::getBandwidthAmplitudeMap(std::vector<float>* /* _aidl_return */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::getPwlePrimitiveDurationMax(int32_t * /* durationMs */) {
+ndk::ScopedAStatus Vibrator::getPwlePrimitiveDurationMax(int32_t* /* durationMs */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::getPwleCompositionSizeMax(int32_t * /* maxSize */) {
+ndk::ScopedAStatus Vibrator::getPwleCompositionSizeMax(int32_t* /* maxSize */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::getSupportedBraking(std::vector<Braking> * /* supported */) {
+ndk::ScopedAStatus Vibrator::getSupportedBraking(std::vector<Braking>* /* supported */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 
-ndk::ScopedAStatus Vibrator::composePwle(const std::vector<PrimitivePwle> & /* composite */,
-                                         const std::shared_ptr<IVibratorCallback> & /* callback */) {
+ndk::ScopedAStatus Vibrator::composePwle(const std::vector<PrimitivePwle>& /* composite */,
+                                         const std::shared_ptr<IVibratorCallback>& /* callback */) {
     return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_UNSUPPORTED_OPERATION));
 }
 

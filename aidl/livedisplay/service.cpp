@@ -31,7 +31,7 @@ int main() {
     std::shared_ptr<DisplayModes> dm = ndk::SharedRefBase::make<DisplayModes>();
     std::shared_ptr<PictureAdjustment> pa = ndk::SharedRefBase::make<PictureAdjustment>(controller);
     std::shared_ptr<ColorEnhancement> ce =
-            ENABLE_CE ? ndk::SharedRefBase::make<ColorEnhancement>(): nullptr;
+            ENABLE_CE ? ndk::SharedRefBase::make<ColorEnhancement>() : nullptr;
     std::shared_ptr<SunlightEnhancement> se =
             ENABLE_SE ? ndk::SharedRefBase::make<SunlightEnhancement>() : nullptr;
     binder_status_t status;

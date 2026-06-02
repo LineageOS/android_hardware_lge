@@ -17,13 +17,13 @@
 #ifndef ANDROID_HARDWARE_BIOMETRICS_FINGERPRINT_V2_3_BIOMETRICSFINGERPRINT_H
 #define ANDROID_HARDWARE_BIOMETRICS_FINGERPRINT_V2_3_BIOMETRICSFINGERPRINT_H
 
-#include <log/log.h>
+#include <android/hardware/biometrics/fingerprint/2.3/IBiometricsFingerprint.h>
 #include <android/log.h>
 #include <hardware/hardware.h>
-#include "fingerprint.h"
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <android/hardware/biometrics/fingerprint/2.3/IBiometricsFingerprint.h>
+#include <log/log.h>
+#include "fingerprint.h"
 
 namespace android {
 namespace hardware {
@@ -33,20 +33,18 @@ namespace V2_3 {
 namespace implementation {
 
 using ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint;
-using IBiometricsFingerprintClientCallback = 
+using IBiometricsFingerprintClientCallback =
         ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprintClientCallback;
-using RequestStatus =
-        android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
+using RequestStatus = android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
 using FingerprintAcquiredInfo =
         ::android::hardware::biometrics::fingerprint::V2_1::FingerprintAcquiredInfo;
-using FingerprintError =
-        ::android::hardware::biometrics::fingerprint::V2_1::FingerprintError;
+using FingerprintError = ::android::hardware::biometrics::fingerprint::V2_1::FingerprintError;
 
+using ::android::sp;
+using ::android::hardware::hidl_string;
+using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::hardware::hidl_vec;
-using ::android::hardware::hidl_string;
-using ::android::sp;
 
 #ifdef LGE_EGISTEC_UDFPS
 #define FOD_HBM_LEGACY_PATH "/sys/devices/virtual/panel/brightness/fp_lhbm"
@@ -55,17 +53,20 @@ using ::android::sp;
 #endif
 
 struct BiometricsFingerprint : public IBiometricsFingerprint {
-public:
+  public:
     BiometricsFingerprint();
     ~BiometricsFingerprint();
 
     // Method to wrap legacy HAL with BiometricsFingerprint class
     static IBiometricsFingerprint* getInstance();
 
-    // Methods from ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint follow.
-    Return<uint64_t> setNotify(const sp<IBiometricsFingerprintClientCallback>& clientCallback) override;
+    // Methods from ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint
+    // follow.
+    Return<uint64_t> setNotify(
+            const sp<IBiometricsFingerprintClientCallback>& clientCallback) override;
     Return<uint64_t> preEnroll() override;
-    Return<RequestStatus> enroll(const hidl_array<uint8_t, 69>& hat, uint32_t gid, uint32_t timeoutSec) override;
+    Return<RequestStatus> enroll(const hidl_array<uint8_t, 69>& hat, uint32_t gid,
+                                 uint32_t timeoutSec) override;
     Return<RequestStatus> postEnroll() override;
     Return<uint64_t> getAuthenticatorId() override;
     Return<RequestStatus> cancel() override;
@@ -79,9 +80,10 @@ public:
     Return<void> onFingerDown(uint32_t x, uint32_t y, float minor, float major) override;
     Return<void> onFingerUp() override;
 
-private:
+  private:
     static fingerprint_device_t* openHal();
-    static void notify(const fingerprint_msg_t *msg); /* Static callback for legacy HAL implementation */
+    static void notify(
+            const fingerprint_msg_t* msg); /* Static callback for legacy HAL implementation */
     static Return<RequestStatus> ErrorFilter(int32_t error);
     static FingerprintError VendorErrorFilter(int32_t error, int32_t* vendorCode);
     static FingerprintAcquiredInfo VendorAcquiredFilter(int32_t error, int32_t* vendorCode);
@@ -99,7 +101,7 @@ private:
 
     std::mutex mClientCallbackMutex;
     sp<IBiometricsFingerprintClientCallback> mClientCallback;
-    fingerprint_device_t *mDevice;
+    fingerprint_device_t* mDevice;
 };
 
 }  // namespace implementation

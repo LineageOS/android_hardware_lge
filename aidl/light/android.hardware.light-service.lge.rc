@@ -3,4 +3,3 @@ service vendor.light-default /vendor/bin/hw/android.hardware.light-service.lge
     user system
     group system
     shutdown critical
-

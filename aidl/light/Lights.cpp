@@ -56,9 +56,9 @@ Lights::Lights() {
 
 static int rgbToBrightness(const HwLightState& state) {
     int color = state.color & 0x00ffffff;
-    return ((77 * ((color >> 16) & 0x00ff))
-            + (150 * ((color >> 8) & 0x00ff))
-            + (29 * (color & 0x00ff))) >> 8;
+    return ((77 * ((color >> 16) & 0x00ff)) + (150 * ((color >> 8) & 0x00ff)) +
+            (29 * (color & 0x00ff))) >>
+           8;
 }
 
 #ifdef LED
@@ -89,13 +89,13 @@ void Lights::setLightLocked(const HwLightState& state) {
     color = state.color & 0x00ffffff;
 
     if (offMS <= 0) {
-        sprintf(pattern,"0x%06x", color);
+        sprintf(pattern, "0x%06x", color);
         ALOGD("%s: Using onoff pattern: inColor=0x%06x\n", __func__, color);
         set(LED ONOFF_PATTERN, pattern);
     } else {
-        sprintf(pattern,"0x%06x,%d,%d", color, onMS, offMS);
-        ALOGD("%s: Using blink pattern: inColor=0x%06x delay_on=%d, delay_off=%d\n",
-              __func__, color, onMS, offMS);
+        sprintf(pattern, "0x%06x,%d,%d", color, onMS, offMS);
+        ALOGD("%s: Using blink pattern: inColor=0x%06x delay_on=%d, delay_off=%d\n", __func__,
+              color, onMS, offMS);
         set(LED BLINK_PATTERN, pattern);
     }
 }
@@ -128,12 +128,12 @@ void Lights::handleNotifications(const HwLightState& state) {
     mNotificationState = state;
     checkLightStateLocked();
 }
-#endif // LED
+#endif  // LED
 
 void Lights::handleBacklight(const HwLightState& state) {
     int brightness, brightnessEx;
     int sentBrightness = rgbToBrightness(state);
-    if(sentBrightness < 35) {
+    if (sentBrightness < 35) {
         brightness = sentBrightness * 2;
         brightnessEx = sentBrightness * 2;
     } else {
@@ -165,13 +165,12 @@ ndk::ScopedAStatus Lights::setLightState(int32_t id, const HwLightState& state) 
 #define AutoHwLight(light) {.id = (int32_t)light, .type = light, .ordinal = 0}
 
 ndk::ScopedAStatus Lights::getLights(std::vector<HwLight>* _aidl_return) {
-    for (auto const& light : mLights)
-        _aidl_return->push_back(AutoHwLight(light.first));
+    for (auto const& light : mLights) _aidl_return->push_back(AutoHwLight(light.first));
 
     return ndk::ScopedAStatus::ok();
 }
 
-} // namespace light
-} // namespace hardware
-} // namespace android
-} // namespace aidl
+}  // namespace light
+}  // namespace hardware
+}  // namespace android
+}  // namespace aidl

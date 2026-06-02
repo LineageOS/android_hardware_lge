@@ -7,9 +7,9 @@
 #define LOG_TAG "android.hardware.radio@1.4-service.lge"
 
 #include "Radio.h"
-#include "Helpers.h"
-#include <vector>
 #include <string>
+#include <vector>
+#include "Helpers.h"
 
 #include <android-base/logging.h>
 
@@ -46,12 +46,12 @@
         }                                               \
     } while (0)
 
-#define MAYBE_WRAP_V1_4_CALL(method, ...)                    \
-    do {                                                     \
-        auto realRadio_V1_4 = getRealRadio_V1_4();           \
-        if (realRadio_V1_4 != nullptr) {                     \
-            return realRadio_V1_4->method(__VA_ARGS__);      \
-        }                                                    \
+#define MAYBE_WRAP_V1_4_CALL(method, ...)               \
+    do {                                                \
+        auto realRadio_V1_4 = getRealRadio_V1_4();      \
+        if (realRadio_V1_4 != nullptr) {                \
+            return realRadio_V1_4->method(__VA_ARGS__); \
+        }                                               \
     } while (0)
 
 namespace android::hardware::radio::implementation {
@@ -68,9 +68,9 @@ Return<void> Radio::setResponseFunctions(const sp<V1_0::IRadioResponse>& radioRe
 
     // We also need to do some funny for LgeRadio here.
     mLgeRadioResponse = new LgeRadioResponseV2(
-        V1_4::IRadioResponse::castFrom(radioResponse).withDefault(nullptr));
+            V1_4::IRadioResponse::castFrom(radioResponse).withDefault(nullptr));
     mLgeRadioIndication = new LgeRadioIndicationV2(
-        V1_4::IRadioIndication::castFrom(radioIndication).withDefault(nullptr));
+            V1_4::IRadioIndication::castFrom(radioIndication).withDefault(nullptr));
     auto svc = ILgeRadio::getService("lge_radio" + (mSlotId != 1 ? std::to_string(mSlotId) : ""));
     svc->setResponseFunctions(mLgeRadioResponse, mLgeRadioIndication);
 
@@ -637,8 +637,8 @@ Return<void> Radio::setCarrierInfoForImsiEncryption(
 Return<void> Radio::setSimCardPower_1_1(int32_t serial, V1_1::CardPowerState powerUp) {
     MAYBE_WRAP_V1_1_CALL(setSimCardPower_1_1, serial, powerUp);
 
-    if(powerUp != V1_1::CardPowerState::POWER_UP_PASS_THROUGH)
-        WRAP_V1_0_CALL(setSimCardPower, serial, (bool) powerUp);
+    if (powerUp != V1_1::CardPowerState::POWER_UP_PASS_THROUGH)
+        WRAP_V1_0_CALL(setSimCardPower, serial, (bool)powerUp);
 
     return Void();
 }
@@ -751,17 +751,18 @@ Return<void> Radio::getModemStackStatus(int32_t serial) {
     return Void();
 }
 
-hidl_string getProtocolStringFromInt(const V1_4::PdpProtocolType protocol){
-    const hidl_string protocolStrings[] = {hidl_string("IP"), hidl_string("IPV6"), hidl_string("IPV4V6"), hidl_string("PPP"),
-        hidl_string("NON-IP"), hidl_string("UNSTRUCTURED")};
+hidl_string getProtocolStringFromInt(const V1_4::PdpProtocolType protocol) {
+    const hidl_string protocolStrings[] = {hidl_string("IP"),     hidl_string("IPV6"),
+                                           hidl_string("IPV4V6"), hidl_string("PPP"),
+                                           hidl_string("NON-IP"), hidl_string("UNSTRUCTURED")};
 
-    if(protocol >= V1_4::PdpProtocolType::IP && protocol <= V1_4::PdpProtocolType::UNSTRUCTURED)
+    if (protocol >= V1_4::PdpProtocolType::IP && protocol <= V1_4::PdpProtocolType::UNSTRUCTURED)
         return protocolStrings[(int)protocol];
 
     return hidl_string("");
 }
 
-V1_0::DataProfileInfo Get1_0DataProfileInfo(const V1_4::DataProfileInfo& dataProfileInfo){
+V1_0::DataProfileInfo Get1_0DataProfileInfo(const V1_4::DataProfileInfo& dataProfileInfo) {
     V1_0::DataProfileInfo legacyProfile = {};
     legacyProfile.profileId = dataProfileInfo.profileId;
     legacyProfile.apn = dataProfileInfo.apn;
@@ -792,11 +793,13 @@ Return<void> Radio::setupDataCall_1_4(int32_t serial, V1_4::AccessNetwork access
     MAYBE_WRAP_V1_4_CALL(setupDataCall_1_4, serial, accessNetwork, dataProfileInfo, roamingAllowed,
                          reason, addresses, dnses);
 
-    MAYBE_WRAP_V1_2_CALL(setupDataCall_1_2, serial, (V1_2::AccessNetwork) accessNetwork, Get1_0DataProfileInfo(dataProfileInfo),
-                         dataProfileInfo.persistent, roamingAllowed, mRadioResponse->mDataRoaming, reason, addresses, dnses);
+    MAYBE_WRAP_V1_2_CALL(setupDataCall_1_2, serial, (V1_2::AccessNetwork)accessNetwork,
+                         Get1_0DataProfileInfo(dataProfileInfo), dataProfileInfo.persistent,
+                         roamingAllowed, mRadioResponse->mDataRoaming, reason, addresses, dnses);
 
-    WRAP_V1_0_CALL(setupDataCall, serial, mRadioResponse->mRat, Get1_0DataProfileInfo(dataProfileInfo),
-                         dataProfileInfo.persistent, roamingAllowed, mRadioResponse->mDataRoaming);
+    WRAP_V1_0_CALL(setupDataCall, serial, mRadioResponse->mRat,
+                   Get1_0DataProfileInfo(dataProfileInfo), dataProfileInfo.persistent,
+                   roamingAllowed, mRadioResponse->mDataRoaming);
 }
 
 Return<void> Radio::setInitialAttachApn_1_4(int32_t serial,
@@ -804,7 +807,7 @@ Return<void> Radio::setInitialAttachApn_1_4(int32_t serial,
     MAYBE_WRAP_V1_4_CALL(setInitialAttachApn_1_4, serial, dataProfileInfo);
 
     WRAP_V1_0_CALL(setInitialAttachApn, serial, Get1_0DataProfileInfo(dataProfileInfo),
-                         dataProfileInfo.persistent, mRadioResponse->mDataRoaming);
+                   dataProfileInfo.persistent, mRadioResponse->mDataRoaming);
 }
 
 Return<void> Radio::setDataProfile_1_4(int32_t serial,
@@ -812,13 +815,13 @@ Return<void> Radio::setDataProfile_1_4(int32_t serial,
     MAYBE_WRAP_V1_4_CALL(setDataProfile_1_4, serial, profiles);
 
     std::vector<V1_0::DataProfileInfo> legacyProfiles;
-    for(const V1_4::DataProfileInfo &profile : profiles){
-        if(profile.persistent)
-            legacyProfiles.push_back(Get1_0DataProfileInfo(profile));
+    for (const V1_4::DataProfileInfo& profile : profiles) {
+        if (profile.persistent) legacyProfiles.push_back(Get1_0DataProfileInfo(profile));
     }
 
-    if(legacyProfiles.size())
-        WRAP_V1_0_CALL(setDataProfile, serial, hidl_vec(legacyProfiles), mRadioResponse->mDataRoaming);
+    if (legacyProfiles.size())
+        WRAP_V1_0_CALL(setDataProfile, serial, hidl_vec(legacyProfiles),
+                       mRadioResponse->mDataRoaming);
 
     return Void();
 }
@@ -859,19 +862,14 @@ Return<void> Radio::setPreferredNetworkTypeBitmap(
         int32_t serial, hidl_bitfield<V1_4::RadioAccessFamily> networkTypeBitmap) {
     MAYBE_WRAP_V1_4_CALL(setPreferredNetworkTypeBitmap, serial, networkTypeBitmap);
 
-    if(networkTypeBitmap & GSMBITS)
-        networkTypeBitmap |= GSMBITS;
-    if(networkTypeBitmap & CDMABITS)
-        networkTypeBitmap |= CDMABITS;
-    if(networkTypeBitmap & EVDOBITS)
-        networkTypeBitmap |= EVDOBITS;
-    if(networkTypeBitmap & WCDMABITS)
-        networkTypeBitmap |= WCDMABITS;
-    if(networkTypeBitmap & LTEBITS)
-        networkTypeBitmap |= LTEBITS;
+    if (networkTypeBitmap & GSMBITS) networkTypeBitmap |= GSMBITS;
+    if (networkTypeBitmap & CDMABITS) networkTypeBitmap |= CDMABITS;
+    if (networkTypeBitmap & EVDOBITS) networkTypeBitmap |= EVDOBITS;
+    if (networkTypeBitmap & WCDMABITS) networkTypeBitmap |= WCDMABITS;
+    if (networkTypeBitmap & LTEBITS) networkTypeBitmap |= LTEBITS;
 
     V1_0::PreferredNetworkType nwType;
-    switch(networkTypeBitmap){
+    switch (networkTypeBitmap) {
         case (GSMBITS | WCDMABITS):
             nwType = V1_0::PreferredNetworkType::GSM_WCDMA_AUTO;
             break;
@@ -950,14 +948,14 @@ Return<void> Radio::setAllowedCarriers_1_4(int32_t serial,
     MAYBE_WRAP_V1_4_CALL(setAllowedCarriers_1_4, serial, carriers, multiSimPolicy);
 
     bool isAllCarriersAllowed = carriers.allowedCarriers.size() == 0 &&
-        carriers.excludedCarriers.size() == 0 && !carriers.allowedCarriersPrioritized;
+                                carriers.excludedCarriers.size() == 0 &&
+                                !carriers.allowedCarriersPrioritized;
 
-    bool supported = (isAllCarriersAllowed
-        || (carriers.excludedCarriers.size() == 0
-        && carriers.allowedCarriersPrioritized))
-        && multiSimPolicy == V1_4::SimLockMultiSimPolicy::NO_MULTISIM_POLICY;
+    bool supported = (isAllCarriersAllowed || (carriers.excludedCarriers.size() == 0 &&
+                                               carriers.allowedCarriersPrioritized)) &&
+                     multiSimPolicy == V1_4::SimLockMultiSimPolicy::NO_MULTISIM_POLICY;
 
-    if(supported){
+    if (supported) {
         V1_0::CarrierRestrictions legacyCarriers = {};
         legacyCarriers.allowedCarriers = carriers.allowedCarriers;
         WRAP_V1_0_CALL(setAllowedCarriers, serial, isAllCarriersAllowed, legacyCarriers);

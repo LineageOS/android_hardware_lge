@@ -343,7 +343,7 @@ public class QuadDACPanelFragment extends PreferenceFragment
     }
 
     private void checkCustomFilterVisibility() {
-        /* 
+        /*
          * If the selected digital filter is the custom filter,
          * its preferences should be visible. Otherwise, hide them
          * to remove unused preferences from the panel.

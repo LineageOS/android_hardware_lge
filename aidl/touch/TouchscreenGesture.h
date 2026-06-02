@@ -25,17 +25,17 @@ namespace lineage {
 namespace touch {
 
 class TouchscreenGesture : public BnTouchscreenGesture {
-public:
+  public:
     TouchscreenGesture();
-    
+
     ndk::ScopedAStatus getSupportedGestures(std::vector<Gesture>* _aidl_return) override;
     ndk::ScopedAStatus setGestureEnabled(const Gesture& gesture, bool enabled) override;
 
-private:
+  private:
     std::map<int32_t, GestureInfo> kGestureInfoMap;
 };
 
-} // namespace touch
-} // namespace lineage
-} // namespace vendor
-} // namespace aidl
+}  // namespace touch
+}  // namespace lineage
+}  // namespace vendor
+}  // namespace aidl

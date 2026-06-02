@@ -21,8 +21,7 @@ ndk::ScopedAStatus GloveMode::getEnabled(bool* _aidl_return) {
     int enabled;
     file >> enabled;
 
-    if(enabled == 1)
-    *_aidl_return = (enabled == 1);
+    if (enabled == 1) *_aidl_return = (enabled == 1);
 
     return ndk::ScopedAStatus::ok();
 }
@@ -30,10 +29,11 @@ ndk::ScopedAStatus GloveMode::getEnabled(bool* _aidl_return) {
 ndk::ScopedAStatus GloveMode::setEnabled(bool enabled) {
     std::ofstream file(kFilmStatusPath);
     file << (enabled ? "1" : "0");
-    return !file.fail() ? ndk::ScopedAStatus::ok() : ndk::ScopedAStatus::fromExceptionCode(EX_TRANSACTION_FAILED);
+    return !file.fail() ? ndk::ScopedAStatus::ok()
+                        : ndk::ScopedAStatus::fromExceptionCode(EX_TRANSACTION_FAILED);
 }
 
-} // namespace touch
-} // namespace lineage
-} // namespace vendor
-} // namespace aidl
+}  // namespace touch
+}  // namespace lineage
+}  // namespace vendor
+}  // namespace aidl

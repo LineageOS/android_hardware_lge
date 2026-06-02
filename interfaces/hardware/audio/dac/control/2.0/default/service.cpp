@@ -46,11 +46,10 @@ int main() {
 
     configureRpcThreadpool(1, true /*callerWillJoin*/);
 
-
     status = interface->registerAsService();
     if (status != OK) {
-        LOG(ERROR) << "Could not register service for DAC Control HAL DacControl Iface ("
-                   << status << ")";
+        LOG(ERROR) << "Could not register service for DAC Control HAL DacControl Iface (" << status
+                   << ")";
         goto shutdown;
     }
 

@@ -27,11 +27,11 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
+using vendor::lge::hardware::radio::implementation::LgeRadioIndicationV2;
+using vendor::lge::hardware::radio::implementation::LgeRadioResponseV2;
 using vendor::lge::hardware::radio::V2_0::ILgeRadio;
 using vendor::lge::hardware::radio::V2_0::ILgeRadioIndicationV2;
 using vendor::lge::hardware::radio::V2_0::ILgeRadioResponseV2;
-using vendor::lge::hardware::radio::implementation::LgeRadioIndicationV2;
-using vendor::lge::hardware::radio::implementation::LgeRadioResponseV2;
 
 struct Radio : public V1_4::IRadio {
   public:

@@ -43,8 +43,8 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 using ::vendor::lge::hardware::audio::dac::control::V2_0::Feature;
-using ::vendor::lge::hardware::audio::dac::control::V2_0::FeatureStates;
 using ::vendor::lge::hardware::audio::dac::control::V2_0::FeatureState;
+using ::vendor::lge::hardware::audio::dac::control::V2_0::FeatureStates;
 
 enum AudioVersion { V5_0, V6_0 };
 
@@ -54,12 +54,13 @@ class DacControl : public IDacControl {
 
     Return<void> getSupportedFeatures(getSupportedFeatures_cb _hidl_cb) override;
 
-    Return<void> getSupportedFeatureValues(Feature feature, getSupportedFeatureValues_cb _hidl_cb) override;
+    Return<void> getSupportedFeatureValues(Feature feature,
+                                           getSupportedFeatureValues_cb _hidl_cb) override;
 
     Return<bool> getHifiDacState() override;
 
     Return<bool> setHifiDacState(bool enable) override;
-    
+
     Return<bool> setFeatureValue(Feature feature, int32_t value) override;
 
     Return<int32_t> getFeatureValue(Feature feature) override;
@@ -97,7 +98,7 @@ class DacControl : public IDacControl {
     android::sp<::android::hardware::audio::V6_0::IDevicesFactory> mAudioDevicesFactory_V6_0;
 
     AudioVersion usedVersion;
-  
+
     std::string avcPath;
     std::string hifiPath;
     std::string volumeLeftPath;

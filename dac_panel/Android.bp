@@ -36,4 +36,3 @@ android_app {
         proguard_flags_files: ["proguard.flags"],
     },
 }
-

@@ -65,4 +65,3 @@ public class ButtonPreference extends Preference {
         }
     }
 }
-

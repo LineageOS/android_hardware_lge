@@ -18,14 +18,14 @@ static constexpr const char* kModePath = "/sys/devices/virtual/panel/img_tune/sc
 static constexpr const char* kDefaultPath = "/data/vendor/display/default_screen_mode";
 
 const std::map<int32_t, std::string> DisplayModes::kModeMap = {
-    // clang-format off
+        // clang-format off
     {0, "Auto"},
     {1, "Cinema"},
     {2, "Photos"},
     {3, "Web"},
     {4, "Sports"},
     {5, "Game"},
-    // clang-format on
+        // clang-format on
 };
 
 DisplayModes::DisplayModes() : mDefaultModeId(0) {

@@ -15,7 +15,7 @@ namespace hardware {
 namespace vibrator {
 
 class Vibrator : public BnVibrator {
-public:
+  public:
     Vibrator(int32_t file_desc, int32_t numActuators);
     ndk::ScopedAStatus getCapabilities(int32_t* _aidl_return) override;
     ndk::ScopedAStatus off() override;
@@ -37,18 +37,18 @@ public:
     ndk::ScopedAStatus getSupportedAlwaysOnEffects(std::vector<Effect>* _aidl_return) override;
     ndk::ScopedAStatus alwaysOnEnable(int32_t id, Effect effect, EffectStrength strength) override;
     ndk::ScopedAStatus alwaysOnDisable(int32_t id) override;
-    ndk::ScopedAStatus getResonantFrequency(float *resonantFreqHz) override;
-    ndk::ScopedAStatus getQFactor(float *qFactor) override;
-    ndk::ScopedAStatus getFrequencyResolution(float *freqResolutionHz) override;
-    ndk::ScopedAStatus getFrequencyMinimum(float *freqMinimumHz) override;
-    ndk::ScopedAStatus getBandwidthAmplitudeMap(std::vector<float> *_aidl_return) override;
-    ndk::ScopedAStatus getPwlePrimitiveDurationMax(int32_t *durationMs) override;
-    ndk::ScopedAStatus getPwleCompositionSizeMax(int32_t *maxSize) override;
+    ndk::ScopedAStatus getResonantFrequency(float* resonantFreqHz) override;
+    ndk::ScopedAStatus getQFactor(float* qFactor) override;
+    ndk::ScopedAStatus getFrequencyResolution(float* freqResolutionHz) override;
+    ndk::ScopedAStatus getFrequencyMinimum(float* freqMinimumHz) override;
+    ndk::ScopedAStatus getBandwidthAmplitudeMap(std::vector<float>* _aidl_return) override;
+    ndk::ScopedAStatus getPwlePrimitiveDurationMax(int32_t* durationMs) override;
+    ndk::ScopedAStatus getPwleCompositionSizeMax(int32_t* maxSize) override;
     ndk::ScopedAStatus getSupportedBraking(std::vector<Braking>* supported) override;
-    ndk::ScopedAStatus composePwle(const std::vector<PrimitivePwle> &composite,
-                                   const std::shared_ptr<IVibratorCallback> &callback) override;
+    ndk::ScopedAStatus composePwle(const std::vector<PrimitivePwle>& composite,
+                                   const std::shared_ptr<IVibratorCallback>& callback) override;
 
-private:
+  private:
     int32_t mFile_desc;
     int32_t mNumActuators;
 

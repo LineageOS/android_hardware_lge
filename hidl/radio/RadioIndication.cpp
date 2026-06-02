@@ -48,15 +48,15 @@ Return<void> RadioIndication::nitzTimeReceived(V1_0::RadioIndicationType type,
 
 Return<void> RadioIndication::currentSignalStrength(V1_0::RadioIndicationType type,
                                                     const V1_0::SignalStrength& signalStrength) {
-    return mRealRadioIndication->currentSignalStrength_1_4(type, Create1_4SignalStrength(signalStrength));
+    return mRealRadioIndication->currentSignalStrength_1_4(type,
+                                                           Create1_4SignalStrength(signalStrength));
 }
 
 Return<void> RadioIndication::dataCallListChanged(
         V1_0::RadioIndicationType type, const hidl_vec<V1_0::SetupDataCallResult>& dcList) {
     hidl_vec<V1_4::SetupDataCallResult> newDcList;
     newDcList.resize(dcList.size());
-    for(int x = 0; x < dcList.size(); ++x)
-        newDcList[x] = Create1_4SetupDataCallResult(dcList[x]);
+    for (int x = 0; x < dcList.size(); ++x) newDcList[x] = Create1_4SetupDataCallResult(dcList[x]);
     return mRealRadioIndication->dataCallListChanged_1_4(type, newDcList);
 }
 
@@ -266,7 +266,7 @@ Return<void> RadioIndication::currentPhysicalChannelConfigs(
         V1_0::RadioIndicationType type, const hidl_vec<V1_2::PhysicalChannelConfig>& configs) {
     hidl_vec<V1_4::PhysicalChannelConfig> newConfigs;
     newConfigs.resize(configs.size());
-    for(int x = 0; x < configs.size(); ++x){
+    for (int x = 0; x < configs.size(); ++x) {
         newConfigs[x].base = configs[x];
         newConfigs[x].rat = V1_4::RadioTechnology::UNKNOWN;
         newConfigs[x].physicalCellId = -1;
@@ -276,7 +276,8 @@ Return<void> RadioIndication::currentPhysicalChannelConfigs(
 
 Return<void> RadioIndication::currentSignalStrength_1_2(
         V1_0::RadioIndicationType type, const V1_2::SignalStrength& signalStrength) {
-    return mRealRadioIndication->currentSignalStrength_1_4(type, Create1_4SignalStrength(signalStrength));
+    return mRealRadioIndication->currentSignalStrength_1_4(type,
+                                                           Create1_4SignalStrength(signalStrength));
 }
 
 // Methods from ::android::hardware::radio::V1_4::IRadioIndication follow.

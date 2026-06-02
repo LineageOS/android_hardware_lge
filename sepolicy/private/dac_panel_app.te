@@ -8,7 +8,7 @@ binder_call(dac_panel_app, gpuservice)
 allow dac_panel_app system_app_data_file:dir create_dir_perms;
 allow dac_panel_app system_app_data_file:file create_file_perms;
 
-allow dac_panel_app { 
+allow dac_panel_app {
     activity_service
     activity_task_service
     audio_service

@@ -43,7 +43,7 @@ namespace implementation {
 
 class ISensorsEventCallback {
   public:
-    virtual ~ISensorsEventCallback(){};
+    virtual ~ISensorsEventCallback() {};
     virtual void postEvents(const std::vector<Event>& events, bool wakeup) = 0;
 };
 
@@ -129,9 +129,10 @@ class UdfpsSensor : public SysfsPollingOneShotSensor {
   public:
     UdfpsSensor(int32_t sensorHandle, ISensorsEventCallback* callback)
         : SysfsPollingOneShotSensor(
-              sensorHandle, callback, kTsUdfpsPressedPath, kTsUdfpsEnabledPath,
-              "UDFPS Sensor", "org.lineageos.sensor.udfps",
-              static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) + 2)) {}
+                  sensorHandle, callback, kTsUdfpsPressedPath, kTsUdfpsEnabledPath, "UDFPS Sensor",
+                  "org.lineageos.sensor.udfps",
+                  static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) +
+                                          2)) {}
 };
 
 }  // namespace implementation

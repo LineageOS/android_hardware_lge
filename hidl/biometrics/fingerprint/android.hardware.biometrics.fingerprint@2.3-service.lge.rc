@@ -1,4 +1,4 @@
-on boot    
+on boot
     chmod 664 /sys/devices/virtual/input/lge_touch/reset_ctrl
     chown system system /sys/devices/virtual/input/lge_touch/reset_ctrl
 
