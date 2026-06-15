@@ -32,7 +32,7 @@
     <string name="cf_symmetry_0">هاوتایی ساین (Sine)</string>
     <string name="cf_symmetry_1">هاوتایی کۆساین (Cosine)</string>
     <string name="customizable_filter_coeffs">هاوکۆلکەکانی پاڵێوەری دەستکاری کراو</string>
-    <string name="customizable_filter_coeffs_summary">تێبینی: ئەگەر هەموو هاوکۆلکەکان ٠ بن، دەنگەکە کپ دەبێت</string>
+    <string name="customizable_filter_coeffs_summary">تێبینی: ئەگەر هەموو هاوکۆلکەکان 0 بن، دەنگەکە کپ دەبێت</string>
     <string name="hifi_mode">دۆخی Hi-Fi</string>
     <string name="hifi_mode_normal">ئاسایی</string>
     <string name="hifi_mode_him">بەرگریی بەرز (High Impedance)</string>
