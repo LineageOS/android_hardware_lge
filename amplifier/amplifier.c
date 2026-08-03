@@ -187,7 +187,14 @@ static int lge_amplifier_set_output_devices(struct amplifier_device* device, uin
         return 0;
     }
 
-    if (!lge_amplifier->hifi_dac_config_changed) {
+    /*
+     * The flag above is only set when the switch originates from our own
+     * set_parameters(). Other callers still have to be served whenever the
+     * currently applied path does not match the requested one, otherwise the
+     * first routing after boot never brings the DAC up.
+     */
+    if (!lge_amplifier->hifi_dac_config_changed &&
+        want_to_enable_hifi_dac == lge_amplifier->hifi_dac_enabled) {
         ALOGD("%s: Hi-Fi DAC config unchanged.", __func__);
         return 0;
     }
