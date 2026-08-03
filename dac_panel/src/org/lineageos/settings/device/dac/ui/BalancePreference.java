@@ -117,8 +117,8 @@ public class BalancePreference extends Preference {
             Log.d(TAG, "loadBalanceConfiguration: " + e.toString());
         }
 
-        tv_left.setText(-((double)left_balance)/2 + " db");
-        tv_right.setText(-((double)right_balance)/2 + " db");
+        tv_left.setText(((double)left_balance)/2 + " db");
+        tv_right.setText(((double)right_balance)/2 + " db");
 
         if(left_balance == max_allowed_value)
         {
