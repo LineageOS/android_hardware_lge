@@ -61,12 +61,22 @@ static std::vector<KeyValue> hifi_modes = {
         {"Normal", "0"}, {"High Impedance", "1"}, {"AUX High Impedance", "2"}};
 
 /*
- * Write value to path and close file.
+ * Write value to path and close file. Returns false if the write failed.
  */
 template <typename T>
-static void set(const std::string& path, const T& value) {
+static bool set(const std::string& path, const T& value) {
     std::ofstream file(path);
+    if (!file.is_open()) {
+        LOG(ERROR) << "Failed to open " << path;
+        return false;
+    }
     file << value;
+    file.flush();
+    if (file.fail()) {
+        LOG(ERROR) << "Failed to write '" << value << "' to " << path;
+        return false;
+    }
+    return true;
 }
 
 DacControl::DacControl() {
@@ -271,14 +281,14 @@ end:
 }
 
 bool DacControl::writeAvcVolumeState(int32_t value) {
-    set(avcPath, (-1) * value);  // we save it as the actual value, while the kernel requires a
-                                 // positive value
-    return (bool)property_set(PROPERTY_HIFI_DAC_AVC_VOLUME, std::to_string(value).c_str());
+    // we save it as the actual value, while the kernel requires a positive value
+    bool ok = set(avcPath, (-1) * value);
+    return property_set(PROPERTY_HIFI_DAC_AVC_VOLUME, std::to_string(value).c_str()) == 0 && ok;
 }
 
 bool DacControl::writeHifiModeState(int32_t value) {
-    set(hifiPath, value);
-    return (bool)property_set(PROPERTY_HIFI_DAC_MODE, std::to_string(value).c_str());
+    bool ok = set(hifiPath, value);
+    return property_set(PROPERTY_HIFI_DAC_MODE, std::to_string(value).c_str()) == 0 && ok;
 }
 
 bool DacControl::setAudioHALParameters(KeyValue kv) {
@@ -322,37 +332,39 @@ Return<bool> DacControl::setHifiDacState(bool enable) {
 }
 
 bool DacControl::setDigitalFilterState(int32_t value) {
+    int filter;
+
     switch (value) {
         case 0:  // Short
-            set(essFilterPath, 9);
+            filter = 9;
             break;
         case 1:  // Sharp
-            set(essFilterPath, 4);
+            filter = 4;
             break;
         case 2:  // Slow
-            set(essFilterPath, 5);
+            filter = 5;
             break;
         case 3:  // Custom
-            set(essFilterPath, 3);
+            filter = 3;
             break;
         default:
             LOG(ERROR) << "DacControl::setDigitalFilterState: Invalid filter " << value;
             return false;
     }
-    property_set(PROPERTY_DIGITAL_FILTER, std::to_string(value).c_str());
-    return true;
+    bool ok = set(essFilterPath, filter);
+    return property_set(PROPERTY_DIGITAL_FILTER, std::to_string(value).c_str()) == 0 && ok;
 }
 
 bool DacControl::setVolumeBalance(Feature direction, int32_t value) {
     switch (direction) {
-        case Feature::BalanceLeft:
-            set(volumeLeftPath, value);
-            property_set(PROPERTY_LEFT_BALANCE, std::to_string(value).c_str());
-            return true;
-        case Feature::BalanceRight:
-            set(volumeRightPath, value);
-            property_set(PROPERTY_RIGHT_BALANCE, std::to_string(value).c_str());
-            return true;
+        case Feature::BalanceLeft: {
+            bool ok = set(volumeLeftPath, value);
+            return property_set(PROPERTY_LEFT_BALANCE, std::to_string(value).c_str()) == 0 && ok;
+        }
+        case Feature::BalanceRight: {
+            bool ok = set(volumeRightPath, value);
+            return property_set(PROPERTY_RIGHT_BALANCE, std::to_string(value).c_str()) == 0 && ok;
+        }
         default:
             return false;
     }
