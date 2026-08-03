@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ea1584a_ffabc355",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2026-08-03T23:49:34Z",
+      "side": 1,
+      "message": "@ansgar.sajdowski@gmail.com\n\nI assume that this fixes headphones on v20? If so, please leave V+ votes on all of these changes.",
+      "revId": "ee5f30995bc1c024d5d75786bc802e86e2fc41a6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
