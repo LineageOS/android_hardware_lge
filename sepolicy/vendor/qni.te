@@ -1,0 +1,21 @@
+type qni, domain;
+
+type qni_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(qni)
+
+allow qni sysfs_qni:dir { r_file_perms search };
+allow qni sysfs_qni:file rw_file_perms;
+allow qni sysfs_battery_supply:dir { r_dir_perms search };
+allow qni sysfs_battery_supply:file rw_file_perms;
+
+allow qni power_file:dir rw_dir_perms;
+allow qni power_file:file rw_file_perms;
+
+allow qni kmsg_device:chr_file rw_file_perms;
+
+set_prop(qni, vendor_qni_prop)
+
+allow qni self:capability { fsetid setuid net_admin };
+allow qni self:capability2 { block_suspend };
+allow qni self:netlink_kobject_uevent_socket { read create setopt bind };
+
