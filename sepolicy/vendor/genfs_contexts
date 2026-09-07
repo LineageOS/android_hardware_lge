@@ -1,2 +1,3 @@
-# LGE Touch
 genfscon sysfs /devices/virtual/input/lge_touch u:object_r:sysfs_lge_touch:s0
+
+set_prop(hal_audio_default, vendor_audio_prop)

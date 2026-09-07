@@ -1,0 +1,4 @@
+allow hal_sensors_default vendor_sysfs_sensors:file rw_file_perms;
+allow hal_sensors_default vendor_sysfs_slpi:file r_file_perms;
+
+get_prop(hal_sensors_default, vendor_sensors_prop)
