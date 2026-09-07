@@ -1,0 +1,5 @@
+allow vendor_qti_init_shell vendor_sysfs_boot_adsp:file rw_file_perms;
+
+allow vendor_qti_init_shell ram_device:blk_file rw_file_perms;
+allow vendor_qti_init_shell proc_overcommit_memory:file w_file_perms;
+allow vendor_qti_init_shell proc_page_cluster:file w_file_perms;
