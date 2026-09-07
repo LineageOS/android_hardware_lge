@@ -1,1 +1,46 @@
+# Battery
+genfscon sysfs /devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-02/c440000.qcom,spmi:qcom,pm8150b@2:qpnp,fg/power_supply/bms/capacity_raw u:object_r:sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/880000.i2c/i2c-1/1-0061/power_supply/wireless                                                            u:object_r:sysfs_battery_supply:s0
+
+# Light
+genfscon sysfs /class/lg_rgb_led/use_patterns           u:object_r:sysfs_leds:s0
+genfscon sysfs /devices/virtual/lg_rgb_led/use_patterns u:object_r:sysfs_leds:s0
+
+# Livedisplay
+genfscon sysfs /devices/virtual/panel/img_tune u:object_r:sysfs_livedisplay_tuneable:s0
+
+# Power
+genfscon sysfs /class/qnovo u:object_r:sysfs_qni:s0
+
+# Thermal
+genfscon sysfs /devices/platform/soc/soc:lge,monitor-thermal     u:object_r:sysfs_thermal:s0
+genfscon sysfs /devices/platform/lge-unified-nodes/thermald_idc  u:object_r:sysfs_thermal:s0
+genfscon sysfs /devices/platform/lge-unified-nodes/thermald_ibat u:object_r:sysfs_thermal:s0
+genfscon sysfs /devices/virtual/power/fbcn                       u:object_r:sysfs_thermal:s0
+
+# Touchscreen
 genfscon sysfs /devices/virtual/input/lge_touch u:object_r:sysfs_lge_touch:s0
+
+# Veneer
+genfscon sysfs /devices/platform/vendor/vendor:lge-veneer-psy/power_supply/veneer u:object_r:sysfs_veneer:s0
+
+# Wakeup
+genfscon sysfs /devices/virtual/diag/diag                                                                                           u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/171c0000.slim/tavil-slim-pgd/wakeup                                                            u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/880000.i2c/i2c-1/1-0061/power_supply/wireless/wakeup9                                          u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/ae90000.qcom,dp_display/wakeup                                                                 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-02/c440000.qcom,spmi:qcom,pm8150b@2:qcom,sdam-qnovo@b000/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/c80000.i2c/i2c-3/3-0020/wakeup                                                                 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/vendor/vendor:lge_usb_ds2/wakeup                                                                   u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/vendor/vendor:lge-veneer-psy/wakeup                                                                u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/vendor/vendor:lge-veneer-psy/power_supply/veneer/wakeup10                                          u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:fingerprint@0/wakeup                                                                       u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:fingerprint@0/wakeup/wakeup7                                                               u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:fingerprint@0/wakeup/wakeup7/event_count                                                   u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/c80000.i2c/i2c-4/4-0020/wakeup                                                                 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/c80000.i2c/i2c-4/4-0020/wakeup/wakeup8                                                         u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/c80000.i2c/i2c-4/4-0020/wakeup/wakeup8/event_count                                             u:object_r:sysfs_wakeup:s0
+
+# zRAM
+genfscon proc /sys/vm/swappiness         u:object_r:proc_swappiness:s0
+genfscon proc /sys/vm/laptop_mod         u:object_r:proc_laptop_mode:s0

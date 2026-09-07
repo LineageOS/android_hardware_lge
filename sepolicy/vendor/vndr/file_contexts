@@ -1,0 +1,15 @@
+# Init
+/(vendor|system/vendor)/bin/init\.lge\.usb\.default\.sh u:object_r:vendor_qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.lge\.usb\.lao\.sh     u:object_r:vendor_qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.lge\.usb\.sh          u:object_r:vendor_qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.lge\.zramswap\.sh     u:object_r:vendor_qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.qcom\.devstart\.sh    u:object_r:vendor_qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.qti\.chg_policy\.sh   u:object_r:vendor_qti_init_shell_exec:s0
+
+# HALs
+/(vendor|system/vendor)/bin/hw/android\.hardware\.neuralnetworks@1\.2-service-qti u:object_r:vendor_hal_neuralnetworks_default_exec:s0
+/(vendor|system/vendor)/bin/ppd                                                   u:object_r:vendor_hal_display_color_default_exec:s0
+/(vendor|system/vendor)/bin/qrtr-lookup                                           u:object_r:vendor_qrtr_exec:s0
+
+# Persist files
+/mnt/vendor/persist(/.*)?                               u:object_r:vendor_persist_file:s0
