@@ -1,4 +1,4 @@
-type dac_panel_app, domain;
+type dac_panel_app, domain, coredomain;
 
 app_domain(dac_panel_app)
 
