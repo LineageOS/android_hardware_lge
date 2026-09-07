@@ -1,3 +1,4 @@
+allow vendor_wcnss_service vendor_persist_file:dir search;
 allow vendor_wcnss_service mnt_vendor_file:dir search;
 allow vendor_wcnss_service persist_lg_data_file:dir search;
 r_dir_file(vendor_wcnss_service, persist_lg_wlan_file);

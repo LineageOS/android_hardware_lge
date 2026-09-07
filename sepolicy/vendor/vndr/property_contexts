@@ -7,3 +7,4 @@ ro.vendor.lge.physical.camera                       u:object_r:vendor_camera_pro
 vendor.lge.camera.pd_test.result                    u:object_r:vendor_camera_prop:s0
 vendor.lge.faceprint.inform.camera                  u:object_r:vendor_camera_prop:s0
 vendor.lge.faceprint.use.camera                     u:object_r:vendor_camera_prop:s0
+vendor.lge.QuadCFA.use.camera                       u:object_r:vendor_camera_prop:s0

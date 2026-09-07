@@ -8,3 +8,7 @@ allow vendor_qti_init_shell proc_swappiness:file w_file_perms;
 
 get_prop(vendor_qti_init_shell, vendor_lge_misc_prop)
 get_prop(vendor_qti_init_shell, vendor_lge_usb_prop)
+
+allow vendor_qti_init_shell sysfs:file write;
+allow vendor_qti_init_shell sysfs_charger:file rw_file_perms;
+allow vendor_qti_init_shell sysfs_charger:file { setattr };
