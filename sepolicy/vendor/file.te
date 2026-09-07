@@ -26,7 +26,10 @@ type proc_laptop_mode, proc_type, fs_type;
 type sns_file, file_type;
 
 # Sysfs
+type sysfs_camera_sensors, sysfs_type, fs_type;
 type sysfs_dac, sysfs_type, fs_type;
+type sysfs_lge_sar_rf, sysfs_type, fs_type;
 type sysfs_lge_touch, sysfs_type, fs_type;
+type sysfs_lge_usb, sysfs_type, fs_type;
 type sysfs_qni, sysfs_type, fs_type;
-type sysfs_veneer, sysfs_type, fs_type;
+type sysfs_sensor_ssc, sysfs_type, fs_type;

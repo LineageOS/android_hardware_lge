@@ -3,16 +3,19 @@ hal_client_domain(hal_camera_default, hal_configstore)
 binder_call(hal_camera_default, hal_configstore_default)
 binder_call(hal_camera_default, hal_configstore)
 
-r_dir_file(hal_camera_default, persist_lg_data_file);
-allow hal_camera_default persist_lg_camera_file:dir rw_dir_perms;
-allow hal_camera_default persist_lg_camera_file:file create_file_perms;
 allow hal_camera_default mnt_vendor_file:dir search;
-allow hal_camera_default persist_lg_data_file:dir rw_dir_perms;
-allow hal_camera_default persist_lg_data_file:file { getattr setattr rw_file_perms };
+rw_dir_file(hal_camera_default, persist_lg_data_file)
+rw_dir_file(hal_camera_default, persist_lg_camera_file)
 
-r_dir_file(hal_camera_default, input_device);
+r_dir_file(hal_camera_default, input_device)
 allow hal_camera_default input_device:chr_file rw_file_perms;
-allow hal_camera_default vendor_xdsp_device:chr_file ioctl;
+
+allow hal_camera_default proc:file { getattr open read };
+rw_dir_file(hal_camera_default, sysfs_camera_sensors)
 
 get_prop(hal_camera_default, vendor_camera_prop)
 get_prop(hal_camera_default, vendor_lge_misc_prop)
+
+# Debug use
+dontaudit hal_camera_default vendor_shell_exec:file { execute_no_trans };
+dontaudit hal_camera_default property_type:file read;

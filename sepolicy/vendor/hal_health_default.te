@@ -1,1 +1,3 @@
+r_dir_file(hal_health_default, sysfs_charger)
+r_dir_file(hal_health_default, sysfs_powersupply_wireless)
 r_dir_file(hal_health_default, sysfs_veneer)
