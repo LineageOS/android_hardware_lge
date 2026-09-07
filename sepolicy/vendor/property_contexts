@@ -10,6 +10,9 @@ vendor.lge.audio.hifi_rec.                       u:object_r:vendor_audio_prop:s0
 vendor.lge.fm_gain_control_headset               u:object_r:vendor_audio_prop:s0
 vendor.lge.fm_gain_control_speaker               u:object_r:vendor_audio_prop:s0
 
+# FM
+vendor.hw.fm.version u:object_r:vendor_fm_prop:s0
+
 # LGE Misc
 ro.vendor.lge.build.target_country  u:object_r:vendor_lge_misc_prop:s0
 ro.vendor.lge.build.target_operator u:object_r:vendor_lge_misc_prop:s0
@@ -18,6 +21,12 @@ ro.vendor.lge.swversion             u:object_r:vendor_lge_misc_prop:s0
 
 # LiveDisplay
 vendor.display.mode u:object_r:vendor_display_prop:s0
+
+# MDM
+persist.vendor.mdm_helper.fail_action u:object_r:vendor_mdm_helper_prop:s0
+
+# NFC
+vendor.lge.nfc_vendor u:object_r:vendor_lge_nfc_selector_prop:s0
 
 # QNI
 vendor.lge.qnovo.qni.cap_proj            u:object_r:vendor_qni_prop:s0

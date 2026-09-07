@@ -1,0 +1,4 @@
+# Sysfs
+type sysfs_veneer, sysfs_type, fs_type;
+type sysfs_charger, sysfs_type, fs_type;
+type sysfs_powersupply_wireless, sysfs_type, fs_type;

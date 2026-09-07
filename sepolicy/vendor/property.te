@@ -1,5 +1,7 @@
+system_public_prop(vendor_fm_prop)
 vendor_internal_prop(thermal-engine_prop)
 vendor_internal_prop(vendor_lge_misc_prop)
+vendor_public_prop(vendor_lge_nfc_selector_prop)
 vendor_internal_prop(vendor_lge_usb_prop)
 vendor_internal_prop(vendor_qni_prop)
 vendor_internal_prop(vendor_vibrator_prop)

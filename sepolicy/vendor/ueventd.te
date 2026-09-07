@@ -1,5 +1,5 @@
 r_dir_file(ueventd, metadata_file)
 
 allow ueventd persist_lg_data_file:dir search;
-allow ueventd persist_lg_wlan_file:dir r_dir_perms;
-allow ueventd persist_lg_wlan_file:file r_file_perms;
+r_dir_file(ueventd, persist_lg_wlan_file)
+allow ueventd persist_lg_wlan_file:lnk_file r_file_perms;
