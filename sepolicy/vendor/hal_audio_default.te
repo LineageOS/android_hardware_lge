@@ -1,1 +1,1 @@
-#set_prop(hal_audio_default, vendor_dac_control_prop);
+set_prop(hal_audio_default, vendor_audio_prop)

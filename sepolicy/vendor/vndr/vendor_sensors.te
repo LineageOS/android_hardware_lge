@@ -1,0 +1,1 @@
+allow vendor_sensors vendor_persist_file:dir search;

@@ -1,2 +1,1 @@
-# LGE Touch
 genfscon sysfs /devices/virtual/input/lge_touch u:object_r:sysfs_lge_touch:s0
