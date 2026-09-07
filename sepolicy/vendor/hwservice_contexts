@@ -1,4 +1,6 @@
 # Stock additions
+vendor.lge.hardware.lgdata::ILgData                                     u:object_r:hal_lgdata_hwservice:s0
+vendor.lge.hardware.lgdata::ILgDataVendorRil                            u:object_r:hal_lgdata_hwservice:s0
 vendor.lge.hardware.powerhint.rescontrol::IResControl                   u:object_r:hal_lge_powerhint_hwservice:s0
 vendor.lge.hardware.vss_ims::IVssIms                                    u:object_r:hal_lge_vssims_hwservice:s0
 

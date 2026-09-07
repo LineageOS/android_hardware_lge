@@ -1,0 +1,2 @@
+binder_call(rild, hal_lgdata_default);
+allow rild hal_lgdata_hwservice:hwservice_manager find;
