@@ -1,1 +1,20 @@
+allow init { persdata_abt_block_device 
+             power_block_device 
+             sns_block_device
+             drm_block_device }:filesystem { mount relabelfrom relabelto };
+
+allow init drm_block_device:lnk_file relabelto;
+
+allow init { abt_pers_data_file 
+             power_file 
+             sns_file
+             persist_lg_data_file }:dir mounton;
+
+allow init firmware_file:filesystem getattr;
+
+allow init encrypt_block_device:blk_file write;
+
+allow init per_boot_file:file ioctl;
+allowxperm init per_boot_file:file ioctl { F2FS_IOC_SET_PIN_FILE };
+
 allow init sysfs_dac:{lnk_file file} { rw_file_perms setattr };
