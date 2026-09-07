@@ -6,5 +6,6 @@ type power_block_device, dev_type;
 type sec_block_device, dev_type;
 type sns_block_device, dev_type;
 type drm_block_device, dev_type;
+type felica_block_device, dev_type;
 
 type vibrator_device, dev_type;

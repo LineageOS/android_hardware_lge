@@ -1,0 +1,2 @@
+get_prop(vendor_mdm_helper, vendor_mdm_helper_prop)
+set_prop(vendor_mdm_helper, vendor_mdm_helper_prop)

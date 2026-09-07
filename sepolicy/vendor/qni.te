@@ -18,4 +18,3 @@ set_prop(qni, vendor_qni_prop)
 allow qni self:capability { fsetid setuid net_admin };
 allow qni self:capability2 { block_suspend };
 allow qni self:netlink_kobject_uevent_socket { read create setopt bind };
-
