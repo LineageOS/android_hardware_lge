@@ -1,3 +1,6 @@
+# Block devices
+/dev/block/platform/soc/1d84000\.ufshc/by-name/laf_(a|b) u:object_r:vendor_custom_ab_block_device:s0
+
 # Init
 /(vendor|system/vendor)/bin/init\.lge\.usb\.default\.sh u:object_r:vendor_qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/init\.lge\.usb\.lao\.sh     u:object_r:vendor_qti_init_shell_exec:s0
