@@ -12,6 +12,7 @@
 /dev/esfp0       u:object_r:fingerprint_device:s0
 /dev/goodix_fp   u:object_r:fingerprint_device:s0
 /dev/pn547       u:object_r:nfc_device:s0
+/dev/stdrv       u:object_r:motor_device:s0
 /dev/tspdrv      u:object_r:vibrator_device:s0
 
 # HALs
@@ -24,7 +25,9 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.vibrator(@1\.[1-3])?-service\.lge          u:object_r:hal_vibrator_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.audio\.dac\.control@[1-2]\.0-service.* u:object_r:hal_dac_control_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.lgdata@1\.1-service                    u:object_r:hal_lgdata_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.motor@1\.0-service-popupcam            u:object_r:hal_motor_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.powerhint\.rescontrol@2\.0-service     u:object_r:hal_powerhint_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.sensors\.devicecontext@1\.0-service    u:object_r:hal_sensors_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lge\.hardware\.vss_ims@1\.0-service                   u:object_r:hal_vssims_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay-service\.lge		             u:object_r:hal_lineage_livedisplay_qti_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lineage\.touch-service\.lge                           u:object_r:hal_lineage_touch_default_exec:s0

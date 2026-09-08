@@ -1,5 +1,7 @@
 type fingerprint_device, dev_type;
 
+type motor_device, dev_type;
+
 type encrypt_block_device, dev_type;
 type persdata_abt_block_device, dev_type;
 type power_block_device, dev_type;

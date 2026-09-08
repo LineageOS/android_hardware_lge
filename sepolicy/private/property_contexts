@@ -1,0 +1,8 @@
+# Audio
+audio.dolby.ds2.      u:object_r:audio_config_prop:s0
+audio.offload.        u:object_r:audio_config_prop:s0
+ro.product.lge.audio. u:object_r:audio_config_prop:s0
+
+# Camera motor
+persist.product.lge.camera.y         u:object_r:camera_config_prop:s0
+persist.product.lge.motor.popup_cam. u:object_r:camera_config_prop:s0
