@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <android/hardware/radio/1.4/IRadioResponse.h>
+#include <android/hardware/radio/1.5/IRadioResponse.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
 
@@ -20,8 +20,8 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
-struct RadioResponse : public V1_4::IRadioResponse {
-    sp<V1_4::IRadioResponse> mRealRadioResponse;
+struct RadioResponse : public V1_5::IRadioResponse {
+    sp<V1_5::IRadioResponse> mRealRadioResponse;
     V1_0::RadioTechnology mRat = V1_0::RadioTechnology::UNKNOWN;
     bool mDataRoaming = false;
     // Methods from ::android::hardware::radio::V1_0::IRadioResponse follow.
@@ -306,6 +306,47 @@ struct RadioResponse : public V1_4::IRadioResponse {
             V1_4::SimLockMultiSimPolicy multiSimPolicy) override;
     Return<void> getSignalStrengthResponse_1_4(const V1_0::RadioResponseInfo& info,
                                                const V1_4::SignalStrength& signalStrength) override;
+
+    // Methods from ::android::hardware::radio::V1_5::IRadioResponse follow.
+    Return<void> setSignalStrengthReportingCriteriaResponse_1_5(
+            const V1_0::RadioResponseInfo& info) override;
+    Return<void> setLinkCapacityReportingCriteriaResponse_1_5(
+            const V1_0::RadioResponseInfo& info) override;
+    Return<void> enableUiccApplicationsResponse(const V1_0::RadioResponseInfo& info) override;
+    Return<void> areUiccApplicationsEnabledResponse(const V1_0::RadioResponseInfo& info,
+                                                    bool enabled) override;
+    Return<void> setSystemSelectionChannelsResponse_1_5(
+            const V1_0::RadioResponseInfo& info) override;
+    Return<void> startNetworkScanResponse_1_5(const V1_0::RadioResponseInfo& info) override;
+    Return<void> setupDataCallResponse_1_5(const V1_0::RadioResponseInfo& info,
+                                           const V1_5::SetupDataCallResult& dcResponse) override;
+    Return<void> getDataCallListResponse_1_5(
+            const V1_0::RadioResponseInfo& info,
+            const hidl_vec<V1_5::SetupDataCallResult>& dcResponse) override;
+    Return<void> setInitialAttachApnResponse_1_5(const V1_0::RadioResponseInfo& info) override;
+    Return<void> setDataProfileResponse_1_5(const V1_0::RadioResponseInfo& info) override;
+    Return<void> setRadioPowerResponse_1_5(const V1_0::RadioResponseInfo& info) override;
+    Return<void> setIndicationFilterResponse_1_5(const V1_0::RadioResponseInfo& info) override;
+    Return<void> getBarringInfoResponse(const V1_0::RadioResponseInfo& info,
+                                        const V1_5::CellIdentity& cellIdentity,
+                                        const hidl_vec<V1_5::BarringInfo>& barringInfos) override;
+    Return<void> getVoiceRegistrationStateResponse_1_5(
+            const V1_0::RadioResponseInfo& info,
+            const V1_5::RegStateResult& voiceRegResponse) override;
+    Return<void> getDataRegistrationStateResponse_1_5(
+            const V1_0::RadioResponseInfo& info,
+            const V1_5::RegStateResult& dataRegResponse) override;
+    Return<void> getCellInfoListResponse_1_5(const V1_0::RadioResponseInfo& info,
+                                             const hidl_vec<V1_5::CellInfo>& cellInfo) override;
+    Return<void> setNetworkSelectionModeManualResponse_1_5(
+            const V1_0::RadioResponseInfo& info) override;
+    Return<void> sendCdmaSmsExpectMoreResponse(const V1_0::RadioResponseInfo& info,
+                                               const V1_0::SendSmsResult& sms) override;
+    Return<void> supplySimDepersonalizationResponse(const V1_0::RadioResponseInfo& info,
+                                                    V1_5::PersoSubstate persoType,
+                                                    int32_t remainingRetries) override;
+    Return<void> getIccCardStatusResponse_1_5(const V1_0::RadioResponseInfo& info,
+                                              const V1_5::CardStatus& cardStatus) override;
 };
 
 }  // namespace android::hardware::radio::implementation

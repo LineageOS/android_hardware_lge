@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#define LOG_TAG "android.hardware.radio@1.4-service.lge"
+#define LOG_TAG "android.hardware.radio@1.5-service.lge"
 
 #include <android-base/logging.h>
 #include <android-base/properties.h>
@@ -30,7 +30,7 @@ using android::status_t;
 
 int main() {
     // Note: Starts from slot 1
-    std::map<int, sp<V1_4::IRadio>> slotIdToRadio;
+    std::map<int, sp<V1_5::IRadio>> slotIdToRadio;
 
     int MAX_SLOT_ID = GetIntProperty("ro.boot.vendor.lge.sim_num", 1);
     for (int slotId = 1; slotId <= MAX_SLOT_ID; slotId++) {

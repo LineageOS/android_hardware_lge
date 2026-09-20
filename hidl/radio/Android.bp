@@ -5,7 +5,7 @@
 //
 
 cc_binary {
-    name: "android.hardware.radio@1.4-service.lge",
+    name: "android.hardware.radio@1.5-service.lge",
     cflags: [
         "-Wno-unused-variable",
         "-Wno-unused-parameter",
@@ -13,7 +13,7 @@ cc_binary {
     owner: "lineage",
     relative_install_path: "hw",
     vendor: true,
-    init_rc: ["android.hardware.radio@1.4-service.lge.rc"],
+    init_rc: ["android.hardware.radio@1.5-service.lge.rc"],
     srcs: [
         "Radio.cpp",
         "RadioIndication.cpp",

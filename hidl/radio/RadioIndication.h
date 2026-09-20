@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <android/hardware/radio/1.4/IRadioIndication.h>
+#include <android/hardware/radio/1.5/IRadioIndication.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
 
@@ -20,8 +20,8 @@ using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 
-struct RadioIndication : public V1_4::IRadioIndication {
-    sp<V1_4::IRadioIndication> mRealRadioIndication;
+struct RadioIndication : public V1_5::IRadioIndication {
+    sp<V1_5::IRadioIndication> mRealRadioIndication;
     // Methods from ::android::hardware::radio::V1_0::IRadioIndication follow.
     Return<void> radioStateChanged(V1_0::RadioIndicationType type,
                                    V1_0::RadioState radioState) override;
@@ -128,6 +128,25 @@ struct RadioIndication : public V1_4::IRadioIndication {
             const hidl_vec<V1_4::SetupDataCallResult>& dcList) override;
     Return<void> currentSignalStrength_1_4(V1_0::RadioIndicationType type,
                                            const V1_4::SignalStrength& signalStrength) override;
+
+    // Methods from ::android::hardware::radio::V1_5::IRadioIndication follow.
+    Return<void> uiccApplicationsEnablementChanged(V1_0::RadioIndicationType type,
+                                                   bool enabled) override;
+    Return<void> registrationFailed(V1_0::RadioIndicationType type,
+                                    const V1_5::CellIdentity& cellIdentity,
+                                    const hidl_string& chosenPlmn,
+                                    hidl_bitfield<V1_5::Domain> domain, int32_t causeCode,
+                                    int32_t additionalCauseCode) override;
+    Return<void> barringInfoChanged(V1_0::RadioIndicationType type,
+                                    const V1_5::CellIdentity& cellIdentity,
+                                    const hidl_vec<V1_5::BarringInfo>& barringInfos) override;
+    Return<void> cellInfoList_1_5(V1_0::RadioIndicationType type,
+                                  const hidl_vec<V1_5::CellInfo>& records) override;
+    Return<void> networkScanResult_1_5(V1_0::RadioIndicationType type,
+                                       const V1_5::NetworkScanResult& result) override;
+    Return<void> dataCallListChanged_1_5(
+            V1_0::RadioIndicationType type,
+            const hidl_vec<V1_5::SetupDataCallResult>& dcList) override;
 };
 
 }  // namespace android::hardware::radio::implementation
