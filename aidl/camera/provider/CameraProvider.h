@@ -63,6 +63,9 @@ class CameraProvider : public BnCameraProvider, protected camera_module_callback
     // (cameraId string, hidl device name) pairs
     SortedVector<std::pair<std::string, std::string>> mCameraDeviceNames;
 
+    // LGE CHANGE - save blacklisted camera ID information from properties
+    std::vector<int> mBlacklistedCameraIds;
+
     // Must be queried before using any APIs.
     // APIs will only work when this returns true
     bool mInitFailed;
@@ -84,6 +87,7 @@ class CameraProvider : public BnCameraProvider, protected camera_module_callback
     void addDeviceNames(int camera_id, CameraDeviceStatus status = CameraDeviceStatus::PRESENT,
                         bool cam_new = false);
     void removeDeviceNames(int camera_id);
+    bool isCameraIdBlacklisted(int camera_id);
 };
 
 }  // namespace implementation

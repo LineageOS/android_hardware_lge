@@ -22,6 +22,8 @@
 namespace {
 constexpr const char* CAMERA_REMAP_IDS_PROPERTY = "vendor.camera.remapid";
 constexpr const char* CAMERA_SKIP_FAILED_IDS_PROPERTY = "vendor.camera.skip_failed_ids";
+// LGE CHANGE - save blacklisted camera ID information from properties
+constexpr const char* CAMERA_BLACKLIST_IDS_PROPERTY = "vendor.camera.provider.blacklist_ids";
 };  // namespace
 
 namespace android {
@@ -87,6 +89,12 @@ void CameraProvider::removeDeviceNames(int camera_id) {
     mModule->removeCamera(camera_id);
 }
 
+// LGE CHANGE START - do not attempt to access blacklisted camera ID
+bool CameraProvider::isCameraIdBlacklisted(int camera_id) {
+    return std::find(mBlacklistedCameraIds.begin(), mBlacklistedCameraIds.end(), camera_id) != mBlacklistedCameraIds.end();
+}
+// LGE CHANGE END - do not attempt to access blacklisted camera ID
+
 /**
  * static callback forwarding methods from HAL to instance
  */
@@ -97,6 +105,13 @@ void CameraProvider::sCameraDeviceStatusChange(const struct camera_module_callba
         ALOGE("%s: callback ops is null", __FUNCTION__);
         return;
     }
+
+    // LGE CHANGE START - do not attempt to access blacklisted camera ID
+    if (cp->isCameraIdBlacklisted(camera_id)) {
+        ALOGI("%s: ID is blacklisted, skipping.", __FUNCTION__);
+        return;
+    }
+    // LGE CHANGE END - do not attempt to access blacklisted camera ID
 
     Mutex::Autolock _l(cp->mCbLock);
     std::string cameraIdStr = std::to_string(camera_id);
@@ -139,6 +154,13 @@ void CameraProvider::sTorchModeStatusChange(const struct camera_module_callbacks
         ALOGE("%s: callback ops is null", __FUNCTION__);
         return;
     }
+
+    // LGE CHANGE START - do not attempt to access blacklisted camera ID
+    if (cp->isCameraIdBlacklisted(std::stoi(camera_id))) {
+        ALOGI("%s: ID is blacklisted, skipping.", __FUNCTION__);
+        return;
+    }
+    // LGE CHANGE END - do not attempt to access blacklisted camera ID
 
     Mutex::Autolock _l(cp->mCbLock);
     if (cp->mCallbacks != nullptr) {
@@ -217,6 +239,17 @@ bool CameraProvider::initialize() {
         return true;
     }
 
+    // LGE CHANGE START - save blacklisted camera ID information from properties
+    std::string blacklistedCameraProp = base::GetProperty(CAMERA_BLACKLIST_IDS_PROPERTY, "");
+    if (!blacklistedCameraProp.empty()) {
+        size_t start = 0;
+        std::vector<std::string> ids = base::Split(blacklistedCameraProp, ",");
+        for (int i=0; i < ids.size(); i++) {
+            mBlacklistedCameraIds.push_back(std::stoi(ids.at(i)));
+        }
+    }
+    // LGE CHANGE END - save blacklisted camera ID information from properties
+
     mNumberOfLegacyCameras = mModule->getNumberOfCameras();
 
     // Get camera IDs map
@@ -229,6 +262,13 @@ bool CameraProvider::initialize() {
         if (n != i) {
             ALOGI("%s: Camera %d ID remapped to %d", __func__, n, i);
         }
+
+        // LGE CHANGE START - do not attempt to access blacklisted camera ID
+        if (std::find(mBlacklistedCameraIds.begin(), mBlacklistedCameraIds.end(), i) != mBlacklistedCameraIds.end()) {
+            ALOGI("%s: ID is blacklisted, skipping.", __FUNCTION__);
+            continue;
+        }
+        // LGE CHANGE END - do not attempt to access blacklisted camera ID
 
         struct camera_info info;
         auto rc = mModule->getCameraInfo(i, &info);
