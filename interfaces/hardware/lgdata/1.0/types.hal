@@ -1,0 +1,38 @@
+/* Copyright (C) 2026 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+package vendor.lge.hardware.lgdata@1.0;
+// Wire layouts recovered from the stock Java HIDL bindings and native serializers.
+struct LgDataQosResponse {
+    string dev_name;
+    int32_t qid;
+    int32_t status;
+    string tx_flow_desc;
+    string rx_flow_desc;
+    string tx_tft;
+    string rx_tft;
+};
+struct Handover2CellularInd {
+    int32_t slotId;
+    int32_t apnTypeMask;
+    int32_t status;
+    int32_t cause;
+    int32_t ipType;
+    string apn;
+    string ip4address;
+    string ip6address;
+};
+struct snssai_info_type {
+    uint8_t sst;
+    uint8_t[3] sd;
+    bool mapping_sst_present;
+    uint8_t mapped_sst;
+    uint8_t[3] mapped_sd;
+};
+struct pdu_info_type {
+    uint8_t pdu_session_id;
+    bool snssai_info_is_valid;
+    snssai_info_type snssai_info;
+    uint8_t is_snssai_resolved;
+    uint8_t[3] plmnid;
+};

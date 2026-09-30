@@ -1,0 +1,16 @@
+/* Copyright (C) 2026 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+package vendor.lge.hardware.lgdata@1.0;
+import ILgDataCallback;
+interface ILgData {
+    setCallback(int32_t slotid, ILgDataCallback callback);
+    iwlanSetRegisterCellularQualityReport(int32_t slotid, int32_t qualityRegister,
+                                          int32_t aType, vec<int32_t> aDataArray) generates (int32_t result);
+    iwlanSendImsPdnStatus(int32_t slotid, int32_t aImsPdnStatus) generates (int32_t result);
+    allocatePduSessionId(int32_t slotid) generates (uint32_t psi);
+    freePduSessionId(int32_t slotid, uint32_t psi) generates (int32_t result);
+    setHandoffPduSessionId(int32_t slotid, uint32_t psi) generates (int32_t result);
+    get5gPduInfo(int32_t slotid, string iface) generates (pdu_info_type info);
+    set5gPduInfo(int32_t slotid, string apn, pdu_info_type pdu_info) generates (int32_t result);
+};

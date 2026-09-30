@@ -1,0 +1,8 @@
+/* Copyright (C) 2026 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+package vendor.lge.hardware.lgdata@1.0;
+interface ILgDataVendorRil {
+    notifyCellularDataConnectionForHO(Handover2CellularInd handoverInfo) generates (int32_t result);
+    get5gPduInfo(int32_t slotid, string apn) generates (pdu_info_type info);
+};

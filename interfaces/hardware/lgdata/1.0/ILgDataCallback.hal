@@ -1,0 +1,10 @@
+/* Copyright (C) 2026 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
+ */
+package vendor.lge.hardware.lgdata@1.0;
+// Stock callbacks are synchronous, not oneway.
+interface ILgDataCallback {
+    iwlanCellularQualityChangedInd(int32_t aQualityType, int32_t aValue);
+    dataQosChangedInd(LgDataQosResponse qosInfo);
+    handoverToCellularInd(Handover2CellularInd hoInfo);
+};

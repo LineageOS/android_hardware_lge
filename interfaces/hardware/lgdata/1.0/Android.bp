@@ -1,0 +1,10 @@
+// Copyright (C) 2026 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+hidl_interface {
+    name: "vendor.lge.hardware.lgdata@1.0",
+    root: "vendor.lge",
+    system_ext_specific: true,
+    srcs: ["types.hal", "ILgData.hal", "ILgDataCallback.hal", "ILgDataVendorRil.hal"],
+    interfaces: ["android.hidl.base@1.0"],
+    gen_java: false,
+}
