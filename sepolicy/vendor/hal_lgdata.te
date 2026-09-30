@@ -3,3 +3,6 @@ binder_call(hal_lgdata_server, hal_lgdata_client)
 
 add_hwservice(hal_lgdata_server, hal_lgdata_hwservice)
 allow hal_lgdata_client hal_lgdata_hwservice:hwservice_manager find;
+
+# The LG AIDL adapter replaces the stock AP IMS data callback client.
+hal_client_domain(hal_radio_default, hal_lgdata)

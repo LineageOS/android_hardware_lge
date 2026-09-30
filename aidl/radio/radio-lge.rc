@@ -1,0 +1,4 @@
+service vendor.radio-lge-aidl /vendor/bin/hw/android.hardware.radio-service.lge
+    class hal
+    user system
+    group system
