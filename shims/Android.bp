@@ -4,7 +4,7 @@
 //
 
 cc_library_shared {
-    name: "libets_teeclient_v2_shim",
-    srcs: ["libets_teeclient_v2_shim.c"],
+    name: "libfpsph",
+    srcs: ["libfpsph_stub.c"],
     vendor: true,
 }
