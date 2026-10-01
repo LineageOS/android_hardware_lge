@@ -19,7 +19,9 @@ genfscon sysfs /class/lg_rgb_led/use_patterns           u:object_r:sysfs_leds:s0
 genfscon sysfs /devices/virtual/lg_rgb_led/use_patterns u:object_r:sysfs_leds:s0
 
 # Livedisplay
-genfscon sysfs /devices/virtual/panel/img_tune u:object_r:sysfs_livedisplay_tuneable:s0
+genfscon sysfs /devices/virtual/panel/img_tune                u:object_r:sysfs_livedisplay_tuneable:s0
+genfscon sysfs /devices/virtual/panel/brightness/irc_brighter u:object_r:sysfs_livedisplay_tuneable:s0
+genfscon sysfs /devices/virtual/panel/brightness/irc_support  u:object_r:sysfs_livedisplay_tuneable:s0
 
 # Power
 genfscon sysfs /class/qnovo u:object_r:sysfs_qni:s0
