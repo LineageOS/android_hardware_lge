@@ -8,3 +8,5 @@ allow rild persist_lg_data_file:sock_file write;
 
 get_prop(rild, boot_status_prop)
 get_prop(rild, vendor_lge_misc_prop)
+
+allow rild vendor_diag_device:chr_file rw_file_perms;
