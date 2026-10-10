@@ -1,4 +1,5 @@
 # Block devices
+/dev/block/platform/soc/1d84000\.ufshc/by-name/ftm       u:object_r:vendor_efs_boot_dev:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/laf_(a|b) u:object_r:vendor_custom_ab_block_device:s0
 
 # Init
