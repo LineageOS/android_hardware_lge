@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5117ec0f_826448ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2026-10-11T04:54:41Z",
+      "side": 1,
+      "message": "along with the inline comment, move all of this to `vndr` directory as it doesn\u0027t exist for pre-sm8150",
+      "revId": "260ff5d48e8d320e029bf4283b97e119f26bac7d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3c110c0_cc4a908f",
+        "filename": "sepolicy/vendor/file_contexts",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 31496
+      },
+      "writtenOn": "2026-10-11T04:54:41Z",
+      "side": 1,
+      "message": "can you find out what the actual partition path is rather than hardcoding sda8",
+      "revId": "260ff5d48e8d320e029bf4283b97e119f26bac7d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
