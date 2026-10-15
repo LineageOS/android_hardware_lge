@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sound_preset_normal">標準</string>
+    <string name="sound_preset_enhanced">增強</string>
+    <string name="sound_preset_detailed">細節</string>
+    <string name="digital_filter_0">短</string>
+    <string name="digital_filter_2">慢</string>
+</resources>
