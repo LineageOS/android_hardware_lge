@@ -9,4 +9,5 @@
     <string name="digital_filter_1">Tajam</string>
     <string name="digital_filter_2">Lambat</string>
     <string name="hifi_mode_normal">Normal</string>
+    <string name="avc_volume">Volume AVC</string>
 </resources>
