@@ -5,4 +5,5 @@
     <string name="sound_preset_detailed">細節</string>
     <string name="digital_filter_0">短</string>
     <string name="digital_filter_2">慢</string>
+    <string name="customizable_filter_coeffs_summary">注意：如果所有系數均為 0，音訊將會靜音</string>
 </resources>
